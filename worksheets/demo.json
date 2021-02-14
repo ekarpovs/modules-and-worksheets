@@ -7,6 +7,10 @@
     {"exec": "bsc.crop", "show": 1, "y0": 100, "x0": 150},
     {"exec": "bsc.flip", "drct": -1, "show": 1},
     {"exec": "bsc.rotate", "angle": -30, "show": 1},
-    {"exec": "bsc.rotate", "angle": 30, "show": 1}
+    {"exec": "bsc.rotate", "angle": 30, "show": 1},
+    {"exec": "smth.bilateral", "show": 1},
+    {"exec": "clrs.bgrto", "show": 1},
+    {"exec": "mrph.mex", "show": 1},
+    {"exec": "thrsh.simple", "show": 1, "type": 1}
   ]
 }
