@@ -23,3 +23,19 @@ def sobel(input_, **kwargs):
   output_ = cv2.convertScaleAbs(g)
 
   return output_
+
+
+# compute a "wide", "mid-range", and "tight" threshold for the edges
+def canny(input_, **kwargs):
+  """
+  wide, mid, tight
+  threshold1 10, 30, 240
+  threshold2 200, 150, 250
+  """
+
+  threshold1 = kwargs.get('thrs1', 10)
+  threshold2 = kwargs.get('thrs2', 200)
+
+  output_ = cv2.Canny(input_, threshold1, threshold2)
+  
+  return output_
