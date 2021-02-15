@@ -16,6 +16,7 @@ def bgrto(**kwargs):
   """
 
   type = kwargs.get('type', cv2.COLOR_BGR2GRAY)
+  kwargs.pop('type', None)
 
   if len(kwargs['image'].shape) == 2:
   

@@ -35,6 +35,8 @@ def canny(**kwargs):
 
   threshold1 = kwargs.get('thrs1', 10)
   threshold2 = kwargs.get('thrs2', 200)
+  kwargs.pop('thrs1', None)
+  kwargs.pop('thrs2', None)
 
   kwargs['image'] = cv2.Canny(kwargs['image'], threshold1, threshold2)
   

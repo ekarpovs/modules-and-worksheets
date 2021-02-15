@@ -10,7 +10,11 @@ def crop(**kwargs):
   y1 = kwargs.get('y1', h)
   x0 = kwargs.get('x0', 0)
   x1 = kwargs.get('x1', w)
-  
+  kwargs.pop('y0', None)
+  kwargs.pop('y1', None)
+  kwargs.pop('x0', None)
+  kwargs.pop('x1', None)
+
   kwargs['image'] = kwargs['image'][y0:y1, x0:x1]
 
   return kwargs
@@ -18,6 +22,7 @@ def crop(**kwargs):
 
 def flip(**kwargs):
   direction = kwargs.get('drct', 1)
+  kwargs.pop('drct', None)
 
   kwargs['image'] = cv2.flip(kwargs['image'], direction) 
   
@@ -37,6 +42,14 @@ def mask(**kwargs):
   cx = kwargs.get('cx', w / 2)
   cy = kwargs.get('cy', h / 2)
   rad = kwargs.get('rad', min(h / 2, w /2))
+  kwargs.pop('type', None)
+  kwargs.pop('y0', None)
+  kwargs.pop('y1', None)
+  kwargs.pop('x0', None)
+  kwargs.pop('x1', None)
+  kwargs.pop('cx', None)
+  kwargs.pop('cy', None)
+  kwargs.pop('rad', None)
   
   # Masking allows us to focus only on parts of an image that interest us.
   # A mask is the same size as our image, but has only two pixel values,
@@ -78,6 +91,11 @@ def resize(**kwargs):
   method = kwargs.get('meth', cv2.INTER_AREA)
   unit = kwargs.get('unit', 0)
   side = kwargs.get('side', 0)
+  kwargs.pop('meth', None)
+  kwargs.pop('unit', None)
+  kwargs.pop('side', None)
+
+
   #  default value regarding to the side of a rectangle
   def_size = w
   if side == 0:
@@ -136,7 +154,9 @@ def translate(**kwargs):
 
   shiftX = kwargs.get('x', 0)
   shiftY = kwargs.get('y', 0)
-  
+  kwargs.pop('x', None)
+  kwargs.pop('y', None)
+
   if shiftX == 0 and shiftY == 0:
     return kwargs['image']
 

@@ -17,6 +17,8 @@ def find(**kwargs):
 
   mode = kwargs.get('md', cv2.RETR_EXTERNAL)
   method = kwargs.get('mth', cv2.CHAIN_APPROX_SIMPLE)
+  kwargs.pop('md', None)
+  kwargs.pop('mth', None)
 
   kwargs['cntrs'] = cv2.findContours(kwargs['image'], mode, method) 
 
