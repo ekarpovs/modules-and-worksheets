@@ -1,7 +1,7 @@
 import cv2
 # Smoothing operation
 
-def bilateral(input_, **kwargs):
+def bilateral(**kwargs):
   """
   # diameter, sigmaColor, sigmaSpace
   (11, 21, 7)
@@ -12,6 +12,6 @@ def bilateral(input_, **kwargs):
   sigmaColor = kwargs.get('c', 21)
   sigmaSpace = kwargs.get('s', 7)
 
-  output_ = cv2.bilateralFilter(input_, diameter, sigmaColor, sigmaSpace)
+  kwargs['image'] = cv2.bilateralFilter(kwargs['image'], diameter, sigmaColor, sigmaSpace)
 
-  return output_
+  return kwargs

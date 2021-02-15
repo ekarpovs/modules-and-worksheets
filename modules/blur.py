@@ -1,30 +1,30 @@
 import cv2
 # Bluring operation
 
-def avg(input_, **kwargs):
+def avg(**kwargs):
 
   kernel = kwargs.get('k', 3)
   kX = kY = kernel 
 
-  output_ = cv2.blur(input_, (kX, kY)) 
+  kwargs['image'] = cv2.blur(kwargs['image'], (kX, kY)) 
 
-  return output_
+  return kwargs
 
 
-def gaus(input_, **kwargs):
+def gaus(**kwargs):
 
   kernel = kwargs.get('k', 3)
   kX = kY = kernel 
 
-  output_ = cv2.GaussianBlur(input_, (kX, kY), 0)
+  kwargs['image'] = cv2.GaussianBlur(kwargs['image'], (kX, kY), 0)
 
-  return output_
+  return kwargs
 
 
-def median(input_, **kwargs):
+def median(**kwargs):
 
   kernel = kwargs.get('k', 3)
 
-  output_ = cv2.medianBlur(input_, kernel)
+  kwargs['image'] = cv2.medianBlur(kwargs['image'], kernel)
 
-  return output_
+  return kwargs

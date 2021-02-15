@@ -1,6 +1,6 @@
 import cv2
 
-def bgrto(input_, **kwargs):  
+def bgrto(**kwargs):  
   """
   # Possible conversion types:
   # cv2.COLOR_BGR2GRAY 6
@@ -16,6 +16,12 @@ def bgrto(input_, **kwargs):
   """
 
   type = kwargs.get('type', cv2.COLOR_BGR2GRAY)
-  output_ = cv2.cvtColor(input_, type)
 
-  return output_
+  if len(kwargs['image'].shape) == 2:
+  
+    # input - gray
+    return kwargs
+
+  kwargs['image'] = cv2.cvtColor(kwargs['image'], type)
+
+  return kwargs

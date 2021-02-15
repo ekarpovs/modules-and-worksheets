@@ -1,29 +1,29 @@
 import cv2
 # Morphological operation
 
-def erode(input_, **kwargs):
+def erode(**kwargs):
   """
   iterations > 0 
   """
   iterations = kwargs.get('iter', 3)
 
-  output_ = cv2.erode(input_, None, iterations=iterations)
+  kwargs['image'] = cv2.erode(kwargs['image'], None, iterations=iterations)
 
-  return output_
+  return kwargs
 
 
-def dilate(input_, **kwargs):
+def dilate(**kwargs):
   """
   iterations > 0 
   """
   iterations = kwargs.get('iter', 3)
 
-  output_ = cv2.dilate(input_, None, iterations=iterations)
+  kwargs['image'] = cv2.dilate(kwargs['image'], None, iterations=iterations)
 
-  return output_
+  return kwargs
 
 
-def mex(input_, **kwargs):
+def mex(**kwargs):
   """
   shape
   cv2.MORPH_RECT 0
@@ -43,9 +43,9 @@ def mex(input_, **kwargs):
 
   kernel = cv2.getStructuringElement(shape, (kernelSize, kernelSize))
 
-  output_ = cv2.morphologyEx(input_, type, kernel) 
+  kwargs['image'] = cv2.morphologyEx(kwargs['image'], type, kernel) 
 
-  return output_
+  return kwargs
 
 
 

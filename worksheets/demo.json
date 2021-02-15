@@ -10,6 +10,7 @@
     {"exec": "bsc.rotate", "angle": 30, "show": 1},
     {"exec": "smth.bilateral", "show": 1},
     {"exec": "clrs.bgrto", "show": 1},
+    {"exec": "cntrs.find", "show": 1},
     {"exec": "mrph.mex", "show": 1},
     {"exec": "thrsh.simple", "show": 1, "type": 1}
   ]
