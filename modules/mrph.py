@@ -7,8 +7,7 @@ def erode(input_, **kwargs):
   """
   iterations = kwargs.get('iter', 3)
 
-  for i in range(0, iterations):
-    output_ = cv2.erode(input_, None, iterations=i + 1)
+  output_ = cv2.erode(input_, None, iterations=iterations)
 
   return output_
 
@@ -19,8 +18,7 @@ def dilate(input_, **kwargs):
   """
   iterations = kwargs.get('iter', 3)
 
-  for i in range(0, iterations):
-    output_ = cv2.dilate(input_, None, iterations=i + 1)
+  output_ = cv2.dilate(input_, None, iterations=iterations)
 
   return output_
 
