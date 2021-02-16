@@ -1,0 +1,7 @@
+{
+  "steps":[
+    {"exec": "clrs.bgrto", "show": 1},
+    {"exec": "blur.gaus", "show": 1, "k": 7},
+    {"exec": "thrsh.otsu", "show": 1, "type": 1}
+  ]
+}
