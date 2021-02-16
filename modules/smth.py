@@ -11,9 +11,6 @@ def bilateral(**kwargs):
   diameter = kwargs.get('d', 11)
   sigmaColor = kwargs.get('c', 21)
   sigmaSpace = kwargs.get('s', 7)
-  kwargs.pop('d', None)
-  kwargs.pop('c', None)
-  kwargs.pop('s', None)
 
   kwargs['image'] = cv2.bilateralFilter(kwargs['image'], diameter, sigmaColor, sigmaSpace)
 

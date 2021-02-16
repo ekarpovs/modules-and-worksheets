@@ -40,9 +40,6 @@ def mex(**kwargs):
   shape = kwargs.get('shape',cv2.MORPH_RECT)
   type = kwargs.get('type', cv2.MORPH_OPEN)
   kernelSize = kwargs.get('k', 3)
-  kwargs.pop('shape', None)
-  kwargs.pop('type', None)
-  kwargs.pop('k', None)
 
   kernel = cv2.getStructuringElement(shape, (kernelSize, kernelSize))
 
