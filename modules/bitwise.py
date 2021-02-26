@@ -1,5 +1,5 @@
 import cv2
-# Bitwise operation
+# Bitwise operations
 
 def and(**kwargs):
   kwargs['image'] = cv2.bitwise_and(kwargs['image'], kwargs['image1']) 
