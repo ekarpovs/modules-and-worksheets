@@ -1,4 +1,5 @@
 import cv2
+# Color spaces operations
 
 def bgrto(**kwargs):  
   """
