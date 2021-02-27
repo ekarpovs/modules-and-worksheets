@@ -103,6 +103,37 @@ def resize(**kwargs):
 
   return kwargs
 
+# Resize without ratio
+def resize1(**kwargs):
+  """
+  # interpolation methods
+	# cv2.INTER_NEAREST
+	# cv2.INTER_LINEAR
+	# cv2.INTER_AREA
+	# cv2.INTER_CUBIC
+	# cv2.INTER_LANCZOS4
+  # units
+  pixel 0
+  percent 1
+  # rectangle
+  height
+  width
+  """
+
+  method = kwargs.get('meth', cv2.INTER_AREA)
+  unit = kwargs.get('unit', 0)
+  w_new = kwargs.get('w', 9)
+  h_new = kwargs.get('h', 8)
+
+  dim = (w_new, h_new)
+  if unit == 1: # percent
+    (h, w) = kwargs['image'].shape[:2]
+    dim = (int(w*w_new/100), int(h*h_new/100))
+    
+  kwargs['image'] = cv2.resize(kwargs['image'], dim, interpolation=method) 
+
+  return kwargs
+
 
 def rotate(**kwargs):  
 
