@@ -43,3 +43,15 @@ def bfm_knn(**kwargs):
   kwargs['matches'] = matches
 
   return kwargs
+
+
+def good(**kwargs):
+  distance = kwargs.get('dist', 0.5)
+
+  matches = kwargs['matches']
+
+  good = [m for m in matches if m.distance < distance]
+  
+  kwargs['matches'] = good
+
+  return kwargs
