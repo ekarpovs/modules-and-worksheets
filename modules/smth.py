@@ -1,5 +1,7 @@
+'''
+Smoothing operation
+'''
 import cv2
-# Smoothing operation
 
 def bilateral(**kwargs):
   """

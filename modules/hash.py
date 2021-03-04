@@ -1,5 +1,7 @@
+'''
+Hashing operations
+'''
 import cv2
-# Hashing operations
 
 def dhashm(**kwargs):
 

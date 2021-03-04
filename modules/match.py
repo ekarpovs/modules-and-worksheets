@@ -1,5 +1,7 @@
+'''
+Matching operations
+'''
 import cv2
-# Matching operations
 
 # Brute-Force Matchers
 def bfm_knn(**kwargs):

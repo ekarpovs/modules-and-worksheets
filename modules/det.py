@@ -1,12 +1,21 @@
+'''
+Keypoin detection operations
+'''
 import cv2
-# Keypoin detection operations
 
-def freak(**kwargs):
+def fast(**kwargs):
   '''
-  cv2.TYPE_5_8 = 0,
-  cv2.TYPE_7_12 = 1,
-  cv2.TYPE_9_16 = 2
-  '''
+  Detects keypoints using FAST  (Features from Accelerated Segment Test) algorithm. 
+  Gets via kwargs (key, default value): 
+    - image;
+    - thrs - threshold;
+    - nonmax - non max suppression;
+    - type - neighborhood type:
+      cv2.TYPE_5_8 - 0,
+      cv2.TYPE_7_12 - 1,
+      cv2.TYPE_9_16 - 2
+  Returns result image
+  '''   
 
   threshold = kwargs.get('thrs', 25)
   nonmax_suppression = kwargs.get('nonmax', True)
@@ -32,3 +41,12 @@ def star(**kwargs):
   kwargs['kps'] = kps
 
   return kwargs
+
+# More detectors
+# Harris Corner Detection
+# Shi-Tomasi Corner Detector 
+# SIFT
+# SURF
+# BRIEF (Binary Robust Independent Elementary Features)
+# ORB (Oriented FAST and Rotated BRIEF)
+# 

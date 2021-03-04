@@ -1,5 +1,7 @@
+'''
+Feature extaction operations
+'''
 import cv2
-# Feature extaction operations
 
 def freak(**kwargs):
 

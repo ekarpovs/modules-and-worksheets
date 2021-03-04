@@ -1,6 +1,8 @@
+'''
+Gradient and edge dectection operations
+Gradient magnitude and orientation.
+'''
 import cv2
-# Gradient and edge dectection operation
-# gradient magnitude and orientation
 
 def sobel(**kwargs):
   """

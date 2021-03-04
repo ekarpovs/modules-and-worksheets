@@ -1,33 +1,45 @@
+'''
+Connected Component Labeling operations
+'''
 import cv2
-# Connected Component Labeling
 
 def basic(**kwargs):
-  """
-  connectivity, type=int, default 4
-  """
+  '''
+  Applys apply connected component analysis to the thresholded image 
+  Gets via kwargs (key, default value): 
+    - image;
+    - c - connectivity, 4;
+  Returns result image, and
+    num - number of total components, that were detected;
+    labels - a mask named labels has the same spatial dimensions as input thresh image;
+    stats - statistics on each connected component, including the bounding box coordinates and area;
+    centroids - (x, y)-coordinates of each connected component.
+  '''   
 
   connectivity = int(kwargs.get('c', 4))
 
-  # apply connected component analysis to the thresholded image 
   output = cv2.connectedComponentsWithStats(kwargs['image'], connectivity, cv2.CV_32S)
   (num_labels, labels, stats, centroids) = output 
 
-  kwargs['num'] = num_labels # number of total components, that were detected
-  kwargs['labels'] = labels # A mask named labels has the same spatial dimensions as input thresh image.
-  kwargs['stats'] = stats # Statistics on each connected component, including the bounding box coordinates and area
-  kwargs['centroids'] = centroids # (x, y)-coordinates of each connected component
+  kwargs['num'] = num_labels 
+  kwargs['labels'] = labels 
+  kwargs['stats'] = stats 
+  kwargs['centroids'] = centroids 
 
   return kwargs
 
 
 def stats(**kwargs):
-  """
-  cv2.CC_STAT_LEFT 0
-  cv2.CC_STAT_TOP 1
-  cv2.CC_STAT_WIDTH 2
-  cv2.CC_STAT_HEIGHT 3
-  cv2.CC_STAT_AREA 4
-  """
+  '''
+  Iterates through labels and parses each one. 
+  Gets via kwargs (key, default value): 
+    - image;
+    - num - number of total components, that were detected;
+    - labels - a mask named labels has the same spatial dimensions as input thresh image;
+    - stats - statistics on each connected component, including the bounding box coordinates and area;
+    - centroids - (x, y)-coordinates of each connected component.
+  Returns result image
+  '''   
 
   num_labels = int(kwargs.get('num', 0))
   labels = int(kwargs.get('labels', None))

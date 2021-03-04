@@ -1,6 +1,8 @@
+'''
+Drawing Keypoints and Matches operation
+'''
 import cv2
 import numpy as np
-# Drawing Keypoints and Matches operation
 
 def keypoints(**kwargs):
   """

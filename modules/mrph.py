@@ -1,5 +1,7 @@
+'''
+Morphological operation
+'''
 import cv2
-# Morphological operation
 
 def erode(**kwargs):
   """

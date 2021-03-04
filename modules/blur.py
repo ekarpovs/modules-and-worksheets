@@ -1,7 +1,16 @@
+'''
+Bluring operation
+'''
 import cv2
-# Bluring operation
 
 def avg(**kwargs):
+  '''
+  Performs average bluring.
+  Gets via kwargs (key, default value): 
+    - image;
+    - k - kernel size, 3.
+  Returns result image.
+  '''  
 
   kernel = kwargs.get('k', 3)
   kX = kY = kernel 
@@ -12,6 +21,13 @@ def avg(**kwargs):
 
 
 def gaus(**kwargs):
+  '''
+  Performs gausian bluring.
+  Gets via kwargs (key, default value): 
+    - image;
+    - k - kernel size, 3.
+  Returns result image.
+  '''  
 
   kernel = kwargs.get('k', 3)
   kX = kY = kernel 
@@ -22,6 +38,13 @@ def gaus(**kwargs):
 
 
 def median(**kwargs):
+  '''
+  Performs median bluring.
+  Gets via kwargs (key, default value): 
+    - image;
+    - k - kernel size, 3.
+  Returns result image.
+  '''  
 
   kernel = kwargs.get('k', 3)
 

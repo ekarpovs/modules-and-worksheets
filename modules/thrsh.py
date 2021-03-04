@@ -1,6 +1,7 @@
+'''
+Threshold operations
+'''
 import cv2
-
-# Threshold operations
 
 def simple(**kwargs):
   """
