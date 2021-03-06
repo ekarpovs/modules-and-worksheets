@@ -6,14 +6,17 @@ import cv2
 def basic(**kwargs):
   '''
   Applys apply connected component analysis to the thresholded image 
-  Gets via kwargs (key, default value): 
-    - image;
-    - c - connectivity, 4;
-  Returns result image, and
-    num - number of total components, that were detected;
-    labels - a mask named labels has the same spatial dimensions as input thresh image;
-    stats - statistics on each connected component, including the bounding box coordinates and area;
-    centroids - (x, y)-coordinates of each connected component.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - c: connectivity, 4;
+  
+  Returns:
+  - image;
+  - num: number of total components, that were detected;
+  - labels: a mask named labels has the same spatial dimensions as input thresh image;
+  - stats: statistics on each connected component, including the bounding box coordinates and area;
+  - centroids: (x, y) coordinates of each connected component.
   '''   
 
   connectivity = int(kwargs.get('c', 4))
@@ -31,14 +34,17 @@ def basic(**kwargs):
 
 def stats(**kwargs):
   '''
-  Iterates through labels and parses each one. 
-  Gets via kwargs (key, default value): 
-    - image;
-    - num - number of total components, that were detected;
-    - labels - a mask named labels has the same spatial dimensions as input thresh image;
-    - stats - statistics on each connected component, including the bounding box coordinates and area;
-    - centroids - (x, y)-coordinates of each connected component.
-  Returns result image
+  Iterates through labels and parses each one.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - num: number of total components, that were detected;
+  - labels: a mask named labels has the same spatial dimensions as input thresh image;
+  - stats: statistics on each connected component, including the bounding box coordinates and area;
+  - centroids: (x, y) coordinates of each connected component.
+
+  Returns:
+  - image;
   '''   
 
   num_labels = int(kwargs.get('num', 0))

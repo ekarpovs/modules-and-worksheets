@@ -7,13 +7,17 @@ import numpy as np
 def crop(**kwargs):
   '''
   Crops an image.
-  Gets via kwargs (key, default value): 
-    - image;
-    - y0 - left top coordinate, 0;
-    - y1 - left right coordinate, h;
-    - x0 - left top coordinate, 0;
-    - x1 - left right coordinate, w;
-  Returns result image.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - y0 - left top coordinate, 0;
+  - y1 - left right coordinate, h;
+  - x0 - left top coordinate, 0;
+  - x1 - left right coordinate, w.
+  
+  Returns:
+  - result image;
+  - the kwargs as is.
   '''  
 
   (h, w) = kwargs['image'].shape[:2]
@@ -31,10 +35,14 @@ def crop(**kwargs):
 def flip(**kwargs):
   '''
   Flipss an image.
-  Gets via kwargs (key, default value): 
-    - image;
-    - drct - direction, 1.
-  Returns result image.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - drct: direction, 1.
+ 
+  Returns:
+  - result image;
+  - the kwargs as is.
   '''  
   direction = kwargs.get('drct', 1)
 
@@ -46,19 +54,25 @@ def flip(**kwargs):
 def mask(**kwargs):
   '''
   Applys a mask to an image.
-  Gets via kwargs (key, default value): 
-    - image;
-    - type - the mask shape (rectangle 0, circle 1) , 1;
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - type - the mask shape (rectangle 0, circle 1) , 1;
+
     for rectangle:
-      - y0 - left top coordinate, 0;
-      - y1 - left right coordinate, h;
-      - x0 - left top coordinate, 0;
-      - x1 - left right coordinate, w;
+    - y0 - left top coordinate, 0;
+    - y1 - left right coordinate, h;
+    - x0 - left top coordinate, 0;
+    - x1 - left right coordinate, w.
+
     for circle:
-      - cx - Center coordinate, w/2;
-      - cy - Center coordinate, h/2;
-      - rad - the mask radius,min(h / 2, w /2).
-  Returns result image.
+    - cx - Center coordinate, w/2;
+    - cy - Center coordinate, h/2;
+    - rad - the mask radius,min(h / 2, w /2).
+ 
+  Returns:
+  - result image;
+  - the kwargs as is.
   '''  
   (h, w) = kwargs['image'].shape[:2]
 
@@ -94,22 +108,27 @@ def mask(**kwargs):
 def resize(**kwargs):
   '''
   Resizes an image.
-  Gets via kwargs (key, default value): 
-    - image;
-    - meth - interpolation method, 2:
-      cv2.INTER_NEAREST -0;
-      cv2.INTER_LINEAR - 1;
-      cv2.INTER_AREA - 2;
-      cv2.INTER_CUBIC - 3;
-      cv2.INTER_LANCZOS4 - 4;
-    - unit - measurements unit, 0:
-        pixel - 0;
-        percent - 1;
-    - side - rectangle side, 0:
-        height 0
-        width 1
-  Returns result image.
-  '''  
+
+  Keyword arguments (key, default):
+  - image: an image;
+  
+  - meth - interpolation method, 2:
+    - cv2.INTER_NEAREST - 0;
+    - cv2.INTER_LINEAR - 1;
+    - cv2.INTER_AREA - 2;
+    - cv2.INTER_CUBIC - 3;
+    - cv2.INTER_LANCZOS4 - 4;
+  - unit - measurements unit, 0:
+    - pixel - 0;
+    - percent - 1;
+  - side - rectangle side, 0:
+    - height 0
+    - width 1
+ 
+  Returns:
+  - result image;
+  - the kwargs as is.
+  '''
 
   (h, w) = kwargs['image'].shape[:2]
 
@@ -144,22 +163,27 @@ def resize(**kwargs):
 # Resize without ratio
 def resize1(**kwargs):
   '''
-  Resizes an image without cropping.
-  Gets via kwargs (key, default value): 
-    - image;
-    - meth - interpolation method, 2:
-      cv2.INTER_NEAREST -0;
-      cv2.INTER_LINEAR - 1;
-      cv2.INTER_AREA - 2;
-      cv2.INTER_CUBIC - 3;
-      cv2.INTER_LANCZOS4 - 4;
-    - unit - measurements unit, 0:
-        pixel - 0;
-        percent - 1;
-    - side - rectangle side, 0:
-        height 0
-        width 1
-  Returns result image.
+  Resizes an image without aspect ratio (absolute resizing).
+
+  Keyword arguments (key, default):
+  - image: an image;
+  
+  - meth - interpolation method, 2:
+    - cv2.INTER_NEAREST - 0;
+    - cv2.INTER_LINEAR - 1;
+    - cv2.INTER_AREA - 2;
+    - cv2.INTER_CUBIC - 3;
+    - cv2.INTER_LANCZOS4 - 4;
+  - unit - measurements unit, 0:
+    - pixel - 0;
+    - percent - 1;
+  - side - rectangle side, 0:
+    - height 0
+    - width 1
+ 
+  Returns:
+  - result image;
+  - the kwargs as is.
   '''  
 
   method = kwargs.get('meth', cv2.INTER_AREA)
@@ -179,11 +203,15 @@ def resize1(**kwargs):
 
 def rotate(**kwargs):  
   '''
-  Rotates an image.
-  Gets via kwargs (key, default value): 
-    - image;
-    - angle - rotation angle, 0.
-  Returns result image.
+  Rotates an image without cropping.
+  
+  Keyword arguments (key, default):
+  - image: an image;
+  - angle: rotation angle, 0.
+
+  Returns:
+  - result image;
+  - the kwargs as is.
   '''  
 
   # grab the dimensions of the image and calculate the center of the image
@@ -214,11 +242,15 @@ def translate(**kwargs):
   '''
   Translates (Shifts) an image by a NumPy matrix in the form:
     [[1, 0, shiftX], [0, 1, shiftY]] .
-  Gets via kwargs (key, default value): 
-    - image;
-    - y - number of pixels to shift, 0;
-    - x - number of pixels to shift, 0;
-  Returns result image.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - y: number of pixels to shift, 0;
+  - x: number of pixels to shift, 0.
+
+  Returns:
+  - result image;
+  - the kwargs as is.
   '''  
 
   shiftX = kwargs.get('x', 0)

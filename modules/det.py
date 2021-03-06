@@ -5,16 +5,20 @@ import cv2
 
 def fast(**kwargs):
   '''
-  Detects keypoints using FAST  (Features from Accelerated Segment Test) algorithm. 
-  Gets via kwargs (key, default value): 
-    - image;
-    - thrs - threshold;
-    - nonmax - non max suppression;
-    - type - neighborhood type:
-      cv2.TYPE_5_8 - 0,
-      cv2.TYPE_7_12 - 1,
-      cv2.TYPE_9_16 - 2
-  Returns result image
+  Detects keypoints using FAST  (Features from Accelerated Segment Test) algorithm.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - thrs: threshold;
+  - nonmax: non max suppression;
+  - type: neighborhood type:
+    - cv2.TYPE_5_8: 0,
+    - cv2.TYPE_7_12: 1,
+    - cv2.TYPE_9_16: 2
+
+  Returns:
+  - image;
+  - kps: keypoints.
   '''   
 
   threshold = kwargs.get('thrs', 25)
@@ -29,6 +33,16 @@ def fast(**kwargs):
 
 
 def star(**kwargs):
+  '''
+  Detects keypoints using STAR algorithm.
+
+  Keyword arguments (key, default):
+  - image: an image;
+
+  Returns:
+  - image;
+  - kps: keypoints.
+  '''
 
   max_size = kwargs.get('max', 45)
   resp_threshold = kwargs.get('resp-thrs', 30)

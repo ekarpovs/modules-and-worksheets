@@ -5,11 +5,18 @@ Gradient magnitude and orientation.
 import cv2
 
 def sobel(**kwargs):
-  """
-  direction 
-  x 0
-  y 1 
-  """
+  '''
+  Computes compute gradients along the X or Y axis uses Sobel algorithm.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - direction: 
+    - x: 0
+    - y: 1 
+
+  Returns:
+  - image: result image;
+  '''
 
   direction = kwargs.get('d', 0)
   dx = 1
@@ -27,13 +34,18 @@ def sobel(**kwargs):
   return kwargs
 
 
-# compute a "wide", "mid-range", and "tight" threshold for the edges
 def canny(**kwargs):
-  """
-  wide, mid, tight
-  threshold1 10, 30, 240
-  threshold2 200, 150, 250
-  """
+  '''
+  Computes a "wide", "mid-range", and "tight" threshold for the edges.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - thrs1: threshold1;
+  - thrs2: threshold2;
+
+  Returns:
+  - image: result image;
+  '''
 
   threshold1 = kwargs.get('thrs1', 10)
   threshold2 = kwargs.get('thrs2', 200)

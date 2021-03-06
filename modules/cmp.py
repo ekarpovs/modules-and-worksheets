@@ -9,12 +9,16 @@ def cpm_mse(**kwargs):
   '''
   Calculates 'Mean Squared Error' between pixels of two images.
   The 'Mean Squared Error' between the two images is the
-  sum of the squared difference between the two images;
-  the two images must have the same dimension
-  Gets via kwargs (key, default value): 
-    - image;
-    - image1;
-  Returns original images, amd Mean Squared Errors.
+  sum of the squared difference between the two images.
+  This two images must have the same dimension.
+
+  Keyword arguments (key, default):
+  - image: an original image;
+  - image: an image to compare;
+
+  Returns:
+  - images;
+  - mse: Mean Squared Errors.
   '''  
 
   err = np.sum((kwargs['image'].astype("float") - kwargs['image1'].astype("float")) ** 2)
@@ -28,11 +32,15 @@ def cpm_mse(**kwargs):
 def cmp_ssim(**kwargs):
   '''
   Calculates 'Structural Similarity Index' between pixels of two images.
-  Uses to compare two windows instead an entire image
-  Gets via kwargs (key, default value): 
-    - image;
-    - image1;
-  Returns original images, amd Structural Similarity Index.
+  Uses to compare two windows instead an entire images.
+
+  Keyword arguments (key, default):
+  - image: an original image;
+  - image: an image to compare;
+
+  Returns:
+  - images;
+  - ssim: Structural Similarity Index.
   '''  
 
   # s = ssim(kwargs['image'], kwargs['image1'])

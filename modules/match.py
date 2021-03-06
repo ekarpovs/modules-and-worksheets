@@ -3,15 +3,27 @@ Matching operations
 '''
 import cv2
 
-# Brute-Force Matchers
+
 def bfm_knn(**kwargs):
   '''
-  matcher takes normType, which is set to 
-  cv2.NORM_L1 for SIFT and SURF, 
-  cv2.NORM_L2 for SIFT and SURF, 
-  cv2.NORM_HAMMING for ORB, FAST, BRISK and BRIEF
-  cv2.NORM_HAMMING2 for ORB if it uses VTA_K == 3 or 4
+  Computes images semilaraty using Brute-Force Matchers.
+
+  Keyword arguments (key, default):
+  - type: an normolazing type, cv2.NORM_L2:
+    - cv2.NORM_L1 for SIFT and SURF; 
+    - cv2.NORM_L2 for SIFT and SURF;
+    - cv2.NORM_HAMMING for ORB, FAST, BRISK and BRIEF;
+    - cv2.NORM_HAMMING2 for ORB if it uses VTA_K == 3 or 4;
+  - check: cross check, True;
+  - k:;
+  - da: feature descriptor of the first image;
+  - db: feature descriptor of the second image;
+
+  Returns:
+  - image: result image;
+  - matches: .
   '''
+ 
   type = kwargs.get('type', cv2.NORM_L2)
   cross_check = kwargs.get('check', True)
   k = kwargs.get('k', 2)
@@ -26,14 +38,25 @@ def bfm_knn(**kwargs):
   return kwargs
 
 
-def bfm_knn(**kwargs):
+def bfm(**kwargs):
   '''
-  matcher takes normType, which is set to 
-  cv2.NORM_L1 for SIFT and SURF, 
-  cv2.NORM_L2 for SIFT and SURF, 
-  cv2.NORM_HAMMING for ORB, FAST, BRISK and BRIEF
-  cv2.NORM_HAMMING2 for ORB if it uses VTA_K == 3 or 4
+  Computes images semilaraty using Brute-Force Matchers.
+
+  Keyword arguments (key, default):
+  - type: an normolazing type, cv2.NORM_L2:
+    - cv2.NORM_L1 for SIFT and SURF; 
+    - cv2.NORM_L2 for SIFT and SURF;
+    - cv2.NORM_HAMMING for ORB, FAST, BRISK and BRIEF;
+    - cv2.NORM_HAMMING2 for ORB if it uses VTA_K == 3 or 4;
+  - check: cross check, True;
+  - da: feature descriptor of the first image;
+  - db: feature descriptor of the second image;
+
+  Returns:
+  - image: result image;
+  - matches: .
   '''
+
   type = kwargs.get('type', cv2.NORM_L2)
   cross_check = kwargs.get('check', True)
   descs_a = kwargs['da']
@@ -48,6 +71,17 @@ def bfm_knn(**kwargs):
 
 
 def good(**kwargs):
+  '''
+  Select matches regarding predefined distance.
+
+  Keyword arguments (key, default):
+  - matches: matches;
+  - dist: max distance, 0.5.
+
+  Returns:
+  - matches: good matches (< distance).
+  '''
+
   distance = kwargs.get('dist', 0.5)
 
   matches = kwargs['matches']

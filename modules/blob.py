@@ -6,20 +6,24 @@ import cv2
 def simple(**kwargs):
   '''
   Detects blobs.
-  Gets via kwargs (key, default value): 
-    - image;
-    - mint - min threshold, 10;
-    - maxt - max threshold, 200;
-    - fltarea - filter by area, True;
-    - minarea - min area, 1500;
-    - fltcirc - filter by circularity, True;
-    - mincirc - min circularity, 0.1;
-    - fltconv - filter by convexity, True;
-    - minconv - min convexity, 0.87;
-    - fltiner - filter by inertia, True;
-    - minciner - min inertia ratio, 0.01.
-  Returns result image.
-  '''  
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - mint - min threshold, 10;
+  - maxt - max threshold, 200;
+  - fltarea - filter by area, True;
+  - minarea - min area, 1500;
+  - fltcirc - filter by circularity, True;
+  - mincirc - min circularity, 0.1;
+  - fltconv - filter by convexity, True;
+  - minconv - min convexity, 0.87;
+  - fltiner - filter by inertia, True;
+  - minciner - min inertia ratio, 0.01.
+  
+  Returns:
+  - result image;
+  - blobs keypoints.
+  '''
 
   minThreshold = kwargs.get('mint', 10)
   maxThreshold = kwargs.get('maxt', 200)

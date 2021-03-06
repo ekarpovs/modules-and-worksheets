@@ -4,6 +4,17 @@ Feature extaction operations
 import cv2
 
 def freak(**kwargs):
+  '''
+  Extract features for given keypoints using FREAK algorithm.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - kps: keypoints.
+
+  Returns:
+  - image;
+  - desc: feature descriptor.
+  '''
 
   kps = kwargs['kps']
   extractor = cv2.xfeatures2d.FREAK_create()
@@ -14,6 +25,17 @@ def freak(**kwargs):
 
 
 def brief(**kwargs):
+  '''
+  Extract features for given keypoints using BRIEF algorithm.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - kps: keypoints.
+
+  Returns:
+  - image;
+  - desc: feature descriptor.
+  '''
 
   kps = kwargs['kps']
   extractor = cv2.xfeatures2d.FREAK_create()
