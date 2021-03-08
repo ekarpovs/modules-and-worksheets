@@ -2,6 +2,6 @@
   "steps":[
     {"exec": "clrs.bgrto"},
     {"exec": "blob.simple"},
-    {"exec": "draw.keypoints", "show": 1}
+    {"exec": "draw.keypoints", "show": 2}
   ]
 }

@@ -1,7 +1,7 @@
 {
   "steps":[
-    {"exec": "clrs.bgrto", "show": 1},
-    {"exec": "blur.gaus", "show": 1, "k": 7},
-    {"exec": "thrsh.simple", "show": 1, "type": 0}
+    {"exec": "clrs.bgrto", "show": 0},
+    {"exec": "blur.gaus", "show": 2, "k": 7},
+    {"exec": "thrsh.simple", "show": 2, "type": 0}
   ]
 }

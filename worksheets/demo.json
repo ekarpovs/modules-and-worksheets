@@ -1,17 +1,17 @@
 {
   "steps":[
-    {"exec": "bsc.translate", "show": 1},
-    {"exec": "bsc.translate", "show": 1, "x": 50, "y": -40},
-    {"exec": "bsc.translate", "show": 1, "x": -50, "y": 40},
-    {"exec": "bsc.resize", "show": 1, "unit": 1, "size": 50},
-    {"exec": "bsc.crop", "show": 1, "y0": 100, "x0": 150},
-    {"exec": "bsc.flip", "drct": -1, "show": 1},
-    {"exec": "bsc.rotate", "angle": -30, "show": 1},
-    {"exec": "bsc.rotate", "angle": 30, "show": 1},
-    {"exec": "smth.bilateral", "show": 1},
-    {"exec": "clrs.bgrto", "show": 1},
-    {"exec": "cntrs.find", "show": 1},
-    {"exec": "mrph.mex", "show": 1},
-    {"exec": "thrsh.simple", "show": 1, "type": 1}
+    {"exec": "bsc.translate", "show": 0},
+    {"exec": "bsc.translate", "show": 2, "x": 50, "y": -40},
+    {"exec": "bsc.translate", "show": 2, "x": -50, "y": 40},
+    {"exec": "bsc.resize", "show": 2, "unit": 1, "size": 50},
+    {"exec": "bsc.crop", "show": 2, "y0": 100, "x0": 150},
+    {"exec": "bsc.flip", "drct": -1, "show":2},
+    {"exec": "bsc.rotate", "angle": -30, "show": 2},
+    {"exec": "bsc.rotate", "angle": 30, "show": 2},
+    {"exec": "smth.bilateral", "show":2},
+    {"exec": "clrs.bgrto", "show": 2},
+    {"exec": "cntrs.find", "show": 2},
+    {"exec": "mrph.mex", "show": 2},
+    {"exec": "thrsh.simple", "show": 1, "type": 2}
   ]
 }
