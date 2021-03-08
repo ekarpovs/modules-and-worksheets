@@ -65,6 +65,9 @@ def bfm(**kwargs):
   bfm = cv2.BFMatcher(type, crossCheck=cross_check)
   matches = bfm.Match(descs_a, descs_b)
 
+  # sort in ascending order
+  matches = sorted(matches, key=lambda val: val.distance)
+
   kwargs['matches'] = matches
 
   return kwargs
@@ -91,3 +94,16 @@ def good(**kwargs):
   kwargs['matches'] = good
 
   return kwargs
+
+"""
+		# flann matcher
+		FLANN_INDEX_KDTREE = 0
+		index_param = dict(algorithm = FLANN_INDEX_KDTREE, trees = 3)
+		search_param = dict(checks = 100)		
+
+		flann = cv2.FlannBasedMatcher(index_param, search_param)
+		#d1, d2 = None, None
+		
+		# getting all matches using kNN
+		matches = flann.knnMatch(d1, d2, k = 2)
+"""
