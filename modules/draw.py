@@ -16,7 +16,7 @@ def keypoints(**kwargs):
 
   keypoints = kwargs['kpnts']
 
-  cv2.drawKeypoints(kwargs['image'], kwargs['kpnts'], np.array([]), (0,0,255), flag)
+  cv2.drawKeypoints(kwargs['image'].copy(), keypoints, np.array([]), (0,0,255), flag)
 
   return kwargs
 
