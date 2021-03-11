@@ -263,3 +263,43 @@ def translate(**kwargs):
   kwargs['image'] = cv2.warpAffine(kwargs['image'], M, (kwargs['image'].shape[1], kwargs['image'].shape[0])) 
 
   return kwargs
+
+
+def fit(**kwargs):
+  '''
+  resize image1 regarding image
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - image1: an image.
+
+  - meth - interpolation method, 2:
+    - cv2.INTER_NEAREST - 0;
+    - cv2.INTER_LINEAR - 1;
+    - cv2.INTER_AREA - 2;
+    - cv2.INTER_CUBIC - 3;
+    - cv2.INTER_LANCZOS4 - 4;
+
+  Returns:
+  - image;
+  - result image;
+  - the kwargs as is.
+  '''  
+
+  method = kwargs.get('meth', cv2.INTER_AREA)
+
+  image = kwargs['image']
+  (h, w, n) = image.shape
+  image1 = kwargs['image1']
+  (h1, w1, n1) = image1.shape
+  
+  if (h == h1 and w == w1):
+    return kwargs
+
+  dim = (w, h)
+
+  kwargs['image1'] = cv2.resize(image1, dim, interpolation=method) 
+
+  return kwargs
+
+
