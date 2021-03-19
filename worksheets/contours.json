@@ -1,0 +1,8 @@
+{
+  "steps":[
+    {"exec": "clrs.bgrto", "show": 0},
+    {"exec": "cntrs.find"},
+    {"exec": "cntrs.sort"},
+    {"exec": "draw.contours", "show": 2}
+  ]
+}
