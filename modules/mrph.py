@@ -22,8 +22,9 @@ def erode(**kwargs):
 
   iterations = kwargs.get('iter', 3)
 
-  kwargs['image'] = cv2.erode(kwargs['image'], None, iterations=iterations)
-
+  erode = cv2.erode(kwargs['image'], None, iterations=iterations)
+  kwargs['image'] = erode
+  
   return kwargs
 
 
@@ -42,8 +43,10 @@ def dilate(**kwargs):
 
   iterations = kwargs.get('iter', 3)
 
-  kwargs['image'] = cv2.dilate(kwargs['image'], None, iterations=iterations)
+  dilate = cv2.dilate(kwargs['image'], None, iterations=iterations)
 
+  kwargs['image'] = dilate
+  
   return kwargs
 
 
@@ -80,7 +83,9 @@ def mex(**kwargs):
 
   kernel = cv2.getStructuringElement(shape, (kernelSize, kernelSize))
 
-  kwargs['image'] = cv2.morphologyEx(kwargs['image'], type, kernel) 
+  mrph = cv2.morphologyEx(kwargs['image'], type, kernel)
+
+  kwargs['mrph'] = mrph 
 
   return kwargs
 
