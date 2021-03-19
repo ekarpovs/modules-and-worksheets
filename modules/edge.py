@@ -73,5 +73,6 @@ def laplacian(**kwargs):
   lap = cv2.Laplacian(kwargs['image'], cv2.CV_64F)
   lap = np.uint8(np.absolute(lap)) 
 
+  kwargs['lap'] = lap
 
   return kwargs
