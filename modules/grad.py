@@ -3,6 +3,7 @@ Gradient and edge dectection operations
 Gradient magnitude and orientation.
 '''
 import cv2
+import numpy as np
 
 def sobel(**kwargs):
   '''
@@ -29,7 +30,8 @@ def sobel(**kwargs):
   g = cv2.Sobel(kwargs['image'], ddepth=cv2.CV_64F, dx=dx, dy=dy) 
   # images are now of the floating point data type,
   # so convert them back a to unsigned 8-bit integer representation
-  kwargs['image'] = cv2.convertScaleAbs(g)
+  sobel = cv2.convertScaleAbs(g)
+  kwargs['sobel'] = sobel
 
   return kwargs
 
@@ -50,6 +52,26 @@ def canny(**kwargs):
   threshold1 = kwargs.get('thrs1', 10)
   threshold2 = kwargs.get('thrs2', 200)
 
-  kwargs['image'] = cv2.Canny(kwargs['image'], threshold1, threshold2)
+  canny = cv2.Canny(kwargs['image'], threshold1, threshold2)
+
+  kwargs['canny'] = canny
   
+  return kwargs
+
+
+def laplacian(**kwargs):
+  '''
+  Computes the Laplacian of the image .
+
+  Keyword arguments (key, default):
+  - image: an image;
+
+  Returns:
+  - image: result image;
+  '''
+
+  lap = cv2.Laplacian(kwargs['image'], cv2.CV_64F)
+  lap = np.uint8(np.absolute(lap)) 
+
+
   return kwargs
