@@ -29,6 +29,47 @@ def find(**kwargs):
   mode = kwargs.get('md', cv2.RETR_EXTERNAL)
   method = kwargs.get('mth', cv2.CHAIN_APPROX_SIMPLE)
 
-  kwargs['cntrs'] = cv2.findContours(kwargs['image'], mode, method) 
+  cntrs = cv2.findContours(kwargs['image'], mode, method) 
+  
+  if len(cntrs) == 3:
+      cntrs = cntrs[1]
+
+  kwargs['cntrs'] = cntrs
+  
+  return kwargs
+
+
+def sort(**kwargs):
+  '''
+  Sorts contours.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - cntrs: contours;
+  - rev: reverse flag, False;
+
+  Returns:
+  - image;
+  - list of the sorted contours.
+  '''
+
+  reverse = kwargs.get('rev', True)
+
+  cntrs = kwargs['cntrs']
+
+  print("len", len(cntrs))
+  
+  i = 0
+
+  # construct the list of bounding boxes and sort them from top to
+  # bottom
+  bounding_boxes = [cv2.boundingRect(c) for c in cntrs]
+  print("boxes", bounding_boxes)
+
+  (cntrs, bounding_boxes) = zip(*sorted(zip(cntrs, bounding_boxes), key=lambda b:b[1][i], reverse=reverse))
+
+  kwargs['cntrs'] = cntrs
+  kwargs['boxes'] = bounding_boxes
 
   return kwargs
+
