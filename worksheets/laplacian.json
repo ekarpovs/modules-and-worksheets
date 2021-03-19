@@ -1,0 +1,7 @@
+{
+  "steps":[
+    {"exec": "clrs.bgrto", "show": 0},
+    {"exec": "blur.gaus", "show": 2},
+    {"exec": "edge.laplacian", "show": 2}
+  ]
+}
