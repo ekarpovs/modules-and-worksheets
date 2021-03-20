@@ -1,0 +1,9 @@
+{
+  "steps":[
+    {"exec": "clrs.bgrto", "show": 0},
+    {"exec": "blur.gaus", "show": 2, "k": 7},
+    {"exec": "thrsh.simple", "show": 2, "toshow": "thrsh", "type": 0},
+    {"exec": "thrsh.simple", "show": 2, "toshow": "thrsh", "type": 1, "otsu": true},
+    {"exec": "thrsh.adaptive", "show": 2, "toshow": "thrsh", "type": 1}
+  ]
+}
