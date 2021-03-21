@@ -23,6 +23,16 @@ Local module, contains common utility operations
   - the kwargs as is.
   
 
+### Function: restore
+  Restores an image from a file.
+  
+  Keyword arguments:
+  - ffn: full file name, where from the image will be restored.
+  
+  Returns:
+  - the image.
+  
+
 ### Function: clean
   Cleans kwargs dictionary from items.
   
@@ -55,8 +65,7 @@ Bitwise operations
   - image1: the second image.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - btwand: result image;
   
 
 ### Function: btw_or
@@ -67,8 +76,7 @@ Bitwise operations
   - image1: the second image.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - btwor: result image;
   
 
 ### Function: btw_xor
@@ -79,8 +87,7 @@ Bitwise operations
   - image1: the second image.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - btwxor: result image;
   
 
 ### Function: btw_not
@@ -91,8 +98,7 @@ Bitwise operations
   - image1: the second image.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - btwnot: result image;
   
 
 ## Module: blob
@@ -115,8 +121,7 @@ Blob operations
   - minciner - min inertia ratio, 0.01.
   
   Returns:
-  - result image;
-  - blobs keypoints.
+  - kpnts: blobs keypoints.
   
 
 ## Module: blur
@@ -130,8 +135,7 @@ Bluring operation
   - k: kernel size, 3.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - blravg: result image;
   
 
 ### Function: gaus
@@ -142,8 +146,7 @@ Bluring operation
   - k: kernel size, 3.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - blrgaus: result image;
   
 
 ### Function: median
@@ -154,8 +157,7 @@ Bluring operation
   - k: kernel size, 3.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - blrmedian: result image;
   
 
 ## Module: bsc
@@ -172,8 +174,7 @@ Basic operations
   - x1 - left right coordinate, w.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - bsccrop: result image;
   
 
 ### Function: flip
@@ -184,7 +185,7 @@ Basic operations
   - drct: direction, 1.
  
   Returns:
-  - result image;
+  - bscflip: result image;
   - the kwargs as is.
   
 
@@ -207,8 +208,7 @@ Basic operations
     - rad - the mask radius,min(h / 2, w /2).
  
   Returns:
-  - result image;
-  - the kwargs as is.
+  - bscmask: result image;
   
 
 ### Function: resize
@@ -231,8 +231,7 @@ Basic operations
     - width 1
  
   Returns:
-  - result image;
-  - the kwargs as is.
+  - bscrsz: result image;
   
 
 ### Function: resize1
@@ -255,8 +254,7 @@ Basic operations
     - width 1
  
   Returns:
-  - result image;
-  - the kwargs as is.
+  - bscrsz: result image;
   
 
 ### Function: rotate
@@ -267,8 +265,7 @@ Basic operations
   - angle: rotation angle, 0.
 
   Returns:
-  - result image;
-  - the kwargs as is.
+  - bscrot: result image;
   
 
 ### Function: translate
@@ -281,8 +278,35 @@ Basic operations
   - x: number of pixels to shift, 0.
 
   Returns:
+  - bsctrnsl: result image;
+  
+
+### Function: fit
+  resize image1 regarding image
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - image1: an image.
+
+  - meth - interpolation method, 2:
+    - cv2.INTER_NEAREST - 0;
+    - cv2.INTER_LINEAR - 1;
+    - cv2.INTER_AREA - 2;
+    - cv2.INTER_CUBIC - 3;
+    - cv2.INTER_LANCZOS4 - 4;
+
+  Returns:
+  - bsctrnsl: result image;
+  
+
+### Function: transform
+  Transforms a skewed image to obtain a top-down view of the original image
+
+  Keyword arguments (key, default):
+  - image: an image;
+
+  Returns:
   - result image;
-  - the kwargs as is.
   
 
 ## Module: clrs
@@ -307,14 +331,101 @@ Color spaces operations
     - cv2.COLOR_BGR2YUV - 82;
  
   Returns:
-  - result image;
-  - the kwargs as is.
+  - clrsbgrto: result image;
   
 
 ## Module: cmp
 Compare operations
 
-### Function: cpm_mse
+### Function: compare_ssim
+    Compute the mean structural similarity index between two images.
+
+    Parameters
+    ----------
+    im1, im2 : ndarray
+        Images. Any dimensionality with same shape.
+    win_size : int or None, optional
+        The side-length of the sliding window used in comparison. Must be an
+        odd value. If `gaussian_weights` is True, this is ignored and the
+        window size will depend on `sigma`.
+    gradient : bool, optional
+        If True, also return the gradient with respect to im2.
+    data_range : float, optional
+        The data range of the input image (distance between minimum and
+        maximum possible values). By default, this is estimated from the image
+        data-type.
+    multichannel : bool, optional
+        If True, treat the last dimension of the array as channels. Similarity
+        calculations are done independently for each channel then averaged.
+    gaussian_weights : bool, optional
+        If True, each patch has its mean and variance spatially weighted by a
+        normalized Gaussian kernel of width sigma=1.5.
+    full : bool, optional
+        If True, also return the full structural similarity image.
+
+    Other Parameters
+    ----------------
+    use_sample_covariance : bool
+        If True, normalize covariances by N-1 rather than, N where N is the
+        number of pixels within the sliding window.
+    K1 : float
+        Algorithm parameter, K1 (small constant, see [1]_).
+    K2 : float
+        Algorithm parameter, K2 (small constant, see [1]_).
+    sigma : float
+        Standard deviation for the Gaussian when `gaussian_weights` is True.
+
+    Returns
+    -------
+    mssim : float
+        The mean structural similarity index over the image.
+    grad : ndarray
+        The gradient of the structural similarity between im1 and im2 [2]_.
+        This is only returned if `gradient` is set to True.
+    S : ndarray
+        The full SSIM image.  This is only returned if `full` is set to True.
+
+    Notes
+    -----
+    To match the implementation of Wang et. al. [1]_, set `gaussian_weights`
+    to True, `sigma` to 1.5, and `use_sample_covariance` to False.
+
+    .. versionchanged:: 0.16
+        This function was renamed from ``skimage.measure.compare_ssim`` to
+        ``skimage.metrics.structural_similarity``.
+
+    References
+    ----------
+    .. [1] Wang, Z., Bovik, A. C., Sheikh, H. R., & Simoncelli, E. P.
+       (2004). Image quality assessment: From error visibility to
+       structural similarity. IEEE Transactions on Image Processing,
+       13, 600-612.
+       https://ece.uwaterloo.ca/~z70wang/publications/ssim.pdf,
+       :DOI:`10.1109/TIP.2003.819861`
+
+    .. [2] Avanaki, A. N. (2009). Exact global histogram specification
+       optimized for structural similarity. Optical Review, 16, 613-621.
+       :arxiv:`0901.0065`
+       :DOI:`10.1007/s10043-009-0119-z`
+
+    
+
+    Warns
+    -----
+    Deprecated:
+        .. versionadded:: 0.16
+
+        This function is deprecated and will be
+        removed in scikit-image 0.18. Please use the function named
+        ``structural_similarity`` from the ``metrics`` module instead.
+
+
+    See also
+    --------
+    skimage.metrics.structural_similarity
+    
+
+### Function: cmp_mse
   Calculates 'Mean Squared Error' between pixels of two images.
   The 'Mean Squared Error' between the two images is the
   sum of the squared difference between the two images.
@@ -322,7 +433,7 @@ Compare operations
 
   Keyword arguments (key, default):
   - image: an original image;
-  - image: an image to compare;
+  - image1: an image to compare;
 
   Returns:
   - images;
@@ -332,14 +443,41 @@ Compare operations
 ### Function: cmp_ssim
   Calculates 'Structural Similarity Index' between pixels of two images.
   Uses to compare two windows instead an entire images.
+  This two images must have the same dimension.
 
   Keyword arguments (key, default):
   - image: an original image;
-  - image: an image to compare;
+  - image1: an image to compare;
 
   Returns:
   - images;
   - ssim: Structural Similarity Index.
+  
+
+### Function: cmp_psnr
+  Calculates 'Peak Signal-to-Noise Ratio' between two images.
+  This two images must have the same dimension.
+
+  Keyword arguments (key, default):
+  - image: an original image;
+  - image1: an image to compare;
+
+  Returns:
+  - images;
+  - psnr: Peak Signal-to-Noise Ratio.
+  
+
+### Function: cmp_norm
+  Calculates 'Pixels difference' between two GRAY images.
+  This two images must have the same dimension.
+
+  Keyword arguments (key, default):
+  - image: an original image;
+  - image1: an image to compare;
+
+  Returns:
+  - images;
+  - psnr: Difference.
   
 
 ## Module: cntrs
@@ -364,7 +502,32 @@ Contours operations
   
   Returns:
   - image;
-  - list of the contours.
+  - cntrs: list of the contours.
+  
+
+### Function: sort
+  Sorts contours.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - cntrs: contours;
+  - rev: reverse flag, False;
+
+  Returns:
+  - image;
+  - cntrs: list of the sorted contours.
+  
+
+### Function: sel_rect
+  Sorts contours.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - cntrs: sorted contours;
+
+  Returns:
+  - image;
+  - rect: the biggest rectangle contour.
   
 
 ## Module: connect
@@ -431,7 +594,18 @@ Keypoin detection operations
   
 
 ## Module: draw
-Drawing Keypoints and Matches operation
+Drawing Contours, Bounding boxes, Keypoints, Matches operation, etc.
+
+### Function: contours
+  Draws contours.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - cntrs: contours.
+
+  Returns:
+  - image;
+  
 
 ### Function: keypoints
   cv2.DRAW_MATCHES_FLAGS_DEFAULT = 0
@@ -445,6 +619,45 @@ Drawing Keypoints and Matches operation
   cv2.DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG = 1,
   cv2.DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS = 2,
   cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS = 4
+  
+
+## Module: edge
+Gradient and edge dectection operations
+Gradient magnitude and orientation.
+
+### Function: sobel
+  Computes compute gradients along the X or Y axis uses Sobel algorithm.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - direction: 
+    - x: 0
+    - y: 1 
+
+  Returns:
+  - edgesobel: result image;
+  
+
+### Function: canny
+  Computes a "wide", "mid-range", and "tight" threshold for the edges.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - thrs1: threshold1;
+  - thrs2: threshold2;
+
+  Returns:
+  - edgecanny: result image;
+  
+
+### Function: laplacian
+  Computes the Laplacian of the image .
+
+  Keyword arguments (key, default):
+  - image: an image;
+
+  Returns:
+  - edgelap: result image;
   
 
 ## Module: extr
@@ -472,35 +685,6 @@ Feature extaction operations
   Returns:
   - image;
   - desc: feature descriptor.
-  
-
-## Module: grad
-Gradient and edge dectection operations
-Gradient magnitude and orientation.
-
-### Function: sobel
-  Computes compute gradients along the X or Y axis uses Sobel algorithm.
-
-  Keyword arguments (key, default):
-  - image: an image;
-  - direction: 
-    - x: 0
-    - y: 1 
-
-  Returns:
-  - image: result image;
-  
-
-### Function: canny
-  Computes a "wide", "mid-range", and "tight" threshold for the edges.
-
-  Keyword arguments (key, default):
-  - image: an image;
-  - thrs1: threshold1;
-  - thrs2: threshold2;
-
-  Returns:
-  - image: result image;
   
 
 ## Module: hash
@@ -584,7 +768,7 @@ It applies structuring element to an input image and generate an output image.
   - iter: number of iterations, 3;
 
   Returns:
-  - image: result image;
+  - mrpherode: result image;
   
 
 ### Function: dilate
@@ -596,7 +780,7 @@ It applies structuring element to an input image and generate an output image.
   - iter: number of iterations, 3;
 
   Returns:
-  - image: result image;
+  - mrphdilate: result image;
   
 
 ### Function: mex
@@ -622,7 +806,7 @@ It applies structuring element to an input image and generate an output image.
   - k: kernel size (3, 3), (5, 5), (7, 7), 3.
 
   Returns:
-  - image: result image;
+  - mrphmex: result image;
   
 
 ## Module: smth
@@ -643,8 +827,15 @@ Smoothing operation
   - (11, 61, 39)
 
   Returns:
-  - image: result image;
+  - smshbil: result image;
   
+
+## Module: testerNone
+### Function: executeNone
+
+### Function: parseArgsNone
+
+### Function: mainNone
 
 ## Module: thrsh
 Threshold operations
@@ -664,7 +855,7 @@ Threshold operations
   - otsu:  flag to use Otsu algorithm to choose the optimal threshold value, False
 
   Returns:
-  - image: result binary image;
+  - thrshsim: result binary image;
   
 
 ### Function: adaptive
@@ -685,6 +876,6 @@ Threshold operations
   - c: a constant which is subtracted from the mean or weighted mean calculated, 5.
 
   Returns:
-  - image: result binary image;
+  - thrshad: result binary image;
   
 
