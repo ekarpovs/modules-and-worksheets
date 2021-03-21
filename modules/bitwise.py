@@ -12,11 +12,12 @@ def btw_and(**kwargs):
   - image1: the second image.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - btwand: result image;
   '''
 
-  kwargs['image'] = cv2.bitwise_and(kwargs['image'], kwargs['image1']) 
+  btwand = cv2.bitwise_and(kwargs['image'], kwargs['image1']) 
+
+  kwargs['btwand'] =  btwand
 
   return kwargs
 
@@ -30,10 +31,11 @@ def btw_or(**kwargs):
   - image1: the second image.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - btwor: result image;
   '''
-  kwargs['image'] = cv2.bitwise_or(kwargs['image'], kwargs['image1']) 
+  btwor = cv2.bitwise_or(kwargs['image'], kwargs['image1']) 
+
+  kwargs['btwor'] =  btwor
 
   return kwargs
 
@@ -47,11 +49,12 @@ def btw_xor(**kwargs):
   - image1: the second image.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - btwxor: result image;
   '''
 
-  kwargs['image'] = cv2.bitwise_xor(kwargs['image'], kwargs['image1']) 
+  btwxor = cv2.bitwise_xor(kwargs['image'], kwargs['image1']) 
+
+  kwargs['btwxor'] =  btwxor
 
   return kwargs
 
@@ -65,9 +68,10 @@ def btw_not(**kwargs):
   - image1: the second image.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - btwnot: result image;
   '''
-  kwargs['image'] = cv2.bitwise_not(kwargs['image'], kwargs['image1']) 
-
+  btwbnot = cv2.bitwise_not(kwargs['image'], kwargs['image1']) 
+  
+  kwargs['btwnot'] = btwbnot
+  
   return kwargs

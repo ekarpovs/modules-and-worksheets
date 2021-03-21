@@ -12,14 +12,16 @@ def avg(**kwargs):
   - k: kernel size, 3.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - blravg: result image;
   '''
 
   kernel = kwargs.get('k', 3)
   kX = kY = kernel 
 
-  kwargs['image'] = cv2.blur(kwargs['image'], (kX, kY)) 
+  blravg = cv2.blur(kwargs['image'], (kX, kY)) 
+
+  kwargs['blravg'] = blravg
+
 
   return kwargs
 
@@ -33,14 +35,15 @@ def gaus(**kwargs):
   - k: kernel size, 3.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - blrgaus: result image;
   '''
 
   kernel = kwargs.get('k', 3)
   kX = kY = kernel 
 
-  kwargs['image'] = cv2.GaussianBlur(kwargs['image'], (kX, kY), 0)
+  blrgaus = cv2.GaussianBlur(kwargs['image'], (kX, kY), 0)
+
+  kwargs['blrgaus'] = blrgaus
 
   return kwargs
 
@@ -54,12 +57,13 @@ def median(**kwargs):
   - k: kernel size, 3.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - blrmedian: result image;
   '''
 
   kernel = kwargs.get('k', 3)
 
-  kwargs['image'] = cv2.medianBlur(kwargs['image'], kernel)
+  blrmedian = cv2.medianBlur(kwargs['image'], kernel)
+
+  kwargs['blrmedian'] = blrmedian
 
   return kwargs

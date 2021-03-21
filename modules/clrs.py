@@ -23,8 +23,7 @@ def bgrto(**kwargs):
     - cv2.COLOR_BGR2YUV - 82;
  
   Returns:
-  - result image;
-  - the kwargs as is.
+  - clrsbgrto: result image;
   '''  
 
 
@@ -36,6 +35,8 @@ def bgrto(**kwargs):
     # input - gray
     return kwargs
 
-  kwargs['image'] = cv2.cvtColor(kwargs['image'], type)
+  clrsbgrto = cv2.cvtColor(kwargs['image'], type)
 
+  kwargs['clrsbgrto'] = clrsbgrto
+  
   return kwargs

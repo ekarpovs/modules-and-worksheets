@@ -16,8 +16,7 @@ def crop(**kwargs):
   - x1 - left right coordinate, w.
   
   Returns:
-  - result image;
-  - the kwargs as is.
+  - bsccrop: result image;
   '''  
 
   (h, w) = kwargs['image'].shape[:2]
@@ -27,7 +26,9 @@ def crop(**kwargs):
   x0 = kwargs.get('x0', 0)
   x1 = kwargs.get('x1', w)
 
-  kwargs['image'] = kwargs['image'][y0:y1, x0:x1]
+  bsccrop = kwargs['image'][y0:y1, x0:x1]
+
+  kwargs['bsccrop'] = bsccrop
 
   return kwargs
 
@@ -41,13 +42,15 @@ def flip(**kwargs):
   - drct: direction, 1.
  
   Returns:
-  - result image;
+  - bscflip: result image;
   - the kwargs as is.
   '''  
   direction = kwargs.get('drct', 1)
 
-  kwargs['image'] = cv2.flip(kwargs['image'], direction) 
-  
+  bscflip = cv2.flip(kwargs['image'], direction) 
+
+  kwargs['bscflip'] = bscflip
+
   return kwargs
 
 
@@ -71,8 +74,7 @@ def mask(**kwargs):
     - rad - the mask radius,min(h / 2, w /2).
  
   Returns:
-  - result image;
-  - the kwargs as is.
+  - bscmask: result image;
   '''  
   (h, w) = kwargs['image'].shape[:2]
 
@@ -99,7 +101,9 @@ def mask(**kwargs):
     cv2.circle(mask, (cx, cy), rad, 255, -1)
 
   # Apply out mask
-  kwargs['image'] = cv2.bitwise_and(kwargs['image'], kwargs['image'], mask=mask)   
+  bscmask = cv2.bitwise_and(kwargs['image'], kwargs['image'], mask=mask)   
+
+  kwargs['bscmask'] = bscmask
 
   return kwargs
 
@@ -126,8 +130,7 @@ def resize(**kwargs):
     - width 1
  
   Returns:
-  - result image;
-  - the kwargs as is.
+  - bscrsz: result image;
   '''
 
   (h, w) = kwargs['image'].shape[:2]
@@ -156,7 +159,9 @@ def resize(**kwargs):
     ratio = size / h
     dim = (int(w * ratio), size)
 
-  kwargs['image'] = cv2.resize(kwargs['image'], dim, interpolation=method) 
+  bscrsz = cv2.resize(kwargs['image'], dim, interpolation=method) 
+
+  kwargs['bscrsz'] = bscrsz
 
   return kwargs
 
@@ -182,8 +187,7 @@ def resize1(**kwargs):
     - width 1
  
   Returns:
-  - result image;
-  - the kwargs as is.
+  - bscrsz: result image;
   '''  
 
   method = kwargs.get('meth', cv2.INTER_AREA)
@@ -196,7 +200,9 @@ def resize1(**kwargs):
     (h, w) = kwargs['image'].shape[:2]
     dim = (int(w*w_new/100), int(h*h_new/100))
     
-  kwargs['image'] = cv2.resize(kwargs['image'], dim, interpolation=method) 
+  bscrsz = cv2.resize(kwargs['image'], dim, interpolation=method) 
+
+  kwargs['bscrsz'] = bscrsz
 
   return kwargs
 
@@ -210,8 +216,7 @@ def rotate(**kwargs):
   - angle: rotation angle, 0.
 
   Returns:
-  - result image;
-  - the kwargs as is.
+  - bscrot: result image;
   '''  
 
   # grab the dimensions of the image and calculate the center of the image
@@ -233,7 +238,9 @@ def rotate(**kwargs):
   M[1, 2] += bound_h/2 - cy
 
   # rotate without a cropping
-  kwargs['image'] = cv2.warpAffine(kwargs['image'], M, (bound_w, bound_h))
+  bscrot = cv2.warpAffine(kwargs['image'], M, (bound_w, bound_h))
+
+  kwargs['bscrot'] = bscrot
 
   return kwargs
 
@@ -249,8 +256,7 @@ def translate(**kwargs):
   - x: number of pixels to shift, 0.
 
   Returns:
-  - result image;
-  - the kwargs as is.
+  - bsctrnsl: result image;
   '''  
 
   shiftX = kwargs.get('x', 0)
@@ -260,7 +266,9 @@ def translate(**kwargs):
     return kwargs
 
   M = np.float32([[1, 0, shiftX], [0, 1, shiftY]])
-  kwargs['image'] = cv2.warpAffine(kwargs['image'], M, (kwargs['image'].shape[1], kwargs['image'].shape[0])) 
+  bsctrnsl = cv2.warpAffine(kwargs['image'], M, (kwargs['image'].shape[1], kwargs['image'].shape[0])) 
+
+  kwargs['bsctrnsl'] = bsctrnsl
 
   return kwargs
 
@@ -281,9 +289,7 @@ def fit(**kwargs):
     - cv2.INTER_LANCZOS4 - 4;
 
   Returns:
-  - image;
-  - result image;
-  - the kwargs as is.
+  - bsctrnsl: result image;
   '''  
 
   method = kwargs.get('meth', cv2.INTER_AREA)
@@ -298,8 +304,93 @@ def fit(**kwargs):
 
   dim = (w, h)
 
-  kwargs['image1'] = cv2.resize(image1, dim, interpolation=method) 
+  bscfit = cv2.resize(image1, dim, interpolation=method) 
+
+  kwargs['c'] = bscfit
 
   return kwargs
 
 
+def transform(**kwargs):
+  '''
+  Transforms a skewed image to obtain a top-down view of the original image
+
+  Keyword arguments (key, default):
+  - image: an image;
+
+  Returns:
+  - result image;
+  '''  
+
+  image = kwargs['image']
+  rect_cnt = kwargs['rect']
+	
+  # warped = four_point_transform(image, rect_cnt.reshape(4, 2) * ratio) 
+  bsctrnsf = _four_point_transform(image, rect_cnt.reshape(4, 2)) 
+
+  kwargs['bsctrnsf'] = bsctrnsf
+
+  return kwargs
+
+
+def _order_points(pts):
+  # initialzie a list of coordinates that will be ordered
+  # such that the first entry in the list is the top-left,
+  # the second entry is the top-right, the third is the
+  # bottom-right, and the fourth is the bottom-left
+  rect = np.zeros((4, 2), dtype = "float32")
+
+  # the top-left point will have the smallest sum, whereas
+  # the bottom-right point will have the largest sum
+  s = pts.sum(axis = 1)
+  rect[0] = pts[np.argmin(s)]
+  rect[2] = pts[np.argmax(s)]
+
+  # now, compute the difference between the points, the
+  # top-right point will have the smallest difference,
+  # whereas the bottom-left will have the largest difference
+  diff = np.diff(pts, axis = 1)
+  rect[1] = pts[np.argmin(diff)]
+  rect[3] = pts[np.argmax(diff)]
+
+  # return the ordered coordinates
+  return rect
+
+def _four_point_transform(image, pts):
+  # obtain a consistent order of the points and unpack them
+  # individually
+  rect = _order_points(pts)
+
+  (tl, tr, br, bl) = rect
+
+  # compute the width of the new image, which will be the
+  # maximum distance between bottom-right and bottom-left
+  # x-coordiates or the top-right and top-left x-coordinates
+  widthA = np.sqrt(((br[0] - bl[0]) ** 2) + ((br[1] - bl[1]) ** 2))
+  widthB = np.sqrt(((tr[0] - tl[0]) ** 2) + ((tr[1] - tl[1]) ** 2))
+  maxWidth = max(int(widthA), int(widthB))
+
+  # compute the height of the new image, which will be the
+  # maximum distance between the top-right and bottom-right
+  # y-coordinates or the top-left and bottom-left y-coordinates
+  heightA = np.sqrt(((tr[0] - br[0]) ** 2) + ((tr[1] - br[1]) ** 2))
+  heightB = np.sqrt(((tl[0] - bl[0]) ** 2) + ((tl[1] - bl[1]) ** 2))
+  maxHeight = max(int(heightA), int(heightB))
+
+  # now that we have the dimensions of the new image, construct
+  # the set of destination points to obtain a "birds eye view",
+  # (i.e. top-down view) of the image, again specifying points
+  # in the top-left, top-right, bottom-right, and bottom-left
+  # order
+  dst = np.array([
+    [0, 0],
+    [maxWidth - 1, 0],
+    [maxWidth - 1, maxHeight - 1],
+    [0, maxHeight - 1]], dtype = "float32")
+
+  # compute the perspective transform matrix and then apply it
+  M = cv2.getPerspectiveTransform(rect, dst)
+  warped = cv2.warpPerspective(image, M, (maxWidth, maxHeight))
+
+  # return the warped image
+  return warped

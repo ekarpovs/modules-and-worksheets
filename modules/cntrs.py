@@ -23,7 +23,7 @@ def find(**kwargs):
   
   Returns:
   - image;
-  - list of the contours.
+  - cntrs: list of the contours.
   '''  
 
   mode = kwargs.get('md', cv2.RETR_EXTERNAL)
@@ -50,7 +50,7 @@ def sort(**kwargs):
 
   Returns:
   - image;
-  - list of the sorted contours.
+  - cntrs: list of the sorted contours.
   '''
 
   reverse = kwargs.get('rev', True)
@@ -70,6 +70,40 @@ def sort(**kwargs):
 
   kwargs['cntrs'] = cntrs
   kwargs['boxes'] = bounding_boxes
+
+  return kwargs
+
+
+def sel_rect(**kwargs):
+  '''
+  Sorts contours.
+
+  Keyword arguments (key, default):
+  - image: an image;
+  - cntrs: sorted contours;
+
+  Returns:
+  - image;
+  - rect: the biggest rectangle contour.
+  '''
+
+  cntrs = kwargs['cntrs']
+ 
+	# loop over the contours
+  
+  for c in cntrs:
+		# approximate the contour
+	  peri = cv2.arcLength(c, True)
+	  approx = cv2.approxPolyDP(c, 0.02 * peri, True)
+
+		# if our approximated contour has four points, then we
+		# can assume that we have found our screen
+	  if len(approx) == 4:
+		  rect = approx
+		  break 
+
+  kwargs['rect'] = rect
+  print("rect", rect)
 
   return kwargs
 

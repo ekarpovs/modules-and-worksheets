@@ -19,7 +19,7 @@ def simple(**kwargs):
   - otsu:  flag to use Otsu algorithm to choose the optimal threshold value, False
 
   Returns:
-  - image: result binary image;
+  - thrshsim: result binary image;
   '''
 
   type = kwargs.get('type', cv2.THRESH_BINARY)
@@ -30,9 +30,9 @@ def simple(**kwargs):
     type |= cv2.THRESH_OTSU
     threshold = 0
 
-  (T, thrsh) = cv2.threshold(kwargs['image'], threshold, 255, type)
+  (T, thrshsim) = cv2.threshold(kwargs['image'], threshold, 255, type)
 
-  kwargs['thrsh'] = thrsh
+  kwargs['thrshsim'] = thrshsim
 
   return kwargs
 
@@ -56,7 +56,7 @@ def adaptive(**kwargs):
   - c: a constant which is subtracted from the mean or weighted mean calculated, 5.
 
   Returns:
-  - image: result binary image;
+  - thrshad: result binary image;
   '''
 
   type = kwargs.get('type', cv2.THRESH_BINARY) 
@@ -64,8 +64,8 @@ def adaptive(**kwargs):
   na = kwargs.get('na',15) # neighborhood area
   c = kwargs.get('c', 5) #  
 
-  thrsh = cv2.adaptiveThreshold(kwargs['image'], 255, method, type, na, c)
+  thrshad = cv2.adaptiveThreshold(kwargs['image'], 255, method, type, na, c)
 
-  kwargs['thrsh'] = thrsh
+  kwargs['thrshad'] = thrshad
 
   return kwargs

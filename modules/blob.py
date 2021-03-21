@@ -21,8 +21,7 @@ def simple(**kwargs):
   - minciner - min inertia ratio, 0.01.
   
   Returns:
-  - result image;
-  - blobs keypoints.
+  - kpnts: blobs keypoints.
   '''
 
   minThreshold = kwargs.get('mint', 10)

@@ -16,7 +16,7 @@ def sobel(**kwargs):
     - y: 1 
 
   Returns:
-  - image: result image;
+  - edgesobel: result image;
   '''
 
   direction = kwargs.get('d', 0)
@@ -30,8 +30,9 @@ def sobel(**kwargs):
   g = cv2.Sobel(kwargs['image'], ddepth=cv2.CV_64F, dx=dx, dy=dy) 
   # images are now of the floating point data type,
   # so convert them back a to unsigned 8-bit integer representation
-  sobel = cv2.convertScaleAbs(g)
-  kwargs['sobel'] = sobel
+  edgesobel = cv2.convertScaleAbs(g)
+
+  kwargs['edgesobel'] = edgesobel
 
   return kwargs
 
@@ -46,15 +47,15 @@ def canny(**kwargs):
   - thrs2: threshold2;
 
   Returns:
-  - image: result image;
+  - edgecanny: result image;
   '''
 
   threshold1 = kwargs.get('thrs1', 10)
   threshold2 = kwargs.get('thrs2', 200)
 
-  canny = cv2.Canny(kwargs['image'], threshold1, threshold2)
+  edgecanny = cv2.Canny(kwargs['image'], threshold1, threshold2)
 
-  kwargs['canny'] = canny
+  kwargs['edgecanny'] = edgecanny
   
   return kwargs
 
@@ -67,12 +68,12 @@ def laplacian(**kwargs):
   - image: an image;
 
   Returns:
-  - image: result image;
+  - edgelap: result image;
   '''
 
   lap = cv2.Laplacian(kwargs['image'], cv2.CV_64F)
-  lap = np.uint8(np.absolute(lap)) 
+  edgelap = np.uint8(np.absolute(lap)) 
 
-  kwargs['lap'] = lap
+  kwargs['edgelap'] = edgelap
 
   return kwargs

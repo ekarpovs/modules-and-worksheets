@@ -19,13 +19,15 @@ def bilateral(**kwargs):
   - (11, 61, 39)
 
   Returns:
-  - image: result image;
+  - smshbil: result image;
   '''
 
   diameter = kwargs.get('d', 11)
   sigmaColor = kwargs.get('c', 21)
   sigmaSpace = kwargs.get('s', 7)
 
-  kwargs['image'] = cv2.bilateralFilter(kwargs['image'], diameter, sigmaColor, sigmaSpace)
-
+  smthbil = cv2.bilateralFilter(kwargs['image'], diameter, sigmaColor, sigmaSpace)
+  
+  kwargs['smshbil'] = smthbil
+  
   return kwargs
