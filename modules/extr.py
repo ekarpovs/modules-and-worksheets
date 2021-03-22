@@ -5,7 +5,7 @@ import cv2
 from modules import flowoperation
 
 @flowoperation
-def freak(**kwargs):
+def freak(step, **kwargs):
   '''
   Extract features for given keypoints using FREAK algorithm.
 
@@ -27,7 +27,7 @@ def freak(**kwargs):
 
 
 @flowoperation
-def brief(**kwargs):
+def brief(step, **kwargs):
   '''
   Extract features for given keypoints using BRIEF algorithm.
 

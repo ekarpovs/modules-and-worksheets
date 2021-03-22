@@ -7,7 +7,7 @@ import numpy as np
 from modules import flowoperation
 
 @flowoperation
-def sobel(**kwargs):
+def sobel(step, **kwargs):
   '''
   Computes compute gradients along the X or Y axis uses Sobel algorithm.
 
@@ -21,7 +21,7 @@ def sobel(**kwargs):
   - edgesobel: result image;
   '''
 
-  direction = kwargs.get('d', 0)
+  direction = step.get('d', 0)
   dx = 1
   dy = 0
   if direction == 1:
@@ -38,7 +38,7 @@ def sobel(**kwargs):
 
 
 @flowoperation
-def canny(**kwargs):
+def canny(step, **kwargs):
   '''
   Computes a "wide", "mid-range", and "tight" threshold for the edges.
 
@@ -51,8 +51,8 @@ def canny(**kwargs):
   - edgecanny: result image;
   '''
 
-  threshold1 = kwargs.get('thrs1', 10)
-  threshold2 = kwargs.get('thrs2', 200)
+  threshold1 = step.get('thrs1', 10)
+  threshold2 = step.get('thrs2', 200)
 
   kwargs['image'] = cv2.Canny(kwargs['image'], threshold1, threshold2)
  
@@ -60,7 +60,7 @@ def canny(**kwargs):
 
 
 @flowoperation
-def laplacian(**kwargs):
+def laplacian(step, **kwargs):
   '''
   Computes the Laplacian of the image .
 

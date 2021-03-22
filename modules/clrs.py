@@ -5,7 +5,7 @@ import cv2
 from modules import flowoperation
 
 @flowoperation
-def bgrto(**kwargs):  
+def bgrto(step, **kwargs):  
   '''
   Converts a colored (BGR) image to another color space.
 
@@ -30,10 +30,9 @@ def bgrto(**kwargs):
 
 
 
-  type = kwargs.get('type', cv2.COLOR_BGR2GRAY)
+  type = step.get('type', cv2.COLOR_BGR2GRAY)
 
   if len(kwargs['image'].shape) == 2:
-  
     # input - gray
     return kwargs
 

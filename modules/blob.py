@@ -6,7 +6,7 @@ from modules import flowoperation
 
 
 @flowoperation
-def simple(**kwargs):
+def simple(step, **kwargs):
   '''
   Detects blobs.
 
@@ -27,16 +27,16 @@ def simple(**kwargs):
   - kpnts: blobs keypoints.
   '''
 
-  minThreshold = kwargs.get('mint', 10)
-  maxThreshold = kwargs.get('maxt', 200)
-  filterByArea = kwargs.get('fltarea', True)
-  minArea = kwargs.get('minarea', 1500)
-  filterByCircularity = kwargs.get('fltcirc', True)
-  minCircularity = kwargs.get('mincirc', 0.1)
-  filterByConvexity = kwargs.get('fltconv', True)
-  minConvexity = kwargs.get('minconv', 0.87)
-  filterByInertia = kwargs.get('fltiner', True)
-  minInertiaRatio = kwargs.get('minciner', 0.01)
+  minThreshold = step.get('mint', 10)
+  maxThreshold = step.get('maxt', 200)
+  filterByArea = step.get('fltarea', True)
+  minArea = step.get('minarea', 1500)
+  filterByCircularity = step.get('fltcirc', True)
+  minCircularity = step.get('mincirc', 0.1)
+  filterByConvexity = step.get('fltconv', True)
+  minConvexity = step.get('minconv', 0.87)
+  filterByInertia = step.get('fltiner', True)
+  minInertiaRatio = step.get('minciner', 0.01)
 
 
   # Set up the detector with default parameters.

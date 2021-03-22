@@ -5,7 +5,7 @@ import cv2
 from modules import flowoperation
 
 @flowoperation
-def btw_and(**kwargs):
+def btw_and(step, **kwargs):
   '''
   Performs AND operation.
 
@@ -23,7 +23,7 @@ def btw_and(**kwargs):
 
 
 @flowoperation
-def btw_or(**kwargs):
+def btw_or(step, **kwargs):
   '''
   Performs OR operation.
 
@@ -40,7 +40,7 @@ def btw_or(**kwargs):
 
 
 @flowoperation
-def btw_xor(**kwargs):
+def btw_xor(step, **kwargs):
   '''
   Performs XOR operation.
 
@@ -58,7 +58,7 @@ def btw_xor(**kwargs):
 
 
 @flowoperation
-def btw_not(**kwargs):
+def btw_not(step, **kwargs):
   '''
   Performs NOT operation.
 

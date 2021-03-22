@@ -5,7 +5,7 @@ import cv2
 from modules import flowoperation
 
 @flowoperation
-def find(**kwargs):
+def find(step, **kwargs):
   '''
   Finds contours of an image.
 
@@ -28,8 +28,8 @@ def find(**kwargs):
   - cntrs: list of the contours.
   '''  
 
-  mode = kwargs.get('md', cv2.RETR_EXTERNAL)
-  method = kwargs.get('mth', cv2.CHAIN_APPROX_SIMPLE)
+  mode = step.get('md', cv2.RETR_EXTERNAL)
+  method = step.get('mth', cv2.CHAIN_APPROX_SIMPLE)
 
   cntrs = cv2.findContours(kwargs['image'], mode, method) 
   
@@ -42,7 +42,7 @@ def find(**kwargs):
 
 
 @flowoperation
-def sort(**kwargs):
+def sort(step, **kwargs):
   '''
   Sorts contours.
 
@@ -56,7 +56,7 @@ def sort(**kwargs):
   - cntrs: list of the sorted contours.
   '''
 
-  reverse = kwargs.get('rev', True)
+  reverse = step.get('rev', True)
 
   cntrs = kwargs['cntrs']
 
@@ -78,7 +78,7 @@ def sort(**kwargs):
 
 
 @flowoperation
-def sel_rect(**kwargs):
+def sel_rect(step, **kwargs):
   '''
   Sorts contours.
 

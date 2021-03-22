@@ -8,7 +8,7 @@ import cv2
 from modules import flowoperation
 
 @flowoperation
-def erode(**kwargs):
+def erode(step, **kwargs):
   '''
   Erodes away the boundaries of the foreground object and removes small-scale details 
   from an image but simultaneously reduces the size of regions of interest.
@@ -22,7 +22,7 @@ def erode(**kwargs):
   - mrpherode: result image;
   '''
 
-  iterations = kwargs.get('iter', 3)
+  iterations = step.get('iter', 3)
 
   mrpherode = cv2.erode(kwargs['image'], None, iterations=iterations)
   
@@ -32,7 +32,7 @@ def erode(**kwargs):
 
 
 @flowoperation
-def dilate(**kwargs):
+def dilate(step, **kwargs):
   '''
   Probings and expands the shapes contained in the input image. 
   This operation is opposite to erosion
@@ -45,7 +45,7 @@ def dilate(**kwargs):
   - mrphdilate: result image;
   '''
 
-  iterations = kwargs.get('iter', 3)
+  iterations = step.get('iter', 3)
 
   kwargs['image'] = cv2.dilate(kwargs['image'], None, iterations=iterations)
 
@@ -53,7 +53,7 @@ def dilate(**kwargs):
 
 
 @flowoperation
-def mex(**kwargs):
+def mex(step, **kwargs):
   '''
   Performs one of following morphological operations:
   - opening: erosion followed by dilation;
@@ -80,9 +80,9 @@ def mex(**kwargs):
   - mrphmex: result image;
   '''
   
-  shape = kwargs.get('shape',cv2.MORPH_RECT)
-  type = kwargs.get('type', cv2.MORPH_OPEN)
-  kernelSize = kwargs.get('k', 3)
+  shape = step.get('shape',cv2.MORPH_RECT)
+  type = step.get('type', cv2.MORPH_OPEN)
+  kernelSize = step.get('k', 3)
 
   kernel = cv2.getStructuringElement(shape, (kernelSize, kernelSize))
 

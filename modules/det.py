@@ -5,7 +5,7 @@ import cv2
 from modules import flowoperation
 
 @flowoperation
-def fast(**kwargs):
+def fast(step, **kwargs):
   '''
   Detects keypoints using FAST  (Features from Accelerated Segment Test) algorithm.
 
@@ -23,9 +23,9 @@ def fast(**kwargs):
   - kps: keypoints.
   '''   
 
-  threshold = kwargs.get('thrs', 25)
-  nonmax_suppression = kwargs.get('nonmax', True)
-  type = kwargs.get('type', 0)
+  threshold = step.get('thrs', 25)
+  nonmax_suppression = step.get('nonmax', True)
+  type = step.get('type', 0)
 
   detector = cv2.FastFeatureDetector_create(threshold=threshold, nonmaxSuppression=nonmax_suppression, type=type)
   kps = detector.detect(kwargs['image'], None)
@@ -35,7 +35,7 @@ def fast(**kwargs):
 
 
 @flowoperation
-def star(**kwargs):
+def star(step, **kwargs):
   '''
   Detects keypoints using STAR algorithm.
 
@@ -47,11 +47,11 @@ def star(**kwargs):
   - kps: keypoints.
   '''
 
-  max_size = kwargs.get('max', 45)
-  resp_threshold = kwargs.get('resp-thrs', 30)
-  proj_threshold = kwargs.get('proj-thrs', 10)
-  bin_threshold = kwargs.get('binthrs', 8)
-  nonmax_suppression_size = kwargs.get('nonmax-size', 5)
+  max_size = step.get('max', 45)
+  resp_threshold = step.get('resp-thrs', 30)
+  proj_threshold = step.get('proj-thrs', 10)
+  bin_threshold = step.get('binthrs', 8)
+  nonmax_suppression_size = step.get('nonmax-size', 5)
 
   detector = cv2.xfeatures2d.StarDetector_create(max_size, resp_threshold, proj_threshold, bin_threshold, nonmax_suppression_size)  
   kps = detector.detect(kwargs['image'])

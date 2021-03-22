@@ -5,7 +5,7 @@ import cv2
 from modules import flowoperation
 
 @flowoperation
-def basic(**kwargs):
+def basic(step, **kwargs):
   '''
   Applys apply connected component analysis to the thresholded image 
 
@@ -21,7 +21,7 @@ def basic(**kwargs):
   - centroids: (x, y) coordinates of each connected component.
   '''   
 
-  connectivity = int(kwargs.get('c', 4))
+  connectivity = int(step.get('c', 4))
 
   output = cv2.connectedComponentsWithStats(kwargs['image'], connectivity, cv2.CV_32S)
   (num_labels, labels, stats, centroids) = output 
@@ -35,7 +35,7 @@ def basic(**kwargs):
 
 
 @flowoperation
-def stats(**kwargs):
+def stats(step, **kwargs):
   '''
   Iterates through labels and parses each one.
 
@@ -50,10 +50,10 @@ def stats(**kwargs):
   - image;
   '''   
 
-  num_labels = int(kwargs.get('num', 0))
-  labels = int(kwargs.get('labels', None))
-  stats = int(kwargs.get('stats', None))
-  centroids = int(kwargs.get('centroids', 0))
+  num_labels = int(step.get('num', 0))
+  labels = int(step.get('labels', None))
+  stats = int(step.get('stats', None))
+  centroids = int(step.get('centroids', 0))
 
   for i in range(0, num_labels): 
     # extract the connected component statistics and centroid for

@@ -6,7 +6,7 @@ import numpy as np
 from modules import flowoperation
 
 @flowoperation
-def crop(**kwargs):
+def crop(step, **kwargs):
   '''
   Crops an image.
 
@@ -23,10 +23,10 @@ def crop(**kwargs):
 
   (h, w) = kwargs['image'].shape[:2]
 
-  y0 = kwargs.get('y0', 0)
-  y1 = kwargs.get('y1', h)
-  x0 = kwargs.get('x0', 0)
-  x1 = kwargs.get('x1', w)
+  y0 = step.get('y0', 0)
+  y1 = step.get('y1', h)
+  x0 = step.get('x0', 0)
+  x1 = step.get('x1', w)
 
   kwargs['image'] = kwargs['image'][y0:y1, x0:x1]
 
@@ -34,7 +34,7 @@ def crop(**kwargs):
 
 
 @flowoperation
-def flip(**kwargs):
+def flip(step, **kwargs):
   '''
   Flipss an image.
 
@@ -46,7 +46,7 @@ def flip(**kwargs):
   - bscflip: result image;
   - the kwargs as is.
   '''  
-  direction = kwargs.get('drct', 1)
+  direction = step.get('drct', 1)
 
   kwargs['image'] = cv2.flip(kwargs['image'], direction) 
 
@@ -54,7 +54,7 @@ def flip(**kwargs):
 
 
 @flowoperation
-def mask(**kwargs):
+def mask(step, **kwargs):
   '''
   Applys a mask to an image.
 
@@ -78,14 +78,14 @@ def mask(**kwargs):
   '''  
   (h, w) = kwargs['image'].shape[:2]
 
-  type = kwargs.get('type', 0)
-  y0 = kwargs.get('y0', 0)
-  y1 = kwargs.get('y1', h)
-  x0 = kwargs.get('x0', 0)
-  x1 = kwargs.get('x1', w)
-  cx = kwargs.get('cx', w / 2)
-  cy = kwargs.get('cy', h / 2)
-  rad = kwargs.get('rad', min(h / 2, w /2))
+  type = step.get('type', 0)
+  y0 = step.get('y0', 0)
+  y1 = step.get('y1', h)
+  x0 = step.get('x0', 0)
+  x1 = step.get('x1', w)
+  cx = step.get('cx', w / 2)
+  cy = step.get('cy', h / 2)
+  rad = step.get('rad', min(h / 2, w /2))
   
   # Masking allows us to focus only on parts of an image that interest us.
   # A mask is the same size as our image, but has only two pixel values,
@@ -108,7 +108,7 @@ def mask(**kwargs):
 
 
 @flowoperation
-def resize(**kwargs):
+def resize(step, **kwargs):
   '''
   Resizes an image.
 
@@ -134,15 +134,15 @@ def resize(**kwargs):
 
   (h, w) = kwargs['image'].shape[:2]
 
-  method = kwargs.get('meth', cv2.INTER_AREA)
-  unit = kwargs.get('unit', 0)
-  side = kwargs.get('side', 0)
+  method = step.get('meth', cv2.INTER_AREA)
+  unit = step.get('unit', 0)
+  side = step.get('side', 0)
 
   #  default value regarding to the side of a rectangle
   def_size = w
   if side == 0:
     def_size = h
-  size = kwargs.get('size', def_size)
+  size = step.get('size', def_size)
   if unit == 1:
     # size defined in percents - calculate in pixels
     orig_pixels = w
@@ -164,7 +164,7 @@ def resize(**kwargs):
 
 
 @flowoperation
-def resize1(**kwargs):
+def resize1(step, **kwargs):
   '''
   Resizes an image without aspect ratio (absolute resizing).
 
@@ -188,10 +188,10 @@ def resize1(**kwargs):
   - bscrsz: result image;
   '''  
 
-  method = kwargs.get('meth', cv2.INTER_AREA)
-  unit = kwargs.get('unit', 0)
-  w_new = kwargs.get('w', 9)
-  h_new = kwargs.get('h', 8)
+  method = step.get('meth', cv2.INTER_AREA)
+  unit = step.get('unit', 0)
+  w_new = step.get('w', 9)
+  h_new = step.get('h', 8)
 
   dim = (w_new, h_new)
   if unit == 1: # percent
@@ -204,7 +204,7 @@ def resize1(**kwargs):
 
 
 @flowoperation
-def rotate(**kwargs):  
+def rotate(step, **kwargs):  
   '''
   Rotates an image without cropping.
   
@@ -221,7 +221,7 @@ def rotate(**kwargs):
   (cx, cy) = (w / 2, h / 2)
 
   # calculate rotation matrix
-  angle = kwargs.get('angle', 0)
+  angle = step.get('angle', 0)
   M = cv2.getRotationMatrix2D((cx, cy), angle, 1.0)
   
   # rotation calculates the cos and sin, taking absolutes of those.
@@ -240,7 +240,7 @@ def rotate(**kwargs):
   return kwargs
 
 @flowoperation
-def translate(**kwargs):
+def translate(step, **kwargs):
   '''
   Translates (Shifts) an image by a NumPy matrix in the form:
     [[1, 0, shiftX], [0, 1, shiftY]] .
@@ -254,8 +254,8 @@ def translate(**kwargs):
   - bsctrnsl: result image;
   '''  
 
-  shiftX = kwargs.get('x', 0)
-  shiftY = kwargs.get('y', 0)
+  shiftX = step.get('x', 0)
+  shiftY = step.get('y', 0)
 
   if shiftX == 0 and shiftY == 0:
     return kwargs
@@ -267,7 +267,7 @@ def translate(**kwargs):
 
 
 @flowoperation
-def fit(**kwargs):
+def fit(step, **kwargs):
   '''
   resize image1 regarding image
 
@@ -286,7 +286,7 @@ def fit(**kwargs):
   - bsctrnsl: result image;
   '''  
 
-  method = kwargs.get('meth', cv2.INTER_AREA)
+  method = step.get('meth', cv2.INTER_AREA)
 
   image = kwargs['image']
   (h, w, n) = image.shape
@@ -304,7 +304,7 @@ def fit(**kwargs):
 
 
 @flowoperation
-def transform(**kwargs):
+def transform(step, **kwargs):
   '''
   Transforms a skewed image to obtain a top-down view of the original image
 

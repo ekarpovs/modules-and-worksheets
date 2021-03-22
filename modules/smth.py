@@ -5,7 +5,7 @@ import cv2
 from modules import flowoperation
 
 @flowoperation
-def bilateral(**kwargs):
+def bilateral(step, **kwargs):
   '''
   Applies bilateral filtering to the input image
 
@@ -24,9 +24,9 @@ def bilateral(**kwargs):
   - smshbil: result image;
   '''
 
-  diameter = kwargs.get('d', 11)
-  sigmaColor = kwargs.get('c', 21)
-  sigmaSpace = kwargs.get('s', 7)
+  diameter = step.get('d', 11)
+  sigmaColor = step.get('c', 21)
+  sigmaSpace = step.get('s', 7)
 
   kwargs['image'] = cv2.bilateralFilter(kwargs['image'], diameter, sigmaColor, sigmaSpace)
    

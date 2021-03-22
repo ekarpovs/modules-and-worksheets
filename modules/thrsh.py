@@ -5,7 +5,7 @@ import cv2
 from modules import flowoperation
 
 @flowoperation
-def simple(**kwargs):
+def simple(step, **kwargs):
   '''
   Applies a fixed-level (or optimal) threshold to each array element.
 
@@ -24,9 +24,9 @@ def simple(**kwargs):
   - thrshsim: result binary image;
   '''
 
-  type = kwargs.get('type', cv2.THRESH_BINARY)
-  threshold = kwargs.get('thrsh', 127)
-  otsu = kwargs.get('otsu', False)
+  type = step.get('type', cv2.THRESH_BINARY)
+  threshold = step.get('thrsh', 127)
+  otsu = step.get('otsu', False)
 
   if otsu:
     type |= cv2.THRESH_OTSU
@@ -40,7 +40,7 @@ def simple(**kwargs):
 
 
 @flowoperation
-def adaptive(**kwargs):
+def adaptive(step, **kwargs):
   '''
   Applies a fixed-level (or optimal) threshold to each array element.
 
@@ -62,10 +62,10 @@ def adaptive(**kwargs):
   - thrshad: result binary image;
   '''
 
-  type = kwargs.get('type', cv2.THRESH_BINARY) 
-  method = kwargs.get('mth', cv2.ADAPTIVE_THRESH_MEAN_C) 
-  na = kwargs.get('na',15) # neighborhood area
-  c = kwargs.get('c', 5) #  
+  type = step.get('type', cv2.THRESH_BINARY) 
+  method = step.get('mth', cv2.ADAPTIVE_THRESH_MEAN_C) 
+  na = step.get('na',15) # neighborhood area
+  c = step.get('c', 5) #  
 
   thrsh = cv2.adaptiveThreshold(kwargs['image'], 255, method, type, na, c)
 

@@ -9,7 +9,7 @@ from math import log10, sqrt
 from modules import flowoperation
 
 @flowoperation
-def cmp_mse(**kwargs):
+def cmp_mse(step, **kwargs):
   '''
   Calculates 'Mean Squared Error' between pixels of two images.
   The 'Mean Squared Error' between the two images is the
@@ -36,7 +36,7 @@ def cmp_mse(**kwargs):
 
 
 @flowoperation
-def cmp_ssim(**kwargs):
+def cmp_ssim(step, **kwargs):
   '''
   Calculates 'Structural Similarity Index' between pixels of two images.
   Uses to compare two windows instead an entire images.
@@ -60,7 +60,7 @@ def cmp_ssim(**kwargs):
 
 
 @flowoperation
-def cmp_psnr(**kwargs):
+def cmp_psnr(step, **kwargs):
   '''
   Calculates 'Peak Signal-to-Noise Ratio' between two images.
   This two images must have the same dimension.
@@ -88,7 +88,7 @@ def cmp_psnr(**kwargs):
 
 
 @flowoperation
-def cmp_norm(**kwargs):
+def cmp_norm(step, **kwargs):
   '''
   Calculates 'Pixels difference' between two GRAY images.
   This two images must have the same dimension.

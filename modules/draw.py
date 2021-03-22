@@ -6,7 +6,7 @@ import numpy as np
 from modules import flowoperation
 
 @flowoperation
-def contours(**kwargs):
+def contours(step, **kwargs):
   '''
   Draws contours.
 
@@ -21,7 +21,7 @@ def contours(**kwargs):
   image = kwargs['image']
   cntrs = kwargs['cntrs']
 
-  clone = image.copy()
+  clone = image
   # loop over the (unsorted) contours and draw them
   for (i, c) in enumerate(cntrs):
     # orig = draw_contour(image.copy(), c, i)   
@@ -50,7 +50,7 @@ def contours(**kwargs):
 
 
 @flowoperation
-def keypoints(**kwargs):
+def keypoints(step, **kwargs):
   """
   cv2.DRAW_MATCHES_FLAGS_DEFAULT = 0
   cv2.DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG = 1,
@@ -58,7 +58,7 @@ def keypoints(**kwargs):
   cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS = 4
   """
 
-  flag = kwargs.get('flag', cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+  flag = step.get('flag', cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 
   keypoints = kwargs['kpnts']
 
@@ -70,7 +70,7 @@ def keypoints(**kwargs):
   return kwargs
 
 # https://docs.opencv.org/3.4/d4/d5d/group__features2d__draw.html
-def matches(**kwargs):
+def matches(step, **kwargs):
   """
   cv2.DRAW_MATCHES_FLAGS_DEFAULT = 0
   cv2.DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG = 1,
@@ -78,7 +78,7 @@ def matches(**kwargs):
   cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS = 4
   """
 
-  flag = kwargs.get('flag', cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+  flag = step.get('flag', cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 
   image = kwargs['image']
   keypoints = kwargs['keypoints']

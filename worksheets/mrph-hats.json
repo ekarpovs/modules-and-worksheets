@@ -1,7 +1,7 @@
 {
   "steps":[
-    {"exec": "clrs.bgrto", "show": 0},
-    {"exec": "mrph.mex", "show": 2, "toshow": "mrph","type": 5},
-    {"exec": "mrph.mex", "show": 2, "toshow": "mrph", "type": 6}
+    {"exec": "clrs.bgrto", "show": 3},
+    {"exec": "mrph.mex", "show": 2,"type": 5},
+    {"exec": "mrph.mex", "show": 2, "type": 6}
   ]
 }

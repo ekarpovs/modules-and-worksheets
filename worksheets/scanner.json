@@ -1,0 +1,12 @@
+  {
+  "steps":[
+    {"exec": "clrs.bgrto"},
+    {"exec": "blur.gaus", "show": 2, "k": 7},
+    {"exec": "edge.canny", "show": 2},
+    {"exec": "cntrs.find"},
+    {"exec": "cntrs.sort"},
+    {"exec": "draw.contours", "show": 2},
+    {"exec": "cntrs.sel_rect", "show": 2},
+    {"exec": "bsc.transform", "show": 2}
+  ]
+}

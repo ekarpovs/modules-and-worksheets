@@ -5,7 +5,7 @@ import cv2
 from modules import flowoperation
 
 
-def bfm_knn(**kwargs):
+def bfm_knn(step, **kwargs):
   '''
   Computes images semilaraty using Brute-Force Matchers.
 
@@ -25,9 +25,9 @@ def bfm_knn(**kwargs):
   - matches: .
   '''
  
-  type = kwargs.get('type', cv2.NORM_L2)
-  cross_check = kwargs.get('check', True)
-  k = kwargs.get('k', 2)
+  type = step.get('type', cv2.NORM_L2)
+  cross_check = step.get('check', True)
+  k = step.get('k', 2)
   descs_a = kwargs['da']
   descs_b = kwargs['db']
 
@@ -39,7 +39,7 @@ def bfm_knn(**kwargs):
   return kwargs
 
 
-def bfm(**kwargs):
+def bfm(step, **kwargs):
   '''
   Computes images semilaraty using Brute-Force Matchers.
 
@@ -58,8 +58,8 @@ def bfm(**kwargs):
   - matches: .
   '''
 
-  type = kwargs.get('type', cv2.NORM_L2)
-  cross_check = kwargs.get('check', True)
+  type = step.get('type', cv2.NORM_L2)
+  cross_check = step.get('check', True)
   descs_a = kwargs['da']
   descs_b = kwargs['db']
 
@@ -74,7 +74,7 @@ def bfm(**kwargs):
   return kwargs
 
 
-def good(**kwargs):
+def good(step, **kwargs):
   '''
   Select matches regarding predefined distance.
 
@@ -86,7 +86,7 @@ def good(**kwargs):
   - matches: good matches (< distance).
   '''
 
-  distance = kwargs.get('dist', 0.5)
+  distance = step.get('dist', 0.5)
 
   matches = kwargs['matches']
 
