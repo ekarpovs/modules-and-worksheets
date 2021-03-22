@@ -2,7 +2,10 @@
 Blob operations
 '''
 import cv2
+from modules import flowoperation
 
+
+@flowoperation
 def simple(**kwargs):
   '''
   Detects blobs.

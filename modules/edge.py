@@ -4,7 +4,9 @@ Gradient magnitude and orientation.
 '''
 import cv2
 import numpy as np
+from modules import flowoperation
 
+@flowoperation
 def sobel(**kwargs):
   '''
   Computes compute gradients along the X or Y axis uses Sobel algorithm.
@@ -30,13 +32,12 @@ def sobel(**kwargs):
   g = cv2.Sobel(kwargs['image'], ddepth=cv2.CV_64F, dx=dx, dy=dy) 
   # images are now of the floating point data type,
   # so convert them back a to unsigned 8-bit integer representation
-  edgesobel = cv2.convertScaleAbs(g)
-
-  kwargs['edgesobel'] = edgesobel
+  kwargs['image'] = cv2.convertScaleAbs(g)
 
   return kwargs
 
 
+@flowoperation
 def canny(**kwargs):
   '''
   Computes a "wide", "mid-range", and "tight" threshold for the edges.
@@ -53,13 +54,12 @@ def canny(**kwargs):
   threshold1 = kwargs.get('thrs1', 10)
   threshold2 = kwargs.get('thrs2', 200)
 
-  edgecanny = cv2.Canny(kwargs['image'], threshold1, threshold2)
-
-  kwargs['edgecanny'] = edgecanny
-  
+  kwargs['image'] = cv2.Canny(kwargs['image'], threshold1, threshold2)
+ 
   return kwargs
 
 
+@flowoperation
 def laplacian(**kwargs):
   '''
   Computes the Laplacian of the image .
@@ -72,8 +72,6 @@ def laplacian(**kwargs):
   '''
 
   lap = cv2.Laplacian(kwargs['image'], cv2.CV_64F)
-  edgelap = np.uint8(np.absolute(lap)) 
-
-  kwargs['edgelap'] = edgelap
+  kwargs['image'] = np.uint8(np.absolute(lap)) 
 
   return kwargs

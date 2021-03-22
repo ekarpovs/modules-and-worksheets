@@ -2,7 +2,9 @@
 Smoothing operation
 '''
 import cv2
+from modules import flowoperation
 
+@flowoperation
 def bilateral(**kwargs):
   '''
   Applies bilateral filtering to the input image
@@ -26,8 +28,6 @@ def bilateral(**kwargs):
   sigmaColor = kwargs.get('c', 21)
   sigmaSpace = kwargs.get('s', 7)
 
-  smthbil = cv2.bilateralFilter(kwargs['image'], diameter, sigmaColor, sigmaSpace)
-  
-  kwargs['smshbil'] = smthbil
-  
+  kwargs['image'] = cv2.bilateralFilter(kwargs['image'], diameter, sigmaColor, sigmaSpace)
+   
   return kwargs

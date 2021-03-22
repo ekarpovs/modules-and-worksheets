@@ -3,7 +3,9 @@ Basic operations
 '''
 import cv2
 import numpy as np
+from modules import flowoperation
 
+@flowoperation
 def crop(**kwargs):
   '''
   Crops an image.
@@ -26,13 +28,12 @@ def crop(**kwargs):
   x0 = kwargs.get('x0', 0)
   x1 = kwargs.get('x1', w)
 
-  bsccrop = kwargs['image'][y0:y1, x0:x1]
-
-  kwargs['bsccrop'] = bsccrop
+  kwargs['image'] = kwargs['image'][y0:y1, x0:x1]
 
   return kwargs
 
 
+@flowoperation
 def flip(**kwargs):
   '''
   Flipss an image.
@@ -47,13 +48,12 @@ def flip(**kwargs):
   '''  
   direction = kwargs.get('drct', 1)
 
-  bscflip = cv2.flip(kwargs['image'], direction) 
-
-  kwargs['bscflip'] = bscflip
+  kwargs['image'] = cv2.flip(kwargs['image'], direction) 
 
   return kwargs
 
 
+@flowoperation
 def mask(**kwargs):
   '''
   Applys a mask to an image.
@@ -101,14 +101,13 @@ def mask(**kwargs):
     cv2.circle(mask, (cx, cy), rad, 255, -1)
 
   # Apply out mask
-  bscmask = cv2.bitwise_and(kwargs['image'], kwargs['image'], mask=mask)   
-
-  kwargs['bscmask'] = bscmask
+  kwargs['image'] = cv2.bitwise_and(kwargs['image'], kwargs['image'], mask=mask)   
 
   return kwargs
 
 
 
+@flowoperation
 def resize(**kwargs):
   '''
   Resizes an image.
@@ -159,13 +158,12 @@ def resize(**kwargs):
     ratio = size / h
     dim = (int(w * ratio), size)
 
-  bscrsz = cv2.resize(kwargs['image'], dim, interpolation=method) 
-
-  kwargs['bscrsz'] = bscrsz
+  kwargs['image'] = cv2.resize(kwargs['image'], dim, interpolation=method) 
 
   return kwargs
 
-# Resize without ratio
+
+@flowoperation
 def resize1(**kwargs):
   '''
   Resizes an image without aspect ratio (absolute resizing).
@@ -200,13 +198,12 @@ def resize1(**kwargs):
     (h, w) = kwargs['image'].shape[:2]
     dim = (int(w*w_new/100), int(h*h_new/100))
     
-  bscrsz = cv2.resize(kwargs['image'], dim, interpolation=method) 
-
-  kwargs['bscrsz'] = bscrsz
+  kwargs['image'] = cv2.resize(kwargs['image'], dim, interpolation=method) 
 
   return kwargs
 
 
+@flowoperation
 def rotate(**kwargs):  
   '''
   Rotates an image without cropping.
@@ -238,13 +235,11 @@ def rotate(**kwargs):
   M[1, 2] += bound_h/2 - cy
 
   # rotate without a cropping
-  bscrot = cv2.warpAffine(kwargs['image'], M, (bound_w, bound_h))
-
-  kwargs['bscrot'] = bscrot
+  kwargs['image'] = cv2.warpAffine(kwargs['image'], M, (bound_w, bound_h))
 
   return kwargs
 
-
+@flowoperation
 def translate(**kwargs):
   '''
   Translates (Shifts) an image by a NumPy matrix in the form:
@@ -266,13 +261,12 @@ def translate(**kwargs):
     return kwargs
 
   M = np.float32([[1, 0, shiftX], [0, 1, shiftY]])
-  bsctrnsl = cv2.warpAffine(kwargs['image'], M, (kwargs['image'].shape[1], kwargs['image'].shape[0])) 
-
-  kwargs['bsctrnsl'] = bsctrnsl
+  kwargs['image'] = cv2.warpAffine(kwargs['image'], M, (kwargs['image'].shape[1], kwargs['image'].shape[0])) 
 
   return kwargs
 
 
+@flowoperation
 def fit(**kwargs):
   '''
   resize image1 regarding image
@@ -304,13 +298,12 @@ def fit(**kwargs):
 
   dim = (w, h)
 
-  bscfit = cv2.resize(image1, dim, interpolation=method) 
-
-  kwargs['c'] = bscfit
+  kwargs['image'] = cv2.resize(image1, dim, interpolation=method) 
 
   return kwargs
 
 
+@flowoperation
 def transform(**kwargs):
   '''
   Transforms a skewed image to obtain a top-down view of the original image
@@ -322,16 +315,16 @@ def transform(**kwargs):
   - result image;
   '''  
 
-  image = kwargs['image']
   rect_cnt = kwargs['rect']
 	
   # warped = four_point_transform(image, rect_cnt.reshape(4, 2) * ratio) 
-  bsctrnsf = _four_point_transform(image, rect_cnt.reshape(4, 2)) 
-
-  kwargs['bsctrnsf'] = bsctrnsf
+  kwargs['image'] = _four_point_transform(kwargs['image'], rect_cnt.reshape(4, 2)) 
 
   return kwargs
 
+
+############## Utils ###############################
+# TODO: move to separate lib module 
 
 def _order_points(pts):
   # initialzie a list of coordinates that will be ordered

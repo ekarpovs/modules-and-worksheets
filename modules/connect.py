@@ -2,7 +2,9 @@
 Connected Component Labeling operations
 '''
 import cv2
+from modules import flowoperation
 
+@flowoperation
 def basic(**kwargs):
   '''
   Applys apply connected component analysis to the thresholded image 
@@ -32,6 +34,7 @@ def basic(**kwargs):
   return kwargs
 
 
+@flowoperation
 def stats(**kwargs):
   '''
   Iterates through labels and parses each one.

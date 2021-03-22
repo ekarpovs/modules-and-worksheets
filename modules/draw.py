@@ -3,8 +3,9 @@ Drawing Contours, Bounding boxes, Keypoints, Matches operation, etc.
 '''
 import cv2
 import numpy as np
+from modules import flowoperation
 
-
+@flowoperation
 def contours(**kwargs):
   '''
   Draws contours.
@@ -20,7 +21,7 @@ def contours(**kwargs):
   image = kwargs['image']
   cntrs = kwargs['cntrs']
 
-  clone = image
+  clone = image.copy()
   # loop over the (unsorted) contours and draw them
   for (i, c) in enumerate(cntrs):
     # orig = draw_contour(image.copy(), c, i)   
@@ -48,6 +49,7 @@ def contours(**kwargs):
   return kwargs
 
 
+@flowoperation
 def keypoints(**kwargs):
   """
   cv2.DRAW_MATCHES_FLAGS_DEFAULT = 0

@@ -2,7 +2,9 @@
 Color spaces operations
 '''
 import cv2
+from modules import flowoperation
 
+@flowoperation
 def bgrto(**kwargs):  
   '''
   Converts a colored (BGR) image to another color space.
@@ -35,8 +37,6 @@ def bgrto(**kwargs):
     # input - gray
     return kwargs
 
-  clrsbgrto = cv2.cvtColor(kwargs['image'], type)
-
-  kwargs['clrsbgrto'] = clrsbgrto
-  
+  kwargs['image'] = cv2.cvtColor(kwargs['image'], type)
+ 
   return kwargs

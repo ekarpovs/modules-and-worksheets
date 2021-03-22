@@ -2,7 +2,9 @@
 Bluring operation
 '''
 import cv2
+from modules import flowoperation
 
+@flowoperation
 def avg(**kwargs):
   '''
   Performs average bluring.
@@ -18,14 +20,12 @@ def avg(**kwargs):
   kernel = kwargs.get('k', 3)
   kX = kY = kernel 
 
-  blravg = cv2.blur(kwargs['image'], (kX, kY)) 
-
-  kwargs['blravg'] = blravg
-
+  kwargs['image'] = cv2.blur(kwargs['image'], (kX, kY)) 
 
   return kwargs
 
 
+@flowoperation
 def gaus(**kwargs):
   '''
   Performs gausian bluring.
@@ -41,13 +41,12 @@ def gaus(**kwargs):
   kernel = kwargs.get('k', 3)
   kX = kY = kernel 
 
-  blrgaus = cv2.GaussianBlur(kwargs['image'], (kX, kY), 0)
-
-  kwargs['blrgaus'] = blrgaus
+  kwargs['image'] = cv2.GaussianBlur(kwargs['image'], (kX, kY), 0)
 
   return kwargs
 
 
+@flowoperation
 def median(**kwargs):
   '''
   Performs median bluring.
@@ -62,8 +61,6 @@ def median(**kwargs):
 
   kernel = kwargs.get('k', 3)
 
-  blrmedian = cv2.medianBlur(kwargs['image'], kernel)
-
-  kwargs['blrmedian'] = blrmedian
+  kwargs['image'] = cv2.medianBlur(kwargs['image'], kernel)
 
   return kwargs

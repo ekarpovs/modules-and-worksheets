@@ -2,7 +2,9 @@
 Contours operations
 '''
 import cv2
+from modules import flowoperation
 
+@flowoperation
 def find(**kwargs):
   '''
   Finds contours of an image.
@@ -39,6 +41,7 @@ def find(**kwargs):
   return kwargs
 
 
+@flowoperation
 def sort(**kwargs):
   '''
   Sorts contours.
@@ -74,6 +77,7 @@ def sort(**kwargs):
   return kwargs
 
 
+@flowoperation
 def sel_rect(**kwargs):
   '''
   Sorts contours.

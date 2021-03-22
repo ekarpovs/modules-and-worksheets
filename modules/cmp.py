@@ -6,7 +6,9 @@ import numpy as np
 from skimage.measure import compare_ssim
 # from skimage.measure import structural_similarity as ssim
 from math import log10, sqrt
+from modules import flowoperation
 
+@flowoperation
 def cmp_mse(**kwargs):
   '''
   Calculates 'Mean Squared Error' between pixels of two images.
@@ -33,6 +35,7 @@ def cmp_mse(**kwargs):
   return kwargs
 
 
+@flowoperation
 def cmp_ssim(**kwargs):
   '''
   Calculates 'Structural Similarity Index' between pixels of two images.
@@ -56,6 +59,7 @@ def cmp_ssim(**kwargs):
   return kwargs
 
 
+@flowoperation
 def cmp_psnr(**kwargs):
   '''
   Calculates 'Peak Signal-to-Noise Ratio' between two images.
@@ -83,6 +87,7 @@ def cmp_psnr(**kwargs):
   return kwargs
 
 
+@flowoperation
 def cmp_norm(**kwargs):
   '''
   Calculates 'Pixels difference' between two GRAY images.

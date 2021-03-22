@@ -2,7 +2,9 @@
 Threshold operations
 '''
 import cv2
+from modules import flowoperation
 
+@flowoperation
 def simple(**kwargs):
   '''
   Applies a fixed-level (or optimal) threshold to each array element.
@@ -30,13 +32,14 @@ def simple(**kwargs):
     type |= cv2.THRESH_OTSU
     threshold = 0
 
-  (T, thrshsim) = cv2.threshold(kwargs['image'], threshold, 255, type)
+  (T, thrsh) = cv2.threshold(kwargs['image'], threshold, 255, type)
 
-  kwargs['thrshsim'] = thrshsim
+  kwargs['image'] = thrsh
 
   return kwargs
 
 
+@flowoperation
 def adaptive(**kwargs):
   '''
   Applies a fixed-level (or optimal) threshold to each array element.
@@ -64,8 +67,8 @@ def adaptive(**kwargs):
   na = kwargs.get('na',15) # neighborhood area
   c = kwargs.get('c', 5) #  
 
-  thrshad = cv2.adaptiveThreshold(kwargs['image'], 255, method, type, na, c)
+  thrsh = cv2.adaptiveThreshold(kwargs['image'], 255, method, type, na, c)
 
-  kwargs['thrshad'] = thrshad
+  kwargs['image'] = thrsh
 
   return kwargs

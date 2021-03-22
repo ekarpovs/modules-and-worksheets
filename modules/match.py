@@ -2,6 +2,7 @@
 Matching operations
 '''
 import cv2
+from modules import flowoperation
 
 
 def bfm_knn(**kwargs):

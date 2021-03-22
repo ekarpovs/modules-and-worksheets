@@ -2,7 +2,9 @@
 Keypoin detection operations
 '''
 import cv2
+from modules import flowoperation
 
+@flowoperation
 def fast(**kwargs):
   '''
   Detects keypoints using FAST  (Features from Accelerated Segment Test) algorithm.
@@ -32,6 +34,7 @@ def fast(**kwargs):
   return kwargs
 
 
+@flowoperation
 def star(**kwargs):
   '''
   Detects keypoints using STAR algorithm.

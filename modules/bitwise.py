@@ -2,7 +2,9 @@
 Bitwise operations
 '''
 import cv2
+from modules import flowoperation
 
+@flowoperation
 def btw_and(**kwargs):
   '''
   Performs AND operation.
@@ -15,13 +17,12 @@ def btw_and(**kwargs):
   - btwand: result image;
   '''
 
-  btwand = cv2.bitwise_and(kwargs['image'], kwargs['image1']) 
-
-  kwargs['btwand'] =  btwand
+  kwargs['image'] = cv2.bitwise_and(kwargs['image'], kwargs['image1']) 
 
   return kwargs
 
 
+@flowoperation
 def btw_or(**kwargs):
   '''
   Performs OR operation.
@@ -33,13 +34,12 @@ def btw_or(**kwargs):
   Returns:
   - btwor: result image;
   '''
-  btwor = cv2.bitwise_or(kwargs['image'], kwargs['image1']) 
-
-  kwargs['btwor'] =  btwor
+  kwargs['image'] = cv2.bitwise_or(kwargs['image'], kwargs['image1']) 
 
   return kwargs
 
 
+@flowoperation
 def btw_xor(**kwargs):
   '''
   Performs XOR operation.
@@ -52,13 +52,12 @@ def btw_xor(**kwargs):
   - btwxor: result image;
   '''
 
-  btwxor = cv2.bitwise_xor(kwargs['image'], kwargs['image1']) 
-
-  kwargs['btwxor'] =  btwxor
+  kwargs['image'] = cv2.bitwise_xor(kwargs['image'], kwargs['image1']) 
 
   return kwargs
 
 
+@flowoperation
 def btw_not(**kwargs):
   '''
   Performs NOT operation.
@@ -70,8 +69,6 @@ def btw_not(**kwargs):
   Returns:
   - btwnot: result image;
   '''
-  btwbnot = cv2.bitwise_not(kwargs['image'], kwargs['image1']) 
-  
-  kwargs['btwnot'] = btwbnot
-  
+  kwargs['image'] = cv2.bitwise_not(kwargs['image'], kwargs['image1']) 
+   
   return kwargs
