@@ -10,15 +10,17 @@ def crop(step, **kwargs):
   '''
   Crops an image.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - y0 - left top coordinate, 0;
   - y1 - left right coordinate, h;
   - x0 - left top coordinate, 0;
   - x1 - left right coordinate, w.
   
   Returns:
-  - bsccrop: result image;
+  - image: result image;
   '''  
 
   (h, w) = kwargs['image'].shape[:2]
@@ -38,13 +40,14 @@ def flip(step, **kwargs):
   '''
   Flipss an image.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - drct: direction, 1.
  
   Returns:
-  - bscflip: result image;
-  - the kwargs as is.
+  - image: result image;
   '''  
   direction = step.get('drct', 1)
 
@@ -58,8 +61,10 @@ def mask(step, **kwargs):
   '''
   Applys a mask to an image.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - type - the mask shape (rectangle 0, circle 1) , 1;
 
     for rectangle:
@@ -74,7 +79,7 @@ def mask(step, **kwargs):
     - rad - the mask radius,min(h / 2, w /2).
  
   Returns:
-  - bscmask: result image;
+  - image: result image;
   '''  
   (h, w) = kwargs['image'].shape[:2]
 
@@ -112,9 +117,10 @@ def resize(step, **kwargs):
   '''
   Resizes an image.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
   
+  Step arguments (key, default):
   - meth - interpolation method, 2:
     - cv2.INTER_NEAREST - 0;
     - cv2.INTER_LINEAR - 1;
@@ -129,7 +135,7 @@ def resize(step, **kwargs):
     - width 1
  
   Returns:
-  - bscrsz: result image;
+  - image: result image;
   '''
 
   (h, w) = kwargs['image'].shape[:2]
@@ -168,9 +174,10 @@ def resize1(step, **kwargs):
   '''
   Resizes an image without aspect ratio (absolute resizing).
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
   
+  Step arguments (key, default):
   - meth - interpolation method, 2:
     - cv2.INTER_NEAREST - 0;
     - cv2.INTER_LINEAR - 1;
@@ -185,7 +192,7 @@ def resize1(step, **kwargs):
     - width 1
  
   Returns:
-  - bscrsz: result image;
+  - image: result image;
   '''  
 
   method = step.get('meth', cv2.INTER_AREA)
@@ -208,12 +215,14 @@ def rotate(step, **kwargs):
   '''
   Rotates an image without cropping.
   
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - angle: rotation angle, 0.
 
   Returns:
-  - bscrot: result image;
+  - image: result image;
   '''  
 
   # grab the dimensions of the image and calculate the center of the image
@@ -245,13 +254,15 @@ def translate(step, **kwargs):
   Translates (Shifts) an image by a NumPy matrix in the form:
     [[1, 0, shiftX], [0, 1, shiftY]] .
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - y: number of pixels to shift, 0;
   - x: number of pixels to shift, 0.
 
   Returns:
-  - bsctrnsl: result image;
+  - image: result image;
   '''  
 
   shiftX = step.get('x', 0)
@@ -275,6 +286,7 @@ def fit(step, **kwargs):
   - image: an image;
   - image1: an image.
 
+  Step arguments (key, default):
   - meth - interpolation method, 2:
     - cv2.INTER_NEAREST - 0;
     - cv2.INTER_LINEAR - 1;
@@ -283,7 +295,7 @@ def fit(step, **kwargs):
     - cv2.INTER_LANCZOS4 - 4;
 
   Returns:
-  - bsctrnsl: result image;
+  - image: result image;
   '''  
 
   method = step.get('meth', cv2.INTER_AREA)
@@ -312,7 +324,7 @@ def transform(step, **kwargs):
   - image: an image;
 
   Returns:
-  - result image;
+  -image: result image;
   '''  
 
   rect_cnt = kwargs['rect']

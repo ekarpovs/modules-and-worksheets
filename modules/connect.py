@@ -9,8 +9,10 @@ def basic(step, **kwargs):
   '''
   Applys apply connected component analysis to the thresholded image 
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - c: connectivity, 4;
   
   Returns:

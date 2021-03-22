@@ -14,12 +14,14 @@ def erode(step, **kwargs):
   from an image but simultaneously reduces the size of regions of interest.
   This operation is opposite to dilation
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - iter: number of iterations, 3;
 
   Returns:
-  - mrpherode: result image;
+  - image: result image;
   '''
 
   iterations = step.get('iter', 3)
@@ -37,12 +39,14 @@ def dilate(step, **kwargs):
   Probings and expands the shapes contained in the input image. 
   This operation is opposite to erosion
   
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - iter: number of iterations, 3;
 
   Returns:
-  - mrphdilate: result image;
+  - image: result image;
   '''
 
   iterations = step.get('iter', 3)
@@ -62,8 +66,10 @@ def mex(step, **kwargs):
   - top hat: the difference between input image and opening of the image.
   - black hat: the difference between the closing of the input image and input image.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - shape: shape of structuring element, 0:
     - cv2.MORPH_RECT: 0;
     - cv2.MORPH_CROSS: 1;
@@ -77,7 +83,7 @@ def mex(step, **kwargs):
   - k: kernel size (3, 3), (5, 5), (7, 7), 3.
 
   Returns:
-  - mrphmex: result image;
+  - image: result image;
   '''
   
   shape = step.get('shape',cv2.MORPH_RECT)

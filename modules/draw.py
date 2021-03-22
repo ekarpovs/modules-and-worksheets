@@ -10,7 +10,7 @@ def contours(step, **kwargs):
   '''
   Draws contours.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
   - cntrs: contours.
 
@@ -52,33 +52,44 @@ def contours(step, **kwargs):
 @flowoperation
 def keypoints(step, **kwargs):
   """
-  cv2.DRAW_MATCHES_FLAGS_DEFAULT = 0
-  cv2.DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG = 1,
-  cv2.DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS = 2,
-  cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS = 4
+  Draws keypoints.
+
+  Keyword arguments:
+  - image: an image;
+
+  Step arguments (key, default):
+  - flags: 4
+    - cv2.DRAW_MATCHES_FLAGS_DEFAULT: 0
+    - cv2.DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG: 1,
+    - cv2.DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS: 2,
+    - cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS: 4
+
+  Returns:
+  - image;
   """
 
-  flag = step.get('flag', cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+  flags = step.get('flags', cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 
   keypoints = kwargs['kpnts']
 
   image = kwargs['image']
   clone = image.copy()
 
-  cv2.drawKeypoints(clone, keypoints, np.array([]), (0,0,255), flag)
+  cv2.drawKeypoints(clone, keypoints, np.array([]), (0,0,255), flags)
 
   return kwargs
 
 # https://docs.opencv.org/3.4/d4/d5d/group__features2d__draw.html
 def matches(step, **kwargs):
   """
-  cv2.DRAW_MATCHES_FLAGS_DEFAULT = 0
-  cv2.DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG = 1,
-  cv2.DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS = 2,
-  cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS = 4
-  """
+  Draws keypoints.
 
-  flag = step.get('flag', cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+  Keyword arguments:
+  - image: an image;
+
+  Returns:
+  - image;
+  """
 
   image = kwargs['image']
   keypoints = kwargs['keypoints']

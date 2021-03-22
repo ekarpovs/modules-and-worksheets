@@ -9,8 +9,10 @@ def simple(step, **kwargs):
   '''
   Applies a fixed-level (or optimal) threshold to each array element.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - type: thresholding type, 0:
     - cv2.THRESH_BINARY: 0;
     - cv2.THRESH_BINARY_INV: 1;
@@ -21,7 +23,7 @@ def simple(step, **kwargs):
   - otsu:  flag to use Otsu algorithm to choose the optimal threshold value, False
 
   Returns:
-  - thrshsim: result binary image;
+  - image: result binary image;
   '''
 
   type = step.get('type', cv2.THRESH_BINARY)
@@ -44,8 +46,10 @@ def adaptive(step, **kwargs):
   '''
   Applies a fixed-level (or optimal) threshold to each array element.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - type: thresholding type, 0:
     - cv2.THRESH_BINARY: 0;
     - cv2.THRESH_BINARY_INV: 1;
@@ -59,7 +63,7 @@ def adaptive(step, **kwargs):
   - c: a constant which is subtracted from the mean or weighted mean calculated, 5.
 
   Returns:
-  - thrshad: result binary image;
+  - image: result binary image;
   '''
 
   type = step.get('type', cv2.THRESH_BINARY) 

@@ -9,8 +9,10 @@ def find(step, **kwargs):
   '''
   Finds contours of an image.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - mth: approximation method, 2:
     - cv2.CHAIN_APPROX_NONE: 1
     - cv2.CHAIN_APPROX_SIMPLE: 2
@@ -46,10 +48,12 @@ def sort(step, **kwargs):
   '''
   Sorts contours.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
   - cntrs: contours;
-  - rev: reverse flag, False;
+ 
+   Step arguments (key, default):
+   - rev: reverse flag, False;
 
   Returns:
   - image;
@@ -82,7 +86,7 @@ def sel_rect(step, **kwargs):
   '''
   Sorts contours.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
   - cntrs: sorted contours;
 

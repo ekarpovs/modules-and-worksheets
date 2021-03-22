@@ -10,8 +10,10 @@ def simple(step, **kwargs):
   '''
   Detects blobs.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+  
+  Step arguments (key, default):
   - mint - min threshold, 10;
   - maxt - max threshold, 200;
   - fltarea - filter by area, True;

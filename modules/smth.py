@@ -9,8 +9,10 @@ def bilateral(step, **kwargs):
   '''
   Applies bilateral filtering to the input image
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - d: diameter of each pixel neighborhood that is used during filtering, 11;
   - c: filter sigma in the color space, 21;
   - s: filter sigma in the coordinate space, 7.
@@ -21,7 +23,7 @@ def bilateral(step, **kwargs):
   - (11, 61, 39)
 
   Returns:
-  - smshbil: result image;
+  - image: result image;
   '''
 
   diameter = step.get('d', 11)

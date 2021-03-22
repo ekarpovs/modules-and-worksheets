@@ -11,14 +11,16 @@ def sobel(step, **kwargs):
   '''
   Computes compute gradients along the X or Y axis uses Sobel algorithm.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - direction: 
     - x: 0
     - y: 1 
 
   Returns:
-  - edgesobel: result image;
+  - image: result image;
   '''
 
   direction = step.get('d', 0)
@@ -42,13 +44,15 @@ def canny(step, **kwargs):
   '''
   Computes a "wide", "mid-range", and "tight" threshold for the edges.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - thrs1: threshold1;
   - thrs2: threshold2;
 
   Returns:
-  - edgecanny: result image;
+  - image: result image;
   '''
 
   threshold1 = step.get('thrs1', 10)
@@ -64,7 +68,7 @@ def laplacian(step, **kwargs):
   '''
   Computes the Laplacian of the image .
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
 
   Returns:

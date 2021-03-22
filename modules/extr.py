@@ -15,7 +15,7 @@ def freak(step, **kwargs):
 
   Returns:
   - image;
-  - desc: feature descriptor.
+  - descs: feature descriptor.
   '''
 
   kps = kwargs['kps']
@@ -37,7 +37,7 @@ def brief(step, **kwargs):
 
   Returns:
   - image;
-  - desc: feature descriptor.
+  - descs: feature descriptor.
   '''
 
   kps = kwargs['kps']

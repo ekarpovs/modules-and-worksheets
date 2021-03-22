@@ -9,7 +9,10 @@ def bfm_knn(step, **kwargs):
   '''
   Computes images semilaraty using Brute-Force Matchers.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
+  - image: an image;
+
+  step arguments (key, default):
   - type: an normolazing type, cv2.NORM_L2:
     - cv2.NORM_L1 for SIFT and SURF; 
     - cv2.NORM_L2 for SIFT and SURF;
@@ -43,7 +46,10 @@ def bfm(step, **kwargs):
   '''
   Computes images semilaraty using Brute-Force Matchers.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
+  - image: an image;
+
+  Step arguments (key, default):
   - type: an normolazing type, cv2.NORM_L2:
     - cv2.NORM_L1 for SIFT and SURF; 
     - cv2.NORM_L2 for SIFT and SURF;
@@ -78,8 +84,11 @@ def good(step, **kwargs):
   '''
   Select matches regarding predefined distance.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
+  - image: an image;
   - matches: matches;
+ 
+  Step arguments (key, default):
   - dist: max distance, 0.5.
 
   Returns:

@@ -9,12 +9,14 @@ def avg(step, **kwargs):
   '''
   Performs average bluring.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - k: kernel size, 3.
   
   Returns:
-  - blravg: result image;
+  - image: result image;
   '''
 
   kernel = step.get('k', 3)
@@ -30,12 +32,14 @@ def gaus(step, **kwargs):
   '''
   Performs gausian bluring.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - k: kernel size, 3.
   
   Returns:
-  - blrgaus: result image;
+  - image: result image;
   '''
 
   kernel = step.get('k', 3)
@@ -51,12 +55,14 @@ def median(step,**kwargs):
   '''
   Performs median bluring.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - k: kernel size, 3.
   
   Returns:
-  - blrmedian: result image;
+  - image: result image;
   '''
 
   kernel = step.get('k', 3)

@@ -14,7 +14,7 @@ def btw_and(step, **kwargs):
   - image1: the second image.
   
   Returns:
-  - btwand: result image;
+  - image: result image;
   '''
 
   kwargs['image'] = cv2.bitwise_and(kwargs['image'], kwargs['image1']) 
@@ -32,7 +32,7 @@ def btw_or(step, **kwargs):
   - image1: the second image.
   
   Returns:
-  - btwor: result image;
+  - image: result image;
   '''
   kwargs['image'] = cv2.bitwise_or(kwargs['image'], kwargs['image1']) 
 
@@ -49,7 +49,7 @@ def btw_xor(step, **kwargs):
   - image1: the second image.
   
   Returns:
-  - btwxor: result image;
+  - image: result image;
   '''
 
   kwargs['image'] = cv2.bitwise_xor(kwargs['image'], kwargs['image1']) 
@@ -67,7 +67,7 @@ def btw_not(step, **kwargs):
   - image1: the second image.
   
   Returns:
-  - btwnot: result image;
+  - image: result image;
   '''
   kwargs['image'] = cv2.bitwise_not(kwargs['image'], kwargs['image1']) 
    

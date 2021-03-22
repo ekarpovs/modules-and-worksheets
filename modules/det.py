@@ -9,8 +9,10 @@ def fast(step, **kwargs):
   '''
   Detects keypoints using FAST  (Features from Accelerated Segment Test) algorithm.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - thrs: threshold;
   - nonmax: non max suppression;
   - type: neighborhood type:
@@ -41,6 +43,12 @@ def star(step, **kwargs):
 
   Keyword arguments (key, default):
   - image: an image;
+  
+  Step arguments (key, default):
+  - resp-thrs:
+  - proj-thrs:
+  - binthrs:
+  - nonmax-size:
 
   Returns:
   - image;

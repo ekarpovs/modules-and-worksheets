@@ -9,9 +9,10 @@ def bgrto(step, **kwargs):
   '''
   Converts a colored (BGR) image to another color space.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
   
+  Step arguments (key, default):
   - type - new color space:
     - cv2.COLOR_BGR2BGRA - 0;
     - cv2.COLOR_BGR2RGB - 4;
@@ -25,10 +26,8 @@ def bgrto(step, **kwargs):
     - cv2.COLOR_BGR2YUV - 82;
  
   Returns:
-  - clrsbgrto: result image;
+  - image: result image;
   '''  
-
-
 
   type = step.get('type', cv2.COLOR_BGR2GRAY)
 
