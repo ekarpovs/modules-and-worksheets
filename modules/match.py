@@ -2,10 +2,10 @@
 Matching operations
 '''
 import cv2
-from modules import flowoperation
 
 
-@flowoperation
+
+
 def bfm_knn(step, **kwargs):
   '''
   Computes images semilaraty using Brute-Force Matchers.
@@ -43,7 +43,7 @@ def bfm_knn(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def bfm(step, **kwargs):
   '''
   Computes images semilaraty using Brute-Force Matchers.
@@ -82,7 +82,7 @@ def bfm(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def good(step, **kwargs):
   '''
   Select matches regarding predefined distance.

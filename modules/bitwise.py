@@ -2,9 +2,8 @@
 Bitwise operations
 '''
 import cv2
-from modules import flowoperation
 
-@flowoperation
+
 def btw_and(step, **kwargs):
   '''
   Performs AND operation.
@@ -22,7 +21,7 @@ def btw_and(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def btw_or(step, **kwargs):
   '''
   Performs OR operation.
@@ -39,7 +38,7 @@ def btw_or(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def btw_xor(step, **kwargs):
   '''
   Performs XOR operation.
@@ -57,7 +56,7 @@ def btw_xor(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def btw_not(step, **kwargs):
   '''
   Performs NOT operation.

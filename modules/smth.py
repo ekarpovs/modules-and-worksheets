@@ -2,9 +2,8 @@
 Smoothing operation
 '''
 import cv2
-from modules import flowoperation
 
-@flowoperation
+
 def bilateral(step, **kwargs):
   '''
   Applies bilateral filtering to the input image

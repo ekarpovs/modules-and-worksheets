@@ -2,9 +2,8 @@
 Threshold operations
 '''
 import cv2
-from modules import flowoperation
 
-@flowoperation
+
 def simple(step, **kwargs):
   '''
   Applies a fixed-level (or optimal) threshold to each array element.
@@ -41,7 +40,7 @@ def simple(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def adaptive(step, **kwargs):
   '''
   Applies a fixed-level (or optimal) threshold to each array element.

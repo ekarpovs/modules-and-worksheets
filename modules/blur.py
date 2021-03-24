@@ -2,9 +2,8 @@
 Bluring operation
 '''
 import cv2
-from modules import flowoperation
 
-@flowoperation
+
 def avg(step, **kwargs):
   '''
   Performs average bluring.
@@ -27,7 +26,7 @@ def avg(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def gaus(step, **kwargs):
   '''
   Performs gausian bluring.
@@ -50,7 +49,7 @@ def gaus(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def median(step,**kwargs):
   '''
   Performs median bluring.

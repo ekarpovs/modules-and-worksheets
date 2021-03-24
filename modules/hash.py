@@ -2,9 +2,8 @@
 Hashing operations
 '''
 import cv2
-from modules import flowoperation
 
-@flowoperation
+
 def dhashm(step, **kwargs):
   '''
   Computes the (relative) horizontal gradient between adjacent column pixels

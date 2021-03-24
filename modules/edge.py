@@ -4,9 +4,8 @@ Gradient magnitude and orientation.
 '''
 import cv2
 import numpy as np
-from modules import flowoperation
 
-@flowoperation
+
 def sobel(step, **kwargs):
   '''
   Computes compute gradients along the X or Y axis uses Sobel algorithm.
@@ -39,7 +38,7 @@ def sobel(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def canny(step, **kwargs):
   '''
   Computes a "wide", "mid-range", and "tight" threshold for the edges.
@@ -63,7 +62,7 @@ def canny(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def laplacian(step, **kwargs):
   '''
   Computes the Laplacian of the image .

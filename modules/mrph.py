@@ -5,9 +5,8 @@ images based on shapes morphology of features in an image.
 It applies structuring element to an input image and generate an output image.
 '''
 import cv2
-from modules import flowoperation
 
-@flowoperation
+
 def erode(step, **kwargs):
   '''
   Erodes away the boundaries of the foreground object and removes small-scale details 
@@ -33,7 +32,7 @@ def erode(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def dilate(step, **kwargs):
   '''
   Probings and expands the shapes contained in the input image. 
@@ -56,7 +55,7 @@ def dilate(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def mex(step, **kwargs):
   '''
   Performs one of following morphological operations:

@@ -2,9 +2,8 @@
 Feature extaction operations
 '''
 import cv2
-from modules import flowoperation
 
-@flowoperation
+
 def freak(step, **kwargs):
   '''
   Extract features for given keypoints using FREAK algorithm.
@@ -26,7 +25,7 @@ def freak(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def brief(step, **kwargs):
   '''
   Extract features for given keypoints using BRIEF algorithm.

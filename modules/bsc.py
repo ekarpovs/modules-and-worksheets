@@ -3,9 +3,8 @@ Basic operations
 '''
 import cv2
 import numpy as np
-from modules import flowoperation
 
-@flowoperation
+
 def crop(step, **kwargs):
   '''
   Crops an image.
@@ -35,7 +34,7 @@ def crop(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def flip(step, **kwargs):
   '''
   Flipss an image.
@@ -56,7 +55,7 @@ def flip(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def mask(step, **kwargs):
   '''
   Applys a mask to an image.
@@ -112,7 +111,7 @@ def mask(step, **kwargs):
 
 
 
-@flowoperation
+
 def resize(step, **kwargs):
   '''
   Resizes an image.
@@ -169,7 +168,7 @@ def resize(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def resize1(step, **kwargs):
   '''
   Resizes an image without aspect ratio (absolute resizing).
@@ -210,7 +209,7 @@ def resize1(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def rotate(step, **kwargs):  
   '''
   Rotates an image without cropping.
@@ -248,7 +247,7 @@ def rotate(step, **kwargs):
 
   return kwargs
 
-@flowoperation
+
 def translate(step, **kwargs):
   '''
   Translates (Shifts) an image by a NumPy matrix in the form:
@@ -277,7 +276,7 @@ def translate(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def fit(step, **kwargs):
   '''
   resize image1 regarding image
@@ -315,7 +314,7 @@ def fit(step, **kwargs):
   return kwargs
 
 
-@flowoperation
+
 def transform(step, **kwargs):
   '''
   Transforms a skewed image to obtain a top-down view of the original image

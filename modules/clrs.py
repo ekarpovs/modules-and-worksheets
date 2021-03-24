@@ -2,9 +2,8 @@
 Color spaces operations
 '''
 import cv2
-from modules import flowoperation
 
-@flowoperation
+
 def bgrto(step, **kwargs):  
   '''
   Converts a colored (BGR) image to another color space.
