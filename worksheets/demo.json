@@ -1,13 +1,13 @@
 {
   "steps":[
     {"exec": "bsc.translate", "show": 3},
-    {"exec": "clrs.bgrto", "useorig": true, "show": 3},
-    {"exec": "bsc.translate", "useorig": true, "show": 2, "x": 50, "y": -40},
-    {"exec": "bsc.translate", "useorig": true, "show": 2, "x": -50, "y": 40},
-    {"exec": "bsc.resize", "useorig": true, "show": 1, "unit": 1, "size": 50},
+    {"exec": "clrs.bgrto", "useorig": true},
+    {"exec": "bsc.translate", "useorig": true, "x": 50, "y": -40},
+    {"exec": "bsc.translate", "useorig": true, "x": -50, "y": 40},
+    {"exec": "bsc.resize", "useorig": true, "unit": 1, "size": 50},
     {"exec": "bsc.crop", "useorig": true, "y0": 100, "x0": 150},
-    {"exec": "bsc.flip", "useorig": false, "drct": -1, "show":3},
-    {"exec": "bsc.rotate", "useorig": true, "angle": -30, "show": 2},
-    {"exec": "bsc.rotate", "useorig": true, "angle": 30, "show": 2}
+    {"exec": "bsc.flip", "useorig": false, "drct": -1},
+    {"exec": "bsc.rotate", "useorig": true, "angle": -30},
+    {"exec": "bsc.rotate", "useorig": true, "angle": 30}
   ]
 }

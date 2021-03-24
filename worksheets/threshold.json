@@ -1,15 +1,15 @@
 {
   "steps":[
-    {"exec": "clrs.bgrto", "show": 3},
-    {"exec": "blur.gaus", "show": 2, "k": 7},
-    {"exec": "thrsh.simple", "show": 2, "type": 0},
+    {"exec": "clrs.bgrto"},
+    {"exec": "blur.gaus", "k": 7},
+    {"exec": "thrsh.simple", "type": 0},
 
-    {"exec": "clrs.bgrto", "useorig": true, "show": 3},
-    {"exec": "blur.gaus", "show": 2, "k": 7},
-    {"exec": "thrsh.simple", "show": 2, "type": 1, "otsu": true},
+    {"exec": "clrs.bgrto", "useorig": true},
+    {"exec": "blur.gaus", "k": 7},
+    {"exec": "thrsh.simple", "type": 1, "otsu": true},
 
-    {"exec": "clrs.bgrto", "useorig": true, "show": 3},
-    {"exec": "blur.gaus", "show": 2, "k": 7},
-    {"exec": "thrsh.adaptive", "show": 2, "type": 1}
+    {"exec": "clrs.bgrto", "useorig": true},
+    {"exec": "blur.gaus", "k": 7},
+    {"exec": "thrsh.adaptive", "type": 1}
   ]
 }

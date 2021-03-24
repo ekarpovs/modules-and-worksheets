@@ -1,8 +1,8 @@
 {
   "steps":[
-    {"exec": "clrs.bgrto", "show": 3},
-    {"exec": "blur.gaus", "show": 2},
-    {"exec": "edge.canny", "show": 2},
-    {"exec": "edge.laplacian", "show": 2}
+    {"exec": "clrs.bgrto"},
+    {"exec": "blur.gaus"},
+    {"exec": "edge.canny"},
+    {"exec": "edge.laplacian"}
   ]
 }
