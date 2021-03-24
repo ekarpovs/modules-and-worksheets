@@ -17,6 +17,8 @@ Local module, contains common utility operations
   
   Keyword arguments:
   - image: an image that will be stored;
+ 
+  Step arguments:
   - ffn: full file name, where the image will be stored.
   
   Returns:
@@ -26,7 +28,7 @@ Local module, contains common utility operations
 ### Function: restore
   Restores an image from a file.
   
-  Keyword arguments:
+  Step arguments:
   - ffn: full file name, where from the image will be restored.
   
   Returns:
@@ -65,7 +67,7 @@ Bitwise operations
   - image1: the second image.
   
   Returns:
-  - btwand: result image;
+  - image: result image;
   
 
 ### Function: btw_or
@@ -76,7 +78,7 @@ Bitwise operations
   - image1: the second image.
   
   Returns:
-  - btwor: result image;
+  - image: result image;
   
 
 ### Function: btw_xor
@@ -87,7 +89,7 @@ Bitwise operations
   - image1: the second image.
   
   Returns:
-  - btwxor: result image;
+  - image: result image;
   
 
 ### Function: btw_not
@@ -98,7 +100,7 @@ Bitwise operations
   - image1: the second image.
   
   Returns:
-  - btwnot: result image;
+  - image: result image;
   
 
 ## Module: blob
@@ -107,8 +109,10 @@ Blob operations
 ### Function: simple
   Detects blobs.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+  
+  Step arguments (key, default):
   - mint - min threshold, 10;
   - maxt - max threshold, 200;
   - fltarea - filter by area, True;
@@ -130,34 +134,40 @@ Bluring operation
 ### Function: avg
   Performs average bluring.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - k: kernel size, 3.
   
   Returns:
-  - blravg: result image;
+  - image: result image;
   
 
 ### Function: gaus
   Performs gausian bluring.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - k: kernel size, 3.
   
   Returns:
-  - blrgaus: result image;
+  - image: result image;
   
 
 ### Function: median
   Performs median bluring.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - k: kernel size, 3.
   
   Returns:
-  - blrmedian: result image;
+  - image: result image;
   
 
 ## Module: bsc
@@ -166,34 +176,39 @@ Basic operations
 ### Function: crop
   Crops an image.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - y0 - left top coordinate, 0;
   - y1 - left right coordinate, h;
   - x0 - left top coordinate, 0;
   - x1 - left right coordinate, w.
   
   Returns:
-  - bsccrop: result image;
+  - image: result image;
   
 
 ### Function: flip
   Flipss an image.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - drct: direction, 1.
  
   Returns:
-  - bscflip: result image;
-  - the kwargs as is.
+  - image: result image;
   
 
 ### Function: mask
   Applys a mask to an image.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - type - the mask shape (rectangle 0, circle 1) , 1;
 
     for rectangle:
@@ -208,15 +223,16 @@ Basic operations
     - rad - the mask radius,min(h / 2, w /2).
  
   Returns:
-  - bscmask: result image;
+  - image: result image;
   
 
 ### Function: resize
   Resizes an image.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
   
+  Step arguments (key, default):
   - meth - interpolation method, 2:
     - cv2.INTER_NEAREST - 0;
     - cv2.INTER_LINEAR - 1;
@@ -231,15 +247,16 @@ Basic operations
     - width 1
  
   Returns:
-  - bscrsz: result image;
+  - image: result image;
   
 
 ### Function: resize1
   Resizes an image without aspect ratio (absolute resizing).
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
   
+  Step arguments (key, default):
   - meth - interpolation method, 2:
     - cv2.INTER_NEAREST - 0;
     - cv2.INTER_LINEAR - 1;
@@ -254,31 +271,35 @@ Basic operations
     - width 1
  
   Returns:
-  - bscrsz: result image;
+  - image: result image;
   
 
 ### Function: rotate
   Rotates an image without cropping.
   
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - angle: rotation angle, 0.
 
   Returns:
-  - bscrot: result image;
+  - image: result image;
   
 
 ### Function: translate
   Translates (Shifts) an image by a NumPy matrix in the form:
     [[1, 0, shiftX], [0, 1, shiftY]] .
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - y: number of pixels to shift, 0;
   - x: number of pixels to shift, 0.
 
   Returns:
-  - bsctrnsl: result image;
+  - image: result image;
   
 
 ### Function: fit
@@ -288,6 +309,7 @@ Basic operations
   - image: an image;
   - image1: an image.
 
+  Step arguments (key, default):
   - meth - interpolation method, 2:
     - cv2.INTER_NEAREST - 0;
     - cv2.INTER_LINEAR - 1;
@@ -296,7 +318,7 @@ Basic operations
     - cv2.INTER_LANCZOS4 - 4;
 
   Returns:
-  - bsctrnsl: result image;
+  - image: result image;
   
 
 ### Function: transform
@@ -306,7 +328,7 @@ Basic operations
   - image: an image;
 
   Returns:
-  - result image;
+  -image: result image;
   
 
 ## Module: clrs
@@ -315,9 +337,10 @@ Color spaces operations
 ### Function: bgrto
   Converts a colored (BGR) image to another color space.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
   
+  Step arguments (key, default):
   - type - new color space:
     - cv2.COLOR_BGR2BGRA - 0;
     - cv2.COLOR_BGR2RGB - 4;
@@ -331,7 +354,7 @@ Color spaces operations
     - cv2.COLOR_BGR2YUV - 82;
  
   Returns:
-  - clrsbgrto: result image;
+  - image: result image;
   
 
 ## Module: cmp
@@ -486,8 +509,10 @@ Contours operations
 ### Function: find
   Finds contours of an image.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - mth: approximation method, 2:
     - cv2.CHAIN_APPROX_NONE: 1
     - cv2.CHAIN_APPROX_SIMPLE: 2
@@ -508,10 +533,12 @@ Contours operations
 ### Function: sort
   Sorts contours.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
   - cntrs: contours;
-  - rev: reverse flag, False;
+ 
+   Step arguments (key, default):
+   - rev: reverse flag, False;
 
   Returns:
   - image;
@@ -521,7 +548,7 @@ Contours operations
 ### Function: sel_rect
   Sorts contours.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
   - cntrs: sorted contours;
 
@@ -536,8 +563,10 @@ Connected Component Labeling operations
 ### Function: basic
   Applys apply connected component analysis to the thresholded image 
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - c: connectivity, 4;
   
   Returns:
@@ -568,8 +597,10 @@ Keypoin detection operations
 ### Function: fast
   Detects keypoints using FAST  (Features from Accelerated Segment Test) algorithm.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - thrs: threshold;
   - nonmax: non max suppression;
   - type: neighborhood type:
@@ -587,6 +618,12 @@ Keypoin detection operations
 
   Keyword arguments (key, default):
   - image: an image;
+  
+  Step arguments (key, default):
+  - resp-thrs:
+  - proj-thrs:
+  - binthrs:
+  - nonmax-size:
 
   Returns:
   - image;
@@ -599,7 +636,7 @@ Drawing Contours, Bounding boxes, Keypoints, Matches operation, etc.
 ### Function: contours
   Draws contours.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
   - cntrs: contours.
 
@@ -608,17 +645,30 @@ Drawing Contours, Bounding boxes, Keypoints, Matches operation, etc.
   
 
 ### Function: keypoints
-  cv2.DRAW_MATCHES_FLAGS_DEFAULT = 0
-  cv2.DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG = 1,
-  cv2.DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS = 2,
-  cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS = 4
+  Draws keypoints.
+
+  Keyword arguments:
+  - image: an image;
+
+  Step arguments (key, default):
+  - flags: 4
+    - cv2.DRAW_MATCHES_FLAGS_DEFAULT: 0
+    - cv2.DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG: 1,
+    - cv2.DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS: 2,
+    - cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS: 4
+
+  Returns:
+  - image;
   
 
 ### Function: matches
-  cv2.DRAW_MATCHES_FLAGS_DEFAULT = 0
-  cv2.DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG = 1,
-  cv2.DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS = 2,
-  cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS = 4
+  Draws keypoints.
+
+  Keyword arguments:
+  - image: an image;
+
+  Returns:
+  - image;
   
 
 ## Module: edge
@@ -628,32 +678,36 @@ Gradient magnitude and orientation.
 ### Function: sobel
   Computes compute gradients along the X or Y axis uses Sobel algorithm.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - direction: 
     - x: 0
     - y: 1 
 
   Returns:
-  - edgesobel: result image;
+  - image: result image;
   
 
 ### Function: canny
   Computes a "wide", "mid-range", and "tight" threshold for the edges.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - thrs1: threshold1;
   - thrs2: threshold2;
 
   Returns:
-  - edgecanny: result image;
+  - image: result image;
   
 
 ### Function: laplacian
   Computes the Laplacian of the image .
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
 
   Returns:
@@ -672,7 +726,7 @@ Feature extaction operations
 
   Returns:
   - image;
-  - desc: feature descriptor.
+  - descs: feature descriptor.
   
 
 ### Function: brief
@@ -684,7 +738,7 @@ Feature extaction operations
 
   Returns:
   - image;
-  - desc: feature descriptor.
+  - descs: feature descriptor.
   
 
 ## Module: hash
@@ -707,7 +761,10 @@ Matching operations
 ### Function: bfm_knn
   Computes images semilaraty using Brute-Force Matchers.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
+  - image: an image;
+
+  step arguments (key, default):
   - type: an normolazing type, cv2.NORM_L2:
     - cv2.NORM_L1 for SIFT and SURF; 
     - cv2.NORM_L2 for SIFT and SURF;
@@ -726,7 +783,10 @@ Matching operations
 ### Function: bfm
   Computes images semilaraty using Brute-Force Matchers.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
+  - image: an image;
+
+  Step arguments (key, default):
   - type: an normolazing type, cv2.NORM_L2:
     - cv2.NORM_L1 for SIFT and SURF; 
     - cv2.NORM_L2 for SIFT and SURF;
@@ -744,8 +804,11 @@ Matching operations
 ### Function: good
   Select matches regarding predefined distance.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
+  - image: an image;
   - matches: matches;
+ 
+  Step arguments (key, default):
   - dist: max distance, 0.5.
 
   Returns:
@@ -763,24 +826,28 @@ It applies structuring element to an input image and generate an output image.
   from an image but simultaneously reduces the size of regions of interest.
   This operation is opposite to dilation
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - iter: number of iterations, 3;
 
   Returns:
-  - mrpherode: result image;
+  - image: result image;
   
 
 ### Function: dilate
   Probings and expands the shapes contained in the input image. 
   This operation is opposite to erosion
   
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - iter: number of iterations, 3;
 
   Returns:
-  - mrphdilate: result image;
+  - image: result image;
   
 
 ### Function: mex
@@ -791,8 +858,10 @@ It applies structuring element to an input image and generate an output image.
   - top hat: the difference between input image and opening of the image.
   - black hat: the difference between the closing of the input image and input image.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - shape: shape of structuring element, 0:
     - cv2.MORPH_RECT: 0;
     - cv2.MORPH_CROSS: 1;
@@ -806,7 +875,7 @@ It applies structuring element to an input image and generate an output image.
   - k: kernel size (3, 3), (5, 5), (7, 7), 3.
 
   Returns:
-  - mrphmex: result image;
+  - image: result image;
   
 
 ## Module: smth
@@ -815,8 +884,10 @@ Smoothing operation
 ### Function: bilateral
   Applies bilateral filtering to the input image
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - d: diameter of each pixel neighborhood that is used during filtering, 11;
   - c: filter sigma in the color space, 21;
   - s: filter sigma in the coordinate space, 7.
@@ -827,15 +898,19 @@ Smoothing operation
   - (11, 61, 39)
 
   Returns:
-  - smshbil: result image;
+  - image: result image;
   
 
 ## Module: testerNone
-### Function: executeNone
-
 ### Function: parseArgsNone
 
+### Function: readConfigNone
+
+### Function: setModulesPathNone
+
 ### Function: mainNone
+
+### Function: uiNone
 
 ## Module: thrsh
 Threshold operations
@@ -843,8 +918,10 @@ Threshold operations
 ### Function: simple
   Applies a fixed-level (or optimal) threshold to each array element.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - type: thresholding type, 0:
     - cv2.THRESH_BINARY: 0;
     - cv2.THRESH_BINARY_INV: 1;
@@ -855,14 +932,16 @@ Threshold operations
   - otsu:  flag to use Otsu algorithm to choose the optimal threshold value, False
 
   Returns:
-  - thrshsim: result binary image;
+  - image: result binary image;
   
 
 ### Function: adaptive
   Applies a fixed-level (or optimal) threshold to each array element.
 
-  Keyword arguments (key, default):
+  Keyword arguments:
   - image: an image;
+
+  Step arguments (key, default):
   - type: thresholding type, 0:
     - cv2.THRESH_BINARY: 0;
     - cv2.THRESH_BINARY_INV: 1;
@@ -876,6 +955,6 @@ Threshold operations
   - c: a constant which is subtracted from the mean or weighted mean calculated, 5.
 
   Returns:
-  - thrshad: result binary image;
+  - image: result binary image;
   
 
