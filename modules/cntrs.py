@@ -62,15 +62,11 @@ def sort(step, **kwargs):
   reverse = step.get('rev', True)
 
   cntrs = kwargs['cntrs']
-
-  print("len", len(cntrs))
-  
+ 
   i = 0
-
   # construct the list of bounding boxes and sort them from top to
   # bottom
   bounding_boxes = [cv2.boundingRect(c) for c in cntrs]
-  print("boxes", bounding_boxes)
 
   (cntrs, bounding_boxes) = zip(*sorted(zip(cntrs, bounding_boxes), key=lambda b:b[1][i], reverse=reverse))
 
@@ -110,7 +106,6 @@ def sel_rect(step, **kwargs):
 		  break 
 
   kwargs['rect'] = rect
-  print("rect", rect)
 
   return kwargs
 

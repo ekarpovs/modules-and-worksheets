@@ -36,7 +36,7 @@ def contours(step, **kwargs):
     # compute the area and the perimeter of the contour
     area = cv2.contourArea(c)
     perimeter = cv2.arcLength(c, True)
-    print("Contour #{} -- area: {:.2f}, perimeter: {:.2f}".format(i + 1, area, perimeter))
+    # print("Contour #{} -- area: {:.2f}, perimeter: {:.2f}".format(i + 1, area, perimeter))
 
     # draw the contour on the image
     cv2.drawContours(clone, [c], -1, (0, 255, 0), 2) 
