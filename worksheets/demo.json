@@ -1,10 +1,11 @@
 {
   "steps":[
-    {"exec": "bsc.translate", "show": 3},
+    {"exec": "bsc.translate"},
     {"exec": "clrs.bgrto", "useorig": true},
     {"exec": "bsc.translate", "useorig": true, "x": 50, "y": -40},
     {"exec": "bsc.translate", "useorig": true, "x": -50, "y": 40},
     {"exec": "bsc.resize", "useorig": true, "unit": 1, "size": 50},
+    {"exec": "bsc.resize", "useorig": true, "unit": 1, "size": 150},
     {"exec": "bsc.crop", "useorig": true, "y0": 100, "x0": 150},
     {"exec": "bsc.flip", "useorig": false, "drct": -1},
     {"exec": "bsc.rotate", "useorig": true, "angle": -30},
