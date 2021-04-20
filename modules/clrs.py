@@ -11,19 +11,10 @@ def bgrto(step, **kwargs):
   Keyword arguments:
   - image: an image;
   
-  Step arguments (key, default):
-  - type - new color space:
-    - cv2.COLOR_BGR2BGRA - 0;
-    - cv2.COLOR_BGR2RGB - 4;
-    - cv2.COLOR_BGR2GRAY - 6;
-    - cv2.COLOR_BGR2XYZ - 32;
-    - cv2.COLOR_BGR2YCrCb - 36;
-    - cv2.COLOR_BGR2HSV - 40;
-    - cv2.COLOR_BGR2LAB - 44;
-    - cv2.COLOR_BGR2Luv - 50;
-    - cv2.COLOR_BGR2HLS - 52;
-    - cv2.COLOR_BGR2YUV - 82;
- 
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n:s:[0,4,6,32,36,40,44,50,52,82]:6-- type: new color space cv2.COLOR_(BGR2BGRA, BGR2RGB, BGR2GRAY, BGR2XYZ, BGR2YCrCb, BGR2HSV, BGR2LAB, BGR2Luv, BGR2HLS, BGR2YUV);
+
+
   Returns:
   - image: result image;
   '''  

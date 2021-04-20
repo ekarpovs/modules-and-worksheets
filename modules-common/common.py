@@ -8,8 +8,19 @@ def empty(step, **kwargs):
   It is an operation's implementation boilerplate.
 
   Keyword arguments:
-  - image: an image that will be returned
+  - image: an image that will be processed
 
+  Step arguments pattern:
+  --Type:Domain:[Possible Values]:Default-- name: description
+
+  Where:
+      Type            Domain          Possible values in the domain   Name    Description
+    - n (number)    v (single value)  V
+    - s (string)    s (set of values) V1,V2,V3...Vn
+    - b (boolean)   r (range)         Nmin:Nmax
+    - o (object)    
+    - f (floats)
+  
   Returns:
   - the kwargs as is.
   '''  
@@ -29,7 +40,7 @@ def start(step, **kwargs):
   - None
 
   Step arguments:
-  - ffn: full file name of the image will be processed.
+  --str:v-- ffn: full file name of the image will be processed.
 
   Returns:
   - orig - input image;
@@ -51,7 +62,7 @@ def store(step, **kwargs):
   - image: an image that will be stored;
  
   Step arguments:
-  - ffn: full file name, where the image will be stored.
+  --str:v-- ffn: full file name, where the image will be stored.
   
   Returns:
   - the kwargs as is.
@@ -75,7 +86,7 @@ def restore(step, **kwargs):
   Restores an image from a file.
   
   Step arguments:
-  - ffn: full file name, where from the image will be restored.
+  --str:v:[]:""-- ffn: full file name, where from the image will be restored.
   
   Returns:
   - the image.

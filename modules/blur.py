@@ -11,8 +11,8 @@ def avg(step, **kwargs):
   Keyword arguments:
   - image: an image;
 
-  Step arguments (key, default):
-  - k: kernel size, 3.
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n:s:[3,5,7,9]:3-- k: kernel size;
   
   Returns:
   - image: result image;
@@ -34,8 +34,8 @@ def gaus(step, **kwargs):
   Keyword arguments:
   - image: an image;
 
-  Step arguments (key, default):
-  - k: kernel size, 3.
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n:s:[3,5,7,9]:3-- k: kernel size;
   
   Returns:
   - image: result image;
@@ -57,8 +57,8 @@ def median(step,**kwargs):
   Keyword arguments:
   - image: an image;
 
-  Step arguments (key, default):
-  - k: kernel size, 3.
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n:s:[3,5,7,9]:3-- k: kernel size;
   
   Returns:
   - image: result image;

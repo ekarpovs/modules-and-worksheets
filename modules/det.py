@@ -11,13 +11,10 @@ def fast(step, **kwargs):
   Keyword arguments:
   - image: an image;
 
-  Step arguments (key, default):
-  - thrs: threshold;
-  - nonmax: non max suppression;
-  - type: neighborhood type:
-    - cv2.TYPE_5_8: 0,
-    - cv2.TYPE_7_12: 1,
-    - cv2.TYPE_9_16: 2
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n:v:[]:25-- thrs: threshold;
+  --b:v:[True,False]:True-- nonmax: non max suppression;
+  --n:s:[0,1,2]:0-- type: neighborhood type cv2.TYPE_(5_8, 7_12, 9_16);
 
   Returns:
   - image;
@@ -49,6 +46,13 @@ def star(step, **kwargs):
   - binthrs:
   - nonmax-size:
 
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n:v:[]:45-- max: max-size;
+  --n:v:[]:30-- resp-thrs: resp-thrs;
+  --n:v:[]:10-- proj-thrs: proj-thrs;
+  --n:v:[]:8-- bin-thrs: bin-thrs;
+  --n:v:[]:5-- nonmax: nonmax-size;
+
   Returns:
   - image;
   - kps: keypoints.
@@ -57,7 +61,7 @@ def star(step, **kwargs):
   max_size = step.get('max', 45)
   resp_threshold = step.get('resp-thrs', 30)
   proj_threshold = step.get('proj-thrs', 10)
-  bin_threshold = step.get('binthrs', 8)
+  bin_threshold = step.get('bin-thrs', 8)
   nonmax_suppression_size = step.get('nonmax-size', 5)
 
   detector = cv2.xfeatures2d.StarDetector_create(max_size, resp_threshold, proj_threshold, bin_threshold, nonmax_suppression_size)  

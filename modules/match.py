@@ -91,8 +91,8 @@ def good(step, **kwargs):
   - image: an image;
   - matches: matches;
  
-  Step arguments (key, default):
-  - dist: max distance, 0.5.
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --f:v:[]:0.5-- dist: max distance;
 
   Returns:
   - matches: good matches (< distance).

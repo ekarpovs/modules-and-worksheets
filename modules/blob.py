@@ -11,17 +11,17 @@ def simple(step, **kwargs):
   Keyword arguments:
   - image: an image;
   
-  Step arguments (key, default):
-  - mint - min threshold, 10;
-  - maxt - max threshold, 200;
-  - fltarea - filter by area, True;
-  - minarea - min area, 1500;
-  - fltcirc - filter by circularity, True;
-  - mincirc - min circularity, 0.1;
-  - fltconv - filter by convexity, True;
-  - minconv - min convexity, 0.87;
-  - fltiner - filter by inertia, True;
-  - minciner - min inertia ratio, 0.01.
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n:v:[0-115]:10-- mint: min threshold;
+  --n:v:[115-255]:200-- maxt: max threshold;
+  --b:v:[False,True]:True-- fltarea: filter by area;
+  --n:v:[10-5000]:1500-- minarea: min area;
+  --b:v:[False,True]:True-- fltcirc: filter by circularity;
+  --f:v:[0.1-0.9]:0.1-- mincirc: min circularity;
+  --b:v:[False, True]:True-- fltconv: filter by convexity;
+  --f:v:[0.10-0.99]:0.87-- minconv: min convexity;
+  --b:v:[False,True]:True-- fltiner: filter by inertia;
+  --f:v:[0.01-0.1]:0.01-- mininer: min inertia ratio.
   
   Returns:
   - kpnts: blobs keypoints.
@@ -36,7 +36,7 @@ def simple(step, **kwargs):
   filterByConvexity = step.get('fltconv', True)
   minConvexity = step.get('minconv', 0.87)
   filterByInertia = step.get('fltiner', True)
-  minInertiaRatio = step.get('minciner', 0.01)
+  minInertiaRatio = step.get('mininer', 0.01)
 
 
   # Set up the detector with default parameters.

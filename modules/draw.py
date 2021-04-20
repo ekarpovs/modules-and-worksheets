@@ -63,6 +63,10 @@ def keypoints(step, **kwargs):
     - cv2.DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS: 2,
     - cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS: 4
 
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n:s:[0,1,2,4]:4-- flags: flags cv2.DRAW_MATCHES_FLAGS_(DEFAULT, DRAW_OVER_OUTIMG, NOT_DRAW_SINGLE_POINTS, DRAW_RICH_KEYPOINTS );
+
+
   Returns:
   - image;
   """

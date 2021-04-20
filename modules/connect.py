@@ -11,9 +11,10 @@ def basic(step, **kwargs):
   Keyword arguments:
   - image: an image;
 
-  Step arguments (key, default):
-  - c: connectivity, 4;
-  
+   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n:s:[4,8]:4-- c: connectivity;
+
+
   Returns:
   - image;
   - num: number of total components, that were detected;
