@@ -208,7 +208,7 @@ def rotate(step, **kwargs):
   '''  
 
   # grab the dimensions of the image and calculate the center of the image
-  (h, w, n) = kwargs['image'].shape
+  (h, w) = kwargs['image'].shape[:2]
   (cx, cy) = (w / 2, h / 2)
 
   # calculate rotation matrix
@@ -279,9 +279,9 @@ def fit(step, **kwargs):
   method = step.get('meth', cv2.INTER_AREA)
 
   image = kwargs['image']
-  (h, w, n) = image.shape
+  (h, w) = image.shape[:2]
   image1 = kwargs['image1']
-  (h1, w1, n1) = image1.shape
+  (h1, w1) = image1.shape[:2]
   
   if (h == h1 and w == w1):
     return kwargs
