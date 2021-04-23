@@ -7,6 +7,6 @@
     {"exec": "cntrs.sort"},
     {"exec": "draw.contours"},
     {"exec": "cntrs.sel_rect"},
-    {"exec": "bsc.transform"}
+    {"exec": "bsc.transform", "useorig": true}
   ]
 }
