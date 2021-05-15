@@ -12,8 +12,7 @@ def basic(step, **kwargs):
   - image: an image;
 
    Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:s:[4,8]:4-- c: connectivity;
-
+  --n;l;[4,8];4-- c: connectivity
 
   Returns:
   - image;
@@ -43,10 +42,13 @@ def stats(step, **kwargs):
 
   Keyword arguments (key, default):
   - image: an image;
-  - num: number of total components, that were detected;
-  - labels: a mask named labels has the same spatial dimensions as input thresh image;
-  - stats: statistics on each connected component, including the bounding box coordinates and area;
-  - centroids: (x, y) coordinates of each connected component.
+
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n;s;[];0-- num: number of total components, that were detected
+  --n;l;[];0-- labels: a mask named labels has the same spatial dimensions as input thresh image
+  --n;l;[];0-- stats: statistics on each connected component, including the bounding box coordinates and area
+  --n;l;[];0-- centroids: (x, y) coordinates of each connected component
+
 
   Returns:
   - image;

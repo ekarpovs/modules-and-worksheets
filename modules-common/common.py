@@ -11,16 +11,22 @@ def empty(step, **kwargs):
   - image: an image that will be processed
 
   Step arguments pattern:
-  --Type:Domain:[Possible Values]:Default-- name: description
+  --Type;Domain;[Possible Values];Default-- name: description
 
   Where:
-      Type            Domain          Possible values in the domain   Name    Description
-    - n (number)    v (single value)  V
-    - s (string)    s (set of values) V1,V2,V3...Vn
-    - b (boolean)   r (range)         Nmin:Nmax
-    - o (object)    
-    - f (floats)
-  
+    Type         
+      n (number)   
+      f (float)
+      s (string)   
+      b (boolean)  
+      o (object)   
+    Domain                    Possible values in the domain
+      s (single value)          V
+      l (list of values)        V1,V2,V3...,Vn
+      d (dict of key/values)    N1:V1,N2:V2,N3:V3...,Nn:Vn
+      r (range,step)            Nmin,Nmax,Step
+      f (flag)                  0,1 or True,False
+
   Returns:
   - the kwargs as is.
   '''  
@@ -40,7 +46,7 @@ def start(step, **kwargs):
   - None
 
   Step arguments:
-  --str:v-- ffn: full file name of the image will be processed.
+  --str;s;[];""-- ffn: full file name of the image will be processed
 
   Returns:
   - orig - input image;
@@ -62,7 +68,7 @@ def store(step, **kwargs):
   - image: an image that will be stored;
  
   Step arguments:
-  --str:v-- ffn: full file name, where the image will be stored.
+  --str;s[];""-- ffn: full file name, where the image will be stored
   
   Returns:
   - the kwargs as is.
@@ -86,7 +92,7 @@ def restore(step, **kwargs):
   Restores an image from a file.
   
   Step arguments:
-  --str:v:[]:""-- ffn: full file name, where from the image will be restored.
+  --str;s;[];""--  ffn: full file name, where from the image will be restored.
   
   Returns:
   - the image.

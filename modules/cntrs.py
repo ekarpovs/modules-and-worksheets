@@ -11,18 +11,9 @@ def find(step, **kwargs):
   Keyword arguments:
   - image: an image;
 
-  Step arguments (key, default):
-  - mth: approximation method, 2:
-    - cv2.CHAIN_APPROX_NONE: 1
-    - cv2.CHAIN_APPROX_SIMPLE: 2
-    - cv2.CHAIN_APPROX_TC89_L1: 3
-    - cv2.CHAIN_APPROX_TC89_KCOS: 4
-  - md: result mode, 0:
-    - cv2.RETR_EXTERNAL: 0
-    - cv2.RETR_LIST: 1
-    - cv2.RETR_CCOMP: 2
-    - cv2.RETR_TREE: 3
-    - cv2.RETR_FLOODFILL: 4
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n;d;[NONE:1,SIMPLE:2,TC89_L1:3,TC89_KCOS:4];SIMPLE-- meth: interpolation method cv2.CHAIN_APPROX_(...)
+  --n;d;[EXTERNAL:0,LIST:1,CCOMP:2,TREE:3,FLOODFILL:4];EXTERNAL-- md: result mode cv2.RETR_(...)
   
   Returns:
   - image;
@@ -30,7 +21,7 @@ def find(step, **kwargs):
   '''  
 
   mode = step.get('md', cv2.RETR_EXTERNAL)
-  method = step.get('mth', cv2.CHAIN_APPROX_SIMPLE)
+  method = step.get('meth', cv2.CHAIN_APPROX_SIMPLE)
 
   cntrs = cv2.findContours(kwargs['image'], mode, method) 
   
@@ -50,9 +41,9 @@ def sort(step, **kwargs):
   Keyword arguments:
   - image: an image;
   - cntrs: contours;
- 
-   Step arguments (key, default):
-   - rev: reverse flag, False;
+
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --b;f;[False,True];False-- rev: reverse flag
 
   Returns:
   - image;

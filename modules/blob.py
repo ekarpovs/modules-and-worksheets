@@ -12,16 +12,16 @@ def simple(step, **kwargs):
   - image: an image;
   
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:v:[0-115]:10-- mint: min threshold;
-  --n:v:[115-255]:200-- maxt: max threshold;
-  --b:v:[False,True]:True-- fltarea: filter by area;
-  --n:v:[10-5000]:1500-- minarea: min area;
-  --b:v:[False,True]:True-- fltcirc: filter by circularity;
-  --f:v:[0.1-0.9]:0.1-- mincirc: min circularity;
-  --b:v:[False, True]:True-- fltconv: filter by convexity;
-  --f:v:[0.10-0.99]:0.87-- minconv: min convexity;
-  --b:v:[False,True]:True-- fltiner: filter by inertia;
-  --f:v:[0.01-0.1]:0.01-- mininer: min inertia ratio.
+  --n;r;[0,115,1];50-- mint: min threshold
+  --n;r;[115,255,1];200-- maxt: max threshold
+  --b;f;[False,True];True-- fltarea: filter by area
+  --n;r;[100,5000,100];1500-- minarea: min area
+  --b;f;[False,True];True-- fltcirc: filter by circularity
+  --f;r;[0.1,0.9,0.01];0.1-- mincirc: min circularity
+  --b;f;[False, True];True-- fltconv: filter by convexity
+  --f;r;[0.10,0.99,0.01];0.87-- minconv: min convexity
+  --b;f;[False,True];True-- fltiner: filter by inertia
+  --f;r;[0.01,0.1,0.01];0.01-- mininer: min inertia ratio
   
   Returns:
   - kpnts: blobs keypoints.

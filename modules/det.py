@@ -12,9 +12,9 @@ def fast(step, **kwargs):
   - image: an image;
 
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:v:[]:25-- thrs: threshold;
-  --b:v:[True,False]:True-- nonmax: non max suppression;
-  --n:s:[0,1,2]:0-- type: neighborhood type cv2.TYPE_(5_8, 7_12, 9_16);
+  --n;s;[];25-- thrs: threshold
+  --b;f;[True,False];True-- nonmax: non max suppression
+  --n;l;[0,1,2];0-- type: neighborhood type cv2.TYPE_(5_8, 7_12, 9_16)
 
   Returns:
   - image;
@@ -40,18 +40,12 @@ def star(step, **kwargs):
   Keyword arguments (key, default):
   - image: an image;
   
-  Step arguments (key, default):
-  - resp-thrs:
-  - proj-thrs:
-  - binthrs:
-  - nonmax-size:
-
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:v:[]:45-- max: max-size;
-  --n:v:[]:30-- resp-thrs: resp-thrs;
-  --n:v:[]:10-- proj-thrs: proj-thrs;
-  --n:v:[]:8-- bin-thrs: bin-thrs;
-  --n:v:[]:5-- nonmax: nonmax-size;
+  --n;s;[];45-- max: max-size;
+  --n;s;[];30-- resp-thrs: resp-thrs;
+  --n;s;[];10-- proj-thrs: proj-thrs;
+  --n;s;[];8-- bin-thrs: bin-thrs;
+  --n;s;[];5-- nonmax: nonmax-size;
 
   Returns:
   - image;

@@ -11,15 +11,10 @@ def simple(step, **kwargs):
   Keyword arguments:
   - image: an image;
 
-  Step arguments (key, default):
-  - type: thresholding type, 0:
-    - cv2.THRESH_BINARY: 0;
-    - cv2.THRESH_BINARY_INV: 1;
-    - cv2.THRESH_TRUNC: 2;
-    - cv2.THRESH_TOZERO: 3;
-    - cv2.THRESH_TOZERO_INV: 4;
-  - thrsh: threshold value, 127;
-  - otsu:  flag to use Otsu algorithm to choose the optimal threshold value, False
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n;d;[BINARY:0,BINARY_INV:1,TRUNC:2,TOZERO:3,TOZERO_INV:4];BINARY-- type: thresholding type cv2.THRES_(..)
+  --n;r;[0,255];127-- thrsh: threshold value
+  --b;f;[False,True];False-- otsu:  flag to use Otsu algorithm to choose the optimal threshold value
 
   Returns:
   - image: result binary image;
@@ -48,25 +43,18 @@ def adaptive(step, **kwargs):
   Keyword arguments:
   - image: an image;
 
-  Step arguments (key, default):
-  - type: thresholding type, 0:
-    - cv2.THRESH_BINARY: 0;
-    - cv2.THRESH_BINARY_INV: 1;
-    - cv2.THRESH_TRUNC: 2;
-    - cv2.THRESH_TOZERO: 3;
-    - cv2.THRESH_TOZERO_INV: 4;
-  - mth: adaptive thresholding algorithm to use, 0:
-    - cv2.ADAPTIVE_THRESH_MEAN_C: 0;
-    - cv2.ADAPTIVE_THRESH_GAUSSIAN_C: 1.
-  - na: neighborhood area, 15;
-  - c: a constant which is subtracted from the mean or weighted mean calculated, 5.
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n;d;[BINARY:0,BINARY_INV:1,TRUNC:2,TOZERO:3,TOZERO_INV:4];BINARY-- type: thresholding type cv2.THRES_(...)
+  --n;d;[MEAN_C:0,GAUSSIAN_C:1];MEAN_C-- meth: adaptive thresholding algorithm to use cv2.ADAPTIVE_THRESH_(...)
+  --n;s;[];15-- na: neighborhood area
+  --n;s;[];5-- c: a constant which is subtracted from the mean or weighted mean calculated
 
   Returns:
   - image: result binary image;
   '''
 
   type = step.get('type', cv2.THRESH_BINARY) 
-  method = step.get('mth', cv2.ADAPTIVE_THRESH_MEAN_C) 
+  method = step.get('meth', cv2.ADAPTIVE_THRESH_MEAN_C) 
   na = step.get('na',15) # neighborhood area
   c = step.get('c', 5) #  
 

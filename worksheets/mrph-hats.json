@@ -1,7 +1,7 @@
 {
   "steps":[
     {"exec": "clrs.bgrto"},
-    {"exec": "mrph.mex", "type": 5},
-    {"exec": "mrph.mex", "type": 6}
+    {"exec": "mrph.mex", "type": "TOPHAT"},
+    {"exec": "mrph.mex", "type": "BLACKHAT"}
   ]
 }

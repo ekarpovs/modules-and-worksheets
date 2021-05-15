@@ -11,6 +11,12 @@ def bilateral(step, **kwargs):
   Keyword arguments:
   - image: an image;
 
+  Step arguments (--Type;Domain;[Possible Values];Default-- name: description):
+  --n;s;[];11-- d: diameter of each pixel neighborhood that is used during filtering
+  --n;l;[21,41,61];21--c: filter sigma in the color space
+  --n;l;[7,21,39];21-- s: filter sigma in the coordinate space
+
+
   Step arguments (key, default):
   - d: diameter of each pixel neighborhood that is used during filtering, 11;
   - c: filter sigma in the color space, 21;

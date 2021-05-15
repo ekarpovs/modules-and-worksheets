@@ -2,14 +2,14 @@
   "steps":[
     {"exec": "clrs.bgrto"},
     {"exec": "blur.gaus", "k": 7},
-    {"exec": "thrsh.simple", "type": 0},
+    {"exec": "thrsh.simple", "type": "BINARY"},
 
     {"exec": "clrs.bgrto", "useorig": true},
     {"exec": "blur.gaus", "k": 7},
-    {"exec": "thrsh.simple", "type": 1, "otsu": true},
+    {"exec": "thrsh.simple", "type": "BINARY_INV", "otsu": true},
 
     {"exec": "clrs.bgrto", "useorig": true},
     {"exec": "blur.gaus", "k": 7},
-    {"exec": "thrsh.adaptive", "type": 1}
+    {"exec": "thrsh.adaptive", "type": "BINARY", "meth": "MEAN_C"}
   ]
 }

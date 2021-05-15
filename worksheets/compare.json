@@ -1,7 +1,7 @@
 {
   "steps":[
     {"exec": "common.restore", "index": "1", "ffn": "../data/input/blobs.png"},
-    {"exec": "bsc.fit", "cycle": 4},
+    {"exec": "bsc.fit"},
     {"exec": "cmp.cmp_mse"},
     {"exec": "cmp.cmp_ssim"},
     {"exec": "cmp.cmp_psnr"},

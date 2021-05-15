@@ -12,7 +12,7 @@ def bgrto(step, **kwargs):
   - image: an image;
   
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:s:[0,4,6,32,36,40,44,50,52,82]:6-- type: new color space cv2.COLOR_(BGR2BGRA, BGR2RGB, BGR2GRAY, BGR2XYZ, BGR2YCrCb, BGR2HSV, BGR2LAB, BGR2Luv, BGR2HLS, BGR2YUV);
+  --n;d;[BGR2BGRA:0,BGR2RGB:4,BGR2GRAY:6,BGR2XYZ:32,BGR2YCrCb:36,BGR2HSV:40,BGR2LAB:44,BGR2Luv:50,BGR2HLS:52,BGR2YUV:82];BGR2GRAY-- type: new color space cv2.COLOR_(...)
 
 
   Returns:

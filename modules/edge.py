@@ -13,13 +13,8 @@ def sobel(step, **kwargs):
   Keyword arguments:
   - image: an image;
 
-  Step arguments (key, default):
-  - direction: 
-    - x: 0
-    - y: 1 
-
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:s:[0,1]:0-- direction: direction (x, y));
+  --n;d;[horizontal:0,vertical:1];horizontal-- direction: direction (x, y));
 
   Returns:
   - image: result image;
@@ -49,13 +44,9 @@ def canny(step, **kwargs):
   Keyword arguments:
   - image: an image;
 
-  Step arguments (key, default):
-  - thrs1: threshold1;
-  - thrs2: threshold2;
-
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:v:[]:10-- thrs1: threshold1;
-  --n:v:[]:200-- thrs2: threshold2;
+  --n;r;[10,150,1];50-- thrs1: threshold1;
+  --n;r;[100,252,1];200-- thrs2: threshold2;
 
   Returns:
   - image: result image;

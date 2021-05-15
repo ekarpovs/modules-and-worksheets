@@ -16,8 +16,8 @@ def erode(step, **kwargs):
   Keyword arguments:
   - image: an image;
 
-  Step arguments (key, default):
-  - iter: number of iterations, 3;
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n;r;[1,15,1];3-- iter: number of iterations
 
   Returns:
   - image: result image;
@@ -41,8 +41,8 @@ def dilate(step, **kwargs):
   Keyword arguments:
   - image: an image;
 
-  Step arguments (key, default):
-  - iter: number of iterations, 3;
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n;r;[1,15,1];3-- iter: number of iterations
 
   Returns:
   - image: result image;
@@ -68,18 +68,10 @@ def mex(step, **kwargs):
   Keyword arguments:
   - image: an image;
 
-  Step arguments (key, default):
-  - shape: shape of structuring element, 0:
-    - cv2.MORPH_RECT: 0;
-    - cv2.MORPH_CROSS: 1;
-    - cv2.MORPH_ELLIPSE: 2.
-  - type: type of operations, 2:
-    - cv2.MORPH_OPEN: 2;
-    - cv2.MORPH_CLOSE: 3;
-    - cv2.MORPH_GRADIENT: 4;
-    - cv2.MORPH_TOPHAT: 5;
-    - cv2.MORPH_BLACKHAT: 6; 
-  - k: kernel size (3, 3), (5, 5), (7, 7), 3.
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n;d;[RECT:0,CROSS:1,ELLIPSE:2];RECT-- shape: shape of structuring element cv2.MORPH_(...)
+  --n;d;[OPEN:2,CLOSE:3,GRADIENT:4,TOPHAT:5,BLACKHAT:6];OPEN-- type: type of operations cv2.MORPH_(...)
+  --n;l;[3,5,7,9];3-- k: kernel size
 
   Returns:
   - image: result image;

@@ -13,10 +13,10 @@ def crop(step, **kwargs):
   - image: an image;
 
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:v:[]:0-- y0: left top coordinate;
-  --n:v:[]:h-- y1: left bottom coordinate;
-  --n:v:[]:0-- x0: left top coordinate;
-  --n:v:[]:w-- x1: Right top coordinate;
+  --n;s;[];0-- y0: left top coordinate
+  --n;s;[];h-- y1: left bottom coordinate
+  --n;s;[];0-- x0: left top coordinate
+  --n;s;[];w-- x1: Right top coordinate
 
   
   Returns:
@@ -44,12 +44,13 @@ def flip(step, **kwargs):
   - image: an image;
 
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:s:[1,2]:1-- drct: direction;
+  --n;d;[vertical:1,horizontal:2,both:-1];vertical-- direct: direction
  
   Returns:
   - image: result image;
   '''  
-  direction = step.get('drct', 1)
+
+  direction = step.get('direct', 1)
 
   kwargs['image'] = cv2.flip(kwargs['image'], direction) 
 
@@ -65,14 +66,14 @@ def mask(step, **kwargs):
   - image: an image;
 
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:s:[0,1]:1-- drct: direction (rectangle, circle);
-  --n:v:[]:0-- y0: left top coordinate;
-  --n:v:[]:h-- y1: left bottom coordinate;
-  --n:v:[]:0-- x0: left top coordinate;
-  --n:v:[]:w-- x1: Right top coordinate;
-  --n:v:[]:w/2-- cx: Centr coordinate;
-  --n:v:[]:h/2-- cy: Centr coordinate;
-  --n:v:[]:min(h/2,w/2)-- rad: The mask radius;
+  --n;d;[y:0,x:1];x-- drct: direction (rectangle, circle)
+  --n;s;[];0-- y0: left top coordinate
+  --n;s;[];h-- y1: left bottom coordinate
+  --n;s;[];0-- x0: left top coordinate
+  --n;s;[];w-- x1: right top coordinate
+  --n;s;[];w/2-- cx: Centr coordinate
+  --n;s;[];h/2-- cy: Centr coordinate
+  --n;s;[];min(h/2,w/2)-- rad: The mask radius
 
 
   Returns:
@@ -118,10 +119,10 @@ def resize(step, **kwargs):
   - image: an image;
   
    Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:s:[0,1,2,3,4]:2-- meth: interpolation method cv2.INTER_(NEAREST, LINEAR, AREA, CUBIC, LANCZOS);
-  --n:s:[0,1]:0-- unit: measurements unit (pixel, percent);
-  --n:s:[0,1]:0-- side: rectangle side (height, width);
-  --n:v:[]:h/w-- size: new zise (pixels, percents);
+  --n;d;[NEAREST:0,LINEAR:1,AREA:2,CUBIC:3,LANCZOS:4];AREA-- meth: interpolation method cv2.INTER_(...)
+  --n;d;[pixel:0,percent:1];pixel-- unit: measurements unit
+  --n;d;[height:0,width:1];height-- side: rectangle side
+  --n;s;[];h/w-- size: new zise
 
   Returns:
   - image: result image;
@@ -167,10 +168,10 @@ def resize1(step, **kwargs):
   - image: an image;
   
    Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:s:[0,1,2,3,4]:2-- meth: interpolation method cv2.INTER_(NEAREST, LINEAR, AREA, CUBIC, LANCZOS);
-  --n:s:[0,1]:0-- unit: measurements unit (pixel, percent);
-  --n:s:[0,1]:0-- side: rectangle side (height, width);
-  --n:v:[]:h/w-- size: new zise (pixels, percents);
+  --n;d;[NEAREST:0,LINEAR:1,AREA:2,CUBIC:3,LANCZOS:4];AREA-- meth: interpolation method cv2.INTER_(...)
+  --n;d;[pixel:0,percent:1];pixel-- unit: measurements unit
+  --n;d;[height:0,width:1];height-- side: rectangle side
+  --n;s;[];h/w-- size: new zise
 
   Returns:
   - image: result image;
@@ -200,8 +201,8 @@ def rotate(step, **kwargs):
   - image: an image;
 
    Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:v:[]:0-- angle: rotation angle;
-
+  --n;r;[0,180,1];0-- angle: rotation angle
+  --b;f;[False,True];False-- neg: negative direction 
 
   Returns:
   - image: result image;
@@ -213,6 +214,10 @@ def rotate(step, **kwargs):
 
   # calculate rotation matrix
   angle = step.get('angle', 0)
+  negative = step.get('neg', False)
+  if negative:
+    angle *= -1 
+
   M = cv2.getRotationMatrix2D((cx, cy), angle, 1.0)
   
   # rotation calculates the cos and sin, taking absolutes of those.
@@ -239,9 +244,9 @@ def translate(step, **kwargs):
   Keyword arguments:
   - image: an image;
 
-   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:v:[]:0-- y: number of pixels to shift;
-  --n:v:[]:0-- x: number of pixels to shift;
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n;s;[];0-- y: number of pixels to shift
+  --n;s;[];0-- x: number of pixels to shift
 
 
   Returns:
@@ -269,8 +274,8 @@ def fit(step, **kwargs):
   - image: an image;
   - image1: an image.
 
-   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n:s:[0,1,2,3,4]:2-- meth: interpolation method cv2.INTER_(NEAREST, LINEAR, AREA, CUBIC, LANCZOS);
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n;d;[NEAREST:0,LINEAR:1,AREA:2,CUBIC:3,LANCZOS:4];AREA-- meth: interpolation method cv2.INTER_(...)
 
   Returns:
   - image: result image;

@@ -2,12 +2,13 @@
   "steps":[
     {"exec": "bsc.translate"},
     {"exec": "clrs.bgrto", "useorig": true},
+    {"exec": "bsc.rotate", "useorig": true, "gforinrange": {"i": "angle", "x": 0, "y": 60, "s": 15, "d": 3}},
     {"exec": "bsc.translate", "useorig": true, "x": 50, "y": -40},
     {"exec": "bsc.translate", "useorig": true, "x": -50, "y": 40},
-    {"exec": "bsc.resize", "useorig": true, "unit": 1, "size": 50},
-    {"exec": "bsc.resize", "useorig": true, "unit": 1, "size": 150},
+    {"exec": "bsc.resize", "useorig": true, "unit": "pixel", "size": 750},
+    {"exec": "bsc.resize", "useorig": true, "unit": "percent", "size": 150},
     {"exec": "bsc.crop", "useorig": true, "y0": 100, "x0": 150},
-    {"exec": "bsc.flip", "useorig": false, "drct": -1},
+    {"exec": "bsc.flip", "useorig": false, "direct": "vertical"},
     {"exec": "bsc.rotate", "useorig": true, "angle": -30},
     {"exec": "bsc.rotate", "useorig": true, "angle": 30}
   ]
