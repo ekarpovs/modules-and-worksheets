@@ -44,7 +44,7 @@ def flip(step, **kwargs):
   - image: an image;
 
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;d;[vertical:1,horizontal:2,both:-1];vertical-- direct: direction
+  --n;d;[both:0,vertical:1,horizontal:2];vertical-- direct: direction
  
   Returns:
   - image: result image;
@@ -202,7 +202,7 @@ def rotate(step, **kwargs):
 
    Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
   --n;r;[0,180,1];0-- angle: rotation angle
-  --b;f;[False,True];False-- neg: negative direction 
+  --b;f;[False,True];True-- neg: negative direction 
 
   Returns:
   - image: result image;
