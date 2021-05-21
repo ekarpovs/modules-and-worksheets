@@ -2,7 +2,8 @@
   "steps":[
     {"exec": "bsc.translate"},
     {"exec": "clrs.bgrto", "useorig": true},
-    {"exec": "bsc.rotate", "useorig": true, "gforinrange": {"i": "angle", "x": 0, "y": 60, "s": 15, "d": 3}},
+    {"stm": "glbstm.forinrange", "start": 0, "stop": 60, "step": 15, "i": "angle", "include": 3},
+    {"exec": "bsc.rotate", "useorig": true},
     {"exec": "bsc.translate", "useorig": true, "x": 50, "y": -40},
     {"exec": "bsc.translate", "useorig": true, "x": -50, "y": 40},
     {"exec": "bsc.resize", "useorig": true, "unit": 0, "size": 750},
