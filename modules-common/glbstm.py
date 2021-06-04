@@ -7,7 +7,9 @@ def forinrange(step, **kwargs):
   Wrap next step(steps) into for in range.
 
   Keyword arguments:
-  - current  
+  - idx: the step index in a workflow 
+  - include: copy of 'include' step argument
+  - end: flag
 
   Step arguments:
   --n;s;[];"0"-- start: the first value in the range
@@ -19,27 +21,27 @@ def forinrange(step, **kwargs):
   Returns:
   - kwargs[parameter name] = i
   - kwargs['end'] - flag end of loop
-  - kwargs['current'] - current increment value
   '''
 
+  number_of_steps = step.get('include', 0)
   start = step.get('start', 0)
   stop = step.get('stop', 0)
-  stp = step.get('stp', 0)
+  stp = step.get('step', 0)
   param_name = step.get('i', '')
-  number_of_steps = step.get('include', 0)
 
-  current = kwargs.get('current', 0) 
+  i = kwargs.get(param_name, 0) 
+  end = kwargs.get('end', False)
 
-  if current == 0:
-    current = start
+  if i == 0:
+    i = start
 
-  kwargs[param_name] = current
-  current += stp
-  kwargs['current'] = current
+  i += stp
+  kwargs[param_name] = i
+  if i > stop:
+    kwargs[param_name] = 0
+
   kwargs['end'] = False
-
-  if current >= stop:
-    kwargs['current'] = 0
+  if i >= stop:
     kwargs['end'] = True
 
   return kwargs
