@@ -23,6 +23,11 @@ def forinrange(step, **kwargs):
   - kwargs['end'] - flag end of loop
   '''
 
+  # performs 'i' mapping in runtime
+  def update_stm_state(meta):
+    meta[param_name] = kwargs[param_name]
+    return
+
   number_of_steps = step.get('include', 0)
   start = step.get('start', 0)
   stop = step.get('stop', 0)
@@ -43,6 +48,8 @@ def forinrange(step, **kwargs):
   kwargs['end'] = False
   if i >= stop:
     kwargs['end'] = True
+
+  kwargs['stm_state'] = update_stm_state
 
   return kwargs
 
