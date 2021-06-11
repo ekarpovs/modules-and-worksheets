@@ -1,0 +1,9 @@
+{
+  "info" : "Image arithmetic is matrix addition",
+  "steps" : [
+    {"exec": "arithmetic.arth_add"},
+    {"exec": "arithmetic.arth_sub"},
+    {"exec": "shapes.shp_circle", "h": 500, "w": 700, "cy": 250, "cx": 400, "r": 200},
+    {"exec": "shapes.shp_rectangle", "h": 500, "w": 700, "tly": 75 , "tlx": 75, "bry": 300 , "brx": 300}
+  ]
+}
