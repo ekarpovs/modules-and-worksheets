@@ -4,6 +4,37 @@ Color spaces operations
 import cv2
 
 
+def clrs_split(step, **kwargs):  
+  '''
+  Splits a colored (BGR) image to separate colors.
+
+  Keyword arguments:
+  - image: an image;
+  
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --s;l;['Blue','Red', 'Green'];'Blue'-- chanal: image chanal
+
+  Returns:
+  - image: result image;
+  '''  
+
+  clr = step.get('color', 'B')
+
+  if len(kwargs['image'].shape) == 2:
+    # input - gray
+    return kwargs
+
+  (B, G, R) = cv2.split(kwargs['image'])
+  if clr == 'Green':
+    kwargs['image'] = G
+  elif clr == 'Red':
+    kwargs['image'] = R
+  else:
+    kwargs['image'] = B
+ 
+  return kwargs
+
+
 def bgrto(step, **kwargs):  
   '''
   Converts a colored (BGR) image to another color space.
