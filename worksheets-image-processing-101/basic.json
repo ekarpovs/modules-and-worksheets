@@ -8,6 +8,6 @@
     {"exec": "bsc.resize", "useorig": true, "unit": 0, "size": 750},
     {"exec": "bsc.rotate", "useorig": true, "angle": 30, "neg": true},
     {"exec": "bsc.translate", "useorig": true, "x": -50, "y": 40},
-    {"exec": "clrs.clrs_split"}
+    {"exec": "clrs.clrs_split", "useorig": true}
   ]
 }
