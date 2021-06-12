@@ -1,7 +1,9 @@
 {
-  "info" : "",
+  "info" : "Arithmetic and bitwise operations",
   "steps" : [
     {"exec": "shapes.shp_circle"},
+    {"exec": "arithmetic.arth_add"},
+    {"exec": "arithmetic.arth_sub"},
     {"exec": "commutate.comm_to_nkey"},
     {"exec": "shapes.shp_rectangle"},
     {"exec": "bitwise.btw_and" },
