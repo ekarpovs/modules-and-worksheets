@@ -1,15 +1,13 @@
-{
-  "steps":[
-    {"exec": "clrs.bgrto"},
-    {"exec": "blur.gaus", "k": 7},
-    {"exec": "thrsh.simple", "type": "BINARY"},
+[
+  {"exec": "clrs.bgrto"},
+  {"exec": "blur.gaus", "params": {"k": 7}},
+  {"exec": "thrsh.simple", "params": {"type": 0}},
 
-    {"exec": "clrs.bgrto", "useorig": true},
-    {"exec": "blur.gaus", "k": 7},
-    {"exec": "thrsh.simple", "type": "BINARY_INV", "otsu": true},
+  {"exec": "clrs.bgrto", "params": {"useorig": true}},
+  {"exec": "blur.gaus", "params": {"k": 7}},
+  {"exec": "thrsh.simple", "params": {"type": 1, "otsu": true}},
 
-    {"exec": "clrs.bgrto", "useorig": true},
-    {"exec": "blur.gaus", "k": 7},
-    {"exec": "thrsh.adaptive", "type": "BINARY", "meth": "MEAN_C"}
-  ]
-}
+  {"exec": "clrs.bgrto", "params": {"useorig": true}},
+  {"exec": "blur.gaus", "params": {"k": 7}},
+  {"exec": "thrsh.adaptive", "params": {"type": 0, "meth": 0}}
+]

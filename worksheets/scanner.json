@@ -1,12 +1,10 @@
-  {
-  "steps":[
-    {"exec": "clrs.bgrto"},
-    {"exec": "blur.gaus", "k": 7},
-    {"exec": "edge.canny"},
-    {"exec": "cntrs.find"},
-    {"exec": "cntrs.sort"},
-    {"exec": "draw.contours"},
-    {"exec": "cntrs.sel_rect"},
-    {"exec": "bsc.transform", "useorig": true}
-  ]
-}
+[
+  {"exec": "clrs.bgrto"},
+  {"exec": "blur.gaus", "params":{"k": 7}},
+  {"exec": "edge.canny"},
+  {"exec": "cntrs.find"},
+  {"exec": "cntrs.sort"},
+  {"exec": "draw.contours"},
+  {"exec": "cntrs.sel_rect"},
+  {"exec": "bsc.transform", "params":{"useorig": true}}
+]

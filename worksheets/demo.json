@@ -1,16 +1,8 @@
-{
-  "steps":[
-    {"exec": "bsc.translate"},
-    {"exec": "clrs.bgrto", "useorig": true},
-    {"stm": "glbstm.forinrange", "start": 0, "stop": 60, "step": 15, "i": "angle", "include": 3},
-    {"exec": "bsc.rotate", "useorig": true},
-    {"exec": "bsc.translate", "useorig": true, "x": 50, "y": -40},
-    {"exec": "bsc.translate", "useorig": true, "x": -50, "y": 40},
-    {"exec": "bsc.resize", "useorig": true, "unit": 0, "size": 750},
-    {"exec": "bsc.resize", "useorig": true, "unit": 1, "size": 150},
-    {"exec": "bsc.crop", "useorig": true, "y0": 100, "x0": 150},
-    {"exec": "bsc.flip", "useorig": false, "direct": 1},
-    {"exec": "bsc.rotate", "useorig": true, "angle": 30, "neg": true},
-    {"exec": "bsc.rotate", "useorig": true, "angle": 30}
-  ]
-}
+[
+  {"exec": "clrs.bgrto", "params":{"useorig": true}},
+  {"stm": "glbstm.forinrange", "params":{"start": 0, "stop": 60, "step": 15, "i": "angle", "include": 1}},
+  {"exec": "bsc.rotate", "params":{}},
+  {"exec": "bsc.resize", "params":{"useorig": true, "unit": 1, "size": 150}},
+  {"exec": "bsc.crop", "params":{"useorig": true, "y0": 100, "x0": 150}},
+  {"exec": "bsc.flip", "params":{"useorig": true, "direct": 1}}
+]

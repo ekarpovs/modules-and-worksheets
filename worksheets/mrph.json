@@ -1,0 +1,5 @@
+[
+  {"exec": "clrs.bgrto"},
+  {"exec": "mrph.erode", "params": {}},
+  {"exec": "mrph.dilate", "params": {}}
+]
