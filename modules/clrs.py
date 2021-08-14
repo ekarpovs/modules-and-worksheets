@@ -25,12 +25,30 @@ def clrs_split(step, **kwargs):
     return kwargs
 
   (B, G, R) = cv2.split(kwargs['image'])
-  if clr == 'Green':
+  if clr == 'G':
     kwargs['image'] = G
-  elif clr == 'Red':
+  elif clr == 'R':
     kwargs['image'] = R
   else:
     kwargs['image'] = B
+ 
+  return kwargs
+
+
+def clrs_merge(step, **kwargs):  
+  '''
+  Mergess  separate colors to colored (BGR) image.
+
+  Keyword arguments:
+  - image: an image;
+  
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --s;l;['Blue','Red', 'Green'];'Blue'-- chanal: image chanal
+
+  Returns:
+  - image: result image;
+  '''  
+
  
   return kwargs
 

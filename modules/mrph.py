@@ -17,15 +17,20 @@ def erode(step, **kwargs):
   - image: an image;
 
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;r;[1,15,1];3-- iter: number of iterations
+  --n;d;[RECT:0,CROSS:1,ELLIPSE:2];RECT-- shape: shape of structuring element cv2.MORPH_(...)
+  --n;l;[3,5,7,9];3-- k: kernel size
+  --n;r;[1,15,1];1-- iter: number of iterations
 
   Returns:
   - image: result image;
   '''
 
-  iterations = step.get('iter', 3)
+  shape = step.get('shape',cv2.MORPH_RECT)
+  kernelSize = step.get('k', 3)
+  iterations = step.get('iter', 1)
 
-  mrpherode = cv2.erode(kwargs['image'], None, iterations=iterations)
+  kernel = cv2.getStructuringElement(shape, ksize=(kernelSize, kernelSize))
+  mrpherode = cv2.erode(kwargs['image'], kernel, iterations=iterations)
   
   kwargs['mrpherode'] = mrpherode
   
@@ -42,15 +47,20 @@ def dilate(step, **kwargs):
   - image: an image;
 
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;r;[1,15,1];3-- iter: number of iterations
+  --n;d;[RECT:0,CROSS:1,ELLIPSE:2];RECT-- shape: shape of structuring element cv2.MORPH_(...)
+  --n;l;[3,5,7,9];3-- k: kernel size
+  --n;r;[1,15,1];1-- iter: number of iterations
 
   Returns:
   - image: result image;
   '''
 
-  iterations = step.get('iter', 3)
+  shape = step.get('shape',cv2.MORPH_RECT)
+  kernelSize = step.get('k', 3)
+  iterations = step.get('iter', 1)
 
-  kwargs['image'] = cv2.dilate(kwargs['image'], None, iterations=iterations)
+  kernel = cv2.getStructuringElement(shape, ksize=(kernelSize, kernelSize))
+  kwargs['image'] = cv2.dilate(kwargs['image'], kernel, iterations=iterations)
 
   return kwargs
 
@@ -70,16 +80,16 @@ def mex(step, **kwargs):
 
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
   --n;d;[RECT:0,CROSS:1,ELLIPSE:2];RECT-- shape: shape of structuring element cv2.MORPH_(...)
-  --n;d;[OPEN:2,CLOSE:3,GRADIENT:4,TOPHAT:5,BLACKHAT:6];OPEN-- type: type of operations cv2.MORPH_(...)
   --n;l;[3,5,7,9];3-- k: kernel size
+  --n;d;[OPEN:2,CLOSE:3,GRADIENT:4,TOPHAT:5,BLACKHAT:6];OPEN-- type: type of operations cv2.MORPH_(...)
 
   Returns:
   - image: result image;
   '''
   
   shape = step.get('shape',cv2.MORPH_RECT)
-  type = step.get('type', cv2.MORPH_OPEN)
   kernelSize = step.get('k', 3)
+  type = step.get('type', cv2.MORPH_OPEN)
 
   kernel = cv2.getStructuringElement(shape, (kernelSize, kernelSize))
 
