@@ -1,6 +1,6 @@
 [
   {"exec": "clrs.bgrto", "params":{"useorig": true}},
-  {"stm": "glbstm.forinrange", "params":{"start": 0, "stop": 60, "step": 15, "i": "angle", "include": 1}},
+  {"stm": "glbstm.forinrangestm", "params":{"start": 0, "stop": 60, "step": 15, "i": "angle", "include": 1}},
   {"exec": "bsc.rotate", "params":{}},
   {"exec": "bsc.resize", "params":{"useorig": true, "unit": 1, "size": 150}},
   {"exec": "bsc.crop", "params":{"useorig": true, "y0": 100, "x0": 150}},

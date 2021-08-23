@@ -1,7 +1,4 @@
-{
-  "info" : "Split and merge image chanals operations",
-  "steps" : [
-    {"exec": "clrs.clrs_split", "useorig": true},
-    {"exec": "clrs.clrs_merge", "useorig": true}
-  ]
-}
+[
+  {"exec": "clrs.clrs_split", "params": {"useorig": true}},
+  {"exec": "clrs.clrs_merge", "params": {"useorig": true}}
+]

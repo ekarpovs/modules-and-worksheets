@@ -1,0 +1,4 @@
+[
+  {"exec": "arithmetic.arth_add", "params": {}},
+  {"exec": "arithmetic.arth_sub", "params": {}}
+]
