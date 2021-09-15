@@ -7,35 +7,32 @@ import numpy as np
 
 def arth_add(step, **kwargs):
   '''
-  Performs Add operation - increase the intensity of all pixels in an image by 'ifact'.
+  Performs Add operation with the input image and a mask
 
   Keyword arguments:
   - image: an image;
+  - mask: a mask;
 
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;s;[];1-- ifact: increase factor
 
   Returns:
   - image: result image;
   '''
 
-  ifact = step.get('ifact', 1)
+  mask = kwargs.get('mask')
 
-  # Create matrix (filled with ones) and the multiplying it by 'ifact' to create an
-  # array filled with ifact value's, then add the images together; 
-  # the image will "brighter"
-  M = np.ones(kwargs['image'].shape, dtype = "uint8") * ifact
-  kwargs['image'] = cv2.add(kwargs['image'], M) 
+  kwargs['image'] = cv2.add(kwargs.get('image'), mask) 
 
   return kwargs
 
 
 def arth_sub(step, **kwargs):
   '''
-  Performs Substraction operation - decrease the intensity of all pixels in an image by 'dfact'.
+  Performs Substraction operation with the input image and a mask
 
   Keyword arguments:
   - image: an image;
+  - mask: a mask;
 
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
   --n;s;[];1-- dfact: decrease factor
@@ -44,12 +41,8 @@ def arth_sub(step, **kwargs):
   - image: result image;
   '''
 
-  dfact = step.get('dfact', 1)
+  mask = kwargs.get('mask')
 
-  # Create matrix (filled with ones) and the multiplying it by 'ifact' to create an
-  # array filled with ifact value's, then add the images together; 
-  # the image will "brighter"
-  M = np.ones(kwargs['image'].shape, dtype = "uint8") * dfact
-  kwargs['image'] = cv2.subtract(kwargs['image'], M) 
+  kwargs['image'] = cv2.subtract(kwargs.get('image'), mask) 
 
   return kwargs

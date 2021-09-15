@@ -17,24 +17,19 @@ def crop(step, **kwargs):
   --n;s;[];h-- y1: left bottom coordinate
   --n;s;[];0-- x0: left top coordinate
   --n;s;[];w-- x1: Right top coordinate
-
   
   Returns:
   - image: result image;
   '''  
-
-  (h, w) = kwargs['image'].shape[:2]
-
   y0 = step.get('y0', 0)
   y1 = step.get('y1', h)
   x0 = step.get('x0', 0)
   x1 = step.get('x1', w)
 
-  kwargs['image'] = kwargs['image'][y0:y1, x0:x1]
-
+  image = kwargs.get('image')
+  (h, w) = image.shape[:2]
+  kwargs['image'] = image[y0:y1, x0:x1]
   return kwargs
-
-
 
 def flip(step, **kwargs):
   '''
@@ -49,66 +44,10 @@ def flip(step, **kwargs):
   Returns:
   - image: result image;
   '''  
-
   direction = step.get('direct', 1)
 
-  kwargs['image'] = cv2.flip(kwargs['image'], direction) 
-
+  kwargs['image'] = cv2.flip(kwargs.get('image'), direction) 
   return kwargs
-
-
-
-def mask(step, **kwargs):
-  '''
-  Applys a mask to an image.
-
-  Keyword arguments:
-  - image: an image;
-
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;d;[y:0,x:1];x-- drct: direction (rectangle, circle)
-  --n;s;[];0-- y0: left top coordinate
-  --n;s;[];h-- y1: left bottom coordinate
-  --n;s;[];0-- x0: left top coordinate
-  --n;s;[];w-- x1: right top coordinate
-  --n;s;[];w/2-- cx: Centr coordinate
-  --n;s;[];h/2-- cy: Centr coordinate
-  --n;s;[];min(h/2,w/2)-- rad: The mask radius
-
-
-  Returns:
-  - image: result image;
-  '''  
-  (h, w) = kwargs['image'].shape[:2]
-
-  type = step.get('type', 0)
-  y0 = step.get('y0', 0)
-  y1 = step.get('y1', h)
-  x0 = step.get('x0', 0)
-  x1 = step.get('x1', w)
-  cx = step.get('cx', w / 2)
-  cy = step.get('cy', h / 2)
-  rad = step.get('rad', min(h / 2, w /2))
-  
-  # Masking allows us to focus only on parts of an image that interest us.
-  # A mask is the same size as our image, but has only two pixel values,
-  # 0 and 255. Pixels with a value of 0 are ignored in the orignal image,
-  # and mask pixels with a value of 255 are allowed to be kept.
-  mask = np.zeros(kwargs['image'].shape[:2], dtype="uint8")
-
-  if type == 0:
-    # Construct a rectangular mask
-    cv2.rectangle(mask, (x0, y0), (x1, y1), 255, -1)
-  else:
-    # Make a circular mask
-    cv2.circle(mask, (cx, cy), rad, 255, -1)
-
-  # Apply out mask
-  kwargs['image'] = cv2.bitwise_and(kwargs['image'], kwargs['image'], mask=mask)   
-
-  return kwargs
-
-
 
 
 def resize(step, **kwargs):
@@ -127,13 +66,12 @@ def resize(step, **kwargs):
   Returns:
   - image: result image;
   '''
-
-  (h, w) = kwargs['image'].shape[:2]
-
   method = step.get('meth', cv2.INTER_AREA)
   unit = step.get('unit', 0)
   side = step.get('side', 0)
 
+  image = kwargs.get('image')
+  (h, w) = image.shape[:2]
   #  default value regarding to the side of a rectangle
   def_size = w
   if side == 0:
@@ -154,10 +92,8 @@ def resize(step, **kwargs):
     ratio = size / h
     dim = (int(w * ratio), size)
 
-  kwargs['image'] = cv2.resize(kwargs['image'], dim, interpolation=method) 
-
+  kwargs['image'] = cv2.resize(image, dim, interpolation=method) 
   return kwargs
-
 
 
 def resize1(step, **kwargs):
@@ -176,21 +112,20 @@ def resize1(step, **kwargs):
   Returns:
   - image: result image;
   '''  
-
   method = step.get('meth', cv2.INTER_AREA)
   unit = step.get('unit', 0)
   w_new = step.get('w', 9)
   h_new = step.get('h', 8)
-
   dim = (w_new, h_new)
+
+  image = kwargs.get('image')
+
   if unit == 1: # percent
-    (h, w) = kwargs['image'].shape[:2]
+    (h, w) = image.shape[:2]
     dim = (int(w*w_new/100), int(h*h_new/100))
     
-  kwargs['image'] = cv2.resize(kwargs['image'], dim, interpolation=method) 
-
+  kwargs['image'] = cv2.resize(image, dim, interpolation=method) 
   return kwargs
-
 
 
 def rotate(step, **kwargs):  
@@ -207,9 +142,9 @@ def rotate(step, **kwargs):
   Returns:
   - image: result image;
   '''  
-
   # grab the dimensions of the image and calculate the center of the image
-  (h, w) = kwargs['image'].shape[:2]
+  image = kwargs.get('image')
+  (h, w) = image.shape[:2]
   (cx, cy) = (w / 2, h / 2)
 
   # calculate rotation matrix
@@ -219,7 +154,6 @@ def rotate(step, **kwargs):
     angle *= -1 
 
   M = cv2.getRotationMatrix2D((cx, cy), angle, 1.0)
-  
   # rotation calculates the cos and sin, taking absolutes of those.
   abs_cos = abs(M[0,0]) 
   abs_sin = abs(M[0,1])
@@ -229,10 +163,8 @@ def rotate(step, **kwargs):
   # subtract old image center (bringing image back to original relative position) and adding the new image center coordinates
   M[0, 2] += bound_w/2 - cx
   M[1, 2] += bound_h/2 - cy
-
   # rotate without a cropping
-  kwargs['image'] = cv2.warpAffine(kwargs['image'], M, (bound_w, bound_h))
-
+  kwargs['image'] = cv2.warpAffine(image, M, (bound_w, bound_h))
   return kwargs
 
 
@@ -248,22 +180,19 @@ def translate(step, **kwargs):
   --n;s;[];0-- y: number of pixels to shift
   --n;s;[];0-- x: number of pixels to shift
 
-
   Returns:
   - image: result image;
   '''  
-
   shiftX = step.get('x', 0)
   shiftY = step.get('y', 0)
 
   if shiftX == 0 and shiftY == 0:
     return kwargs
 
+  image = kwargs.get('image')
   M = np.float32([[1, 0, shiftX], [0, 1, shiftY]])
-  kwargs['image'] = cv2.warpAffine(kwargs['image'], M, (kwargs['image'].shape[1], kwargs['image'].shape[0])) 
-
+  kwargs['image'] = cv2.warpAffine(image, M, (image.shape[1], image.shape[0])) 
   return kwargs
-
 
 
 def fit(step, **kwargs):
@@ -280,7 +209,6 @@ def fit(step, **kwargs):
   Returns:
   - image: result image;
   '''  
-
   method = step.get('meth', cv2.INTER_AREA)
 
   image = kwargs['image']
@@ -292,11 +220,8 @@ def fit(step, **kwargs):
     return kwargs
 
   dim = (w, h)
-
   kwargs['image'] = cv2.resize(image1, dim, interpolation=method) 
-
   return kwargs
-
 
 
 def transform(step, **kwargs):
@@ -309,12 +234,9 @@ def transform(step, **kwargs):
   Returns:
   -image: result image;
   '''  
-
   rect_cnt = kwargs['rect']
 	
-  # warped = four_point_transform(image, rect_cnt.reshape(4, 2) * ratio) 
-  kwargs['image'] = _four_point_transform(kwargs['image'], rect_cnt.reshape(4, 2)) 
-
+  kwargs['image'] = _four_point_transform(kwargs.get('image'), rect_cnt.reshape(4, 2)) 
   return kwargs
 
 

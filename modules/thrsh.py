@@ -22,13 +22,14 @@ def simple(step, **kwargs):
 
   type = step.get('type', cv2.THRESH_BINARY)
   threshold = step.get('thrsh', 127)
+  max_val = step.get('max-val', 255)
   otsu = step.get('otsu', False)
 
   if otsu:
     type |= cv2.THRESH_OTSU
     threshold = 0
 
-  (T, thrsh) = cv2.threshold(kwargs['image'], threshold, 255, type)
+  (T, thrsh) = cv2.threshold(kwargs.get('image'), threshold, max_val, type)
 
   kwargs['image'] = thrsh
 
@@ -58,7 +59,7 @@ def adaptive(step, **kwargs):
   na = step.get('na',15) # neighborhood area
   c = step.get('c', 5) #  
 
-  thrsh = cv2.adaptiveThreshold(kwargs['image'], 255, method, type, na, c)
+  thrsh = cv2.adaptiveThreshold(kwargs.get('image'), 255, method, type, na, c)
 
   kwargs['image'] = thrsh
 

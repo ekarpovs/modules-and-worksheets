@@ -19,17 +19,14 @@ def find(step, **kwargs):
   - image;
   - cntrs: list of the contours.
   '''  
-
   mode = step.get('md', cv2.RETR_EXTERNAL)
   method = step.get('meth', cv2.CHAIN_APPROX_SIMPLE)
 
-  cntrs = cv2.findContours(kwargs['image'], mode, method) 
-  
+  cntrs = cv2.findContours(kwargs.get('image'), mode, method) 
   if len(cntrs) == 3:
       cntrs = cntrs[1]
 
-  kwargs['cntrs'] = cntrs
-  
+  kwargs['cntrs'] = cntrs 
   return kwargs
 
 
@@ -49,28 +46,23 @@ def sort(step, **kwargs):
   - image;
   - cntrs: list of the sorted contours.
   '''
-
   reverse = step.get('rev', True)
-
-  cntrs = kwargs['cntrs']
+  cntrs = kwargs.get('cntrs')
  
   i = 0
   # construct the list of bounding boxes and sort them from top to
   # bottom
   bounding_boxes = [cv2.boundingRect(c) for c in cntrs]
-
   (cntrs, bounding_boxes) = zip(*sorted(zip(cntrs, bounding_boxes), key=lambda b:b[1][i], reverse=reverse))
 
   kwargs['cntrs'] = cntrs
   kwargs['boxes'] = bounding_boxes
-
   return kwargs
-
 
 
 def sel_rect(step, **kwargs):
   '''
-  Sorts contours.
+  Selects rectangle contours.
 
   Keyword arguments:
   - image: an image;
@@ -80,16 +72,12 @@ def sel_rect(step, **kwargs):
   - image;
   - rect: the biggest rectangle contour.
   '''
-
-  cntrs = kwargs['cntrs']
- 
-	# loop over the contours
-  
+  cntrs = kwargs.get('cntrs')
+ 	# loop over the contours 
   for c in cntrs:
 		# approximate the contour
 	  peri = cv2.arcLength(c, True)
 	  approx = cv2.approxPolyDP(c, 0.02 * peri, True)
-
 		# if our approximated contour has four points, then we
 		# can assume that we have found our screen
 	  if len(approx) == 4:
@@ -97,6 +85,5 @@ def sel_rect(step, **kwargs):
 		  break 
 
   kwargs['rect'] = rect
-
   return kwargs
 

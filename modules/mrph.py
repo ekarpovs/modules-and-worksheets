@@ -7,6 +7,33 @@ It applies structuring element to an input image and generate an output image.
 import cv2
 
 
+
+def kernel(step, **kwargs):
+  '''
+  Create structured element (kernel)
+
+  Keyword arguments:
+  - image: an image;
+
+  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  --n;d;[RECT:0,CROSS:1,ELLIPSE:2];RECT-- shape: shape of structuring element cv2.MORPH_(...)
+  --n;l;[3,5,7,9];3-- k: kernel size
+
+  Returns:
+  - image: result image;
+  - elem
+  '''
+
+  shape = step.get('shape',cv2.MORPH_RECT)
+  kernelSize = step.get('k', 3)
+
+  kernel = cv2.getStructuringElement(shape, ksize=(kernelSize, kernelSize))
+
+  kwargs['kernel'] = kernel
+  
+  return kwargs
+
+
 def erode(step, **kwargs):
   '''
   Erodes away the boundaries of the foreground object and removes small-scale details 
@@ -15,24 +42,21 @@ def erode(step, **kwargs):
 
   Keyword arguments:
   - image: an image;
+  - kernel: a kernel;
 
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;d;[RECT:0,CROSS:1,ELLIPSE:2];RECT-- shape: shape of structuring element cv2.MORPH_(...)
-  --n;l;[3,5,7,9];3-- k: kernel size
   --n;r;[1,15,1];1-- iter: number of iterations
 
   Returns:
   - image: result image;
   '''
 
-  shape = step.get('shape',cv2.MORPH_RECT)
-  kernelSize = step.get('k', 3)
   iterations = step.get('iter', 1)
 
-  kernel = cv2.getStructuringElement(shape, ksize=(kernelSize, kernelSize))
-  mrpherode = cv2.erode(kwargs['image'], kernel, iterations=iterations)
+  kernel = kwargs.get('kernel')
+  mrpherode = cv2.erode(kwargs.get('image'), kernel, iterations=iterations)
   
-  kwargs['mrpherode'] = mrpherode
+  kwargs['image'] = mrpherode
   
   return kwargs
 
@@ -45,22 +69,21 @@ def dilate(step, **kwargs):
   
   Keyword arguments:
   - image: an image;
+  - kernel: a kernel;
 
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;d;[RECT:0,CROSS:1,ELLIPSE:2];RECT-- shape: shape of structuring element cv2.MORPH_(...)
-  --n;l;[3,5,7,9];3-- k: kernel size
   --n;r;[1,15,1];1-- iter: number of iterations
 
   Returns:
   - image: result image;
   '''
 
-  shape = step.get('shape',cv2.MORPH_RECT)
-  kernelSize = step.get('k', 3)
   iterations = step.get('iter', 1)
 
-  kernel = cv2.getStructuringElement(shape, ksize=(kernelSize, kernelSize))
-  kwargs['image'] = cv2.dilate(kwargs['image'], kernel, iterations=iterations)
+  kernel = kwargs.get('kernel')
+  mrphdilate = cv2.dilate(kwargs.get('image'), kernel, iterations=iterations)
+
+  kwargs['image'] = mrphdilate
 
   return kwargs
 
@@ -77,23 +100,21 @@ def mex(step, **kwargs):
 
   Keyword arguments:
   - image: an image;
+  - kernel: a kernel;
 
   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;d;[RECT:0,CROSS:1,ELLIPSE:2];RECT-- shape: shape of structuring element cv2.MORPH_(...)
-  --n;l;[3,5,7,9];3-- k: kernel size
   --n;d;[OPEN:2,CLOSE:3,GRADIENT:4,TOPHAT:5,BLACKHAT:6];OPEN-- type: type of operations cv2.MORPH_(...)
 
   Returns:
   - image: result image;
   '''
   
-  shape = step.get('shape',cv2.MORPH_RECT)
-  kernelSize = step.get('k', 3)
   type = step.get('type', cv2.MORPH_OPEN)
 
-  kernel = cv2.getStructuringElement(shape, (kernelSize, kernelSize))
-
-  kwargs['image'] = cv2.morphologyEx(kwargs['image'], type, kernel)
+  kernel = kwargs.get('kernel')
+  mrphex = cv2.morphologyEx(kwargs['image'], type, kernel)
+  
+  kwargs['image'] = mrphex
 
   return kwargs
 
