@@ -21,13 +21,14 @@ def crop(step, **kwargs):
   Returns:
   - image: result image;
   '''  
+  image = kwargs.get('image')
+  (h, w) = image.shape[:2]
+
   y0 = step.get('y0', 0)
   y1 = step.get('y1', h)
   x0 = step.get('x0', 0)
   x1 = step.get('x1', w)
 
-  image = kwargs.get('image')
-  (h, w) = image.shape[:2]
   kwargs['image'] = image[y0:y1, x0:x1]
   return kwargs
 

@@ -26,11 +26,10 @@ def fast(step, **kwargs):
   type = step.get('type', 0)
 
   detector = cv2.FastFeatureDetector_create(threshold=threshold, nonmaxSuppression=nonmax_suppression, type=type)
-  kps = detector.detect(kwargs['image'], None)
-  kwargs['kps'] = kps
+  keypoints = detector.detect(kwargs['image'], None)
+  kwargs['kpnts'] = keypoints
 
   return kwargs
-
 
 
 def star(step, **kwargs):
@@ -59,8 +58,8 @@ def star(step, **kwargs):
   nonmax_suppression_size = step.get('nonmax-size', 5)
 
   detector = cv2.xfeatures2d.StarDetector_create(max_size, resp_threshold, proj_threshold, bin_threshold, nonmax_suppression_size)  
-  kps = detector.detect(kwargs['image'])
-  kwargs['kps'] = kps
+  keypoints = detector.detect(kwargs['image'])
+  kwargs['kpnts'] = keypoints
 
   return kwargs
 

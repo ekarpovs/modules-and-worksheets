@@ -20,7 +20,6 @@ def cnt_zero(step, **kwargs):
   - zeros: number of zeros in the binary image;
   - equ: zeros == size
   '''  
-
   image = kwargs.get('image')
   size = np.size(image)
 
@@ -59,7 +58,8 @@ def mask(step, **kwargs):
   - mask: mask
   '''  
 
-  (h, w) = kwargs['image'].shape[:2]
+  image = kwargs.get('image')
+  (h, w) = image.shape[:2]
 
   type = step.get('type', 0)
   idfact = step.get('idfact', 1)
@@ -92,7 +92,6 @@ def mask(step, **kwargs):
     cv2.circle(mask, (cx, cy), rad, value, -1)
  
   kwargs['mask'] = mask
-
   return kwargs
 
 
@@ -115,7 +114,6 @@ def shp_rectangle(step, **kwargs):
   Returns:
   - image: a black rectangle image;
   '''
-
   h = step.get('h', 300)
   w = step.get('w', 300)
 
@@ -130,8 +128,7 @@ def shp_rectangle(step, **kwargs):
   rectangle = np.zeros((h, w), dtype = "uint8")
   cv2.rectangle(rectangle, (tlx, tly), (brx, bry), 255, -1)
 
-  kwargs[dst_key] = rectangle
-   
+  kwargs[dst_key] = rectangle  
   return kwargs
 
 
@@ -153,7 +150,6 @@ def shp_circle(step, **kwargs):
   Returns:
   - image: a black circle image;
   '''
-
   h = step.get('h', 300)
   w = step.get('w', 300)
   cx = step.get('cx', 150)
@@ -165,6 +161,5 @@ def shp_circle(step, **kwargs):
   circle = np.zeros((h, w), dtype = "uint8")
   cv2.circle(circle, (cx, cy), r, 255, -1)
 
-  kwargs[dst_key] = circle
-   
+  kwargs[dst_key] = circle  
   return kwargs

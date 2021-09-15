@@ -1,25 +1,26 @@
 '''
-Local module, place 'image' from previous operation into kwargs with a new key
+Local module, copies the kwargs[src-key] to kwargs[dst-key(s)]
 '''
 import cv2
 
-def comm_to_nkey(step, **kwargs):
+def src_to_dst(step, **kwargs):
   '''
-  Add the kwargs['image']
+  Copies the kwargs[src-key] to kwargs[dst-key(s)]
   
   Keyword arguments:
   - image: an image that will be into 
 
   Step arguments (--Type;Domain;[Possible Values];Default-- name: description):
-  --s;s;[];'image1'-- nkey: new key name
-
+  --s;l;['image', 'image1', 'mask'];'image'-- src-key: src key name
+  --s;l;['image', 'image1', 'mask'];'image'-- dst-key: src key name
 
   Returns:
-  - the kwargs with image value with new key.
+  - the kwargs with src and its copy(es).
   '''  
 
-  nkey = step.get('nkey', 'image1')
+  src_key = step.get('src-key', 'image')
+  dst_key = step.get('dst-key', 'image')
 
-  kwargs[nkey] = kwargs['image']
+  kwargs[dst_key] = kwargs.get(src_key).copy()
 
   return kwargs

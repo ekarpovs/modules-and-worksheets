@@ -1,5 +1,5 @@
 [ 
-  {"exec": "bsc.mask", "params": {}},
+  {"exec": "shapes.mask", "params": {}},
   {"exec": "clrs.bgrto", "params": {}},
   {"exec": "arithmetic.arth_add", "params": {}},
   {"exec": "clrs.bgrto", "params": {"useorig": true}},
