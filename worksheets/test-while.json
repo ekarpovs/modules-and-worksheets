@@ -1,4 +1,4 @@
 [
   {"stm": "glbstm.whilestm", "params":{"include": 1}},
-  {"exec": "bsc.rotate", "params":{"angle": 50}}
+  {"exec": "bsc.rotate", "params":{"useorig": true, "angle": 50}}
 ]

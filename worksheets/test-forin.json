@@ -1,4 +1,4 @@
 [
-  {"stm": "glbstm.forinrangestm", "params":{"start": 0, "stop": 60, "step": 15, "i": "angle", "include": 1}},
-  {"exec": "bsc.rotate", "params":{}}
+  {"stm": "glbstm.forinrangestm", "params":{"start": 0, "stop": 60, "step": 15, "map": "x", "include": 1}},
+  {"exec": "bsc.translate", "params":{}}
 ]

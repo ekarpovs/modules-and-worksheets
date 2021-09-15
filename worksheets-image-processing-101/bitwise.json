@@ -1,18 +1,19 @@
 [
+  {"exec": "clrs.bgrto", "params": {}},
+ 
   {"exec": "shapes.shp_circle"},
-  {"exec": "commutate.comm_to_nkey"},
-  {"exec": "shapes.shp_rectangle"},
-  {"exec": "bitwise.btw_and" },
+  {"exec": "shapes.shp_rectangle", "params":{"dst-key": "mask"}},
+  {"exec": "bitwise.btw_and" , "params":{}},
+
   {"exec": "shapes.shp_circle"},
-  {"exec": "commutate.comm_to_nkey"},
-  {"exec": "shapes.shp_rectangle"},
-  {"exec": "bitwise.btw_or" },
+  {"exec": "shapes.shp_rectangle", "params":{"dst-key": "mask"}},
+  {"exec": "bitwise.btw_or" , "params":{}},
+
   {"exec": "shapes.shp_circle"},
-  {"exec": "commutate.comm_to_nkey"},
-  {"exec": "shapes.shp_rectangle"},
-  {"exec": "bitwise.btw_xor" },
+  {"exec": "shapes.shp_rectangle", "params":{"dst-key": "mask"}},
+  {"exec": "bitwise.btw_xor", "params":{}},
+
   {"exec": "shapes.shp_circle"},
-  {"exec": "commutate.comm_to_nkey"},
-  {"exec": "shapes.shp_rectangle"},
-  {"exec": "bitwise.btw_not" }
+  {"exec": "shapes.shp_rectangle", "params":{"dst-key": "mask"}},
+  {"exec": "bitwise.btw_not", "params":{}}
 ]

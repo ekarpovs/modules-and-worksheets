@@ -1,4 +1,7 @@
-[
+[ 
+  {"exec": "bsc.mask", "params": {}},
+  {"exec": "clrs.bgrto", "params": {}},
   {"exec": "arithmetic.arth_add", "params": {}},
+  {"exec": "clrs.bgrto", "params": {"useorig": true}},
   {"exec": "arithmetic.arth_sub", "params": {}}
 ]

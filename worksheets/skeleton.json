@@ -1,0 +1,12 @@
+[
+  {"exec": "clrs.bgrto"},
+  {"exec": "shapes.mask", "params": {}},
+  {"exec": "thrsh.simple", "params": {}},
+  {"exec": "mrph.kernel", "params": {}},
+  {"stm": "glbstm.whilestm", "params": {"include": 5}},
+  {"exec": "mrph.erode", "params": {}},
+  {"exec": "mrph.dilate", "params": {}},
+  {"exec": "arithmetic.arth_sub", "params": {}},
+  {"exec": "bitwise.btw_or", "params": {}},
+  {"exec": "shapes.cnt_zero", "params": {}}
+]
