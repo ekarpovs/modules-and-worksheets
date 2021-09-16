@@ -93,6 +93,7 @@ def restore(step, **kwargs):
   
   Step arguments:
   --str;s;[];""--  ffn: full file name, where from the image will be restored.
+  --str;s;[];""-- index: an image key idx
   
   Returns:
   - the image.
