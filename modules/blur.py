@@ -6,7 +6,7 @@ import cv2
 
 def avg(step, **kwargs):
   '''
-  Performs average bluring.
+  Average bluring.
 
   Keyword arguments:
   - image: an image;
@@ -29,7 +29,7 @@ def avg(step, **kwargs):
 
 def gaus(step, **kwargs):
   '''
-  Performs gausian bluring.
+  Gausian bluring.
 
   Keyword arguments:
   - image: an image;
@@ -52,7 +52,7 @@ def gaus(step, **kwargs):
 
 def median(step,**kwargs):
   '''
-  Performs median bluring.
+  Median bluring.
 
   Keyword arguments:
   - image: an image;

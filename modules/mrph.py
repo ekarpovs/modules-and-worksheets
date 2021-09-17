@@ -10,7 +10,7 @@ import cv2
 
 def kernel(step, **kwargs):
   '''
-  Create structured element (kernel)
+  Creates structured element (kernel)
 
   Keyword arguments:
   - image: an image;
@@ -91,7 +91,7 @@ def dilate(step, **kwargs):
 
 def mex(step, **kwargs):
   '''
-  Performs one of following morphological operations:
+  Morphological operations:
   - opening: erosion followed by dilation;
   - closing: dilation followed by erosion;
   - gradient: the difference between dilation and erosion of an image.

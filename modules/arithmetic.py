@@ -7,7 +7,7 @@ import numpy as np
 
 def arth_add(step, **kwargs):
   '''
-  Performs Add operation with the input image and a mask
+  Add operation with the input image and a mask
 
   Keyword arguments:
   - image: an image;
@@ -28,7 +28,7 @@ def arth_add(step, **kwargs):
 
 def arth_sub(step, **kwargs):
   '''
-  Performs Substraction operation with the input image and a mask
+  Substraction operation with the input image and a mask
 
   Keyword arguments:
   - image: an image;

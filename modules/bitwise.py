@@ -6,7 +6,7 @@ import cv2
 
 def btw_and(step, **kwargs):
   '''
-  Performs AND operation with an image and a mask.
+  AND operation with an image and a mask.
 
   Keyword arguments:
   - image: an image;
@@ -24,7 +24,7 @@ def btw_and(step, **kwargs):
 
 def btw_or(step, **kwargs):
   '''
-  Performs OR operation with an image and a mask.
+  OR operation with an image and a mask.
 
   Keyword arguments:
   - image: an image;
@@ -41,7 +41,7 @@ def btw_or(step, **kwargs):
 
 def btw_xor(step, **kwargs):
   '''
-  Performs XOR operation with an image and a mask.
+  XOR operation with an image and a mask.
 
   Keyword arguments:
   - image: an image;
@@ -59,7 +59,7 @@ def btw_xor(step, **kwargs):
 
 def btw_not(step, **kwargs):
   '''
-  Performs NOT operation with an image and a mask.
+  NOT operation with an image and a mask.
 
   Keyword arguments:
   - image: an image;

@@ -34,12 +34,13 @@ def crop(step, **kwargs):
 
 def flip(step, **kwargs):
   '''
-  Flipss an image.
+  Flips an image.
 
-  Keyword arguments:
-  - image: an image;
+  @kwargs:
+    - image: an image;
 
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
+  @step: 
+  (--Type:Domain:[Possible Values]:Default-- name: description):
   --n;d;[both:0,vertical:1,horizontal:2];vertical-- direct: direction
  
   Returns:
@@ -198,7 +199,7 @@ def translate(step, **kwargs):
 
 def fit(step, **kwargs):
   '''
-  resize image1 regarding image
+  Resizes image1 regarding image
 
   Keyword arguments (key, default):
   - image: an image;

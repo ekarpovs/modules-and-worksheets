@@ -79,7 +79,7 @@ def bfm(step, **kwargs):
 
 def good(step, **kwargs):
   '''
-  Select matches regarding predefined distance.
+  Selects matches regarding predefined distance.
 
   Keyword arguments:
   - image: an image;
