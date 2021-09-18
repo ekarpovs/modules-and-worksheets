@@ -2,4 +2,5 @@ modules/__pycache__
 modules/tester.py
 modules-common/__pycache__
 worksheets/test.json
+worksheets/worksheets-vs
 .vscode
