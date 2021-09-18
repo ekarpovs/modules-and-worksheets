@@ -61,8 +61,8 @@ def restore(params, **data):
   
   parameters:
     - params: 
-      --str;s;[];""--  ffn: full file name, where from the image will be restored.
-      --str;s;[];"image"-- key:  name of a reference to the restored image
+      --str;s;[];--  ffn: full file name, where from the image will be restored.
+      --str;s;[];image-- key:  name of a reference to the restored image
   
   returns:
     - data: 
@@ -84,7 +84,7 @@ def clean_data(params, **data):
   
   parameters:
     - params: 
-      --str;s;[];""-- keys: keys, separated by ',' , that will be removed from the data
+      --str;s;[];-- keys: keys, separated by ',' , that will be removed from the data
 
     - data: - dictionary of references to a data that will be processed
 
@@ -92,11 +92,12 @@ def clean_data(params, **data):
   - data without removed items
   '''  
   keys = params.get('keys')
-  keys_list = keys.split(',')
-  keys_list = [k.strip() for k in keys_list]
-  if len(keys_list) > 0:
+  if keys is not None:
     keys_list = keys.split(',')
-    for key in [k for k in data if k in keys_list]: data.pop(key, None)
+    keys_list = [k.strip() for k in keys_list]
+    if len(keys_list) > 0:
+      keys_list = keys.split(',')
+      for key in [k for k in data if k in keys_list]: data.pop(key, None)
   return data
 
 
@@ -106,6 +107,7 @@ def print_data(params, **data):
 
   parameters:
     - params: 
+      --b;f;[True, False];True-- keys-only: print only all data keys
       --str;s;[];image, orig-- keys: keys, separated by ',' , that will be not printed
 
     - data: - dictionary of references to a data that will be processed
@@ -113,9 +115,13 @@ def print_data(params, **data):
   returns:
     - the data as is
   '''
+  keys_only = params.get('keys-only', True)
   keys = params.get('keys', 'image, orig')
-  keys_list = keys.split(',')
-  keys_list = [k.strip() for k in keys_list]
-  [print(k, v) for k, v in data.items() if k not in keys_list] 
+  if keys_only:
+    [print(k) for k, v in data.items()] 
+  else:
+    keys_list = keys.split(',')
+    keys_list = [k.strip() for k in keys_list]
+    [print(k, v) for k, v in data.items() if k not in keys_list] 
   return data
 
