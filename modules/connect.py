@@ -4,60 +4,56 @@ Connected Component Labeling operations
 import cv2
 
 
-def basic(step, **kwargs):
+def basic(params, **data):
   '''
   Applys apply connected component analysis to the thresholded image 
 
-  Keyword arguments:
-  - image: an image;
+    parameters:
+    - params: 
+      --n;l;[4,8];4-- c: connectivity
 
-   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;l;[4,8];4-- c: connectivity
-
-  Returns:
-  - image;
-  - num: number of total components, that were detected;
-  - labels: a mask named labels has the same spatial dimensions as input thresh image;
-  - stats: statistics on each connected component, including the bounding box coordinates and area;
-  - centroids: (x, y) coordinates of each connected component.
-  '''   
-
-  connectivity = int(step.get('c', 4))
-
-  output = cv2.connectedComponentsWithStats(kwargs['image'], connectivity, cv2.CV_32S)
+    - data: 
+        image - reference to the image
+  
+  returns:
+    - data: 
+        num - number of total components, that were detected;
+        labels - a mask named labels has the same spatial dimensions as input thresh image;
+        stats - statistics on each connected component, including the bounding box coordinates and area;
+        centroids - (x, y) coordinates of each connected component.
+'''   
+  connectivity = int(params.get('c', 4))
+  output = cv2.connectedComponentsWithStats(data.get('image'), connectivity, cv2.CV_32S)
   (num_labels, labels, stats, centroids) = output 
-
-  kwargs['num'] = num_labels 
-  kwargs['labels'] = labels 
-  kwargs['stats'] = stats 
-  kwargs['centroids'] = centroids 
-
-  return kwargs
+  data['num'] = num_labels 
+  data['labels'] = labels 
+  data['stats'] = stats 
+  data['centroids'] = centroids 
+  return data
 
 
 
-def stats(step, **kwargs):
+# Need to check and correct !!!!!!!!!
+def stats(params, **data):
   '''
   Iterates through labels and parses each one.
 
-  Keyword arguments (key, default):
-  - image: an image;
-
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;s;[];0-- num: number of total components, that were detected
-  --n;l;[];0-- labels: a mask named labels has the same spatial dimensions as input thresh image
-  --n;l;[];0-- stats: statistics on each connected component, including the bounding box coordinates and area
-  --n;l;[];0-- centroids: (x, y) coordinates of each connected component
-
-
-  Returns:
-  - image;
+    parameters:
+    - params: 
+      --n;s;[];0-- num: number of total components, that were detected
+      --n;l;[];0-- labels: a mask named labels has the same spatial dimensions as input thresh image
+      --n;l;[];0-- stats: statistics on each connected component, including the bounding box coordinates and area
+      --n;l;[];0-- centroids: (x, y) coordinates of each connected component
+    - data: 
+        image - reference to the image 
+  returns:
+    - data: 
+      ???????????????
   '''   
-
-  num_labels = int(step.get('num', 0))
-  labels = int(step.get('labels', None))
-  stats = int(step.get('stats', None))
-  centroids = int(step.get('centroids', 0))
+  num_labels = int(params.get('num-labels', 0))
+  labels = int(params.get('labels', None))
+  stats = int(params.get('stats', None))
+  centroids = int(params.get('centroids', 0))
 
   for i in range(0, num_labels): 
     # extract the connected component statistics and centroid for
@@ -68,5 +64,4 @@ def stats(step, **kwargs):
     h = stats[i, cv2.CC_STAT_HEIGHT]
     area = stats[i, cv2.CC_STAT_AREA]
     (cX, cY) = centroids[i]
-
-  return kwargs
+  return data

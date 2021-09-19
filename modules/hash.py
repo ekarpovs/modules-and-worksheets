@@ -4,22 +4,20 @@ Hashing operations
 import cv2
 
 
-def dhashm(step, **kwargs):
+def dhashm(params, **data):
   '''
   Computes the (relative) horizontal gradient between adjacent column pixels
 
-  Keyword arguments (key, default):
-  - image: an image;
-
-  Returns:
-  - image;
-  - dhash: diffeerence hash.
+  parameters:
+    - params: 
+    - data: 
+        image - reference to the image
+  returns:
+    - data: 
+        dhash: diffeerence hash
   '''
-
-  diff = kwargs['image'][:, 1:] > kwargs['image'][:, :-1]
+  diff = data['image'][:, 1:] > data['image'][:, :-1]
 	# convert the difference image to a hash
   dhash = sum([2 ** i for (i, v) in enumerate(diff.flatten()) if v])
-
-  kwargs['dhash'] = dhash
-
-  return kwargs
+  data['dhash'] = dhash
+  return data

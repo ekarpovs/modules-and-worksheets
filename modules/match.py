@@ -6,101 +6,82 @@ import cv2
 
 
 
-def bfm_knn(step, **kwargs):
+def bfm_knn(params, **data):
   '''
   Computes images semilaraty using Brute-Force Matchers.
 
-  Keyword arguments:
-  - image: an image;
-  - da: feature descriptor of the first image;
-  - db: feature descriptor of the second image;
-
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;d;[NORM_L1(SIFT&SURF):1,NORM_L2(SIFT&SURF):2,HAMMING( ORB&FAST&BRISK&BRIEF):3,HAMMING2(ORB if it uses VTA_K == 3 or 4):4];NORM_L2(SIFT&SURF)-- meth: interpolation method cv2.cv2.NORM_(...)
-  --b;f;[False,True];True-- - check: cross check
-  --n;s;[];2-- k: draw two match-lines for each keypoint
-
-  Returns:
-  - image: result image;
-  - matches: .
+  parameters:
+    - params: 
+      --n;d;[NORM_L1(SIFT&SURF):1,NORM_L2(SIFT&SURF):2,HAMMING( ORB&FAST&BRISK&BRIEF):3,HAMMING2(ORB if it uses VTA_K == 3 or 4):4];NORM_L2(SIFT&SURF)-- meth: interpolation method cv2.cv2.NORM_(...)
+      --b;f;[False,True];True-- - check: cross check
+      --n;s;[];2-- k: draw two match-lines for each keypoint
+    - data: 
+        image - reference to the image
+        da - feature descriptor of the first image;
+        db - feature descriptor of the second image;
+  returns:
+    - data: 
+        matches: matches
   '''
- 
-  type = step.get('type', cv2.NORM_L2)
-  cross_check = step.get('check', True)
-  k = step.get('k', 2)
-
-  descs_a = kwargs['da']
-  descs_b = kwargs['db']
-
+  type = params.get('type', cv2.NORM_L2)
+  cross_check = params.get('check', True)
+  k = params.get('k', 2)
+  descs_a = data.get('da')
+  descs_b = data.get('db')
   bfm = cv2.BFMatcher(type, crossCheck=cross_check)
   matches = bfm.knnMatch(descs_a, descs_b, k=k)
-
-  kwargs['matches'] = matches
-
-  return kwargs
+  data['matches'] = matches
+  return data
 
 
-
-def bfm(step, **kwargs):
+def bfm(params, **data):
   '''
   Computes images semilaraty using Brute-Force Matchers.
 
-  Keyword arguments:
-  - image: an image;
-  - da: feature descriptor of the first image;
-  - db: feature descriptor of the second image;
-
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;d;[NORM_L1(SIFT&SURF):1,NORM_L2(SIFT&SURF):2,HAMMING( ORB&FAST&BRISK&BRIEF):3,HAMMING2(ORB if it uses VTA_K == 3 or 4):4];NORM_L2(SIFT&SURF)-- meth: interpolation method cv2.cv2.NORM_(...)
-  --b;f;[False,True];True-- - check: cross check
-  --n;s;[];2-- k: draw two match-lines for each keypoint
-
-  Returns:
-  - image: result image;
-  - matches: .
+  parameters:
+    - params: 
+      --n;d;[NORM_L1(SIFT&SURF):1,NORM_L2(SIFT&SURF):2,HAMMING( ORB&FAST&BRISK&BRIEF):3,HAMMING2(ORB if it uses VTA_K == 3 or 4):4];NORM_L2(SIFT&SURF)-- meth: interpolation method cv2.cv2.NORM_(...)
+      --b;f;[False,True];True-- - check: cross check
+      --n;s;[];2-- k: draw two match-lines for each keypoint
+    - data: 
+        image - reference to the image
+        da - feature descriptor of the first image;
+        db - feature descriptor of the second image;
+  returns:
+    - data: 
+        matches: matches
   '''
-
-  type = step.get('type', cv2.NORM_L2)
-  cross_check = step.get('check', True)
-  descs_a = kwargs['da']
-  descs_b = kwargs['db']
-
+  type = params.get('type', cv2.NORM_L2)
+  cross_check = params.get('check', True)
+  descs_a = data.get('da')
+  descs_b = data.get('db')
   bfm = cv2.BFMatcher(type, crossCheck=cross_check)
   matches = bfm.Match(descs_a, descs_b)
-
   # sort in ascending order
   matches = sorted(matches, key=lambda val: val.distance)
-
-  kwargs['matches'] = matches
-
-  return kwargs
+  data['matches'] = matches
+  return data
 
 
-
-def good(step, **kwargs):
+def good(params, **data):
   '''
   Selects matches regarding predefined distance.
 
-  Keyword arguments:
-  - image: an image;
-  - matches: matches;
- 
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --f;r;[0.0,1.0,0.1];0.5-- dist: max distance;
-
-  Returns:
-  - matches: good matches (< distance).
+  parameters:
+    - params: 
+      --f;r;[0.0,1.0,0.1];0.5-- dist: max distance;
+    - data: 
+        image - reference to the image
+         matches - matches;
+  returns:
+    - data: 
+        matches - good matches (< distance)
   '''
-
-  distance = step.get('dist', 0.5)
-
-  matches = kwargs['matches']
-
+  distance = params.get('dist', 0.5)
+  matches = data.get('matches')
   good = [m for m in matches if m.distance < distance]
-  
-  kwargs['matches'] = good
-
-  return kwargs
+  data['matches'] = good
+  return data
 
 """
 		# flann matcher

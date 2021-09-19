@@ -4,75 +4,69 @@ Contours operations
 import cv2
 
 
-def find(step, **kwargs):
+def find(params, **data):
   '''
   Finds contours of an image.
 
-  Keyword arguments:
-  - image: an image;
-
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;d;[NONE:1,SIMPLE:2,TC89_L1:3,TC89_KCOS:4];SIMPLE-- meth: interpolation method cv2.CHAIN_APPROX_(...)
-  --n;d;[EXTERNAL:0,LIST:1,CCOMP:2,TREE:3,FLOODFILL:4];EXTERNAL-- md: result mode cv2.RETR_(...)
-  
-  Returns:
-  - image;
-  - cntrs: list of the contours.
+  parameters:
+    - params: 
+      --n;d;[NONE:1,SIMPLE:2,TC89_L1:3,TC89_KCOS:4];SIMPLE-- meth: interpolation method cv2.CHAIN_APPROX_(...)
+      --n;d;[EXTERNAL:0,LIST:1,CCOMP:2,TREE:3,FLOODFILL:4];EXTERNAL-- md: result mode cv2.RETR_(...)
+    - data: 
+        image - reference to the image 
+  returns:
+    - data: 
+        cntrs - list of the founded contours
   '''  
-  mode = step.get('md', cv2.RETR_EXTERNAL)
-  method = step.get('meth', cv2.CHAIN_APPROX_SIMPLE)
+  mode = params.get('md', cv2.RETR_EXTERNAL)
+  method = params.get('meth', cv2.CHAIN_APPROX_SIMPLE)
 
-  cntrs = cv2.findContours(kwargs.get('image'), mode, method) 
+  cntrs = cv2.findContours(data.get('image'), mode, method) 
   if len(cntrs) == 3:
       cntrs = cntrs[1]
-
-  kwargs['cntrs'] = cntrs 
-  return kwargs
-
+  data['cntrs'] = cntrs 
+  return data
 
 
-def sort(step, **kwargs):
+def sort(params, **data):
   '''
   Sorts contours.
 
-  Keyword arguments:
-  - image: an image;
-  - cntrs: contours;
-
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --b;f;[False,True];False-- rev: reverse flag
-
-  Returns:
-  - image;
-  - cntrs: list of the sorted contours.
+  parameters:
+    - params: 
+      --b;f;[False,True];False-- rev: reverse flag
+    - data: 
+      cntrs - contours
+  returns:
+    - data: 
+        cntrs - list of the sorted contours
+        boxes - coordinates of bounding boxes
   '''
-  reverse = step.get('rev', True)
-  cntrs = kwargs.get('cntrs')
- 
+  reverse = params.get('rev', True)
+  cntrs = data.get('cntrs')
   i = 0
   # construct the list of bounding boxes and sort them from top to
   # bottom
   bounding_boxes = [cv2.boundingRect(c) for c in cntrs]
   (cntrs, bounding_boxes) = zip(*sorted(zip(cntrs, bounding_boxes), key=lambda b:b[1][i], reverse=reverse))
+  data['cntrs'] = cntrs
+  data['boxes'] = bounding_boxes
+  return data
 
-  kwargs['cntrs'] = cntrs
-  kwargs['boxes'] = bounding_boxes
-  return kwargs
 
-
-def sel_rect(step, **kwargs):
+def sel_rect(params, **data):
   '''
   Selects rectangle contours.
 
-  Keyword arguments:
-  - image: an image;
-  - cntrs: sorted contours;
-
-  Returns:
-  - image;
-  - rect: the biggest rectangle contour.
+  parameters:
+    - params: 
+    - data: 
+      cntrs - sorted contours 
+  returns:
+    - data: 
+        rect - the biggest rectangle contour
   '''
-  cntrs = kwargs.get('cntrs')
+  cntrs = data.get('cntrs')
  	# loop over the contours 
   for c in cntrs:
 		# approximate the contour
@@ -83,7 +77,6 @@ def sel_rect(step, **kwargs):
 	  if len(approx) == 4:
 		  rect = approx
 		  break 
-
-  kwargs['rect'] = rect
-  return kwargs
+  data['rect'] = rect
+  return data
 

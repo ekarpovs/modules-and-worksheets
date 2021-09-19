@@ -4,68 +4,58 @@ Bluring operation
 import cv2
 
 
-def avg(step, **kwargs):
+def avg(params, **data):
   '''
   Average bluring.
 
-  Keyword arguments:
-  - image: an image;
-
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;l;[3,5,7,9];3-- k: kernel size
-  
-  Returns:
-  - image: result image;
+  parameters:
+    - params:
+      --n;l;[3,5,7,9];3-- k: kernel size   
+    - data: 
+      image - reference to an image that will be blured
+  returns:
+    - data:
+      image - reference to the blured image
   '''
-
-  kernel = step.get('k', 3)
+  kernel = params.get('k', 3)
   kX = kY = kernel 
-
-  kwargs['image'] = cv2.blur(kwargs['image'], (kX, kY)) 
-
-  return kwargs
+  data['image'] = cv2.blur(data.get('image'), (kX, kY)) 
+  return data
 
 
-
-def gaus(step, **kwargs):
+def gaus(params, **data):
   '''
   Gausian bluring.
 
-  Keyword arguments:
-  - image: an image;
-
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;l;[3,5,7,9];3-- k: kernel size
-  
-  Returns:
-  - image: result image;
+  parameters:
+    - params:
+      --n;l;[3,5,7,9];3-- k: kernel size   
+    - data: 
+      image - reference to an image that will be blured
+  returns:
+    - data:
+      image - reference to the blured image
   '''
-
-  kernel = step.get('k', 3)
+  kernel = params.get('k', 3)
   kX = kY = kernel 
-
-  kwargs['image'] = cv2.GaussianBlur(kwargs['image'], (kX, kY), 0)
-
-  return kwargs
+  data['image'] = cv2.GaussianBlur(data.get('image'), (kX, kY), 0)
+  return data
 
 
 
-def median(step,**kwargs):
+def median(params,**data):
   '''
   Median bluring.
 
-  Keyword arguments:
-  - image: an image;
-
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;l;[3,5,7,9];3-- k: kernel size
-  
-  Returns:
-  - image: result image;
-  '''
-
-  kernel = step.get('k', 3)
-
-  kwargs['image'] = cv2.medianBlur(kwargs['image'], kernel)
-
-  return kwargs
+    parameters:
+    - params:
+      --n;l;[3,5,7,9];3-- k: kernel size   
+    - data: 
+      image - reference to an image that will be blured
+  returns:
+    - data:
+      image - reference to the blured image
+'''
+  kernel = params.get('k', 3)
+  data['image'] = cv2.medianBlur(data.get('image'), kernel)
+  return data

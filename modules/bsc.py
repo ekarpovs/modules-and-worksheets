@@ -5,80 +5,85 @@ import cv2
 import numpy as np
 
 
-def crop(step, **kwargs):
+def crop(params, **data):
   '''
   Crops an image.
 
-  Keyword arguments:
-  - image: an image;
+  parameters:
+    - params:
+      --n;s;[];0-- y0: left top coordinate
+      --n;s;[];h-- y1: left bottom coordinate
+      --n;s;[];0-- x0: left top coordinate
+      --n;s;[];w-- x1: Right top coordinate
+    
+    - data:
+      image - reference to an image that will be cropped
 
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;s;[];0-- y0: left top coordinate
-  --n;s;[];h-- y1: left bottom coordinate
-  --n;s;[];0-- x0: left top coordinate
-  --n;s;[];w-- x1: Right top coordinate
-  
-  Returns:
-  - image: result image;
+  returns:
+    - data:
+      image - reference to the cropped image
   '''  
-  image = kwargs.get('image')
+  image = data.get('image')
   (h, w) = image.shape[:2]
 
-  y0 = step.get('y0', 0)
-  y1 = step.get('y1', h)
-  x0 = step.get('x0', 0)
-  x1 = step.get('x1', w)
+  y0 = params.get('y0', 0)
+  y1 = params.get('y1', h)
+  x0 = params.get('x0', 0)
+  x1 = params.get('x1', w)
 
-  kwargs['image'] = image[y0:y1, x0:x1]
-  return kwargs
+  data['image'] = image[y0:y1, x0:x1]
+  return data
 
-def flip(step, **kwargs):
+def flip(params, **data):
   '''
   Flips an image.
 
-  @kwargs:
-    - image: an image;
+  parameters:
+    - params:
+      --n;d;[both:0,vertical:1,horizontal:2];vertical-- direct: direction
+    
+    - data: 
+      image - reference to an image that will be flipped
 
-  @step: 
-  (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;d;[both:0,vertical:1,horizontal:2];vertical-- direct: direction
- 
-  Returns:
-  - image: result image;
+  returns:
+    - data:
+      image - reference to the flipped image
   '''  
-  direction = step.get('direct', 1)
+  direction = params.get('direct', 1)
 
-  kwargs['image'] = cv2.flip(kwargs.get('image'), direction) 
-  return kwargs
+  data['image'] = cv2.flip(data.get('image'), direction) 
+  return data
 
 
-def resize(step, **kwargs):
+def resize(params, **data):
   '''
   Resizes an image.
 
-  Keyword arguments:
-  - image: an image;
-  
-   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;d;[NEAREST:0,LINEAR:1,AREA:2,CUBIC:3,LANCZOS:4];AREA-- meth: interpolation method cv2.INTER_(...)
-  --n;d;[pixel:0,percent:1];pixel-- unit: measurements unit
-  --n;d;[height:0,width:1];height-- side: rectangle side
-  --n;s;[];h/w-- size: new zise
+  parameters:
+    - params:
+      --n;d;[NEAREST:0,LINEAR:1,AREA:2,CUBIC:3,LANCZOS:4];AREA-- meth: interpolation method cv2.INTER_(...)
+      --n;d;[pixel:0,percent:1];pixel-- unit: measurements unit
+      --n;d;[height:0,width:1];height-- side: rectangle side
+      --n;s;[];h/w-- size: new zise
+    
+    - data: 
+      image - reference to an image that will be resized
 
-  Returns:
-  - image: result image;
+  returns:
+    - data:
+      image - reference to the resized image
   '''
-  method = step.get('meth', cv2.INTER_AREA)
-  unit = step.get('unit', 0)
-  side = step.get('side', 0)
+  method = params.get('meth', cv2.INTER_AREA)
+  unit = params.get('unit', 0)
+  side = params.get('side', 0)
 
-  image = kwargs.get('image')
+  image = data.get('image')
   (h, w) = image.shape[:2]
   #  default value regarding to the side of a rectangle
   def_size = w
   if side == 0:
     def_size = h
-  size = int(step.get('size', def_size))
+  size = int(params.get('size', def_size))
   if unit == 1:
     # size defined in percents - calculate in pixels
     orig_pixels = w
@@ -94,64 +99,69 @@ def resize(step, **kwargs):
     ratio = size / h
     dim = (int(w * ratio), size)
 
-  kwargs['image'] = cv2.resize(image, dim, interpolation=method) 
-  return kwargs
+  data['image'] = cv2.resize(image, dim, interpolation=method) 
+  return data
 
 
-def resize1(step, **kwargs):
+def resize1(params, **data):
   '''
   Resizes an image without aspect ratio (absolute resizing).
 
-  Keyword arguments:
-  - image: an image;
-  
-   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;d;[NEAREST:0,LINEAR:1,AREA:2,CUBIC:3,LANCZOS:4];AREA-- meth: interpolation method cv2.INTER_(...)
-  --n;d;[pixel:0,percent:1];pixel-- unit: measurements unit
-  --n;d;[height:0,width:1];height-- side: rectangle side
-  --n;s;[];h/w-- size: new zise
+  parameters:
+    - params:
+      --n;d;[NEAREST:0,LINEAR:1,AREA:2,CUBIC:3,LANCZOS:4];AREA-- meth: interpolation method cv2.INTER_(...)
+      --n;d;[pixel:0,percent:1];pixel-- unit: measurements unit
+      --n;d;[height:0,width:1];height-- side: rectangle side
+      --n;s;[];h/w-- size: new zise
+    
+    - data: 
+      image - reference to an image that will be resized
 
-  Returns:
-  - image: result image;
+  returns:
+    - data:
+      image - reference to the resized image
+
   '''  
-  method = step.get('meth', cv2.INTER_AREA)
-  unit = step.get('unit', 0)
-  w_new = step.get('w', 9)
-  h_new = step.get('h', 8)
+  method = params.get('meth', cv2.INTER_AREA)
+  unit = params.get('unit', 0)
+  w_new = params.get('w', 9)
+  h_new = params.get('h', 8)
   dim = (w_new, h_new)
 
-  image = kwargs.get('image')
+  image = data.get('image')
 
   if unit == 1: # percent
     (h, w) = image.shape[:2]
     dim = (int(w*w_new/100), int(h*h_new/100))
     
-  kwargs['image'] = cv2.resize(image, dim, interpolation=method) 
-  return kwargs
+  data['image'] = cv2.resize(image, dim, interpolation=method) 
+  return data
 
 
-def rotate(step, **kwargs):  
+def rotate(params, **data):  
   '''
   Rotates an image without cropping.
   
-  Keyword arguments:
-  - image: an image;
+  parameters:
+    - params:
+      --n;r;[0,180,1];0-- angle: rotation angle
+      --b;f;[False,True];True-- neg: negative direction 
+    
+    - data: 
+      image - reference to an image that will be rotated
 
-   Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;r;[0,180,1];0-- angle: rotation angle
-  --b;f;[False,True];True-- neg: negative direction 
-
-  Returns:
-  - image: result image;
+  returns:
+    - data:
+      image - reference to the rotaited image
   '''  
   # grab the dimensions of the image and calculate the center of the image
-  image = kwargs.get('image')
+  image = data.get('image')
   (h, w) = image.shape[:2]
   (cx, cy) = (w / 2, h / 2)
 
   # calculate rotation matrix
-  angle = step.get('angle', 0)
-  negative = step.get('neg', False)
+  angle = params.get('angle', 0)
+  negative = params.get('neg', False)
   if negative:
     angle *= -1 
 
@@ -166,80 +176,80 @@ def rotate(step, **kwargs):
   M[0, 2] += bound_w/2 - cx
   M[1, 2] += bound_h/2 - cy
   # rotate without a cropping
-  kwargs['image'] = cv2.warpAffine(image, M, (bound_w, bound_h))
-  return kwargs
+  data['image'] = cv2.warpAffine(image, M, (bound_w, bound_h))
+  return data
 
 
-def translate(step, **kwargs):
+def translate(params, **data):
   '''
   Translates (Shifts) an image by a NumPy matrix in the form:
     [[1, 0, shiftX], [0, 1, shiftY]] .
 
-  Keyword arguments:
-  - image: an image;
+  parameters:
+    - params:
+      --n;s;[];0-- y: number of pixels to shift
+      --n;s;[];0-- x: number of pixels to shift
+    
+    - data: 
+      image - reference to an image that will be translated
 
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;s;[];0-- y: number of pixels to shift
-  --n;s;[];0-- x: number of pixels to shift
-
-  Returns:
-  - image: result image;
+  returns:
+    - data:
+      image - reference to the translated image
   '''  
-  shiftX = step.get('x', 0)
-  shiftY = step.get('y', 0)
+  shiftX = params.get('x', 0)
+  shiftY = params.get('y', 0)
 
   if shiftX == 0 and shiftY == 0:
-    return kwargs
+    return data
 
-  image = kwargs.get('image')
+  image = data.get('image')
   M = np.float32([[1, 0, shiftX], [0, 1, shiftY]])
-  kwargs['image'] = cv2.warpAffine(image, M, (image.shape[1], image.shape[0])) 
-  return kwargs
+  data['image'] = cv2.warpAffine(image, M, (image.shape[1], image.shape[0])) 
+  return data
 
 
-def fit(step, **kwargs):
+def fit(params, **data):
   '''
   Resizes image1 regarding image
 
-  Keyword arguments (key, default):
-  - image: an image;
-  - image1: an image.
-
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;d;[NEAREST:0,LINEAR:1,AREA:2,CUBIC:3,LANCZOS:4];AREA-- meth: interpolation method cv2.INTER_(...)
-
-  Returns:
-  - image: result image;
+  parameters:
+    - params:
+      --n;d;[NEAREST:0,LINEAR:1,AREA:2,CUBIC:3,LANCZOS:4];AREA-- meth: interpolation method cv2.INTER_(...)   
+    - data: 
+      image - reference to an image
+      image1 - reference to an image that will be resized
+  returns:
+    - data:
+      image - reference to the resized image
   '''  
-  method = step.get('meth', cv2.INTER_AREA)
-
-  image = kwargs['image']
+  method = params.get('meth', cv2.INTER_AREA)
+  image = data.get('image')
   (h, w) = image.shape[:2]
-  image1 = kwargs['image1']
+  image1 = data.get('image1')
   (h1, w1) = image1.shape[:2]
-  
   if (h == h1 and w == w1):
-    return kwargs
-
+    return data
   dim = (w, h)
-  kwargs['image'] = cv2.resize(image1, dim, interpolation=method) 
-  return kwargs
+  data['image'] = cv2.resize(image1, dim, interpolation=method) 
+  return data
 
 
-def transform(step, **kwargs):
+def transform(params, **data):
   '''
   Transforms a skewed image to obtain a top-down view of the original image
 
-  Keyword arguments (key, default):
-  - image: an image;
-
-  Returns:
-  -image: result image;
+  parameters:
+    - params:   
+    - data: 
+      image - reference to an image that will be transformed
+  returns:
+    - data:
+      image - reference to the transformed image
   '''  
-  rect_cnt = kwargs['rect']
-	
-  kwargs['image'] = _four_point_transform(kwargs.get('image'), rect_cnt.reshape(4, 2)) 
-  return kwargs
+  rect_cnt = data['rect']
+  data['image'] = _four_point_transform(data.get('image'), rect_cnt.reshape(4, 2)) 
+  return data
 
 
 ############## Utils ###############################

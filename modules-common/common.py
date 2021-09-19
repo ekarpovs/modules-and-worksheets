@@ -40,16 +40,14 @@ def store(params, **data):
   parameters:
     - params: 
       --str;s[];""-- ffn: full file name, where the image will be stored
-
-    - data: - reference to an image that will be stored
-
+    - data: 
+        image - reference to an image that will be stored
   returns:
     - data: 
-      - reference to the stored image
+      image - reference to the stored image
   '''  
   ffn = params.get('ffn', '')
   image = params.get('image')
-
   if image is not None:
     cv2.imwrite(ffn, image)
   return data
@@ -63,14 +61,13 @@ def restore(params, **data):
     - params: 
       --str;s;[];--  ffn: full file name, where from the image will be restored.
       --str;s;[];image-- key:  name of a reference to the restored image
-  
+  data:
   returns:
     - data: 
-      - reference to the restored image
+        image - reference to the restored image
   '''  
   ffn = params.get('ffn', '')
   key = params.get('key', 'image')
-
   if ffn != '':
     data[key] = cv2.imread(ffn)
   else:
@@ -85,11 +82,9 @@ def clean_data(params, **data):
   parameters:
     - params: 
       --str;s;[];-- keys: keys, separated by ',' , that will be removed from the data
-
     - data: - dictionary of references to a data that will be processed
-
   returns:
-  - data without removed items
+   - data: without removed items
   '''  
   keys = params.get('keys')
   if keys is not None:
@@ -109,11 +104,9 @@ def print_data(params, **data):
     - params: 
       --b;f;[True, False];True-- keys-only: print only all data keys
       --str;s;[];image, orig-- keys: keys, separated by ',' , that will be not printed
-
     - data: - dictionary of references to a data that will be processed
-
   returns:
-    - the data as is
+    - data: as is
   '''
   keys_only = params.get('keys-only', True)
   keys = params.get('keys', 'image, orig')
@@ -124,4 +117,3 @@ def print_data(params, **data):
     keys_list = [k.strip() for k in keys_list]
     [print(k, v) for k, v in data.items() if k not in keys_list] 
   return data
-

@@ -5,44 +5,38 @@ import cv2
 import numpy as np 
 
 
-def arth_add(step, **kwargs):
+def arth_add(params, **data):
   '''
   Add operation with the input image and a mask
 
-  Keyword arguments:
-  - image: an image;
-  - mask: a mask;
-
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-
-  Returns:
-  - image: result image;
+  parameters:
+    - params:   
+    - data: 
+      image - reference to an source image
+      mask - the second image
+  returns:
+    - data:
+      image - reference to the result image
   '''
-
-  mask = kwargs.get('mask')
-
-  kwargs['image'] = cv2.add(kwargs.get('image'), mask) 
-
-  return kwargs
+  mask = data.get('mask')
+  data['image'] = cv2.add(data.get('image'), mask) 
+  return data
 
 
-def arth_sub(step, **kwargs):
+def arth_sub(params, **data):
   '''
   Substraction operation with the input image and a mask
 
-  Keyword arguments:
-  - image: an image;
-  - mask: a mask;
-
-  Step arguments (--Type:Domain:[Possible Values]:Default-- name: description):
-  --n;s;[];1-- dfact: decrease factor
-
-  Returns:
-  - image: result image;
+  parameters:
+    - params:
+      --n;s;[];1-- dfact: decrease factor   
+    - data: 
+      image - reference to an source image
+      mask - the second image
+  returns:
+    - data:
+      image - reference to the result image
   '''
-
-  mask = kwargs.get('mask')
-
-  kwargs['image'] = cv2.subtract(kwargs.get('image'), mask) 
-
-  return kwargs
+  mask = data.get('mask')
+  data['image'] = cv2.subtract(data.get('image'), mask) 
+  return data

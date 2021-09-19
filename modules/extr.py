@@ -4,44 +4,43 @@ Feature extaction operations
 import cv2
 
 
-def freak(step, **kwargs):
+def freak(params, **data):
   '''
   Extract features for given keypoints using FREAK algorithm.
 
-  Keyword arguments (key, default):
-  - image: an image;
-  - kps: keypoints.
-
-  Returns:
-  - image;
-  - descs: feature descriptor.
+  parameters:
+    - params: 
+    - data: 
+        image - reference to the image
+        kps: keypoints.
+  returns:
+    - data: 
+        descs - feature descriptors
   '''
-
-  kps = kwargs['kps']
+  kpts = data['ktps']
   extractor = cv2.xfeatures2d.FREAK_create()
-  (kps, descs) = extractor.compute(kwargs['image'], kps)
-  kwargs['descs'] = descs
-
-  return kwargs
-
+  (kpts, descs) = extractor.compute(data['image'], kpts)
+  data['descs'] = descs
+  return data
 
 
-def brief(step, **kwargs):
+
+def brief(params, **data):
   '''
   Extract features for given keypoints using BRIEF algorithm.
 
-  Keyword arguments (key, default):
-  - image: an image;
-  - kps: keypoints.
-
-  Returns:
-  - image;
-  - descs: feature descriptor.
+  parameters:
+    - params: 
+    - data: 
+        image - reference to the image
+        kps: keypoints.
+  returns:
+    - data: 
+        descs - feature descriptors
   '''
 
-  kps = kwargs['kps']
+  kpts = data['kpts']
   extractor = cv2.xfeatures2d.FREAK_create()
-  (kps, descs) = extractor.compute(kwargs['image'], kps)
-  kwargs['descs'] = descs
-
-  return kwargs
+  (kpts, descs) = extractor.compute(data['image'], kpts)
+  data['descs'] = descs
+  return data

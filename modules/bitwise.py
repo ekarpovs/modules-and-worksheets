@@ -4,70 +4,73 @@ Bitwise operations
 import cv2
 
 
-def btw_and(step, **kwargs):
+def btw_and(params, **data):
   '''
   AND operation with an image and a mask.
 
-  Keyword arguments:
-  - image: an image;
-  - mask: a mask.
-  
-  Returns:
-  - image: the result image;
+  parameters:
+    - params:  
+    - data: 
+      image - reference to an source image
+      mask - the second image
+  returns:
+    - data:
+      image - reference to the result image
   '''
-
-  kwargs['image'] = cv2.bitwise_and(kwargs.get('image'), kwargs.get('mask')) 
-
-  return kwargs
+  data['image'] = cv2.bitwise_and(data.get('image'), data.get('mask')) 
+  return data
 
 
 
-def btw_or(step, **kwargs):
+def btw_or(params, **data):
   '''
   OR operation with an image and a mask.
 
-  Keyword arguments:
-  - image: an image;
-  - mask: a mask.
-  
-  Returns:
-  - image: the result image;
+  parameters:
+    - params:
+      --n;s;[];1-- dfact: decrease factor   
+    - data: 
+      image - reference to an source image
+      mask - the second image
+  returns:
+    - data:
+      image - reference to the result image
   '''
-  kwargs['image'] = cv2.bitwise_or(kwargs.get('image'), kwargs.get('mask')) 
-
-  return kwargs
-
+  data['image'] = cv2.bitwise_or(data.get('image'), data.get('mask')) 
+  return data
 
 
-def btw_xor(step, **kwargs):
+
+def btw_xor(params, **data):
   '''
   XOR operation with an image and a mask.
 
-  Keyword arguments:
-  - image: an image;
-  - mask: a mask.
-  
-  Returns:
-  - image: the result image;
+  parameters:
+    - params:   
+    - data: 
+      image - reference to an source image
+      mask - the second image
+  returns:
+    - data:
+      image - reference to the result image
   '''
-
-  kwargs['image'] = cv2.bitwise_xor(kwargs.get('image'), kwargs.get('mask')) 
-
-  return kwargs
+  data['image'] = cv2.bitwise_xor(data.get('image'), data.get('mask')) 
+  return data
 
 
 
-def btw_not(step, **kwargs):
+def btw_not(params, **data):
   '''
   NOT operation with an image and a mask.
 
-  Keyword arguments:
-  - image: an image;
-  - mask: a mask.
-  
-  Returns:
-  - image: the result image;
+  parameters:
+    - params:   
+    - data: 
+      image - reference to an source image
+      mask - the second image
+  returns:
+    - data:
+      image - reference to the result image
   '''
-  kwargs['image'] = cv2.bitwise_not(kwargs.get('image'), kwargs.get('mask')) 
-   
-  return kwargs
+  data['image'] = cv2.bitwise_not(data.get('image'), data.get('mask'))   
+  return data

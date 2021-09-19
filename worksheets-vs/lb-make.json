@@ -1,3 +1,3 @@
 [
-  {"exec": "common.restore", "params":{"index": "1", "ffn": "../data/input/blobs.png"}}
+  {"exec": "common.restore", "params":{"ffn": "../data/input/blobs.png"}}
 ]
