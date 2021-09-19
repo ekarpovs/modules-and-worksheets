@@ -17,24 +17,21 @@ def cmp_mse(params, **data):
 
   parameters:
     - params:
-      --str;s;[];image1--  key: name of a reference to the second image
-    
+      --str;s;[];image1--  key: name of a reference to the second image   
     - data: 
       image - reference to the first image
       key - reference to the second image
-
   returns:
     - data:
       mse - Mean Squared Errors.
   '''  
   key = params.get('key', 'image1')
   minuend = data.get('image')
-  subtrahend = data.get[key]
+  subtrahend = data.get(key)
   err = np.sum((minuend.astype("float") - subtrahend.astype("float")) ** 2)
   err /= float(minuend.shape[0] * minuend.shape[1])
   data['mse'] = err
   return data
-
 
 
 def cmp_ssim(params, **data):
@@ -46,18 +43,16 @@ def cmp_ssim(params, **data):
   parameters:
     - params:
       --str;s;[];image1--  key: name of a reference to the second image
-
     - data: 
         image - reference to the first image
         key - reference to the second image
-
   returns:  
     - data: 
       ssim - Structural Similarity Index.
   '''  
   key = params.get('key', 'image1')
   image = data.get('image')
-  image1 = data.get[key]
+  image1 = data.get(key)
   s, diff = compare_ssim(image, image1, full=True, multichannel=True)
   data['ssim'] = s 
   return data
@@ -80,7 +75,7 @@ def cmp_psnr(params, **data):
   '''  
   key = params.get('key', 'image1')
   minuend = data.get('image')
-  subtrahend = data.get[key]
+  subtrahend = data.get(key)
   mse = np.mean((minuend - subtrahend) ** 2)
   psnr = 100
   if(mse != 0):
