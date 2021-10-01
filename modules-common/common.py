@@ -19,6 +19,8 @@ Contains common utility operations
       f (flag)                  0,1 or True,False
 '''
 import cv2
+import PIL
+
 
 def empty(params, **data):
   '''
@@ -39,15 +41,18 @@ def store(params, **data):
   
   parameters:
     - params: 
-      --str;s[];""-- ffn: full file name, where the image will be stored
+      --str;s;[];-- path: path, where the image will be stored
+      --str;s;[];f1.jpg-- fn: file name
     - data: 
         image - reference to an image that will be stored
   returns:
     - data: 
       image - reference to the stored image
   '''  
-  ffn = params.get('ffn', '')
-  image = params.get('image')
+  path = params.get('path', '.')
+  fn = params.get('fn', '')
+  ffn = '{}/{}'.format(path, fn)
+  image = data.get('image')
   if image is not None:
     cv2.imwrite(ffn, image)
   return data
@@ -59,17 +64,70 @@ def restore(params, **data):
   
   parameters:
     - params: 
-      --str;s;[];--  ffn: full file name, where from the image will be restored.
+      --str;s;[];-- path: path, where the image will be stored
+      --str;s;[];-- fn: file name
       --str;s;[];image-- key:  name of a reference to the restored image
   data:
   returns:
     - data: 
         image - reference to the restored image
   '''  
-  ffn = params.get('ffn', '')
+  path = params.get('path', '')
+  fn = params.get('fn', '')
+  ffn = '{}/{}'.format(path, fn)
   key = params.get('key', 'image')
   if ffn != '':
     data[key] = cv2.imread(ffn)
+  else:
+    data[key] = data['image']
+  return data
+
+
+def store_pil(params, **data):
+  '''
+  Stores an image into a file.
+  
+  parameters:
+    - params: 
+      --str;s;[];-- path: path, where the image will be stored
+      --str;s;[];f1.jpg-- fn: file name
+    - data: 
+        image - reference to an image that will be stored
+  returns:
+    - data: 
+      image - reference to the stored image
+  '''  
+  path = params.get('path', '.')
+  fn = params.get('fn', '')
+  ffn = '{}/{}'.format(path, fn)
+  image_pil = data.get('image-pil')
+  if image_pil is not None:
+    # cv2.imwrite('{}/{}'.format(path, fn), image)
+    image_pil.save(ffn)    
+  return data
+
+
+def restore_pil(params, **data):
+  '''
+  Restores an image from a file.
+  
+  parameters:
+    - params: 
+      --str;s;[];-- path: path, where the image will be stored
+      --str;s;[];f1.jpg-- fn: file name
+      --str;s;[];image-- key:  name of a reference to the restored image
+  data:
+  returns:
+    - data: 
+        image - reference to the restored image
+  '''  
+  key = params.get('key', 'image-pil')
+  path = params.get('path', '')
+  fn = params.get('fn', '')
+  ffn = '{}/{}'.format(path, fn)
+  if ffn != '':
+    # data[key] = cv2.imread(ffn)
+    data[key] = PIL.Image.open(ffn).convert('RGB')
   else:
     data[key] = data['image']
   return data

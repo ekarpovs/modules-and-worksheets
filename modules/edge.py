@@ -68,3 +68,15 @@ def laplacian(params, **data):
   lap = cv2.Laplacian(data.get('image'), cv2.CV_64F)
   data['image'] = np.uint8(np.absolute(lap)) 
   return data
+
+#scharr
+#norm_factor = 32
+#gradx = cv2.Scharr(img, cv2.CV_32F, 1, 0, scale=1.0/norm_factor)
+#grady = cv2.Scharr(img, cv2.CV_32F, 0, 1, scale=1.0/norm_factor)
+
+
+#prewitt
+#kernelx = np.array([[1,1,1],[0,0,0],[-1,-1,-1]])
+#kernely = np.array([[-1,0,1],[-1,0,1],[-1,0,1]])
+#img_prewittx = cv2.filter2D(img_gaussian, -1, kernelx)
+#img_prewitty = cv2.filter2D(img_gaussian, -1, kernely)
