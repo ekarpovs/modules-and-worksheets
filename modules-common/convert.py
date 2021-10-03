@@ -20,7 +20,7 @@ def pil_to_cv2(params, **data):
   '''
   image_pil = data.get('image-pil')
   # image = cv2.cvtColor(np.array(image_pil), cv2.COLOR_RGB2BGR)
-  image = np.asarray(image_pil, dtype=np.int64)
+  image = np.asarray(image_pil, dtype=np.int32)
   data['image'] = image
   return data
 
