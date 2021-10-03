@@ -70,3 +70,25 @@ def bgrto(params, **data):
     return data
   data['image'] = cv2.cvtColor(data.get('image'), type)
   return data
+
+
+def rgbto(params, **data):  
+  '''
+  Converts a colored (RGB) image to another color space.
+
+  parameters:
+    - params:
+      --n;d;[RGB2BGRA:0,RGB2BGR:4,RGB2GRAY:7];RGB2BGR-- type: new color space cv2.COLOR_(...)   
+      # --n;d;[RGB2BGRA:0,RGB2BGR:4,RGB2GRAY:6,BGR2XYZ:32,BGR2YCrCb:36,BGR2HSV:40,BGR2LAB:44,BGR2Luv:50,BGR2HLS:52,BGR2YUV:82];BGR2GRAY-- type: new color space cv2.COLOR_(...)   
+    - data: 
+      image - reference to an image that will be converted
+  returns:
+    - data:
+      image - reference to the image in the new color space
+  '''  
+  type = params.get('type', cv2.COLOR_RGB2BGR)
+  if len(data['image'].shape) < 3:
+    # input - gray or binary
+    return data
+  data['image'] = cv2.cvtColor(data.get('image'), type)
+  return data
