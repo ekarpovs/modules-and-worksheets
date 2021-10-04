@@ -1,6 +1,17 @@
 [
-  {"exec": "clrs.bgrto"},
-  {"exec": "mrph.kernel", "params": {}},
-  {"exec": "mrph.erode", "params": {}},
-  {"exec": "mrph.dilate", "params": {}}
+  {
+    "exec": "clrs.bgrto"
+  },
+  {
+    "exec": "mrph.kernel",
+    "params": {}
+  },
+  {
+    "exec": "mrph.erode",
+    "params": {}
+  },
+  {
+    "exec": "mrph.dilate",
+    "params": {}
+  }
 ]

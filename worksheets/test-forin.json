@@ -1,4 +1,25 @@
 [
-  {"stm": "glbstm.forinrangestm", "params":{"start": 0, "stop": 60, "step": 15, "map": "x", "include": 1}},
-  {"exec": "bsc.translate", "params":{}}
+  {
+    "exec": "common.restore",
+    "params": {
+      "ffn": "../data/input/car.png",
+      "key": "image"
+    }
+  },
+  {
+    "stm": "glbstm.forinrangestm",
+    "params": {
+      "start": 0,
+      "stop": 60,
+      "step": 15,
+      "map": "x",
+      "include": 1
+    }
+  },
+  {
+    "exec": "bsc.translate",
+    "params": {
+      "x": 0
+    }
+  }
 ]

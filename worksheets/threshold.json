@@ -1,13 +1,55 @@
 [
-  {"exec": "clrs.bgrto"},
-  {"exec": "blur.gaus", "params": {"k": 7}},
-  {"exec": "thrsh.simple", "params": {"type": 0}},
-
-  {"exec": "clrs.bgrto", "params": {"useorig": true}},
-  {"exec": "blur.gaus", "params": {"k": 7}},
-  {"exec": "thrsh.simple", "params": {"type": 1, "otsu": true}},
-
-  {"exec": "clrs.bgrto", "params": {"useorig": true}},
-  {"exec": "blur.gaus", "params": {"k": 7}},
-  {"exec": "thrsh.adaptive", "params": {"type": 0, "meth": 0}}
+  {
+    "exec": "clrs.bgrto"
+  },
+  {
+    "exec": "blur.gaus",
+    "params": {
+      "k": 7
+    }
+  },
+  {
+    "exec": "thrsh.simple",
+    "params": {
+      "type": 0
+    }
+  },
+  {
+    "exec": "clrs.bgrto",
+    "params": {
+      "useorig": true
+    }
+  },
+  {
+    "exec": "blur.gaus",
+    "params": {
+      "k": 7
+    }
+  },
+  {
+    "exec": "thrsh.simple",
+    "params": {
+      "type": 1,
+      "otsu": true
+    }
+  },
+  {
+    "exec": "clrs.bgrto",
+    "params": {
+      "useorig": true
+    }
+  },
+  {
+    "exec": "blur.gaus",
+    "params": {
+      "k": 7
+    }
+  },
+  {
+    "exec": "thrsh.adaptive",
+    "params": {
+      "type": 0,
+      "meth": 0
+    }
+  }
 ]

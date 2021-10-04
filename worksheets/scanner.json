@@ -1,10 +1,40 @@
 [
-  {"exec": "clrs.bgrto"},
-  {"exec": "blur.gaus", "params":{"k": 7}},
-  {"exec": "edge.canny"},
-  {"exec": "cntrs.find"},
-  {"exec": "cntrs.sort"},
-  {"exec": "draw.contours"},
-  {"exec": "cntrs.sel_rect"},
-  {"exec": "bsc.transform", "params":{"useorig": true}}
+  {
+    "exec": "clrs.bgrto"
+  },
+  {
+    "exec": "blur.gaus",
+    "params": {
+      "k": 7
+    }
+  },
+  {
+    "exec": "edge.canny",
+    "params": {
+      "thrs1": 20,
+      "thrs2": 150
+    }
+  },
+  {
+    "exec": "cntrs.find",
+    "params": {
+      "meth": 2,
+      "md": 0
+    }
+  },
+  {
+    "exec": "cntrs.sort"
+  },
+  {
+    "exec": "draw.contours"
+  },
+  {
+    "exec": "cntrs.sel_rect"
+  },
+  {
+    "exec": "bsc.transform",
+    "params": {
+      "useorig": true
+    }
+  }
 ]

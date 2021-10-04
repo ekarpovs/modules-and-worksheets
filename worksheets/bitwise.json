@@ -1,1 +1,57 @@
-[{"exec": "shapes.shp_circle"}, {"exec": "shapes.shp_rectangle", "params": {"dst-key": "mask"}}, {"exec": "bitwise.btw_and", "params": {}}, {"exec": "shapes.shp_circle"}, {"exec": "shapes.shp_rectangle", "params": {"dst-key": "mask"}}, {"exec": "bitwise.btw_or", "params": {}}, {"exec": "shapes.shp_circle"}, {"exec": "shapes.shp_rectangle", "params": {"dst-key": "mask"}}, {"exec": "bitwise.btw_xor", "params": {}}, {"exec": "shapes.shp_circle"}, {"exec": "shapes.shp_rectangle", "params": {"dst-key": "mask"}}, {"exec": "bitwise.btw_not", "params": {}}]
+[
+  {
+    "info": "0123456789012345678901234567890123456789012345678901234567890123456789"
+  },
+  {
+    "exec": "shapes.shp_circle"
+  },
+  {
+    "exec": "shapes.shp_rectangle",
+    "params": {
+      "dst-key": "mask"
+    }
+  },
+  {
+    "exec": "bitwise.btw_and",
+    "params": {}
+  },
+  {
+    "exec": "shapes.shp_circle"
+  },
+  {
+    "exec": "shapes.shp_rectangle",
+    "params": {
+      "dst-key": "mask"
+    }
+  },
+  {
+    "exec": "bitwise.btw_or",
+    "params": {}
+  },
+  {
+    "exec": "shapes.shp_circle"
+  },
+  {
+    "exec": "shapes.shp_rectangle",
+    "params": {
+      "dst-key": "mask"
+    }
+  },
+  {
+    "exec": "bitwise.btw_xor",
+    "params": {}
+  },
+  {
+    "exec": "shapes.shp_circle"
+  },
+  {
+    "exec": "shapes.shp_rectangle",
+    "params": {
+      "dst-key": "mask"
+    }
+  },
+  {
+    "exec": "bitwise.btw_not",
+    "params": {}
+  }
+]

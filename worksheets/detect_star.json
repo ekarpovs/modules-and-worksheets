@@ -1,1 +1,14 @@
-[{"exec": "clrs.bgrto"}, {"exec": "thrsh.adaptive"}, {"exec": "det.star"}, {"exec": "draw.keypoints"}]
+[
+  {
+    "exec": "clrs.bgrto"
+  },
+  {
+    "exec": "thrsh.adaptive"
+  },
+  {
+    "exec": "det.star"
+  },
+  {
+    "exec": "draw.keypoints"
+  }
+]

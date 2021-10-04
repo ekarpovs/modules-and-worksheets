@@ -1,5 +1,11 @@
 [
-  {"exec": "clrs.bgrto"},
-  {"exec": "blob.simple"},
-  {"exec": "draw.keypoints"}
+  {
+    "exec": "clrs.bgrto"
+  },
+  {
+    "exec": "blob.simple"
+  },
+  {
+    "exec": "draw.keypoints"
+  }
 ]

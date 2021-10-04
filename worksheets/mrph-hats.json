@@ -1,7 +1,27 @@
 [
-  {"exec": "clrs.bgrto"},
-  {"exec": "mrph.kernel", "params": {}},
-  {"exec": "mrph.mex", "params": {"type": 4}},
-  {"exec": "clrs.bgrto", "params": {"useorig": true}},
-  {"exec": "mrph.mex", "params": {"type": 3}}
+  {
+    "exec": "clrs.bgrto"
+  },
+  {
+    "exec": "mrph.kernel",
+    "params": {}
+  },
+  {
+    "exec": "mrph.mex",
+    "params": {
+      "type": 4
+    }
+  },
+  {
+    "exec": "clrs.bgrto",
+    "params": {
+      "useorig": true
+    }
+  },
+  {
+    "exec": "mrph.mex",
+    "params": {
+      "type": 3
+    }
+  }
 ]

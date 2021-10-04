@@ -1,4 +1,29 @@
 [
-  {"stm": "glbstm.whilestm", "params":{"include": 1}},
-  {"exec": "bsc.rotate", "params":{"useorig": true, "angle": 50}}
+  {
+    "exec": "common.restore",
+    "params": {
+      "ffn": "../data/input/car.png",
+      "key": "image"
+    }
+  },
+  {
+    "exec": "clrs.bgrto",
+    "params": {
+      "type": 4
+    }
+  },
+  {
+    "stm": "glbstm.whilestm",
+    "params": {
+      "include": 1
+    }
+  },
+  {
+    "exec": "bsc.rotate",
+    "params": {
+      "useorig": true,
+      "angle": 50,
+      "null": null
+    }
+  }
 ]

@@ -1,6 +1,21 @@
 [
-  {"exec": "clrs.bgrto"},
-  {"exec": "cntrs.find"},
-  {"exec": "cntrs.sort"},
-  {"exec": "draw.contours"}
+  {
+    "exec": "clrs.bgrto"
+  },
+  {
+    "exec": "thrsh.simple"
+  },
+  {
+    "exec": "cntrs.find",
+    "params": {
+      "meth": 2,
+      "md": 1
+    }
+  },
+  {
+    "exec": "cntrs.sort"
+  },
+  {
+    "exec": "draw.contours"
+  }
 ]

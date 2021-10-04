@@ -1,1 +1,69 @@
-[{"exec": "shapes.shp_circle"}, {"exec": "shapes.shp_rectangle", "params": {"dst-key": "mask"}}, {"exec": "bitwise.btw_and", "params": {}}, {"exec": "shapes.shp_circle"}, {"exec": "shapes.shp_rectangle", "params": {"dst-key": "mask"}}, {"exec": "bitwise.btw_or", "params": {}}, {"exec": "shapes.shp_circle"}, {"exec": "shapes.shp_rectangle", "params": {"dst-key": "mask"}}, {"exec": "bitwise.btw_xor", "params": {}}, {"exec": "shapes.shp_circle"}, {"exec": "shapes.shp_rectangle", "params": {"dst-key": "mask"}}, {"exec": "bitwise.btw_not", "params": {}}, {"exec": "common.print_data", "params": {"keys": "image, orig, mask"}}, {"exec": "common.clean_data", "params": {"keys": "mask"}}, {"exec": "common.print_data"}]
+[
+  {
+    "exec": "shapes.shp_circle"
+  },
+  {
+    "exec": "shapes.shp_rectangle",
+    "params": {
+      "dst-key": "mask"
+    }
+  },
+  {
+    "exec": "bitwise.btw_and",
+    "params": {}
+  },
+  {
+    "exec": "shapes.shp_circle"
+  },
+  {
+    "exec": "shapes.shp_rectangle",
+    "params": {
+      "dst-key": "mask"
+    }
+  },
+  {
+    "exec": "bitwise.btw_or",
+    "params": {}
+  },
+  {
+    "exec": "shapes.shp_circle"
+  },
+  {
+    "exec": "shapes.shp_rectangle",
+    "params": {
+      "dst-key": "mask"
+    }
+  },
+  {
+    "exec": "bitwise.btw_xor",
+    "params": {}
+  },
+  {
+    "exec": "shapes.shp_circle"
+  },
+  {
+    "exec": "shapes.shp_rectangle",
+    "params": {
+      "dst-key": "mask"
+    }
+  },
+  {
+    "exec": "bitwise.btw_not",
+    "params": {}
+  },
+  {
+    "exec": "common.print_data",
+    "params": {
+      "keys": "image, orig, mask"
+    }
+  },
+  {
+    "exec": "common.clean_data",
+    "params": {
+      "keys": "mask"
+    }
+  },
+  {
+    "exec": "common.print_data"
+  }
+]

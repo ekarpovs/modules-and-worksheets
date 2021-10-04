@@ -1,6 +1,15 @@
 [
-  {"exec": "clrs.bgrto", "params": {}},
-  {"exec": "blur.gaus"},
-  {"exec": "edge.canny"},
-  {"exec": "edge.laplacian"}
+  {
+    "exec": "clrs.bgrto",
+    "params": {}
+  },
+  {
+    "exec": "blur.gaus"
+  },
+  {
+    "exec": "edge.canny"
+  },
+  {
+    "exec": "edge.laplacian"
+  }
 ]
