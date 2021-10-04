@@ -5,6 +5,7 @@ Simple shapes generation operations
 import cv2
 import numpy as np
 
+COLORS = [(0,0,0), (255,255,255), (255,0,0), (0,128,0), (0,0,255),  (255,0,255),  (0,255,255), (255,255,0), (0,255,0)]
 
 def cnt_zero(params, **data):
   '''
@@ -97,6 +98,7 @@ def shp_rectangle(params, **data):
       --n;s;[];25-- tly: y coordinate of the top left corner of rectangle
       --n;s;[];275-- brx: x coordinate of the bottom right corner of rectangle
       --n;s;[];275-- bry: y coordinate of the bottom right corner of rectangle
+      --n;d;[BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8];WHITE-- color: shape color
       --s;l;['image', 'shape', 'mask'];'image'-- dst-key: destination key name
     - data: 
         image - reference to the image
@@ -111,9 +113,12 @@ def shp_rectangle(params, **data):
   tly = params.get('tly', 25)
   brx = params.get('brx', 275)
   bry = params.get('bry', 275)
+  color = params.get('color', 1)
   dst_key = params.get('dst-key', 'image')
+  
+  shape_color=COLORS[color]
   rectangle = np.zeros((h, w), dtype = "uint8")
-  cv2.rectangle(rectangle, (tlx, tly), (brx, bry), 255, -1)
+  cv2.rectangle(rectangle, (tlx, tly), (brx, bry), shape_color, -1)
   data[dst_key] = rectangle  
   return data
 
@@ -129,6 +134,7 @@ def shp_circle(params, **data):
       --n;s;[];150-- cx: x coordinate of the center of an image
       --n;s;[];150-- cy: y coordinate of the center of an image
       --n;s;[];250-- r: a circle radius
+      --n;d;[BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8];WHITE-- color: shape color
       --s;l;['image', 'shape', 'mask'];'image'-- dst-key: destination key name
     - data: 
         image - reference to the image
@@ -141,8 +147,11 @@ def shp_circle(params, **data):
   cx = params.get('cx', 150)
   cy = params.get('cy', 150)
   r = params.get('r', 150)
+  color = params.get('color', 1)
+
+  shape_color=COLORS[color]
   dst_key = params.get('dst-key', 'image')
   circle = np.zeros((h, w), dtype = "uint8")
-  cv2.circle(circle, (cx, cy), r, 255, -1)
+  cv2.circle(circle, (cx, cy), r, shape_color, -1)
   data[dst_key] = circle  
   return data

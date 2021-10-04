@@ -21,7 +21,7 @@ def find(params, **data):
   mode = params.get('md', cv2.RETR_EXTERNAL)
   method = params.get('meth', cv2.CHAIN_APPROX_SIMPLE)
 
-  cntrs = cv2.findContours(data.get('image'), mode, method) 
+  cntrs, _ = cv2.findContours(data.get('image'), mode, method) 
   if len(cntrs) == 3:
       cntrs = cntrs[1]
   data['cntrs'] = cntrs 
@@ -34,7 +34,7 @@ def sort(params, **data):
 
   parameters:
     - params: 
-      --b;f;[False,True];False-- rev: reverse flag
+      --b;f;[False,True];True-- rev: reverse flag
     - data: 
       cntrs - contours
   returns:
@@ -47,10 +47,13 @@ def sort(params, **data):
   i = 0
   # construct the list of bounding boxes and sort them from top to
   # bottom
-  bounding_boxes = [cv2.boundingRect(c) for c in cntrs]
-  (cntrs, bounding_boxes) = zip(*sorted(zip(cntrs, bounding_boxes), key=lambda b:b[1][i], reverse=reverse))
+  # bounding_boxes = [cv2.boundingRect(c) for c in cntrs]
+  # (cntrs, bounding_boxes) = zip(*sorted(zip(cntrs, bounding_boxes), key=lambda b:b[1][i], reverse=reverse))
+  cntrs = sorted(cntrs, key=cv2.contourArea, reverse=True)
+
+
   data['cntrs'] = cntrs
-  data['boxes'] = bounding_boxes
+  # data['boxes'] = bounding_boxes
   return data
 
 
