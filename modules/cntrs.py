@@ -47,13 +47,12 @@ def sort(params, **data):
   i = 0
   # construct the list of bounding boxes and sort them from top to
   # bottom
-  # bounding_boxes = [cv2.boundingRect(c) for c in cntrs]
-  # (cntrs, bounding_boxes) = zip(*sorted(zip(cntrs, bounding_boxes), key=lambda b:b[1][i], reverse=reverse))
-  cntrs = sorted(cntrs, key=cv2.contourArea, reverse=True)
-
+  bounding_boxes = [cv2.boundingRect(c) for c in cntrs]
+  # cntrs = sorted(cntrs, key=cv2.contourArea, reverse=True)
+  (cntrs, bounding_boxes) = zip(*sorted(zip(cntrs, bounding_boxes), key=lambda b:b[1][i], reverse=reverse))
 
   data['cntrs'] = cntrs
-  # data['boxes'] = bounding_boxes
+  data['boxes'] = bounding_boxes
   return data
 
 
@@ -70,6 +69,7 @@ def sel_rect(params, **data):
         rect - the biggest rectangle contour
   '''
   cntrs = data.get('cntrs')
+  
  	# loop over the contours 
   for c in cntrs:
 		# approximate the contour
