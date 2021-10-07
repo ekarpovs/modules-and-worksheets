@@ -7,7 +7,7 @@ import numpy as np
 
 def sobel(params, **data):
   '''
-  Computes compute gradients along the X or Y axis uses Sobel algorithm.
+  Computes gradients along the X or Y axis uses Sobel algorithm.
 
     parameters:
     - params: 
