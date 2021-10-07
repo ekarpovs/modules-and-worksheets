@@ -103,9 +103,12 @@ def matches(params, **data):
   key = params.get('key', 'image1')
   first = data.get('image')
   second = data.get(key)
-  keypoints = data.get('kpnts')
+  kpnts1 = data.get('kpnts1')
+  kpnts2 = data.get('kpnts2')
+  matches1to2 = data.get('matches')
 
-  # outImg	=	cv.drawMatches(	img1, keypoints1, img2, keypoints2, matches1to2, outImg[, matchColor[, singlePointColor[, matchesMask[, flags]]]]	) 
+  matched_visual	=	cv2.drawMatches(first, kpnts1, second, kpnts2, matches1to2, None) 
+  data['match_vis'] = matched_visual
   return data
 
 
