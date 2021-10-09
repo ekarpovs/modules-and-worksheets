@@ -13,7 +13,7 @@ def describe(params, **data):
     parameters:
     - params: 
       --n;s;[];8-- nimpts: number of circularly symmetric neighbour set points;
-      --n;s;[];1-- radius: radius of the LBP;
+      --n;s;[];1.0-- radius: radius of the LBP;
       --s;l;[default, ror, uniform, nri_uniform];uniform-- method: method to determine the pattern;
 
     - data: 
@@ -26,7 +26,7 @@ def describe(params, **data):
   image = data.get('image')
   
   numpts = params.get('numpts', 8)
-  radius = params.get('radius', 1)
+  radius = params.get('radius', 1.0)
   method = params.get('method', 'uniform')
 
   lbp = feature.local_binary_pattern(image, numpts, radius, method=method)
