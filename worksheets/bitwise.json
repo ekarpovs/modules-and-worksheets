@@ -1,13 +1,37 @@
 [
   {
-    "info": "0123456789012345678901234567890123456789012345678901234567890123456789"
-  },
-  {
-    "exec": "shapes.shp_circle"
-  },
-  {
-    "exec": "shapes.shp_rectangle",
+    "exec": "shapes.mask",
     "params": {
+      "type": 1,
+      "idfact": 1,
+      "h": 300,
+      "w": 300,
+      "area": 0,
+      "y0": 25,
+      "y1": 275,
+      "x0": 25,
+      "x1": 275,
+      "cx": 150,
+      "cy": 150,
+      "r": 120,
+      "dst-key": "image"
+    }
+  },
+  {
+    "exec": "shapes.mask",
+    "params": {
+      "type": 0,
+      "idfact": 1,
+      "h": 300,
+      "w": 300,
+      "area": 1,
+      "y0": 0,
+      "y1": 300,
+      "x0": 0,
+      "x1": 300,
+      "cx": 150,
+      "cy": 150,
+      "r": 150,
       "dst-key": "mask"
     }
   },
@@ -16,11 +40,38 @@
     "params": {}
   },
   {
-    "exec": "shapes.shp_circle"
+    "exec": "shapes.mask",
+    "params": {
+      "type": 1,
+      "idfact": 1,
+      "h": 300,
+      "w": 300,
+      "area": 0,
+      "y0": 25,
+      "y1": 275,
+      "x0": 25,
+      "x1": 275,
+      "cx": 150,
+      "cy": 150,
+      "r": 120,
+      "dst-key": "image"
+    }
   },
   {
-    "exec": "shapes.shp_rectangle",
+    "exec": "shapes.mask",
     "params": {
+      "type": 0,
+      "idfact": 1,
+      "h": 300,
+      "w": 300,
+      "area": 1,
+      "y0": 0,
+      "y1": 300,
+      "x0": 0,
+      "x1": 300,
+      "cx": 150,
+      "cy": 150,
+      "r": 150,
       "dst-key": "mask"
     }
   },
@@ -29,11 +80,38 @@
     "params": {}
   },
   {
-    "exec": "shapes.shp_circle"
+    "exec": "shapes.mask",
+    "params": {
+      "type": 1,
+      "idfact": 1,
+      "h": 300,
+      "w": 300,
+      "area": 0,
+      "y0": 25,
+      "y1": 275,
+      "x0": 25,
+      "x1": 275,
+      "cx": 150,
+      "cy": 150,
+      "r": 120,
+      "dst-key": "image"
+    }
   },
   {
-    "exec": "shapes.shp_rectangle",
+    "exec": "shapes.mask",
     "params": {
+      "type": 0,
+      "idfact": 1,
+      "h": 300,
+      "w": 300,
+      "area": 1,
+      "y0": 0,
+      "y1": 300,
+      "x0": 0,
+      "x1": 300,
+      "cx": 150,
+      "cy": 150,
+      "r": 150,
       "dst-key": "mask"
     }
   },
@@ -42,11 +120,38 @@
     "params": {}
   },
   {
-    "exec": "shapes.shp_circle"
+    "exec": "shapes.mask",
+    "params": {
+      "type": 1,
+      "idfact": 1,
+      "h": 300,
+      "w": 300,
+      "area": 0,
+      "y0": 25,
+      "y1": 275,
+      "x0": 25,
+      "x1": 275,
+      "cx": 150,
+      "cy": 150,
+      "r": 120,
+      "dst-key": "image"
+    }
   },
   {
-    "exec": "shapes.shp_rectangle",
+    "exec": "shapes.mask",
     "params": {
+      "type": 0,
+      "idfact": 1,
+      "h": 300,
+      "w": 300,
+      "area": 1,
+      "y0": 0,
+      "y1": 300,
+      "x0": 0,
+      "x1": 300,
+      "cx": 150,
+      "cy": 150,
+      "r": 150,
       "dst-key": "mask"
     }
   },

@@ -1,11 +1,29 @@
 [
   {
-    "exec": "shapes.shp_circle"
+    "exec": "shapes.shp_circle",
+    "params": {
+      "h": 300,
+      "w": 300,
+      "cx": 150,
+      "cy": 150,
+      "r": 150,
+      "thickness": -1,
+      "color": 1,
+      "dst-key": "image"
+    }
   },
   {
     "exec": "shapes.shp_rectangle",
     "params": {
-      "dst-key": "mask"
+      "dst-key": "mask",
+      "h": 300,
+      "w": 300,
+      "tlx": 25,
+      "tly": 25,
+      "brx": 275,
+      "bry": 275,
+      "thickness": -1,
+      "color": 1
     }
   },
   {
@@ -13,12 +31,30 @@
     "params": {}
   },
   {
-    "exec": "shapes.shp_circle"
+    "exec": "shapes.shp_circle",
+    "params": {
+      "h": 300,
+      "w": 300,
+      "cx": 150,
+      "cy": 150,
+      "r": 150,
+      "thickness": -1,
+      "color": 1,
+      "dst-key": "image"
+    }
   },
   {
     "exec": "shapes.shp_rectangle",
     "params": {
-      "dst-key": "mask"
+      "dst-key": "mask",
+      "h": 300,
+      "w": 300,
+      "tlx": 25,
+      "tly": 25,
+      "brx": 275,
+      "bry": 275,
+      "thickness": -1,
+      "color": 1
     }
   },
   {
@@ -26,12 +62,30 @@
     "params": {}
   },
   {
-    "exec": "shapes.shp_circle"
+    "exec": "shapes.shp_circle",
+    "params": {
+      "h": 300,
+      "w": 300,
+      "cx": 150,
+      "cy": 150,
+      "r": 150,
+      "thickness": -1,
+      "color": 1,
+      "dst-key": "image"
+    }
   },
   {
     "exec": "shapes.shp_rectangle",
     "params": {
-      "dst-key": "mask"
+      "dst-key": "mask",
+      "h": 300,
+      "w": 300,
+      "tlx": 25,
+      "tly": 25,
+      "brx": 275,
+      "bry": 275,
+      "thickness": -1,
+      "color": 1
     }
   },
   {
@@ -39,31 +93,34 @@
     "params": {}
   },
   {
-    "exec": "shapes.shp_circle"
+    "exec": "shapes.shp_circle",
+    "params": {
+      "h": 300,
+      "w": 300,
+      "cx": 150,
+      "cy": 150,
+      "r": 150,
+      "thickness": -1,
+      "color": 1,
+      "dst-key": "image"
+    }
   },
   {
     "exec": "shapes.shp_rectangle",
     "params": {
-      "dst-key": "mask"
+      "dst-key": "mask",
+      "h": 300,
+      "w": 300,
+      "tlx": 25,
+      "tly": 25,
+      "brx": 275,
+      "bry": 275,
+      "thickness": -1,
+      "color": 1
     }
   },
   {
     "exec": "bitwise.btw_not",
     "params": {}
-  },
-  {
-    "exec": "common.print_data",
-    "params": {
-      "keys": "image, orig, mask"
-    }
-  },
-  {
-    "exec": "common.clean_data",
-    "params": {
-      "keys": "mask"
-    }
-  },
-  {
-    "exec": "common.print_data"
   }
 ]
