@@ -28,7 +28,6 @@ def btw_or(params, **data):
 
   parameters:
     - params:
-      --n;s;[];1-- dfact: decrease factor   
     - data: 
       image - reference to an source image
       mask - the second image
