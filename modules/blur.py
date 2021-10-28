@@ -1,61 +1,26 @@
 '''
 Bluring operation
 '''
+
 import cv2
+from typing import Dict
 
 
-def avg(params, **data):
+def avrg(params: Dict , **data: Dict) -> Dict:
   '''
   Average bluring.
 
-  parameters:
-    - params:
-      --n;l;[3,5,7,9];3-- k: kernel size   
-    - data: 
-      image - reference to an image that will be blured
-  returns:
-    - data:
-      image - reference to the blured image
+  Parameters:
+    - params keys:   
+      kernel: List[int](3,5,7,9)=3; kernel size
+    - data keys: 
+      image: str ; the image
+  Returns:
+    - data keys:
+      image: str ; the blured image
   '''
-  kernel = params.get('k', 3)
+
+  kernel = params.get('kernel', 3)
   kX = kY = kernel 
   data['image'] = cv2.blur(data.get('image'), (kX, kY)) 
-  return data
-
-
-def gaus(params, **data):
-  '''
-  Gausian bluring.
-
-  parameters:
-    - params:
-      --n;l;[3,5,7,9];3-- k: kernel size   
-    - data: 
-      image - reference to an image that will be blured
-  returns:
-    - data:
-      image - reference to the blured image
-  '''
-  kernel = params.get('k', 3)
-  kX = kY = kernel 
-  data['image'] = cv2.GaussianBlur(data.get('image'), (kX, kY), 0)
-  return data
-
-
-
-def median(params,**data):
-  '''
-  Median bluring.
-
-    parameters:
-    - params:
-      --n;l;[3,5,7,9];3-- k: kernel size   
-    - data: 
-      image - reference to an image that will be blured
-  returns:
-    - data:
-      image - reference to the blured image
-'''
-  kernel = params.get('k', 3)
-  data['image'] = cv2.medianBlur(data.get('image'), kernel)
   return data

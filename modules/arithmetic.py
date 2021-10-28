@@ -1,42 +1,72 @@
 '''
 Arithmetic operations
 '''
+
+from typing import Dict
 import cv2
 import numpy as np 
 
 
-def arth_add(params, **data):
+def arth_add(params: Dict , **data: Dict) -> Dict:
   '''
-  Add operation with the input image and a mask
+  Adds the mask image to the image
 
-  parameters:
-    - params:   
-    - data: 
-      image - reference to an source image
-      mask - the second image
-  returns:
-    - data:
-      image - reference to the result image
+  Parameters:
+    - params keys:   
+    - data keys: 
+      image: str ; the image
+      mask: str ; the second image
+  Returns:
+    - data keys:
+      image: str ; the result image
   '''
+  
+  image = data.get('image')
   mask = data.get('mask')
-  data['image'] = cv2.add(data.get('image'), mask) 
+  data['image'] = cv2.add(image, mask) 
   return data
 
 
-def arth_sub(params, **data):
+def arth_sub(params: Dict , **data: Dict) -> Dict:
   '''
-  Substraction operation with the input image and a mask
+  Substracts mask from the image
 
-  parameters:
-    - params:
-      --n;s;[];1-- dfact: decrease factor   
-    - data: 
-      image - reference to an source image
-      mask - the second image
-  returns:
-    - data:
-      image - reference to the result image
+  Parameters:
+    - params keys:   
+    - data keys: 
+      image: str ; the image
+      mask: str ; the second image
+  Returns:
+    - data keys:
+      image: str ; the result image
   '''
+
+  image = data.get('image')
   mask = data.get('mask')
-  data['image'] = cv2.subtract(data.get('image'), mask) 
+  data['image'] = cv2.subtract(image, mask) 
+  return data
+
+
+def arth_add_into(params: Dict , **data: Dict) -> Dict:
+  '''
+  Adds the mask into the image from defined X, Y offsets
+
+  Parameters:
+    - params keys:   
+      offset-y: int=0; vertical offset
+      offset-x: int=0; horizontal offset
+    - data keys: 
+      image: str; the image
+      mask: str ; the second image
+  Returns:
+    - data keys:
+      image: str; the result image
+  '''
+
+  offset_y = params.get('offset-y', 0)
+  offset_x = params.get('offset-x', 0)
+  image = data.get('image')
+  mask = data.get('mask')
+  image[offset_y:offset_y + mask.shape[0], offset_x:offset_x + mask.shape[1]] = mask
+  data['image'] = image
   return data
