@@ -12,9 +12,9 @@ def crop(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params keys:   
       y0: int=0; left top coordinate
-      y1: int=10; left bottom coordinate
+      y1: int=100; left bottom coordinate
       x0: int=0; left top coordinate
-      x1: int=10; right top coordinate
+      x1: int=100; right top coordinate
     - data keys: 
       image: str; the image
   Returns:
