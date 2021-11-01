@@ -1,15 +1,15 @@
 [
   {
+    "info": "Apply edge operation"
+  },
+  {
     "exec": "clrs.bgrto",
     "params": {}
   },
   {
-    "exec": "blur.gaus"
+    "exec": "blur.avrg"
   },
   {
     "exec": "edge.canny"
-  },
-  {
-    "exec": "edge.laplacian"
   }
 ]
