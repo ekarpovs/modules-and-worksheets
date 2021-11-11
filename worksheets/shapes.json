@@ -1,0 +1,40 @@
+[
+  {
+    "info": "Perform "
+  },
+  {
+    "exec": "glbstm.begin"
+  }, 
+  {
+    "exec": "shapes.mask",
+    "params": {
+      "h": 300,
+      "w": 300,
+      "y0": 25,
+      "x0": 25,
+      "y1": 275,
+      "x1": 275
+    }
+  },
+  {
+    "exec": "shapes.mask",
+    "params": {
+      "area": 1,
+      "h": 300,
+      "w": 300,
+      "cx": 150,
+      "cy": 150,
+      "r": 150
+    }
+  },
+  {
+    "exec": "bitwise.btw_and",
+    "aliases": {
+       "image": "1-shapes-mask-mask",
+       "mask": "1-shapes-mask-mask"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

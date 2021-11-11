@@ -3,6 +3,9 @@
     "info": "Apply edge operation"
   },
   {
+    "exec": "glbstm.begin"
+  }, 
+  {
     "exec": "clrs.bgrto",
     "params": {}
   },
@@ -11,5 +14,8 @@
   },
   {
     "exec": "edge.canny"
+  },
+  {
+    "exec": "glbstm.end"
   }
 ]
