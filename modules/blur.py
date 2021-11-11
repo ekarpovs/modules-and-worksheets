@@ -11,13 +11,13 @@ def avrg(params: Dict , **data: Dict) -> Dict:
   Average bluring.
 
   Parameters:
-    - params keys:   
+    - params:   
       kernel: List[int](3,5,7,9)=3; kernel size
-    - data keys: 
-      image: str ; the image
+    - data: 
+      image: np.dtype; the image
   Returns:
-    - data keys:
-      image: str ; the blured image
+    - data:
+      image: np.dtype; the blured image
   '''
 
   kernel = params.get('kernel', 3)

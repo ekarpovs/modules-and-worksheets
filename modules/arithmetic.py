@@ -12,13 +12,13 @@ def arth_add(params: Dict , **data: Dict) -> Dict:
   Adds the mask image to the image
 
   Parameters:
-    - params keys:   
-    - data keys: 
-      image: str ; the image
-      mask: str ; the second image
+    - params:   
+    - data: 
+      image: np.dtype; the image
+      mask: np.dtype; the second image
   Returns:
-    - data keys:
-      image: str ; the result image
+    - data:
+      image: np.dtype; the result image
   '''
   
   image = data.get('image')
@@ -32,13 +32,13 @@ def arth_sub(params: Dict , **data: Dict) -> Dict:
   Substracts mask from the image
 
   Parameters:
-    - params keys:   
-    - data keys: 
-      image: str ; the image
-      mask: str ; the second image
+    - params:   
+    - data: 
+      image: np.dtype ; the image
+      mask: np.dtype; the second image
   Returns:
-    - data keys:
-      image: str ; the result image
+    - data:
+      image: np.dtype; the result image
   '''
 
   image = data.get('image')
@@ -52,15 +52,15 @@ def arth_add_into(params: Dict , **data: Dict) -> Dict:
   Adds the mask into the image from defined X, Y offsets
 
   Parameters:
-    - params keys:   
+    - params:   
       offset-y: int=0; vertical offset
       offset-x: int=0; horizontal offset
-    - data keys: 
-      image: str; the image
-      mask: str ; the second image
+    - data: 
+      image: np.dtype; the image
+      mask: np.dtype; the second image
   Returns:
-    - data keys:
-      image: str; the result image
+    - data:
+      image: np.dtype; the result image
   '''
 
   offset_y = params.get('offset-y', 0)

@@ -10,16 +10,16 @@ def crop(params: Dict , **data: Dict) -> Dict:
   Crops an image.
 
   Parameters:
-    - params keys:   
+    - params:   
       y0: int=0; left top coordinate
       y1: int=100; left bottom coordinate
       x0: int=0; left top coordinate
       x1: int=100; right top coordinate
-    - data keys: 
-      image: str; the image
+    - data: 
+      image: np.dtype; the image
   Returns:
     - data keys:
-      image: str; the result image
+      image: np.dtype; the result image
   '''  
 
 

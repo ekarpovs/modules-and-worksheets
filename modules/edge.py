@@ -13,14 +13,14 @@ def canny(params: Dict , **data: Dict) -> Dict:
   Computes a "wide", "mid-range", and "tight" threshold for the edges.
 
   Parameters:
-    - params keys:   
+    - params:   
       thrs1: Range[int](10,150,1)=50; threshold1
       thrs2: Range[int](100,252,1)=200; threshold2
-    - data keys: 
-      image: str ; the image
+    - data: 
+      image: np.dtype; the image
   Returns:
-    - data keys:
-      image: str ; the blured image
+    - data:
+      image: np.dtype; the blured image
   '''
 
   threshold1 = params.get('thrs1', 10)
