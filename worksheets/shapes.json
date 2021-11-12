@@ -30,8 +30,8 @@
   {
     "exec": "bitwise.btw_and",
     "aliases": {
-       "image": "1-shapes-mask-mask",
-       "mask": "1-shapes-mask-mask"
+       "image": "1-shapes.mask-mask",
+       "mask": "2-shapes.mask-mask"
     }
   },
   {
