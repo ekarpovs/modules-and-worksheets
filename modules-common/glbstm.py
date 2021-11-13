@@ -11,7 +11,7 @@ def begin(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      use: bool=True; the flow will to use an imput image
+      load: bool=True; an imput image will be loaded
       path: str=../data/input; path to a folder with images
       name: str=; the image file name 
     - data: 
