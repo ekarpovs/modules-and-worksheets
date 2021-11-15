@@ -1,10 +1,11 @@
 '''
 Bitwise operations
 '''
+from typing import Dict
 import cv2
 
 
-def btw_and(params, **data):
+def btw_and(params: Dict , **data: Dict) -> Dict:
   '''
   AND operation with the first image and the second one.
 
@@ -24,7 +25,7 @@ def btw_and(params, **data):
   data['image'] = cv2.bitwise_and(image, mask) 
   return data
 
-def btw_or(params, **data):
+def btw_or(params: Dict , **data: Dict) -> Dict:
   '''
   OR operation with the first image and the second one.
 
@@ -44,7 +45,7 @@ def btw_or(params, **data):
   data['image'] = cv2.bitwise_or(image, mask) 
   return data
 
-def btw_xor(params, **data):
+def btw_xor(params: Dict , **data: Dict) -> Dict:
   '''
   XOR operation with the first image and the second one.
 
@@ -64,7 +65,7 @@ def btw_xor(params, **data):
   data['image'] = cv2.bitwise_xor(image, mask) 
   return data
 
-def btw_not(params, **data):
+def btw_not(params: Dict , **data: Dict) -> Dict:
   '''
   NOT operation with the first image and the second one.
 
