@@ -2,12 +2,14 @@
 Simple shapes generation operations
 '''
 
+from typing import Dict
 from re import L
 import cv2
 import numpy as np
 
+COLORS = [(0,0,0), (255,255,255), (255,0,0), (0,128,0), (0,0,255),  (255,0,255),  (0,255,255), (255,255,0), (0,255,0)]
 
-def mask(params, **data):
+def mask(params: Dict , **data: Dict) -> Dict:
   '''
   Creats an empty mask
   Masking allows to focus only on parts of an image that interest us.
@@ -65,4 +67,94 @@ def mask(params, **data):
     # Construct a circular area on the mask
     cv2.circle(mask, (cx, cy), r, value, -1)
   data['mask'] = mask
+  return data
+
+def cnt_zero(params: Dict , **data: Dict) -> Dict:
+  '''
+  Counts zeros in an binary image.
+
+  Parameters:
+    - params:   
+    - data: 
+      mask: np.dtype; a binary image
+  Returns:
+    - data:
+      zeros: int; number of zeros in the binary image;
+      equ: bool; zeros == size
+  '''  
+  image = data.get('image')
+  size = np.size(image)
+  zeros = size - cv2.countNonZero(image) 
+  data['zeros'] = zeros
+  data['equ'] = size == zeros
+  return data
+
+def rectangle(params: Dict , **data: Dict) -> Dict:
+  '''
+  Generates a colored rectangle on a white background
+
+  Parameters:
+    - params:
+      h: int=300; an image height
+      w: int=300; an image width
+      y0: int=25; left top coordinate
+      y1: int=275; right bottom coordinate
+      x0: int=25; left top coordinate
+      x1: int=275; right top coordinate
+      thickness: int=1; thickness of the rectangle border (-1 fill the rectangle)
+      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the shape color
+    - data: 
+  Returns:
+    - data:
+      rect: np.dtype; a binary image
+  '''
+
+  h = params.get('h', 300)
+  w = params.get('w', 300)
+  y0 = params.get('y0', 25)
+  y1 = params.get('y1', 275)
+  x0 = params.get('x0', 25)
+  x1 = params.get('x1', 275) 
+  thickness = params.get('thickness', 1)
+  color = params.get('color', 0)
+  
+  shape_color=COLORS[color]
+  canvas = np.ones((h, w, 3), dtype = "uint8")*255
+  canvas = cv2.rectangle(canvas, (x0, y0), (x1, y1), shape_color, thickness)
+  data['rect'] = canvas  
+  return data
+
+def circle(params: Dict , **data: Dict) -> Dict:
+  '''
+  Generates a colored circle on a white background
+
+
+  Parameters:
+    - params:
+      cx: int=150; left top coordinate
+      cy: int=150; right bottom coordinate
+      radius: int=25; left top coordinate
+      thickness: int=1; thickness of the rectangle border (-1 fill the rectangle)
+      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the shape color
+    - data: 
+  Returns:
+    - data:
+      circle: np.dtype; a binary image
+  '''
+
+  h = params.get('h', 300)
+  w = params.get('w', 300)
+  cx = params.get('cx', 150)
+  cy = params.get('cy', 150)
+  r = params.get('r', 25)
+  thickness = params.get('thickness', 1)
+  color = params.get('color', 0)
+
+  shape_color=COLORS[color]
+
+  if r > h//2 or r > w//2:
+    r = min(h//2, w//2)-1
+  canvas = np.ones((h, w, 3), dtype = "uint8")*255
+  canvas = cv2.circle(canvas, (cx, cy), r, shape_color, thickness)
+  data['circle'] = canvas  
   return data

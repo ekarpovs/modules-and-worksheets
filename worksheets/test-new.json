@@ -1,0 +1,27 @@
+[
+  {
+    "info": "new worksheet"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "load": false,
+      "name": "coins01.png"
+    }
+  },
+  {
+    "exec": "shapes.rectangle",
+    "params": {
+      "color": 5
+    }
+  },
+  {
+    "exec": "shapes.circle",
+    "params": {
+      "color": 6
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

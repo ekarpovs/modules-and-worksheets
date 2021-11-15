@@ -4,8 +4,10 @@
   },
   {
     "exec": "glbstm.begin",
-    "params": {"load": false}
-  }, 
+    "params": {
+      "load": false
+    }
+  },
   {
     "exec": "shapes.mask",
     "params": {
@@ -20,19 +22,17 @@
   {
     "exec": "shapes.mask",
     "params": {
+      "type": 0,
       "area": 1,
-      "h": 300,
-      "w": 300,
-      "cx": 150,
-      "cy": 150,
-      "r": 150
+      "y1": 300,
+      "r": 100
     }
   },
   {
     "exec": "bitwise.btw_and",
     "aliases": {
-       "image": "1-shapes.mask-mask",
-       "mask": "2-shapes.mask-mask"
+      "image": "1-shapes.mask-mask",
+      "mask": "2-shapes.mask-mask"
     }
   },
   {

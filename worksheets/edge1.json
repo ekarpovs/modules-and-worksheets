@@ -7,20 +7,17 @@
     "params": {
       "load": true,
       "path": "../data/input",
-      "name": "coins02.png"
+      "name": "coins01.png"
     }
   },
   {
     "exec": "clrs.bgrto",
     "params": {
-      "type": 6
+      "type": 36
     }
   },
   {
-    "exec": "blur.avrg",
-    "params": {
-      "kernel": 3
-    }
+    "exec": "blur.avrg"
   },
   {
     "exec": "edge.canny"
