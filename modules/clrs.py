@@ -16,7 +16,7 @@ def bgrto(params: Dict , **data: Dict) -> Dict:
     - data: 
       image: np.dtype; the image
   Returns:
-    - data keys:
+    - data:
       image: np.dtype; the image in a new color space
 '''  
 
@@ -39,7 +39,7 @@ def rgbto(params, **data):
     - data: 
       image: np.dtype; the image
   Returns:
-    - data keys:
+    - data:
       image: np.dtype; the image in a new color space
   '''  
 
