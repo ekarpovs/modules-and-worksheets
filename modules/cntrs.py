@@ -38,10 +38,10 @@ def sort(params: Dict , **data: Dict) -> Dict:
     - params:   
       rev: bool=True; reverse flag
     - data: 
-      cntrs: List[]()=[]; contours
+      cntrs: List[List[int]]; contours
   Returns:
     - data:
-      cntrs: List[]; sorted contours
+      cntrs: List; sorted contours
       boxes: List[List[int]]; coordinates of bounding boxes
   '''
 
@@ -66,10 +66,10 @@ def sel_rect(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      cntrs: List[]()=[]; sorted contours
+      cntrs: List[]; sorted contours
   Returns:
     - data:
-      rect: List[int]()=[]; the biggest rectangle contour
+      rect: List[int]; the biggest rectangle contour
   '''
 
   cntrs = data.get('cntrs')

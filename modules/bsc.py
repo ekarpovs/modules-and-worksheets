@@ -20,7 +20,7 @@ def crop(params: Dict , **data: Dict) -> Dict:
     - data: 
       image: np.dtype; the image
   Returns:
-    - data keys:
+    - data:
       image: np.dtype; the result image
   '''  
 
@@ -46,7 +46,7 @@ def flip(params: Dict , **data: Dict) -> Dict:
     - data: 
       image: np.dtype; the image
   Returns:
-    - data keys:
+    - data:
       image: np.dtype; the result image
   '''  
 
@@ -68,7 +68,7 @@ def resize(params: Dict , **data: Dict) -> Dict:
     - data: 
       image: np.dtype; the image
   Returns:
-    - data keys:
+    - data:
       image: np.dtype; the result image
   '''
   
@@ -114,7 +114,7 @@ def resize_abs(params: Dict , **data: Dict) -> Dict:
     - data: 
       image: np.dtype; the image
   Returns:
-    - data keys:
+    - data:
       image: np.dtype; the result image
   '''
 
@@ -144,7 +144,7 @@ def rotate(params: Dict , **data: Dict) -> Dict:
     - data: 
       image: np.dtype; the image
   Returns:
-    - data keys:
+    - data:
       image: np.dtype; the result image
   '''  
 
@@ -185,7 +185,7 @@ def translate(params: Dict , **data: Dict) -> Dict:
     - data: 
       image: np.dtype; the image
   Returns:
-    - data keys:
+    - data:
       image: np.dtype; the result image
   '''
 
@@ -211,7 +211,7 @@ def fit(params: Dict , **data: Dict) -> Dict:
       image: np.dtype; the first image, that will be resized
       image1: np.dtype; the second image
   Returns:
-    - data keys:
+    - data:
       image: np.dtype; the result image
   '''  
 
@@ -237,7 +237,7 @@ def transform(params: Dict , **data: Dict) -> Dict:
     - data: 
       image: np.dtype; the image
   Returns:
-    - data keys:
+    - data:
       image: np.dtype; the result image
   '''  
   rect_cnt = data['rect']
