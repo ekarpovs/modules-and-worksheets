@@ -7,7 +7,7 @@ from re import L
 import cv2
 import numpy as np
 
-COLORS = [(0,0,0), (255,255,255), (255,0,0), (0,128,0), (0,0,255),  (255,0,255),  (0,255,255), (255,255,0), (0,255,0)]
+COLORS = [(0,0,0), (255,255,255), (0,0,255), (0,128,0), (255,0,0),  (255,0,255),  (0,255,255), (255,255,0), (0,255,0)]
 
 def mask(params: Dict , **data: Dict) -> Dict:
   '''
@@ -133,7 +133,7 @@ def circle(params: Dict , **data: Dict) -> Dict:
     - params:
       cx: int=150; left top coordinate
       cy: int=150; right bottom coordinate
-      radius: int=25; left top coordinate
+      rad: int=25; radius
       thickness: int=1; thickness of the rectangle border (-1 fill the rectangle)
       color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the shape color
     - data: 
@@ -146,15 +146,15 @@ def circle(params: Dict , **data: Dict) -> Dict:
   w = params.get('w', 300)
   cx = params.get('cx', 150)
   cy = params.get('cy', 150)
-  r = params.get('r', 25)
+  rad = params.get('rad', 25)
   thickness = params.get('thickness', 1)
   color = params.get('color', 0)
 
   shape_color=COLORS[color]
 
-  if r > h//2 or r > w//2:
-    r = min(h//2, w//2)-1
+  if rad > h//2 or rad > w//2:
+    rad = min(h//2, w//2)-1
   canvas = np.ones((h, w, 3), dtype = "uint8")*255
-  canvas = cv2.circle(canvas, (cx, cy), r, shape_color, thickness)
+  canvas = cv2.circle(canvas, (cx, cy), rad, shape_color, thickness)
   data['circle'] = canvas  
   return data
