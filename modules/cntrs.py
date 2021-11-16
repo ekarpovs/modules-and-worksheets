@@ -17,7 +17,7 @@ def find(params: Dict , **data: Dict) -> Dict:
       image: np.dtype; the image
   Returns:
     - data:
-      cntrs: List[int]; founded contours
+      cntrs: np.array[List[int,int]]; founded contours
   '''  
 
   mode = params.get('mode', cv2.RETR_EXTERNAL)
@@ -38,11 +38,11 @@ def sort(params: Dict , **data: Dict) -> Dict:
     - params:   
       rev: bool=True; reverse flag
     - data: 
-      cntrs: List[List[int]]; contours
+      cntrs: np.array[List[int,int]]; contours
   Returns:
     - data:
       cntrs: List; sorted contours
-      boxes: List[List[int]]; coordinates of bounding boxes
+      boxes: List[List[int, int]]; coordinates of bounding boxes
   '''
 
   reverse = params.get('rev', True)
@@ -66,10 +66,10 @@ def sel_rect(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      cntrs: List[]; sorted contours
+      cntrs: np.array[List[int,int]]; sorted contours
   Returns:
     - data:
-      rect: List[int]; the biggest rectangle contour
+      rect: List[List[int, int]]; the biggest rectangle contour
   '''
 
   cntrs = data.get('cntrs')
