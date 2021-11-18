@@ -41,7 +41,7 @@ def gaus(params: Dict , **data: Dict) -> Dict:
 
   kernel = params.get('kernel', 3)
   kX = kY = kernel 
-  data['image'] = cv2.GaussianBlur(data.get('image'), (kX, kY)) 
+  data['image'] = cv2.GaussianBlur(data.get('image'), (kX, kY), 0) 
   return data
 
 def median(params: Dict , **data: Dict) -> Dict:

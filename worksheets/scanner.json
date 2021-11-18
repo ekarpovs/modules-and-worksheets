@@ -1,0 +1,47 @@
+[
+  {
+    "info": "Performs affine transformation"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "name": "page.jpg"
+    }
+  },
+  {
+    "exec": "clrs.bgrto"
+  },
+  {
+    "exec": "blur.gaus",
+    "params": {
+      "k": 7,
+      "kernel": 5
+    }
+  },
+  {
+    "exec": "edge.canny",
+    "params": {
+      "thrs1": 75,
+      "thrs2": 200
+    }
+  },
+  {
+    "exec": "cntrs.find",
+    "params": {
+      "meth": 2,
+      "mode": 0
+    }
+  },
+  {
+    "exec": "cntrs.sel_rect"
+  },
+  {
+    "exec": "bsc.transform",
+    "aliases": {
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

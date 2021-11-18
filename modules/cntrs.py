@@ -13,20 +13,30 @@ def find(params: Dict , **data: Dict) -> Dict:
     - params:   
       meth: Dict[str,int](NONE:1,SIMPLE:2,TC89_L1:3,TC89_KCOS:4)=SIMPLE; interpolation method cv2.CHAIN_APPROX_(...)
       mode: Dict[str,int](EXTERNAL:0,LIST:1,CCOMP:2,TREE:3,FLOODFILL:4)=EXTERNAL; result mode cv2.RETR_(...)
+      num-cntrs: int=5; number of biggets contours
+      approx: bool=True; approximate as rectangle
     - data: 
       image: np.dtype; the image
   Returns:
     - data:
-      cntrs: np.array[List[int,int]]; founded contours
+      cntrs: List[np.ndarray]; founded contours
   '''  
 
   mode = params.get('mode', cv2.RETR_EXTERNAL)
   method = params.get('meth', cv2.CHAIN_APPROX_SIMPLE)
+  num_cntrs = params.get('num-cntrs', 5)
+  
+  image = data.get('image')
 
-  cntrs, _ = cv2.findContours(data.get('image'), mode, method) 
+  cntrs, _ = cv2.findContours(image, mode, method) 
   if len(cntrs) == 3:
-      cntrs = cntrs[1]
-  data['cntrs'] = cntrs 
+    cntrs = cntrs[1]
+  cntrs = sorted(cntrs, key = cv2.contourArea, reverse = True)[:num_cntrs]
+  bounding_boxes = [cv2.boundingRect(c) for c in cntrs]
+
+  data['cntrs'] = cntrs
+  data['boxes'] = bounding_boxes
+
   return data
 
 
@@ -37,23 +47,28 @@ def sort(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
       rev: bool=True; reverse flag
+      max-num: int=5; max number of returned contours
     - data: 
-      cntrs: np.array[List[int,int]]; contours
+      cntrs: List[np.ndarray]; contours
   Returns:
     - data:
-      cntrs: List; sorted contours
-      boxes: List[List[int, int]]; coordinates of bounding boxes
+      cntrs: List[np.ndarray]; sorted contours
+      boxes: List[Tuple[]]; coordinates of bounding boxes
   '''
 
   reverse = params.get('rev', True)
   cntrs = data.get('cntrs')
+  max_num = params.get('max-num', 5)
+
   i = 0
   # construct the list of bounding boxes and sort them from top to
   # bottom
   bounding_boxes = [cv2.boundingRect(c) for c in cntrs]
-  # cntrs = sorted(cntrs, key=cv2.contourArea, reverse=True)
-  (cntrs, bounding_boxes) = zip(*sorted(zip(cntrs, bounding_boxes), key=lambda b:b[1][i], reverse=reverse))
-
+  cntrs = sorted(cntrs, key=cv2.contourArea, reverse=True)
+  # (cntrs, bounding_boxes) = zip(*sorted(zip(cntrs, bounding_boxes), key=lambda b:b[1][i], reverse=reverse))
+  if len(cntrs) > max_num:
+    cntrs = cntrs[:max_num]
+    bounding_boxes = bounding_boxes[:max_num]
   data['cntrs'] = cntrs
   data['boxes'] = bounding_boxes
   return data
@@ -66,10 +81,10 @@ def sel_rect(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      cntrs: np.array[List[int,int]]; sorted contours
+      cntrs: np.ndarray; sorted contours
   Returns:
     - data:
-      rect: List[List[int, int]]; the biggest rectangle contour
+      app-rect: np.ndarray; the biggest rectangle contour
   '''
 
   cntrs = data.get('cntrs')
@@ -84,6 +99,6 @@ def sel_rect(params: Dict , **data: Dict) -> Dict:
 	  if len(approx) == 4:
 		  rect = approx
 		  break 
-  data['rect'] = rect
+  data['app-rect'] = rect
   return data
 

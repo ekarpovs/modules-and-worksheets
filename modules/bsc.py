@@ -236,11 +236,12 @@ def transform(params: Dict , **data: Dict) -> Dict:
     - params:   
     - data: 
       image: np.dtype; the image
+      app-rect: np.ndarray; the biggest rectangle contour 
   Returns:
     - data:
       image: np.dtype; the result image
   '''  
-  rect_cnt = data['rect']
+  rect_cnt = data['app-rect']
   data['image'] = _four_point_transform(data.get('image'), rect_cnt.reshape(4, 2)) 
   return data
 
