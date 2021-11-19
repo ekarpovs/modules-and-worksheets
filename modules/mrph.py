@@ -4,6 +4,7 @@ It is a set of non-linear operations that process
 images based on shapes morphology of features in an image. 
 It applies structuring element to an input image and generate an output image.
 '''
+
 from typing import Dict
 import cv2
 

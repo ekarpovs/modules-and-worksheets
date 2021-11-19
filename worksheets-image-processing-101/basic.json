@@ -1,7 +1,0 @@
-[
-  {"exec": "bsc.crop", "params": {"useorig": true, "y0": 100, "x0": 150}},
-  {"exec": "bsc.flip", "params": {"useorig": false, "direct": 1}},
-  {"exec": "bsc.resize", "params": {"useorig": true, "unit": 0, "size": 750}},
-  {"exec": "bsc.rotate", "params": {"useorig": true, "angle": 30, "neg": true}},
-  {"exec": "bsc.translate", "params": {"useorig": true, "x": -50, "y": 40}}
-]
