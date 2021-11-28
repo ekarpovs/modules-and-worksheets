@@ -1,0 +1,38 @@
+[
+  {
+    "info": "Image transformation"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "name": "coins01.png"
+    }
+  },
+  {
+    "exec": "bsc.crop",
+    "params": {
+    }
+  },
+  {
+    "exec": "bsc.flip",
+    "params": {
+      "direct": 1
+    },
+    "aliases": {
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
+    "exec": "bsc.resize",
+    "params": {
+      "unit": 0,
+      "size": 150
+    },
+    "aliases": {
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

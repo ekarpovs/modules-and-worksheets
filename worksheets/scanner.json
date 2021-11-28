@@ -38,10 +38,13 @@
   {
     "exec": "bsc.transform",
     "aliases": {
-      "image": "0-glbstm.begin-image"
+      "image": "0-glbstm.begin-image",
+      "app-rect": "5-cntrs.sel_rect-app-rect"
     }
   },
   {
-    "exec": "glbstm.end"
+    "exec": "glbstm.end",
+    "params": {
+    }
   }
 ]

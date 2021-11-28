@@ -173,6 +173,44 @@ def rotate(params: Dict , **data: Dict) -> Dict:
   data['image'] = cv2.warpAffine(image, M, (bound_w, bound_h))
   return data
 
+def rotate_inside(params: Dict , **data: Dict) -> Dict:  
+  '''
+  Rotates an input image with predefined bounding.
+  
+  Parameters:
+    - params:   
+      angle: float=0.0; rotation angle
+      neg: bool=True; negative direction
+    - data: 
+      image: np.dtype; the image
+      rect: np.dtype; the canvas for result
+  Returns:
+    - data:
+      image: np.dtype; the result image
+  '''  
+
+  # grab the dimensions of the image and calculate the center of the image
+  image = data.get('image')
+  rect = data.get('rect')
+
+  # calculate rotation matrix
+  angle = params.get('angle', 0.0)
+  negative = params.get('neg', False)
+  if negative:
+    angle *= -1
+  
+  (h, w) = image.shape[:2]
+  # copy the image regarding the center of the canvas
+  rect[int(cy - h/2): int(cy+h/2), int(cx - w/2): int(cx + w/2)] = image 
+
+  (hr, wr) = rect.shape[:2]
+  (cx, cy) = (wr / 2, hr / 2)
+  M = cv2.getRotationMatrix2D((cx, cy), angle, 1.0)
+  rotated = cv2.warpAffine(rect, M, (wr, hr), borderMode=cv2.BORDER_CONSTANT, borderValue=(255,255,255))
+
+  data['image'] = rotated
+  return data
+
 def translate(params: Dict , **data: Dict) -> Dict:
   '''
   Translates (Shifts) an image by a NumPy matrix in the form:
@@ -202,14 +240,14 @@ def translate(params: Dict , **data: Dict) -> Dict:
 
 def fit(params: Dict , **data: Dict) -> Dict:
   '''
-  Resizes image1 regarding image
+  Resizes the input image regarding the scene image
 
   Parameters:
     - params:   
       meth: Dict[str, int](NEAREST:0,LINEAR:1,AREA:2,CUBIC:3,LANCZOS:4)=AREA; interpolation method cv2.INTER_(...)
     - data: 
       image: np.dtype; the first image, that will be resized
-      image1: np.dtype; the second image
+      scene: np.dtype; the second image
   Returns:
     - data:
       image: np.dtype; the result image
@@ -219,8 +257,8 @@ def fit(params: Dict , **data: Dict) -> Dict:
 
   image = data.get('image')
   (h, w) = image.shape[:2]
-  image1 = data.get('image1')
-  (h1, w1) = image1.shape[:2]
+  scene = data.get('scene')
+  (h1, w1) = scene.shape[:2]
   if (h == h1 and w == w1):
     return data
   dim = (w1, h1)
@@ -310,3 +348,34 @@ def _four_point_transform(image, pts):
 
   # return the warped image
   return warped
+
+
+
+  # angle *= 180/np.pi # convert to rad
+  # Transformation matrix with a sequence of linear transformations (written in reverse order of application
+  # M = cv2.TranslateBy((w-1)/2,(h-1)/2)*cv2.getRotationMatrix2D(angle)*cv2.TranslateBy(-cx, -cy)
+  # T = cv2.getRotationMatrix2D((cx, cy), angle, 0.01)
+  # print('T',T)
+  # M =np.float32([[1,0.005,0], [-0.005,1,0]])
+  # abs_cos = abs(M[0,0]) 
+  # abs_sin = abs(M[0,1])
+  # # find the new width and height bounds
+  # bound_w = int(hr * abs_sin + wr * abs_cos)
+  # bound_h = int(hr * abs_cos + wr * abs_sin)
+  # # subtract old image center (bringing image back to original relative position) and adding the new image center coordinates
+  # # M[0, 2] += bound_w/2 - cx
+  # # M[1, 2] += bound_h/2 - cy
+  # print(M, bound_w, bound_h)
+  # rot_im = cv2.warpAffine(rot_im, M, (bound_w, bound_h))
+  # x = int( cx - w/2  )
+  # y = int( cy - h/2 )
+
+    # #transformation matrix for Rotation
+  # M = np.float32([[np.cos(angle_r), -(np.sin(angle_r)), 0],
+  #               [np.sin(angle_r), np.cos(angle_r), 0],
+  #               [0, 0, 1]])
+  # apply a perspective transformation to the image
+  # rot_im = cv2.warpPerspective(image, M, (wout, hout))
+
+  # M =np.float32([[1, angle/180,10], [-angle/180,1,10]])
+  # M = cv2.getRotationMatrix2D((cx, cy), angle, 1)

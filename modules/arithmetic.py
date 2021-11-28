@@ -49,7 +49,7 @@ def arth_sub(params: Dict , **data: Dict) -> Dict:
 
 def arth_add_into(params: Dict , **data: Dict) -> Dict:
   '''
-  Adds the mask into the image from defined X, Y offsets
+  Adds the image into the mask from defined X, Y offsets
 
   Parameters:
     - params:   
@@ -67,6 +67,6 @@ def arth_add_into(params: Dict , **data: Dict) -> Dict:
   offset_x = params.get('offset-x', 0)
   image = data.get('image')
   mask = data.get('mask')
-  image[offset_y:offset_y + mask.shape[0], offset_x:offset_x + mask.shape[1]] = mask
-  data['image'] = image
+  mask[offset_y:offset_y + image.shape[0], offset_x:offset_x + image.shape[1]] = image
+  data['image'] = mask
   return data

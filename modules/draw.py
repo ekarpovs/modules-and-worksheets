@@ -1,12 +1,72 @@
 '''
-Drawing Contours, Bounding boxes, Keypoints, Matches operation, etc.
+Drawing Points, Lines, Contours, Bounding boxes, Keypoints, Matches operation, etc.
 '''
+
+from typing import Dict
 import cv2
 import numpy as np
 
 COLORS = [(0,0,0), (255,255,255), (0,0,255), (0,128,0), (255,0,0),  (255,0,255),  (0,255,255), (255,255,0), (0,255,0)]
 
-def contours(params, **data):
+
+def point(params: Dict , **data: Dict) -> Dict:
+  '''
+  Draws point.
+
+  Parameters:
+    - params:
+      y0: int=0; point coordinate
+      x0: int=0; point coordinate
+      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the point color
+    - data: 
+      image: np.dtype; an image
+  Returns:
+    - data:
+      image: np.dtype; an image
+  '''
+  image = data.get('image')
+
+  x0 = params.get('x0', 0)
+  y0 = params.get('y0', 0)
+  color = params.get('color', 4)
+  point_color=COLORS[color]
+
+  image = cv2.circle(image, (x0,y0), radius=0, color=point_color, thickness=-1)
+  return data
+
+def line(params: Dict , **data: Dict) -> Dict:
+  '''
+  Draws line.
+
+  Parameters:
+    - params:
+      x0: int=0; start point coordinate
+      y0: int=0; start point coordinate
+      x1: int=0; end point coordinate
+      y1: int=0; end point coordinate
+      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the point color
+      thickness: int=1; thickness of the line
+    - data: 
+      image: np.dtype; an image
+  Returns:
+    - data:
+      image: np.dtype; an image
+  '''
+  image = data.get('image')
+
+  x0 = params.get('x0', 0)
+  y0 = params.get('y0', 0)
+  x1 = params.get('x1', 0)
+  y1 = params.get('y1', 0)
+  thickness = params.get('thickness', 1)
+  color = params.get('color', 4)
+  line_color=COLORS[color]
+
+  image = cv2.line(image, (x0,y0), (x1,y1), color=line_color, thickness=thickness)
+  return data
+
+
+def contours(params: Dict , **data: Dict) -> Dict:
   '''
   Draws contours.
 
@@ -59,7 +119,7 @@ def contours(params, **data):
   return data
 
 
-def keypoints(params, **data):
+def keypoints(params: Dict , **data: Dict) -> Dict:
   """
   Draws keypoints.
 
@@ -89,7 +149,7 @@ def keypoints(params, **data):
 
 
 # https://docs.opencv.org/3.4/d4/d5d/group__features2d__draw.html
-def matches(params, **data):
+def matches(params: Dict , **data: Dict) -> Dict:
   """
   Draws matches.
 

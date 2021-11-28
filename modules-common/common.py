@@ -42,3 +42,49 @@ def empty(params: Dict , **data: Dict) -> Dict:
   '''  
   return data
 
+def store(params: Dict , **data: Dict) -> Dict:
+  '''
+  Stores an image into a file.
+  
+  Parameters:
+    - params:   
+      path: str=../data/input; path to a folder with images
+      name: str=; the image file name 
+    - data: 
+  Returns:
+    - data:
+      image: np.dtype; the stored image
+  '''
+
+  image = data.get('image')
+
+  path = params.get('path', '../data/output')
+  fn = params.get('name', '')
+  ffn = '{}/{}'.format(path, fn)
+  data['image'] = cv2.write(ffn, image)
+  return data
+
+
+def restore(params: Dict , **data: Dict) -> Dict:
+  '''
+  Restores an image from a file.
+  
+  Parameters:
+    - params:   
+      load: bool=True; an imput image will be loaded
+      path: str=../data/input; path to a folder with images
+      name: str=; the image file name 
+    - data: 
+      image: np.dtype; the image, that was loaded by a client programm
+  Returns:
+    - data:
+      image: np.dtype; the loaded image
+  '''
+
+  path = params.get('path', '../data/input')
+
+  fn = params.get('name', '')
+  ffn = '{}/{}'.format(path, fn)
+  data['image'] = cv2.imread(ffn)
+  return data
+

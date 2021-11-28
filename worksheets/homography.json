@@ -1,0 +1,26 @@
+[
+  {
+    "info": "homography"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "name": "lightning1.png"
+    }
+  },
+  {
+    "exec": "clrs.bgrto",
+    "params": {
+      "angle": 2
+    }
+  },
+  {
+    "exec": "bsc.rotate",
+    "params": {
+      "angle": 2
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

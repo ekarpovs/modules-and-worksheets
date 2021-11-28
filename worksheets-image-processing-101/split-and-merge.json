@@ -1,4 +1,0 @@
-[
-  {"exec": "clrs.clrs_split", "params": {"useorig": true}},
-  {"exec": "clrs.clrs_merge", "params": {"useorig": true}}
-]

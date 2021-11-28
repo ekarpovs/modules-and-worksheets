@@ -1,6 +1,6 @@
 [
   {
-    "info": "Perform "
+    "info": "Perform bitwise operations"
   },
   {
     "exec": "glbstm.begin",

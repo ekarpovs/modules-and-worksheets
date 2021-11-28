@@ -8,7 +8,7 @@ import cv2
 
 def sc_down(params: Dict , **data: Dict) -> Dict:
   '''
-  Downscales an image using  a gaussian pyramids
+  Downscales an image
 
     Parameters:
     - params:   
@@ -30,7 +30,7 @@ def sc_down(params: Dict , **data: Dict) -> Dict:
 
 def sc_up(params: Dict , **data: Dict) -> Dict:
   '''
-  Upscales an image using  a gaussian pyramids
+  Upscales an image
 
     Parameters:
     - params:   

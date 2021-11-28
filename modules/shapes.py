@@ -114,13 +114,14 @@ def rectangle(params: Dict , **data: Dict) -> Dict:
   y0 = params.get('y0', 25)
   y1 = params.get('y1', 275)
   x0 = params.get('x0', 25)
-  x1 = params.get('x1', 275) 
+  x1 = params.get('x1', 275)
   thickness = params.get('thickness', 1)
   color = params.get('color', 0)
   
   shape_color=COLORS[color]
   canvas = np.ones((h, w, 3), dtype = "uint8")*255
-  canvas = cv2.rectangle(canvas, (x0, y0), (x1, y1), shape_color, thickness)
+  if thickness is not 0:
+    canvas = cv2.rectangle(canvas, (x0, y0), (x1, y1), shape_color, thickness)
   data['rect'] = canvas  
   return data
 
