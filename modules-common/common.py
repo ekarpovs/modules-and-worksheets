@@ -48,7 +48,7 @@ def store(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
-      path: str=../data/input; path to a folder with images
+      path: str=../data/output; path to a folder with images
       name: str=; the image file name 
     - data: 
   Returns:
@@ -60,8 +60,9 @@ def store(params: Dict , **data: Dict) -> Dict:
 
   path = params.get('path', '../data/output')
   fn = params.get('name', '')
+  
   ffn = '{}/{}'.format(path, fn)
-  data['image'] = cv2.write(ffn, image)
+  cv2.imwrite(ffn, image)
   return data
 
 

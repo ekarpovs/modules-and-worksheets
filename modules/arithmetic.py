@@ -53,8 +53,8 @@ def arth_add_into(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      offset-y: int=0; vertical offset
-      offset-x: int=0; horizontal offset
+      offsety: int=0; vertical offset
+      offsetx: int=0; horizontal offset
     - data: 
       image: np.dtype; the image
       mask: np.dtype; the second image
@@ -63,8 +63,8 @@ def arth_add_into(params: Dict , **data: Dict) -> Dict:
       image: np.dtype; the result image
   '''
 
-  offset_y = params.get('offset-y', 0)
-  offset_x = params.get('offset-x', 0)
+  offset_y = params.get('offsety', 0)
+  offset_x = params.get('offsetx', 0)
   image = data.get('image')
   mask = data.get('mask')
   mask[offset_y:offset_y + image.shape[0], offset_x:offset_x + image.shape[1]] = image
