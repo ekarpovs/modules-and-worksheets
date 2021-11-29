@@ -175,4 +175,31 @@ def matches(params: Dict , **data: Dict) -> Dict:
   data['image'] = matched_visual
   return data
 
+def box(params: Dict , **data: Dict) -> Dict:
+  '''
+  Draws bounding box.
 
+  Parameters:
+    - params:
+      thickness: int=1; thickness of the rectangle border (-1 fill the rectangle)
+      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the box color
+    - data: 
+      image: np.dtype; an image
+      coord: List[int](x0,y0,x1,y1); coordinates
+  Returns:
+    - data:
+      image: np.dtype; an image
+  '''
+
+  image = data.get('image')
+  clone = image.copy()
+  coords = data.get('coords')
+
+  thickness = params.get('thickness', 1)
+  color = params.get('color', 4)
+  draw_color=COLORS[color]
+
+  if thickness is not 0:
+    x0,y0,x1,y1 = coords
+    cv2.rectangle(clone, (x0, y0), (x1, y1), draw_color, thickness)
+  return data
