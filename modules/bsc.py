@@ -155,7 +155,7 @@ def rotate(params: Dict , **data: Dict) -> Dict:
 
   # calculate rotation matrix
   angle = params.get('angle', 0)
-  negative = params.get('neg', False)
+  negative = params.get('neg', True)
   if negative:
     angle *= -1 
 
@@ -195,16 +195,17 @@ def rotate_inside(params: Dict , **data: Dict) -> Dict:
 
   # calculate rotation matrix
   angle = params.get('angle', 0.0)
-  negative = params.get('neg', False)
+  negative = params.get('neg', True)
   if negative:
     angle *= -1
   
   (h, w) = image.shape[:2]
+  (hr, wr) = rect.shape[:2]
+  (cx, cy) = (wr / 2, hr / 2)
+
   # copy the image regarding the center of the canvas
   rect[int(cy - h/2): int(cy+h/2), int(cx - w/2): int(cx + w/2)] = image 
 
-  (hr, wr) = rect.shape[:2]
-  (cx, cy) = (wr / 2, hr / 2)
   M = cv2.getRotationMatrix2D((cx, cy), angle, 1.0)
   rotated = cv2.warpAffine(rect, M, (wr, hr), borderMode=cv2.BORDER_CONSTANT, borderValue=(255,255,255))
 
