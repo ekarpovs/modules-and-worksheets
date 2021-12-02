@@ -31,7 +31,7 @@ def cmp_mse(params: Dict, **data: Dict) -> Dict:
 
   err = np.sum((image.astype("float") - scene.astype("float")) ** 2)
   err /= float(image.shape[0] * image.shape[1])
-  print('cmp_mse err:', err)
+  # print('cmp_mse err:', err)
   data['mse'] = err
   return data
 
@@ -83,7 +83,7 @@ def cmp_psnr(params: Dict, **data: Dict) -> Dict:
   if(mse != 0):
     max_pixel = 255.0
     psnr = 20 * log10(max_pixel / sqrt(mse))
-  print('cmp_psnr mse,psnr:', mse,  psnr)
+  # print('cmp_psnr mse,psnr:', mse,  psnr)
   data['psnr'] = psnr 
   return data
 
@@ -100,7 +100,7 @@ def cmp_norm(params: Dict, **data: Dict) -> Dict:
       scene: np.dtype; the second image
   Returns:
     - data:
-      diff: np.dtype; Difference
+      diff: float; Difference
   '''  
 
   image = data.get('image')
@@ -108,7 +108,7 @@ def cmp_norm(params: Dict, **data: Dict) -> Dict:
   norm = image/np.sqrt(np.sum(image**2))  
   norm1 = scene/np.sqrt(np.sum(scene**2))  
   diff =np.sum(norm*norm1)
-  print('cmp_norm diff:', diff)
+  # print('cmp_norm diff:', diff)
   data['diff'] = diff 
 
   # https://stackoverflow.com/questions/11541154/checking-images-for-similarity-with-opencv

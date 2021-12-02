@@ -42,7 +42,7 @@ def end(params: Dict, **data: Dict) -> Dict:
     - data: 
   Returns:
     - data: 
-      image: np.dtype; the stored image
+      image: np.dtype=None; image
   '''
   image = data.get('image')
 
@@ -52,5 +52,5 @@ def end(params: Dict, **data: Dict) -> Dict:
     path = params.get('path', '../data/output')
     fn = params.get('name', '')
     ffn = '{}/{}'.format(path, fn)
-    data['image'] = cv2.write(ffn, image)
+    cv2.imwrite(ffn, image)
   return data
