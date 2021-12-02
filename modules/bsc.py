@@ -187,6 +187,7 @@ def rotate_inside(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: np.dtype; the result image
+      matrix: np.ndarray; rotation matrix
   '''  
 
   # grab the dimensions of the image and calculate the center of the image
@@ -210,6 +211,7 @@ def rotate_inside(params: Dict , **data: Dict) -> Dict:
   rotated = cv2.warpAffine(rect, M, (wr, hr), borderMode=cv2.BORDER_CONSTANT, borderValue=(255,255,255))
 
   data['image'] = rotated
+  data['matrix'] = M
   return data
 
 def translate(params: Dict , **data: Dict) -> Dict:
