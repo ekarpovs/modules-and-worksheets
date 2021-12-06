@@ -11,7 +11,7 @@ def begin(params: Dict, **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      load: bool=True; an imput image will be loaded
+      define: button=Define; path and name of an image 
       path: str=../data/input; path to a folder with images
       name: str=; the image file name 
     - data: 
