@@ -12,7 +12,7 @@ def avrg(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      kernel: List[int](3,5,7,9)=3; kernel size
+      kernel: Scale[int](3,13,1)=3; kernel size
     - data: 
       image: np.dtype; the image
   Returns:
@@ -31,7 +31,7 @@ def gaus(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      kernel: List[int](3,5,7,9)=3; kernel size
+      kernel: Scale[int](3,13,1)=3; kernel size
     - data: 
       image: np.dtype; the image
   Returns:
@@ -50,7 +50,7 @@ def median(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      kernel: List[int](3,5,7,9)=3; kernel size
+      kernel: Scale[int](3,13,1)=3; kernel size
     - data: 
       image: np.dtype; the image
   Returns:
@@ -68,9 +68,9 @@ def bilateral(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      d: List[int](7,9,11,15,17,19,21,23,25,27)=11; diameter of each pixel neighborhood
-      sigmacolor: int=17; filter sigma in the color space.
-      sigmaspace: int=17; filter sigma in the coordinate space.
+      d: Scale[int](7,27,1)=11; diameter of each pixel neighborhood
+      sigmacolor: Scale[int](9,80,1)=17; filter sigma in the color space.
+      sigmaspace: Scale[int](9,80,1)=17; filter sigma in the coordinate space.
       border: Dict[str,int](DEFAULT:4,REFLECT:2,REFLECT101:4,REFLECT_101:4,REPLICATE:1,TRANSPARENT:5,WRAP:3)=DEFAULT; pixel extrapolation method cv2.BORDER_(...)
     - data: 
       image: np.dtype; the image

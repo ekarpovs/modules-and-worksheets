@@ -11,16 +11,16 @@ def simple(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      mint: Range[int](0,115,1)=50; min threshold
-      maxt: Range[int](115,255,1)=200; max threshold
+      mint: Scale[int](0,115,1)=50; min threshold
+      maxt: Scale[int](115,255,1)=200; max threshold
       fltarea: bool=True; fltarea: filter by area
-      minarea: Range[int](100,5000,1)=1500; min area
+      minarea: Scale[int](100,5000,1)=1500; min area
       fltcirc: bool=True; fltarea: filter by circularity
-      mincircularity: Range[float](0.1,0.9,0.01)=0.1; min circularity
+      mincircularity: Scale[float](0.1,0.9,0.01)=0.1; min circularity
       fltconv: bool=True; fltarea: filter by convexity
-      minconvexity: Range[float](0.10,0.99,0.01)=0.87; min convexity
+      minconvexity: Scale[float](0.10,0.99,0.01)=0.87; min convexity
       fltinertia: bool=True; fltarea: filter by inertia
-      mininertia: Range[float](0.01,0.1,0.01)=0.01; min inertia
+      mininertia: Scale[float](0.01,0.1,0.01)=0.01; min inertia
     - data: 
       image: np.dtype; the image
   Returns:

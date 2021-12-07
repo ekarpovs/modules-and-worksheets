@@ -14,8 +14,8 @@ def canny(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      thrs1: Range[int](10,150,1)=50; threshold1
-      thrs2: Range[int](100,252,1)=200; threshold2
+      thrs1: Scale[int](10,150,1)=50; threshold1
+      thrs2: Scale[int](100,252,1)=200; threshold2
     - data: 
       image: np.dtype; the image
   Returns:

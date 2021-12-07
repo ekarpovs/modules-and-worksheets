@@ -139,7 +139,7 @@ def rotate(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
-      angle: Range[int](0,180,1)=0; rotation angle
+      angle: Scale[int](0,180,1)=0; rotation angle
       neg: bool=True; negative direction
     - data: 
       image: np.dtype; the image
@@ -176,10 +176,11 @@ def rotate(params: Dict , **data: Dict) -> Dict:
 def rotate_inside(params: Dict , **data: Dict) -> Dict:  
   '''
   Rotates an input image with predefined bounding.
+  angle:List[float](0.0,0.25,0.5,0.75,1.0,1.25,1.5,1.75,2.0,2.25,2.5,2.75,3.0)=0.0; rotation angle
   
   Parameters:
     - params:   
-      angle:List[float](0.0,0.25,0.5,0.75,1.0,1.25,1.5,1.75,2.0,2.25,2.5,2.75,3.0)=0.0; rotation angle
+      angle: Scale[float](0.0,3.0,0.25)=0.0; rotation angle
       neg: bool=True; negative direction
     - data: 
       image: np.dtype; the image
