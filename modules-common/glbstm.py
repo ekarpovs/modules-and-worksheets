@@ -12,7 +12,7 @@ def begin(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:   
       define: button=Define; path and name of an image 
-      path: str=../data/input; path to a folder with images
+      path: str=; path to a folder with images
       name: str=; the image file name 
     - data: 
       image: np.dtype; the image, that was loaded by a client programm
@@ -23,7 +23,7 @@ def begin(params: Dict, **data: Dict) -> Dict:
 
   load = params.get('load', True)
   if load:
-    path = params.get('path', '../data/input')
+    path = params.get('path', '')
     fn = params.get('name', '')
     ffn = '{}/{}'.format(path, fn)
     data['image'] = cv2.imread(ffn)
@@ -36,8 +36,8 @@ def end(params: Dict, **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      store: bool=False; an output image will be stored
-      path: str=../data/output; path to an output folder
+      define: button=Define; path and name of an image 
+      path: str=; path to an output folder
       name: str=; the output file name 
     - data: 
   Returns:
@@ -49,7 +49,7 @@ def end(params: Dict, **data: Dict) -> Dict:
   store = params.get('store', False)
   
   if store:
-    path = params.get('path', '../data/output')
+    path = params.get('path', '')
     fn = params.get('name', '')
     ffn = '{}/{}'.format(path, fn)
     cv2.imwrite(ffn, image)

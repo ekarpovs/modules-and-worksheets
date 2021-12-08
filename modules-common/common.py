@@ -49,6 +49,7 @@ def store(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
+      define: button=Define; path and name of an image 
       path: str=; path to a folder with images
       name: str=; the image file name 
     - data: 
@@ -94,6 +95,7 @@ def store_json(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
+      define: button=Define; path and name of an image 
       path: str=; path to a folder with images
       name: str=; the data file name 
     - data:
