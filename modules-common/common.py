@@ -53,9 +53,9 @@ def store(params: Dict , **data: Dict) -> Dict:
       path: str=; path to a folder with images
       name: str=; the image file name 
     - data: 
+      image: np.dtype; the stored image
   Returns:
     - data:
-      image: np.dtype; the stored image
   '''
 
   image = data.get('image')

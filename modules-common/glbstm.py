@@ -15,7 +15,6 @@ def begin(params: Dict, **data: Dict) -> Dict:
       path: str=; path to a folder with images
       name: str=; the image file name 
     - data: 
-      image: np.dtype; the image, that was loaded by a client programm
   Returns:
     - data:
       image: np.dtype; the loaded image
@@ -40,9 +39,9 @@ def end(params: Dict, **data: Dict) -> Dict:
       path: str=; path to an output folder
       name: str=; the output file name 
     - data: 
+      image: np.dtype; the stored image
   Returns:
     - data: 
-      image: np.dtype=None; image
   '''
   image = data.get('image')
 
