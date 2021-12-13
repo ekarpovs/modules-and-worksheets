@@ -20,10 +20,9 @@ def begin(params: Dict, **data: Dict) -> Dict:
       image: np.dtype; the loaded image
   '''
 
-  load = params.get('load', True)
-  if load:
-    path = params.get('path', '')
-    fn = params.get('name', '')
+  path = params.get('path', '')
+  fn = params.get('name', '')
+  if path is not '' and fn is not '':
     ffn = '{}/{}'.format(path, fn)
     data['image'] = cv2.imread(ffn)
   return data

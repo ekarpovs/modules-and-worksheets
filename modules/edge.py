@@ -23,7 +23,7 @@ def canny(params: Dict , **data: Dict) -> Dict:
       image: np.dtype; the result image
   '''
 
-  threshold1 = params.get('thrs1', 10)
+  threshold1 = params.get('thrs1', 50)
   threshold2 = params.get('thrs2', 200)
   data['image'] = cv2.Canny(data.get('image'), threshold1, threshold2)
   return data
