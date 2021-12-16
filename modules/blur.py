@@ -12,7 +12,7 @@ def avrg(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      kernel: Scale[int](3,13,1)=3; kernel size
+      kernel: Scale[int](3,13,1,1)=3; kernel size
     - data: 
       image: np.dtype; the image
   Returns:
@@ -31,16 +31,16 @@ def gaus(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      kernel: Scale[int](3,13,1)=3; kernel size
+      kernel: Scale[int](3,13,1,1)=3; kernel size
     - data: 
       image: np.dtype; the image
   Returns:
     - data:
       image: np.dtype; the blured image
   '''
-
+# ksize.width > 0 && ksize.width % 2 == 1 && ksize.height > 0 && ksize.height % 2 == 1
   kernel = params.get('kernel', 3)
-  kX = kY = kernel 
+  kX = kY = int(kernel) 
   data['image'] = cv2.GaussianBlur(data.get('image'), (kX, kY), 0) 
   return data
 
@@ -50,7 +50,7 @@ def median(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      kernel: Scale[int](3,13,1)=3; kernel size
+      kernel: Scale[int](3,13,1,1)=3; kernel size
     - data: 
       image: np.dtype; the image
   Returns:
@@ -68,9 +68,9 @@ def bilateral(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      d: Scale[int](7,27,1)=11; diameter of each pixel neighborhood
-      sigmacolor: Scale[int](9,80,1)=17; filter sigma in the color space.
-      sigmaspace: Scale[int](9,80,1)=17; filter sigma in the coordinate space.
+      d: Scale[int](7,27,1,1)=11; diameter of each pixel neighborhood
+      sigmacolor: Scale[int](9,80,1,0)=17; filter sigma in the color space.
+      sigmaspace: Scale[int](9,80,1,0)=17; filter sigma in the coordinate space.
       border: Dict[str,int](DEFAULT:4,REFLECT:2,REFLECT101:4,REFLECT_101:4,REPLICATE:1,TRANSPARENT:5,WRAP:3)=DEFAULT; pixel extrapolation method cv2.BORDER_(...)
     - data: 
       image: np.dtype; the image

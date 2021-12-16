@@ -12,7 +12,7 @@ def simple(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:
       type: Dict[str,int](BINARY:0,BINARY_INV:1,TRUNC:2,TOZERO:3,TOZERO_INV:4)=BINARY; thresholding type cv2.THRES_(..)
-      thrsh: Scale[int](0,255,1)=127; threshold
+      thrsh: Scale[int](0,255,1,0)=127; threshold
       otsu: bool=False; flag to use Otsu algorithm to choose the optimal threshold value
     - data: 
       image: np.dtype; an image
@@ -40,8 +40,8 @@ def adaptive(params: Dict , **data: Dict) -> Dict:
     - params:
       type: Dict[str,int](BINARY:0,BINARY_INV:1,TRUNC:2,TOZERO:3,TOZERO_INV:4)=BINARY; thresholding type cv2.THRES_(..)
       meth: Dict[str,int](MEAN_C:0,GAUSSIAN_C:1)=MEAN_C; adaptive thresholding algorithm to use cv2.ADAPTIVE_THRESH_(...)
-      na: int=15; neighborhood area
-      c: int=5; a constant which is subtracted from the mean or weighted mean calculated
+      na: Scale[int](3,21,1,1)=15; neighborhood area
+      c: float=5.0; a constant which is subtracted from the mean or weighted mean calculated
     - data: 
       image: np.dtype; an image
   Returns:

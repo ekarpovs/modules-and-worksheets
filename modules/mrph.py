@@ -16,7 +16,7 @@ def kernel(params: Dict , **data: Dict) -> Dict:
     Parameters:
     - params:   
       shape: Dict[str,int](RECT:0,CROSS:1,ELLIPSE:2)=RECT; shape of structuring element cv2.MORPH_(...)
-      kernel: Scale[int](3,13,1)=3; kernel size
+      kernel: Scale[int](3,13,1,1)=3; kernel size
     - data: 
       image: np.dtype; the image
   Returns:
@@ -39,7 +39,7 @@ def erode(params: Dict , **data: Dict) -> Dict:
 
     Parameters:
     - params:   
-      iter: Scale[int](1,15,1)=1; number of iterations
+      iter: Scale[int](1,15,1,0)=1; number of iterations
     - data: 
       image: np.dtype; the image
       kernel: List[bool]; structured element (kernel)
@@ -64,7 +64,7 @@ def dilate(params: Dict , **data: Dict) -> Dict:
     - params: 
     Parameters:
     - params:   
-      iter: Scale[int](1,15,1)=1; number of iterations
+      iter: Scale[int](1,15,1,0)=1; number of iterations
     - data: 
       image: np.dtype; the image
       kernel: List[bool]; structured element (kernel)
