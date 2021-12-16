@@ -39,6 +39,7 @@ def adaptive(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:
       type: Dict[str,int](BINARY:0,BINARY_INV:1,TRUNC:2,TOZERO:3,TOZERO_INV:4)=BINARY; thresholding type cv2.THRES_(..)
+      max: Scale[int](225,255,1,0)=235; max threshhold
       meth: Dict[str,int](MEAN_C:0,GAUSSIAN_C:1)=MEAN_C; adaptive thresholding algorithm to use cv2.ADAPTIVE_THRESH_(...)
       na: Scale[int](3,21,1,1)=15; neighborhood area
       c: float=5.0; a constant which is subtracted from the mean or weighted mean calculated
@@ -50,9 +51,10 @@ def adaptive(params: Dict , **data: Dict) -> Dict:
 '''
 
   type = params.get('type', cv2.THRESH_BINARY) 
+  max = params.get('max',235) 
   method = params.get('meth', cv2.ADAPTIVE_THRESH_MEAN_C) 
   na = params.get('na',15) # neighborhood area
   c = params.get('c', 5) #  
-  thrsh = cv2.adaptiveThreshold(data.get('image'), 255, method, type, na, c)
+  thrsh = cv2.adaptiveThreshold(data.get('image'), max, method, type, na, c)
   data['image'] = thrsh
   return data
