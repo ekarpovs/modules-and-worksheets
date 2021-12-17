@@ -70,3 +70,33 @@ def arth_add_into(params: Dict , **data: Dict) -> Dict:
   mask[offset_y:offset_y + image.shape[0], offset_x:offset_x + image.shape[1]] = image
   data['image'] = mask
   return data
+
+
+def arth_add_weighted(params: Dict , **data: Dict) -> Dict:
+  '''
+  Calculates the weighted sum of two arrays (images): image*alpha + mask*beta + gamma 
+
+  Parameters:
+    - params:   
+      alpha: float=0.5; weight of the first array elements.
+      beta: float=0.5; weight of the second array elements.
+      gamma: float=0.0; scalar added to each sum
+    - data: 
+      image: np.dtype; the image
+      mask: np.dtype; the second image
+  Returns:
+    - data:
+      image: np.dtype; the result image
+  '''
+
+  alpha = params.get('alpha', 0.5)
+  beta = params.get('beta', 0.5)  
+  gamma = params.get('gamma', 0.0)
+
+  image = data.get('image')
+  mask = data.get('mask')
+
+  combined = cv2.addWeighted(image, alpha, mask, beta, gamma) 
+
+  data['image'] = combined
+  return data
