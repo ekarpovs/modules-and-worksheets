@@ -94,8 +94,8 @@ def within_bound(params: Dict , **data: Dict) -> Dict:
       mask: np.dtype; pixels that are within
   '''
 
-  lower = params.get('lower', 0)
-  upper = params.get('upper', 0)
+  lower = params.get('lower', 175)
+  upper = params.get('upper', 180)
 
   gray = data.get('gray') 
   image_gx = data.get('image-gx') 
