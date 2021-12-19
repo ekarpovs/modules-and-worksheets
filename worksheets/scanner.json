@@ -5,7 +5,9 @@
   {
     "exec": "glbstm.begin",
     "params": {
-      "name": "page.jpg"
+      "name": "page.jpg",
+      "define": "Define",
+      "path": "../data/input"
     }
   },
   {
@@ -43,8 +45,6 @@
     }
   },
   {
-    "exec": "glbstm.end",
-    "params": {
-    }
+    "exec": "glbstm.end"
   }
 ]
