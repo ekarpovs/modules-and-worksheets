@@ -22,7 +22,7 @@ def simple(params: Dict , **data: Dict) -> Dict:
       fltinertia: bool=True; fltarea: filter by inertia
       mininertia: Scale[float](0.01,0.1,0.01,0)=0.01; min inertia
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
       kpnts: np.ndarray; blobs keypoints

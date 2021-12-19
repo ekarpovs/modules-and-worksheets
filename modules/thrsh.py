@@ -15,10 +15,10 @@ def simple(params: Dict , **data: Dict) -> Dict:
       thrsh: Scale[int](0,255,1,0)=127; threshold
       otsu: bool=False; flag to use Otsu algorithm to choose the optimal threshold value
     - data: 
-      image: np.dtype; an image
+      image: array[dtype[uint8]]; an image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''
   type = params.get('type', cv2.THRESH_BINARY)
   threshold = params.get('thrsh', 127)
@@ -44,10 +44,10 @@ def adaptive(params: Dict , **data: Dict) -> Dict:
       na: Scale[int](3,21,1,1)=15; neighborhood area
       c: float=5.0; a constant which is subtracted from the mean or weighted mean calculated
     - data: 
-      image: np.dtype; an image
+      image: array[dtype[uint8]]; an image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
 '''
 
   type = params.get('type', cv2.THRESH_BINARY) 

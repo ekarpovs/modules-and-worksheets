@@ -16,7 +16,7 @@ def find(params: Dict , **data: Dict) -> Dict:
       num-cntrs: int=5; number of biggets contours
       approx: bool=True; approximate as rectangle
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
       cntrs: List[np.ndarray]; founded contours

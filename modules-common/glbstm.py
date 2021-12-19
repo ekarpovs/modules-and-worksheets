@@ -17,7 +17,7 @@ def begin(params: Dict, **data: Dict) -> Dict:
     - data: 
   Returns:
     - data:
-      image: np.dtype; the loaded image
+      image: array[dtype[uint8]]; the loaded image
   '''
 
   path = params.get('path', '')
@@ -38,7 +38,7 @@ def end(params: Dict, **data: Dict) -> Dict:
       path: str=; path to an output folder
       name: str=; the output file name 
     - data: 
-      image: np.dtype; the stored image
+      image: array[dtype[uint8]]; the stored image
   Returns:
     - data: 
   '''

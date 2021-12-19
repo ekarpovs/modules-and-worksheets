@@ -12,7 +12,7 @@ def dhashm(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: np.dtype; an image
+      image: array[dtype[uint8]]; an image
   Returns:
     - data:
       dhash: float; diffeerence hash

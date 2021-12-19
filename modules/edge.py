@@ -14,18 +14,23 @@ def canny(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
+      ap-size: Scale[int](1,7,1,1)=3; aperture size
       thrs1: Scale[int](10,150,1,0)=50; threshold1
       thrs2: Scale[int](100,252,1,0)=200; threshold2
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''
 
   threshold1 = params.get('thrs1', 50)
   threshold2 = params.get('thrs2', 200)
-  data['image'] = cv2.Canny(data.get('image'), threshold1, threshold2)
+  ap_size = params.get('ap-size', 3)
+
+  image = data.get('image')
+
+  data['image'] = cv2.Canny(image, threshold1, threshold2, apertureSize=ap_size)
   return data
 
 def laplacian(params: Dict , **data: Dict) -> Dict:
@@ -34,13 +39,18 @@ def laplacian(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
+      kernel: Scale[int](1,7,1,1)=3; kernel size
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''
-  lap = cv2.Laplacian(data.get('image'), cv2.CV_64F)
+
+  kernel = params.get('kernel', 3)
+  image = data.get('image')
+
+  lap = cv2.Laplacian(image, cv2.CV_64F, ksize=kernel)
   data['image'] = np.uint8(np.absolute(lap)) 
   return data
 
@@ -50,25 +60,28 @@ def sobel(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
+      kernel: Scale[int](1,7,1,1)=3; kernel size
       direction: Dict[str,int](horizontal:0,vertical:1)=horizontal; direction (x, y)
       convert: bool=True; convert result to unsigned 8-bit integer representation
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''
 
+  kernel = params.get('kernel', 3)
   convert = params.get('convert', True)
   direction = params.get('direction', 0)
-  
+  image = data.get('image') 
+
   dx = 1
   dy = 0
   if direction == 1:
     dx = 0
     dy = 1
   # compute gradients along the X or Y axis
-  grad = cv2.Sobel(data.get('image'), ddepth=cv2.CV_64F, dx=dx, dy=dy) 
+  grad = cv2.Sobel(image, ddepth=cv2.CV_64F, dx=dx, dy=dy, ksize=kernel) 
   # images are now of the floating point data type,
   # so convert them back a to unsigned 8-bit integer representation
   if convert:
@@ -86,12 +99,12 @@ def within_bound(params: Dict , **data: Dict) -> Dict:
       lower: Scale[float](150.0,180.0,1.0, 0)=175.0; lower orientation angle
       upper: Scale[float](150.0,180.0,1.0, 0)=180.0; upper orientation angle
     - data:
-      gray: np.dtype; gray image, that was passed to Sobel
-      image-gx: np.dtype; the first image
-      image-gy: np.dtype; the second image
+      gray: array[dtype[uint8]]; gray image, that was passed to Sobel
+      image-gx: array[dtype[uint8]]; the first image
+      image-gy: array[dtype[uint8]]; the second image
   Returns:
     - data:
-      mask: np.dtype; pixels that are within
+      mask: array[dtype[uint8]]; pixels that are within
   '''
 
   lower = params.get('lower', 175)

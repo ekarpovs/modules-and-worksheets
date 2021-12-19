@@ -18,10 +18,10 @@ def crop(params: Dict , **data: Dict) -> Dict:
       x0: int=0; left top coordinate
       x1: int=100; right top coordinate
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''  
 
 
@@ -44,10 +44,10 @@ def flip(params: Dict , **data: Dict) -> Dict:
     - params:   
       direct: Dict[str, int](both:0,vertical:1,horizontal:2)=vertical; flipping direction
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''  
 
   direction = params.get('direct', 1)
@@ -66,10 +66,10 @@ def resize(params: Dict , **data: Dict) -> Dict:
       side: Dict[str, int](height:0,width:1)=side; rectangle side
       size: int=20; new zise
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''
   
   method = params.get('meth', cv2.INTER_AREA)
@@ -112,10 +112,10 @@ def resize_abs(params: Dict , **data: Dict) -> Dict:
       h: int=20; new height
       w: int=20; new width
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''
 
   method = params.get('meth', cv2.INTER_AREA)
@@ -142,10 +142,10 @@ def rotate(params: Dict , **data: Dict) -> Dict:
       angle: Scale[int](0,180,1,0)=0; rotation angle
       neg: bool=True; negative direction
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''  
 
   # grab the dimensions of the image and calculate the center of the image
@@ -176,19 +176,18 @@ def rotate(params: Dict , **data: Dict) -> Dict:
 def rotate_inside(params: Dict , **data: Dict) -> Dict:  
   '''
   Rotates an input image with predefined bounding.
-  angle:List[float](0.0,0.25,0.5,0.75,1.0,1.25,1.5,1.75,2.0,2.25,2.5,2.75,3.0)=0.0; rotation angle
   
   Parameters:
     - params:   
       angle: Scale[float](0.0,3.0,0.25,0)=0.0; rotation angle
       neg: bool=True; negative direction
     - data: 
-      image: np.dtype; the image
-      rect: np.dtype; the canvas for result
+      image: array[dtype[uint8]]; the image
+      rect: array[dtype[uint8]]; the canvas for result
   Returns:
     - data:
-      image: np.dtype; the result image
-      matrix: np.ndarray; rotation matrix
+      image: array[dtype[uint8]]; the result image
+      matrix: array[dtype[float64]]; rotation matrix
   '''  
 
   # grab the dimensions of the image and calculate the center of the image
@@ -225,10 +224,10 @@ def translate(params: Dict , **data: Dict) -> Dict:
       y: int=0; number of pixels to shift
       x: int=0; number of pixels to shift
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''
 
   shiftX = params.get('x', 0)
@@ -250,11 +249,11 @@ def fit(params: Dict , **data: Dict) -> Dict:
     - params:   
       meth: Dict[str, int](NEAREST:0,LINEAR:1,AREA:2,CUBIC:3,LANCZOS:4)=AREA; interpolation method cv2.INTER_(...)
     - data: 
-      image: np.dtype; the first image, that will be resized
-      scene: np.dtype; the second image
+      image: array[dtype[uint8]]; the first image, that will be resized
+      scene: array[dtype[uint8]]; the second image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''  
 
   method = params.get('meth', cv2.INTER_AREA)
@@ -277,11 +276,11 @@ def transform(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
       app-rect: np.ndarray; the biggest rectangle contour 
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''  
   rect_cnt = data['app-rect']
   data['image'] = _four_point_transform(data.get('image'), rect_cnt.reshape(4, 2)) 

@@ -19,10 +19,10 @@ def point(params: Dict , **data: Dict) -> Dict:
       x0: int=0; point coordinate
       color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the point color
     - data: 
-      image: np.dtype; an image
+      image: array[dtype[uint8]]; an image
   Returns:
     - data:
-      image: np.dtype; an image
+      image: array[dtype[uint8]]; an image
   '''
   image = data.get('image')
 
@@ -47,10 +47,10 @@ def line(params: Dict , **data: Dict) -> Dict:
       color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the point color
       thickness: int=1; thickness of the line
     - data: 
-      image: np.dtype; an image
+      image: array[dtype[uint8]]; an image
   Returns:
     - data:
-      image: np.dtype; an image
+      image: array[dtype[uint8]]; an image
   '''
   image = data.get('image')
 
@@ -77,11 +77,11 @@ def contours(params: Dict , **data: Dict) -> Dict:
       ccolor: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the center of a contour color
       tcolor: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the text of a contour color
     - data: 
-      image: np.dtype; an image
+      image: array[dtype[uint8]]; an image
       cntrs: List[np.ndarray]; contours
   Returns:
     - data:
-      image: np.dtype; an image
+      image: array[dtype[uint8]]; an image
   '''
 
   image = data.get('image')
@@ -128,11 +128,11 @@ def keypoints(params: Dict , **data: Dict) -> Dict:
       flags: Dict[str, int](DEFAULT:0,DRAW_OVER_OUTIMG:1,NOT_DRAW_SINGLE_POINTS:2,DRAW_RICH_KEYPOINTS:4)=DRAW_RICH_KEYPOINTS; flags cv2.DRAW_MATCHES_FLAGS_(...)
       color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; keypoins color
     - data: 
-      image: np.dtype; an image
+      image: array[dtype[uint8]]; an image
       kpnts: np.ndarray; key points
   Returns:
     - data:
-      image: np.dtype; an image with keypoints
+      image: array[dtype[uint8]]; an image with keypoints
   """
 
   flags = params.get('flags', cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
@@ -156,13 +156,13 @@ def matches(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: np.dtype; an image
-      image1: np.dtype; an image
+      image: array[dtype[uint8]]; an image
+      image1: array[dtype[uint8]]; an image
       kpnts: np.ndarray; keypoints
       kpnts1: np.ndarray; keypoints
   Returns:
     - data:
-      image: np.dtype; an image with matches
+      image: array[dtype[uint8]]; an image with matches
   """
 
   first = data.get('image')
@@ -184,11 +184,11 @@ def box(params: Dict , **data: Dict) -> Dict:
       thickness: int=1; thickness of the rectangle border (-1 fill the rectangle)
       color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the box color
     - data: 
-      image: np.dtype; an image
+      image: array[dtype[uint8]]; an image
       coord: List[int](x0,y0,x1,y1); coordinates
   Returns:
     - data:
-      image: np.dtype; an image
+      image: array[dtype[uint8]]; an image
   '''
 
   image = data.get('image')

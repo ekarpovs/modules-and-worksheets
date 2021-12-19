@@ -27,6 +27,7 @@
 
 from typing import Dict
 import cv2
+import numpy as np
 import json
 import PIL
 
@@ -53,7 +54,7 @@ def store(params: Dict , **data: Dict) -> Dict:
       path: str=; path to a folder with images
       name: str=; the image file name 
     - data: 
-      image: np.dtype; the stored image
+      image: array[dtype[uint8]]; the stored image
   Returns:
     - data:
   '''
@@ -80,7 +81,7 @@ def restore(params: Dict , **data: Dict) -> Dict:
     - data: 
   Returns:
     - data:
-      image: np.dtype; the loaded image
+      image: array[dtype[uint8]]; the loaded image
   '''
 
   path = params.get('path', '')
@@ -88,6 +89,54 @@ def restore(params: Dict , **data: Dict) -> Dict:
   ffn = '{}/{}'.format(path, fn)
   data['image'] = cv2.imread(ffn)
   return data
+
+
+def store_npy_float64(params: Dict , **data: Dict) -> Dict:
+  '''
+  Stores an numpy array into a file.
+  
+  Parameters:
+    - params:   
+      define: button=Define; path and name of an file 
+      path: str=; path to a folder with file
+      name: str=; the file name 
+    - data: 
+      arr: array[dtype[float64]]; the stored file
+  Returns:
+    - data:
+  '''
+
+  arr = data.get('arr')
+
+  path = params.get('path', '')
+  fn = params.get('name', '')
+  
+  ffn = '{}/{}'.format(path, fn)
+  np.save(ffn, arr)
+  return data
+
+
+def restore_npy_float_64(params: Dict , **data: Dict) -> Dict:
+  '''
+  Restores an numpy array from a file.
+  
+  Parameters:
+    - params:   
+      define: button=Define; path and name of an image 
+      path: str=; path to a folder with array
+      name: str=; the file name 
+    - data: 
+  Returns:
+    - data:
+      arr: array[dtype[uint8]]; the loaded array
+  '''
+
+  path = params.get('path', '')
+  fn = params.get('name', '')
+  ffn = '{}/{}'.format(path, fn)
+  data['arr'] = cv2.load(ffn)
+  return data
+
 
 def store_json(params: Dict , **data: Dict) -> Dict:
   '''

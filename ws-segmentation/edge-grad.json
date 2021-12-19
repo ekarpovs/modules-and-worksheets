@@ -1,0 +1,46 @@
+[
+  {
+    "info": "Apply edge operations"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "../data/input",
+      "name": "coins02.png"
+    }
+  },
+  {
+    "exec": "clrs.bgrto",
+    "params": {
+      "type": 6
+    }
+  },
+  {
+    "exec": "edge.sobel",
+    "params": {
+      "direction": 0,
+      "convert": false
+    }
+  },
+  {
+    "exec": "edge.sobel",
+    "params": {
+      "direction": 1,
+      "convert": false
+    },
+    "aliases": {
+      "image": "1-clrs.bgrto-image"
+    }
+  },
+  {
+    "exec": "edge.within_bound",
+    "aliases": {
+      "gray": "1-clrs.bgrto-image",
+      "image-gx": "2-edge.sobel-image",
+      "image-gy": "3-edge.sobel-image"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

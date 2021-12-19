@@ -20,11 +20,11 @@ def single(params: Dict , **data: Dict) -> Dict:
     - params:   
       method: Dict[str, int](cv2.TM_SQDIFF:0,cv2.TM_SQDIFF_NORMED:1,cv2.TM_CCORR:2,cv2.TM_CCORR_NORMED:3,cv2.TM_CCOEFF:4,cv2.TM_CCOEFF_NORMED:5)=TM_CCORR_NORMED; metod 
     - data:
-      image: np.dtype; the image
-      template: np.dtype; the template
+      image: array[dtype[uint8]]; the image
+      template: array[dtype[uint8]]; the template
   Returns:
     - data:
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
       coords: Tuple[int](x0, y0, x1, y1); coordinates of the bounding box
   '''
 

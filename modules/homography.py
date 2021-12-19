@@ -19,7 +19,7 @@ def find(params: Dict , **data: Dict) -> Dict:
     - params:   
       meth: Dict[str,int](LMEDS:4,RANSAC:8,RHO:16)=RANSAC; method used to compute a homography matrix
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
       src-pts: np.ndarray; image points
       dst-pts: np.ndarray; scene points
   Returns:

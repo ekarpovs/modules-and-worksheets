@@ -14,11 +14,11 @@ def arth_add(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      image: np.dtype; the image
-      mask: np.dtype; the second image
+      image: array[dtype[uint8]]; the image
+      mask: array[dtype[uint8]]; the second image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''
   
   image = data.get('image')
@@ -34,11 +34,11 @@ def arth_sub(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      image: np.dtype ; the image
-      mask: np.dtype; the second image
+      image: array[dtype[uint8]] ; the image
+      mask: array[dtype[uint8]]; the second image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''
 
   image = data.get('image')
@@ -56,11 +56,11 @@ def arth_add_into(params: Dict , **data: Dict) -> Dict:
       offsety: int=0; vertical offset
       offsetx: int=0; horizontal offset
     - data: 
-      image: np.dtype; the image
-      mask: np.dtype; the second image
+      image: array[dtype[uint8]]; the image
+      mask: array[dtype[uint8]]; the second image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''
 
   offset_y = params.get('offsety', 0)
@@ -82,11 +82,11 @@ def arth_add_weighted(params: Dict , **data: Dict) -> Dict:
       beta: float=0.5; weight of the second array elements.
       gamma: float=0.0; scalar added to each sum
     - data: 
-      image: np.dtype; the image
-      mask: np.dtype; the second image
+      image: array[dtype[uint8]]; the image
+      mask: array[dtype[uint8]]; the second image
   Returns:
     - data:
-      image: np.dtype; the result image
+      image: array[dtype[uint8]]; the result image
   '''
 
   alpha = params.get('alpha', 0.5)

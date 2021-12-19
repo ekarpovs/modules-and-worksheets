@@ -20,8 +20,8 @@ def cmp_mse(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: np.dtype; the first image
-      scene: np.dtype; the second image
+      image: array[dtype[uint8]]; the first image
+      scene: array[dtype[uint8]]; the second image
   Returns:
     - data:
       mse: float; Mean Squared Errors
@@ -45,8 +45,8 @@ def cmp_mse(params: Dict, **data: Dict) -> Dict:
 #   Parameters:
 #     - params:
 #     - data: 
-#       image: np.dtype; the first image
-#       scene: np.dtype; the second image
+#       image: array[dtype[uint8]]; the first image
+#       scene: array[dtype[uint8]]; the second image
 #   Returns:
 #     - data:
 #       ssim: float; Structural Similarity Index
@@ -68,8 +68,8 @@ def cmp_psnr(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: np.dtype; the first image
-      scene: np.dtype; the second image
+      image: array[dtype[uint8]]; the first image
+      scene: array[dtype[uint8]]; the second image
   Returns:
     - data:
       psnr: float; Peak Signal-to-Noise Ratio
@@ -96,8 +96,8 @@ def cmp_norm(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: np.dtype; the first image
-      scene: np.dtype; the second image
+      image: array[dtype[uint8]]; the first image
+      scene: array[dtype[uint8]]; the second image
   Returns:
     - data:
       diff: float; Difference

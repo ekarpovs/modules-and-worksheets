@@ -14,10 +14,10 @@ def bgrto(params: Dict , **data: Dict) -> Dict:
     - params:   
       type: Dict[str,int](BGR2BGRA:0,BGR2RGB:4,BGR2GRAY:6,BGR2XYZ:32,BGR2YCrCb:36,BGR2HSV:40,BGR2LAB:44,BGR2Luv:50,BGR2HLS:52,BGR2YUV:82)=BGR2GRAY; new color space, one from cv2.COLOR_(...)
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      image: np.dtype; the image in a new color space
+      image: array[dtype[uint8]]; the image in a new color space
 '''  
 
   type = params.get('type', cv2.COLOR_BGR2GRAY)
@@ -37,10 +37,10 @@ def rgbto(params, **data):
     - params:   
       type: Dict[str,int](RGB2BGRA:0,RGB2BGR:4,RGB2GRAY:7)=RGB2BGR; new color space, one from cv2.COLOR_(...)
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      image: np.dtype; the image in a new color space
+      image: array[dtype[uint8]]; the image in a new color space
   '''  
 
   type = params.get('type', cv2.COLOR_RGB2BGR)
@@ -59,7 +59,7 @@ def bgrto_split(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
       b: np.dtype; blue channel
@@ -90,7 +90,7 @@ def bgrto_merge(params: Dict , **data: Dict) -> Dict:
       g: np.dtype; green channel
   Returns:
     - data:
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   '''
 
   b = data['b']

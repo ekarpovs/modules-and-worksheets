@@ -14,10 +14,10 @@ def sc_down(params: Dict , **data: Dict) -> Dict:
     - params:   
       border: Dict[str,int](DEFAULT:4,REFLECT:2,REFLECT101:4,REFLECT_101:4,REPLICATE:1,TRANSPARENT:5,WRAP:3)=DEFAULT; pixel extrapolation method cv2.BORDER_(...)
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   '''
 
   border_type = params.get('border-type',cv2.BORDER_DEFAULT) # Pixel extrapolation method
@@ -36,10 +36,10 @@ def sc_up(params: Dict , **data: Dict) -> Dict:
     - params:   
       border: Dict[str,int](DEFAULT:4,REFLECT:2,REFLECT101:4,REFLECT_101:4,REPLICATE:1,TRANSPARENT:5,WRAP:3)=DEFAULT; pixel extrapolation method cv2.BORDER_(...)
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   '''
 
   border_type = params.get('border-type',cv2.BORDER_DEFAULT) # Pixel extrapolation method
@@ -59,7 +59,7 @@ def sc_pyramid(params: Dict , **data: Dict) -> Dict:
       level: int=1; pyramid level
       border: Dict[str,int](DEFAULT:4,REFLECT:2,REFLECT101:4,REFLECT_101:4,REPLICATE:1,TRANSPARENT:5,WRAP:3)=DEFAULT; pixel extrapolation method cv2.BORDER_(...)
     - data: 
-      image: np.dtype; the image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
       pyramid: List[np.dtype]; the image pyramid

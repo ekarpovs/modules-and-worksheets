@@ -1,0 +1,36 @@
+[
+  {
+    "info": "Apply edge operations"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "../data/input",
+      "name": "coins02.png"
+    }
+  },
+  {
+    "exec": "clrs.bgrto",
+    "params": {
+      "type": 6
+    }
+  },
+  {
+    "exec": "blur.avrg",
+    "params": {
+      "kernel": 3
+    }
+  },
+  {
+    "exec": "edge.canny"
+  },
+  {
+    "exec": "edge.laplacian",
+    "aliases": {
+      "image": "2-blur.avrg-image"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

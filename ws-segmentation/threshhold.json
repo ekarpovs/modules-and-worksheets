@@ -1,0 +1,44 @@
+[
+  {
+    "info": "Apply edge operation"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "load": true,
+      "path": "D:/Projects/mine/github/work-shop/data/input",
+      "name": "threshold.png",
+      "define": "Define"
+    }
+  },
+  {
+    "exec": "clrs.bgrto"
+  },
+  {
+    "exec": "blur.gaus"
+  },
+  {
+    "exec": "thrsh.simple",
+    "params": {
+      "type": 4,
+      "thrsh": 253,
+      "otsu": false
+    }
+  },
+  {
+    "exec": "thrsh.adaptive",
+    "params": {
+      "type": 1,
+      "meth": 1,
+      "na": 5,
+      "c": 7.0,
+      "max": 230
+    },
+    "aliases": {
+      "image": "2-blur.gaus-image"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]
