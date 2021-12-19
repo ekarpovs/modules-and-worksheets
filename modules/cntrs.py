@@ -19,7 +19,8 @@ def find(params: Dict , **data: Dict) -> Dict:
       image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      cntrs: List[np.ndarray]; founded contours
+      cntrs: List[array[dtype[uint32]]]; founded contours
+      boxes: List[Tuple[uint]]; bounding boxes
   '''  
 
   mode = params.get('mode', cv2.RETR_EXTERNAL)
