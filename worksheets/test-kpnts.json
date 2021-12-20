@@ -1,0 +1,31 @@
+[
+  {
+    "info": "new worksheet"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "define": "Define",
+      "path": "../data/input",
+      "name": "blobs.png"
+    }
+  },
+  {
+    "exec": "blob.simple",
+    "params": {
+      "mint": 50,
+      "maxt": 200,
+      "fltarea": true,
+      "minarea": 1500,
+      "fltcirc": true,
+      "mincircularity": 0.1,
+      "fltconv": true,
+      "minconvexity": 0.87,
+      "fltinertia": true,
+      "mininertia": 0.01
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]
