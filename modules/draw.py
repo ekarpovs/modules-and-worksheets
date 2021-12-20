@@ -78,7 +78,7 @@ def contours(params: Dict , **data: Dict) -> Dict:
       tcolor: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the text of a contour color
     - data: 
       image: array[dtype[uint8]]; an image
-      cntrs: List[np.ndarray]; contours
+      cntrs: List[array[dtype[uint32]]]; contours
   Returns:
     - data:
       image: array[dtype[uint8]]; an image
@@ -188,7 +188,7 @@ def box(params: Dict , **data: Dict) -> Dict:
       color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the box color
     - data: 
       image: array[dtype[uint8]]; an image
-      coord: List[int](x0,y0,x1,y1); coordinates
+      coords: Tuple[int]; coordinates - x0,y0,x1,y1
   Returns:
     - data:
       image: array[dtype[uint8]]; an image

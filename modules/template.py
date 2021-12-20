@@ -25,7 +25,7 @@ def single(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: array[dtype[uint8]]; the image
-      coords: Tuple[int](x0, y0, x1, y1); coordinates of the bounding box
+      coords: Tuple[int]; coordinates of the bounding box - x0, y0, x1, y1
   '''
 
   image = data.get('image')

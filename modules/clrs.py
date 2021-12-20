@@ -62,9 +62,9 @@ def bgrto_split(params: Dict , **data: Dict) -> Dict:
       image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      b: np.dtype; blue channel
-      r: np.dtype; red channel
-      g: np.dtype; green channel
+      b: array[dtype[uint8]]; blue channel
+      r: array[dtype[uint8]]; red channel
+      g: array[dtype[uint8]]; green channel
   '''  
 
   image = data.get('image') 
@@ -85,9 +85,9 @@ def bgrto_merge(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data:
-      b: np.dtype; blue channel
-      r: np.dtype; red channel
-      g: np.dtype; green channel
+      b: array[dtype[uint8]]; blue channel
+      r: array[dtype[uint8]]; red channel
+      g: array[dtype[uint8]]; green channel
   Returns:
     - data:
       image: array[dtype[uint8]]; the image

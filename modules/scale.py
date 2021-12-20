@@ -62,7 +62,7 @@ def sc_pyramid(params: Dict , **data: Dict) -> Dict:
       image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      pyramid: List[np.dtype]; the image pyramid
+      pyramid: List[array[dtype[uint8]]]; the image pyramid
   '''
   level = params.get('level', 1)
   border_type = params.get('border-type',cv2.BORDER_DEFAULT) # Pixel extrapolation method
