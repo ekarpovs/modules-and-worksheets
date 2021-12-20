@@ -50,11 +50,11 @@ def sort(params: Dict , **data: Dict) -> Dict:
       rev: bool=True; reverse flag
       max-num: int=5; max number of returned contours
     - data: 
-      cntrs: List[np.ndarray]; contours
+      cntrs: List[array[dtype[uint32]]]; contours
   Returns:
     - data:
-      cntrs: List[np.ndarray]; sorted contours
-      boxes: List[Tuple[]]; coordinates of bounding boxes
+      cntrs: List[array[dtype[uint32]]]; sorted contours
+      boxes: List[Tuple[uint]]; coordinates of bounding boxes
   '''
 
   reverse = params.get('rev', True)
@@ -82,24 +82,24 @@ def sel_rect(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      cntrs: np.ndarray; sorted contours
+      cntrs: List[array[dtype[uint32]]]; sorted contours
   Returns:
     - data:
-      app-rect: np.ndarray; the biggest rectangle contour
+      app-rect: array[dtype[float64]]; the biggest rectangle contour
   '''
 
   cntrs = data.get('cntrs')
   
  	# loop over the contours 
   for c in cntrs:
-		# approximate the contour
-	  peri = cv2.arcLength(c, True)
-	  approx = cv2.approxPolyDP(c, 0.02 * peri, True)
-		# if our approximated contour has four points, then we
-		# can assume that we have found our screen
-	  if len(approx) == 4:
-		  rect = approx
-		  break 
+    # approximate the contour
+    peri = cv2.arcLength(c, True)
+    approx = cv2.approxPolyDP(c, 0.02 * peri, True)
+    # if our approximated contour has four points, then we
+    # can assume that we have found our screen
+    if len(approx) == 4:
+      rect = approx
+      break 
   data['app-rect'] = rect
   return data
 

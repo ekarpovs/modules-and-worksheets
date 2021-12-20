@@ -277,7 +277,7 @@ def transform(params: Dict , **data: Dict) -> Dict:
     - params:   
     - data: 
       image: array[dtype[uint8]]; the image
-      app-rect: np.ndarray; the biggest rectangle contour 
+      app-rect:  array[dtype[float64]]; the biggest rectangle contour 
   Returns:
     - data:
       image: array[dtype[uint8]]; the result image
