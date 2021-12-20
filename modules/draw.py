@@ -2,7 +2,7 @@
 Drawing Points, Lines, Contours, Bounding boxes, Keypoints, Matches operation, etc.
 '''
 
-from typing import Dict
+from typing import Dict, List
 import cv2
 import numpy as np
 
@@ -126,7 +126,7 @@ def keypoints(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:
       flags: Dict[str, int](DEFAULT:0,DRAW_OVER_OUTIMG:1,NOT_DRAW_SINGLE_POINTS:2,DRAW_RICH_KEYPOINTS:4)=DRAW_RICH_KEYPOINTS; flags cv2.DRAW_MATCHES_FLAGS_(...)
-      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; keypoins color
+      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,YELLOW:6,CYAN:7,LIME:8)=BLACK; keypoins color
     - data: 
       image: array[dtype[uint8]]; an image
       kpnts: np.ndarray; key points
@@ -135,6 +135,23 @@ def keypoints(params: Dict , **data: Dict) -> Dict:
       image: array[dtype[uint8]]; an image with keypoints
   """
 
+  def _List_dict_to_list_key_points(data: List[Dict]) -> List[cv2.KeyPoint]:
+    list_kps = []
+    for kp_dict in data:
+      angle = kp_dict.get('angle'),
+      class_id = kp_dict.get('class_id'),
+      ptl = kp_dict.get('pt'),
+      x = ptl[0][0]
+      y = ptl[0][1]
+      octave = kp_dict.get('octave'),
+      response = kp_dict.get('response'),
+      size = kp_dict.get('size')
+      # kp = cv2.KeyPoint(x, y, size, angle, response, octave, class_id)
+      kp = cv2.KeyPoint(x, y, size)
+      list_kps.append(kp)
+    return list_kps
+
+
   flags = params.get('flags', cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
   color = params.get('color', 2)
   # RGB
@@ -142,8 +159,12 @@ def keypoints(params: Dict , **data: Dict) -> Dict:
 
   image = data.get('image')
   clone = image.copy()
-  keypoints = data.get('kpnts')
-  im_with_keypoints = cv2.drawKeypoints(clone, keypoints, np.array([]), draw_color, flags)
+  kpnts = data.get('kpnts')
+  keypoints = _List_dict_to_list_key_points(kpnts)
+  im_with_keypoints = np.array([])
+  if flags == cv2.DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG:
+    im_with_keypoints = clone
+  im_with_keypoints = cv2.drawKeypoints(clone, keypoints, im_with_keypoints, draw_color, flags)
   data['image'] = im_with_keypoints
   return data
 
