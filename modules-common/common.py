@@ -128,7 +128,7 @@ def restore_npy_float_64(params: Dict , **data: Dict) -> Dict:
     - data: 
   Returns:
     - data:
-      arr: array[dtype[uint8]]; the loaded array
+      arr: array[dtype[float64]]; the loaded array
   '''
 
   path = params.get('path', '')
