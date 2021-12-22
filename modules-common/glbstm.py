@@ -27,7 +27,6 @@ def begin(params: Dict, **data: Dict) -> Dict:
     data['image'] = cv2.imread(ffn)
   return data
 
-
 def end(params: Dict, **data: Dict) -> Dict:
   '''
   The last in a flow.
@@ -42,13 +41,56 @@ def end(params: Dict, **data: Dict) -> Dict:
   Returns:
     - data: 
   '''
-  image = data.get('image')
 
-  store = params.get('store', False)
-  
-  if store:
-    path = params.get('path', '')
-    fn = params.get('name', '')
-    ffn = '{}/{}'.format(path, fn)
-    cv2.imwrite(ffn, image)
+  path = params.get('path', '')
+  image = data.get('image')
+ 
+  fn = params.get('name', '')
+  ffn = '{}/{}'.format(path, fn)
+  cv2.imwrite(ffn, image)
+  return data
+
+def if_begin(params: Dict, **data: Dict) -> Dict:
+  '''
+  The if statement begin operation. 
+  Syntax:
+    val-a oper val-b[--and(or)--val-c oper val-d...]
+    where operation one from:
+      ==,!=,<,<=,>,>=
+
+  Parameters:
+    - params:   
+      condition: str=a==b; the if condition 
+    - data:
+  Returns:
+    - data:
+      if-result: bool=; result
+  '''
+
+  def _eval(cond: str) -> bool:
+    return True
+    
+  condition = params.get('condition', 'a==b')
+
+  # Parse (maps?) a condition
+  condition = condition.replace('-', ' ')
+
+  # Get an condition data via links
+  # Calculate the condition
+
+  data['if-result'] = _eval(condition)
+  return data
+
+
+def if_end(params: Dict, **data: Dict) -> Dict:
+  '''
+  The if statement end operation. 
+
+  Parameters:
+    - params:   
+    - data:
+  Returns:
+    - data:
+  '''
+
   return data
