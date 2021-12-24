@@ -43,11 +43,12 @@ def end(params: Dict, **data: Dict) -> Dict:
   '''
 
   path = params.get('path', '')
-  image = data.get('image')
- 
   fn = params.get('name', '')
-  ffn = '{}/{}'.format(path, fn)
-  cv2.imwrite(ffn, image)
+  image = data.get('image')
+  
+  if fn != '':
+    ffn = '{}/{}'.format(path, fn)
+    cv2.imwrite(ffn, image)
   return data
 
 def if_begin(params: Dict, **data: Dict) -> Dict:
@@ -61,14 +62,18 @@ def if_begin(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:   
       condition: str=a==b; the if condition 
+      res: bool=True; temporary result
     - data:
+      image:array[dtype[uint8]]; the image
   Returns:
     - data:
+      image:array[dtype[uint8]]; the image
       if-result: bool=; result
   '''
-
+  res = params.get('res', True)
+  
   def _eval(cond: str) -> bool:
-    return True
+    return res
     
   condition = params.get('condition', 'a==b')
 
@@ -81,7 +86,6 @@ def if_begin(params: Dict, **data: Dict) -> Dict:
   data['if-result'] = _eval(condition)
   return data
 
-
 def if_end(params: Dict, **data: Dict) -> Dict:
   '''
   The if statement end operation. 
@@ -89,8 +93,10 @@ def if_end(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data:
+      image:array[dtype[uint8]]; the image
   Returns:
     - data:
+      image:array[dtype[uint8]]; the image
   '''
 
   return data
