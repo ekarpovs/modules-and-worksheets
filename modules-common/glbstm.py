@@ -107,7 +107,6 @@ def while_begin(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:   
       condition: str=a==b; the if condition 
-      res: bool=True; temporary result
     - data:
       image:array[dtype[uint8]]; the image
   Returns:
@@ -141,4 +140,52 @@ def while_end(params: Dict, **data: Dict) -> Dict:
   '''
 
   data['while-result'] = False
+  return data
+
+
+def for_begin(params: Dict, **data: Dict) -> Dict:
+  '''
+  The for statement begin operation. 
+  Syntax:
+    val-a oper val-b[--and(or)--val-c oper val-d...]
+    where operation one from:
+      ==,!=,<,<=,>,>=
+
+  Parameters:
+    - params:   
+      condition: str=a==b; the if condition 
+      res: bool=True; temporary result
+    - data:
+      image:array[dtype[uint8]]; the image
+  Returns:
+    - data:
+      image:array[dtype[uint8]]; the image
+      for-result: bool; result
+  '''
+  
+  res = params.get('res', True)
+  condition = params.get('condition', 'a==b')
+  image = data.get('image')
+
+  # Calculate the condition
+
+  # data['for-result'] = eval(condition)
+  data['for-result'] = res
+  return data
+
+def for_end(params: Dict, **data: Dict) -> Dict:
+  '''
+  The for statement end operation. 
+
+  Parameters:
+    - params:   
+    - data:
+      image:array[dtype[uint8]]; the image
+      for-result: bool; result
+  Returns:
+    - data:
+      image:array[dtype[uint8]]; the image
+  '''
+
+  data['for-result'] = False
   return data
