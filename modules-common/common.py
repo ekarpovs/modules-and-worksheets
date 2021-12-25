@@ -50,7 +50,7 @@ def store(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
-      define: button=Define; path and name of an image 
+      location: button=Location; path and name of a data file 
       path: str=; path to a folder with images
       name: str=; the image file name 
     - data: 
@@ -75,7 +75,7 @@ def restore(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
-      define: button=Define; path and name of an image 
+      location: button=Location; path and name of a data file 
       path: str=; path to a folder with images
       name: str=; the image file name 
     - data: 
@@ -97,7 +97,7 @@ def store_npy_float64(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
-      define: button=Define; path and name of an file 
+      location: button=Location; path and name of an file 
       path: str=; path to a folder with file
       name: str=; the file name 
     - data: 
@@ -122,7 +122,7 @@ def restore_npy_float_64(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
-      define: button=Define; path and name of an image 
+      location: button=Location; path and name of a data file 
       path: str=; path to a folder with array
       name: str=; the file name 
     - data: 
@@ -144,7 +144,7 @@ def store_json(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
-      define: button=Define; path and name of an image 
+      location: button=Location; path and name of a data file 
       path: str=; path to a folder with images
       name: str=; the data file name 
     - data:
@@ -170,7 +170,7 @@ def restore_json(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
-      define: button=Define; path and name of an image 
+      location: button=Location; path and name of a data file 
       path: str=; path to a folder with images
       name: str=; the data file name 
     - data:
