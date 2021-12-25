@@ -1,0 +1,61 @@
+[
+  {
+    "info": "test while statement"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data/input",
+      "name": "disk.png",
+      "define": "Define"
+    }
+  },
+  {
+    "exec": "glbstm.while_begin"
+  },
+  {
+    "exec": "clrs.bgrto",
+    "aliases": {
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
+    "exec": "edge.canny",
+    "params": {
+      "ap": 7,
+      "thrs1": 72,
+      "thrs2": 200
+    }
+  },
+  {
+    "exec": "glbstm.while_end"
+  },
+  {
+    "exec": "draw.line",
+    "params": {
+      "x0": 0,
+      "y0": 0,
+      "x1": 1000,
+      "y1": 500,
+      "color": 1,
+      "thickness": 1
+    }
+  },
+  {
+    "exec": "blur.gaus",
+    "params": {
+      "kernel": 7
+    }
+  },
+  {
+    "exec": "glbstm.end",
+    "params": {
+      "define": "Define",
+      "path": "../data/output",
+      "name": "disk_gr.png"
+    },
+    "aliases": {
+      "image": "2-clrs.bgrto-image"
+    }
+  }
+]
