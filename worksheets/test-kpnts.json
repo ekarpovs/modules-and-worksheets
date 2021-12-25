@@ -26,6 +26,16 @@
     }
   },
   {
+    "exec": "draw.keypoints",
+    "params": {
+      "flags": 0,
+      "color": 4
+    },
+    "aliases": {
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
     "exec": "glbstm.end"
   }
 ]
