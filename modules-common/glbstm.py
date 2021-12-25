@@ -70,20 +70,13 @@ def if_begin(params: Dict, **data: Dict) -> Dict:
       image:array[dtype[uint8]]; the image
       if-result: bool=; result
   '''
-  res = params.get('res', True)
-  
-  def _eval(cond: str) -> bool:
-    return res
-    
+     
   condition = params.get('condition', 'a==b')
+  image = data.get('image')
 
-  # Parse (maps?) a condition
-  condition = condition.replace('-', ' ')
-
-  # Get an condition data via links
   # Calculate the condition
 
-  data['if-result'] = _eval(condition)
+  data['if-result'] = eval(condition)
   return data
 
 def if_end(params: Dict, **data: Dict) -> Dict:
