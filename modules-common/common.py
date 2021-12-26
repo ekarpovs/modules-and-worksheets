@@ -87,7 +87,8 @@ def restore(params: Dict , **data: Dict) -> Dict:
   path = params.get('path', '')
   fn = params.get('name', '')
   ffn = '{}/{}'.format(path, fn)
-  data['image'] = cv2.imread(ffn)
+  image = cv2.imread(ffn, cv2.IMREAD_UNCHANGED)
+  data['image'] = image
   return data
 
 

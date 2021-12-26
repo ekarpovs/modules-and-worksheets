@@ -23,7 +23,7 @@ def mask(params: Dict , **data: Dict) -> Dict:
       idfact: float=1.0; increase/decrease factor
       h: int=300; an image height
       w: int=300; an image width
-      area: Dict[str,int](rectangle:0,circle:1)=rectangle; opposite area on the mask(rectangle, circle)
+      area: Dict[str,int](rectangle:0,circle:1,none:2)=rectangle; opposite area on the mask(rectangle, circle)
       y0: int=0; left top coordinate of a rectangle area
       y1: int=300; left bottom coordinate of a rectangle area
       x0: int=0; left top coordinate of a rectangle area
@@ -63,9 +63,12 @@ def mask(params: Dict , **data: Dict) -> Dict:
   if area == 0:
     # Construct a rectangular area on the mask
     cv2.rectangle(mask, (x0, y0), (x1, y1), value, -1)
-  else:
+  elif area == 1:
     # Construct a circular area on the mask
     cv2.circle(mask, (cx, cy), r, value, -1)
+  else:
+    pass    
+
   data['mask'] = mask
   return data
 

@@ -21,7 +21,8 @@ def kernel(params: Dict , **data: Dict) -> Dict:
       image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      kernel: List[bool]; structured element (kernel)
+      kernel: array[dtype[uint8]]; structured element (kernel)
+      image: array[dtype[uint8]]; the image
   '''
 
   shape = params.get('shape',cv2.MORPH_RECT)
@@ -42,7 +43,7 @@ def erode(params: Dict , **data: Dict) -> Dict:
       iter: Scale[int](1,15,1,0)=1; number of iterations
     - data: 
       image: array[dtype[uint8]]; the image
-      kernel: List[bool]; structured element (kernel)
+      kernel: array[dtype[uint8]]; structured element (kernel)
   Returns:
     - data:
       image: array[dtype[uint8]]; the result image
@@ -50,7 +51,10 @@ def erode(params: Dict , **data: Dict) -> Dict:
 
   iterations = params.get('iter', 1)
   kernel = data.get('kernel')
-  mrpherode = cv2.erode(data.get('image'), kernel, iterations=iterations)
+  image = data.get('image')
+  print('image shape', image.shape)
+
+  mrpherode = cv2.erode(image, kernel, iterations=iterations)
   data['image'] = mrpherode
   return data
 
@@ -67,7 +71,7 @@ def dilate(params: Dict , **data: Dict) -> Dict:
       iter: Scale[int](1,15,1,0)=1; number of iterations
     - data: 
       image: array[dtype[uint8]]; the image
-      kernel: List[bool]; structured element (kernel)
+      kernel: array[dtype[uint8]]; structured element (kernel)
   Returns:
     - data:
       image: array[dtype[uint8]]; the result image
@@ -93,7 +97,7 @@ def mex(params: Dict , **data: Dict) -> Dict:
       type: Dict[str,int](OPEN:2,CLOSE:3,GRADIENT:4,TOPHAT:5,BLACKHAT:6)=OPEN; type of operations cv2.MORPH_(...)
     - data: 
       image: array[dtype[uint8]]; the image
-      kernel: List[bool]; structured element (kernel)
+      kernel: array[dtype[uint8]]; structured element (kernel)
   Returns:
     - data:
       image: array[dtype[uint8]]; the result image
