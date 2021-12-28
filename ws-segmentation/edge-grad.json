@@ -28,13 +28,13 @@
       "direction": 1,
       "convert": false
     },
-    "aliases": {
+    "links": {
       "image": "1-clrs.bgrto-image"
     }
   },
   {
     "exec": "edge.within_bound",
-    "aliases": {
+    "links": {
       "gray": "1-clrs.bgrto-image",
       "image-gx": "2-edge.sobel-image",
       "image-gy": "3-edge.sobel-image"

@@ -6,18 +6,23 @@
     "exec": "glbstm.begin",
     "params": {
       "name": "page.jpg",
-      "define": "Define",
       "path": "../data/input"
     }
   },
   {
-    "exec": "clrs.bgrto"
+    "exec": "clrs.bgrto",
+    "links": {
+      "image": "0-glbstm.begin-image"
+    }
   },
   {
     "exec": "blur.gaus",
     "params": {
       "k": 7,
       "kernel": 5
+    },
+    "links": {
+      "image": "1-clrs.bgrto-image"
     }
   },
   {
@@ -25,6 +30,9 @@
     "params": {
       "thrs1": 75,
       "thrs2": 200
+    },
+    "links": {
+      "image": "2-blur.gaus-image"
     }
   },
   {
@@ -32,14 +40,20 @@
     "params": {
       "meth": 2,
       "mode": 0
+    },
+    "links": {
+      "image": "3-edge.canny-image"
     }
   },
   {
-    "exec": "cntrs.sel_rect"
+    "exec": "cntrs.sel_rect",
+    "links": {
+      "image": "4-cntrs.find-image"
+    }
   },
   {
     "exec": "bsc.transform",
-    "aliases": {
+    "links": {
       "image": "0-glbstm.begin-image",
       "app-rect": "5-cntrs.sel_rect-app-rect"
     }

@@ -18,7 +18,7 @@
     "params": {
       "direct": 1
     },
-    "aliases": {
+    "links": {
       "image": "0-glbstm.begin-image"
     }
   },
@@ -28,7 +28,7 @@
       "unit": 0,
       "size": 150
     },
-    "aliases": {
+    "links": {
       "image": "0-glbstm.begin-image"
     }
   },

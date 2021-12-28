@@ -18,7 +18,7 @@
     "params": {
       "direct": 1
     },
-    "aliases": {
+    "links": {
       "image": "0-glbstm.begin-image"
     }
   },
@@ -28,7 +28,7 @@
       "unit": 0,
       "size": 150
     },
-    "aliases": {
+    "links": {
       "image": "0-glbstm.begin-image"
     }
   },
@@ -38,7 +38,7 @@
       "angle": 30,
       "neg": true
     },
-    "aliases": {
+    "links": {
       "image": "0-glbstm.begin-image"
     }
   },
@@ -48,7 +48,7 @@
       "x": -50,
       "y": 40
     },
-    "aliases": {
+    "links": {
       "image": "0-glbstm.begin-image"
     }
   },

@@ -5,19 +5,26 @@
   {
     "exec": "glbstm.begin",
     "params": {
-      "name": "lightning1.png"
+      "name": "lightning1.png",
+      "path": "../data/input"
     }
   },
   {
     "exec": "clrs.bgrto",
     "params": {
       "angle": 2
+    },
+    "links": {
+      "image": "0-glbstm.begin-image"
     }
   },
   {
     "exec": "bsc.rotate",
     "params": {
       "angle": 2
+    },
+    "links": {
+      "image": "1-clrs.bgrto-image"
     }
   },
   {

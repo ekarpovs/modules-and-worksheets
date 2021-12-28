@@ -3,8 +3,7 @@
     "info": "Perform bitwise operations"
   },
   {
-    "exec": "glbstm.begin",
-    "params": {"load": false}
+    "exec": "glbstm.begin"
   }, 
   {
     "exec": "shapes.mask",
@@ -30,7 +29,7 @@
   },
   {
     "exec": "bitwise.btw_and",
-    "aliases": {
+    "links": {
        "image": "1-shapes.mask-mask",
        "mask": "2-shapes.mask-mask"
     }

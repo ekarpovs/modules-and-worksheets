@@ -7,7 +7,6 @@
     "params": {
       "path": "D:/Projects/mine/github/work-shop/data/input",
       "name": "disk.png",
-      "define": "Define"
     }
   },
   {
@@ -15,7 +14,7 @@
   },
   {
     "exec": "clrs.bgrto",
-    "aliases": {
+    "links": {
       "image": "0-glbstm.begin-image"
     }
   },
@@ -50,11 +49,10 @@
   {
     "exec": "glbstm.end",
     "params": {
-      "define": "Define",
       "path": "../data/output",
       "name": "disk_gr.png"
     },
-    "aliases": {
+    "links": {
       "image": "2-clrs.bgrto-image"
     }
   }

@@ -8,7 +8,6 @@
       "load": true,
       "path": "D:/Projects/mine/github/work-shop/data/input",
       "name": "threshold.png",
-      "define": "Define"
     }
   },
   {
@@ -34,7 +33,7 @@
       "c": 7.0,
       "max": 230
     },
-    "aliases": {
+    "links": {
       "image": "2-blur.gaus-image"
     }
   },

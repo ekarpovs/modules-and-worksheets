@@ -1,0 +1,121 @@
+[
+  {
+    "info": "new worksheet"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data/input",
+      "name": "bricks.png",
+      "location": "Location"
+    }
+  },
+  {
+    "exec": "clrs.bgrto",
+    "links": {
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
+    "exec": "common.store",
+    "params": {
+      "location": "Location",
+      "path": "../data/storage/tmp",
+      "name": "src.png"
+    },
+    "links": {
+      "image": "1-clrs.bgrto-image"
+    }
+  },
+  {
+    "exec": "shapes.mask",
+    "params": {
+      "type": 1,
+      "idfact": 1.0,
+      "h": 266,
+      "w": 400,
+      "area": 2,
+      "y0": 0,
+      "y1": 266,
+      "x0": 0,
+      "x1": 400,
+      "cx": 150,
+      "cy": 150,
+      "r": 150
+    }
+  },
+  {
+    "exec": "mrph.kernel",
+    "links": {
+      "image": "1-clrs.bgrto-image"
+    }
+  },
+  {
+    "exec": "glbstm.while_begin"
+  },
+  {
+    "exec": "common.restore",
+    "params": {
+      "location": "Location",
+      "path": "../data/storage/tmp",
+      "name": "src.png"
+    },
+    "links": {
+      "image": "10-bitwise.btw_or-image"
+    }
+  },
+  {
+    "exec": "mrph.erode",
+    "links": {
+      "image": "6-common.restore-image",
+      "kernel": "4-mrph.kernel-kernel"
+    }
+  },
+  {
+    "exec": "mrph.dilate",
+    "params": {
+      "iter": 1
+    },
+    "links": {
+      "kernel": "4-mrph.kernel-kernel",
+      "image": "7-mrph.erode-image"
+    }
+  },
+  {
+    "exec": "arithmetic.arth_sub",
+    "links": {
+      "image": "6-common.restore-image",
+      "mask": "8-mrph.dilate-image"
+    }
+  },
+  {
+    "exec": "bitwise.btw_or",
+    "links": {
+      "image": "3-shapes.mask-mask",
+      "mask": "9-arithmetic.arth_sub-image"
+    }
+  },
+  {
+    "exec": "common.store",
+    "params": {
+      "location": "Location",
+      "path": "../data/storage/tmp",
+      "name": "src.png"
+    },
+    "links": {
+      "image": "10-bitwise.btw_or-image"
+    }
+  },
+  {
+    "exec": "shapes.cnt_zero",
+    "links": {
+      "mask": "8-bitwise.btw_or-image"
+    }
+  },
+  {
+    "exec": "glbstm.while_end"
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

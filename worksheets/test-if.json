@@ -7,7 +7,6 @@
     "params": {
       "path": "D:/Projects/mine/github/work-shop/data/input",
       "name": "disk.png",
-      "define": "Define"
     }
   },
   {
@@ -16,13 +15,13 @@
       "condition": "image.shape[2]>1",
       "res": true
     },
-    "aliases": {
+    "links": {
       "image": "0-glbstm.begin-image"
     }
   },
   {
     "exec": "clrs.bgrto",
-    "aliases": {
+    "links": {
       "image": "0-glbstm.begin-image"
     }
   },
@@ -57,11 +56,10 @@
   {
     "exec": "glbstm.end",
     "params": {
-      "define": "Define",
       "path": "../data/output",
       "name": "disk_gr.png"
     },
-    "aliases": {
+    "links": {
       "image": "2-clrs.bgrto-image"
     }
   }

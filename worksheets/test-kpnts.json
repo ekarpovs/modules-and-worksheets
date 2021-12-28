@@ -5,7 +5,6 @@
   {
     "exec": "glbstm.begin",
     "params": {
-      "define": "Define",
       "path": "../data/input",
       "name": "blobs.png"
     }
@@ -31,7 +30,7 @@
       "flags": 0,
       "color": 4
     },
-    "aliases": {
+    "links": {
       "image": "0-glbstm.begin-image"
     }
   },
