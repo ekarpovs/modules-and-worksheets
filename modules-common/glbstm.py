@@ -85,11 +85,9 @@ def if_end(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data:
-      image:array[dtype[uint8]]; the image
       if-result: bool; result
   Returns:
     - data:
-      image:array[dtype[uint8]]; the image
   '''
   
   data['if-result'] = False
@@ -132,11 +130,8 @@ def while_end(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data:
-      image:array[dtype[uint8]]; the image
-      while-result: bool; result
   Returns:
     - data:
-      image:array[dtype[uint8]]; the image
   '''
 
   data['while-result'] = False
@@ -180,11 +175,8 @@ def for_end(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data:
-      image:array[dtype[uint8]]; the image
-      for-result: bool; result
   Returns:
     - data:
-      image:array[dtype[uint8]]; the image
   '''
 
   data['for-result'] = False
