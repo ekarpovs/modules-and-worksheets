@@ -42,7 +42,7 @@ def gabor_kernel(params: Dict , **data: Dict) -> Dict:
 
   if small:
     theta = stheta
-  kernel = cv2.getGaborKernel((ksize, ksize), sigma, np.degrees(theta), lambd, psi, gamma, ktype)
+  kernel = cv2.getGaborKernel((ksize, ksize), sigma, np.deg2rad(theta), lambd, psi, gamma, ktype)
 
   # f = np.fft.fft2(kernel)
   # fshift = np.fft.fftshift(f).astype(np.float32)
