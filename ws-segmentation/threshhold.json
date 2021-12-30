@@ -1,13 +1,12 @@
 [
   {
-    "info": "Apply edge operation"
+    "info": "Apply threshold operations"
   },
   {
     "exec": "glbstm.begin",
     "params": {
-      "load": true,
-      "path": "D:/Projects/mine/github/work-shop/data/input",
-      "name": "threshold.png",
+      "path": "../data/input",
+      "name": "threshold.png"
     }
   },
   {
