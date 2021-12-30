@@ -19,19 +19,24 @@ def crop(params: Dict , **data: Dict) -> Dict:
       x1: int=100; right top coordinate
     - data: 
       image: array[dtype[uint8]]; the image
+      coords: Tuple[int]; coordinates - x0,y0,x1,y1
   Returns:
     - data:
       image: array[dtype[uint8]]; the result image
   '''  
 
-
-  image = data.get('image')
-  (h, w) = image.shape[:2]
-
   y0 = params.get('y0', 0)
   y1 = params.get('y1', 100)
   x0 = params.get('x0', 0)
   x1 = params.get('x1', 100)
+
+  image = data.get('image')
+  coords = data.get('coords')
+  if coords is not None:
+    y0 = coords[1]
+    y1 = coords[3]
+    x0 = coords[0]
+    x1 = coords[2]
 
   data['image'] = image[y0:y1, x0:x1]
   return data

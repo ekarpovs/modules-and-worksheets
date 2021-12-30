@@ -24,6 +24,7 @@ def lbp(params: Dict , **data: Dict) -> Dict:
 
   num_points = params.get('points', 8)
   radius = params.get('radius', 1)
+
   image = data.get('image')
 
   lbp = feature.local_binary_pattern(image, num_points, radius, method="uniform")

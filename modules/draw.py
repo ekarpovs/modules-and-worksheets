@@ -186,6 +186,7 @@ def box(params: Dict , **data: Dict) -> Dict:
     - params:
       thickness: int=1; thickness of the rectangle border (-1 fill the rectangle)
       color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the box color
+      show: bool=False; Draw over the original image
     - data: 
       image: array[dtype[uint8]]; an image
       coords: Tuple[int]; coordinates - x0,y0,x1,y1
@@ -194,15 +195,20 @@ def box(params: Dict , **data: Dict) -> Dict:
       image: array[dtype[uint8]]; an image
   '''
 
-  image = data.get('image')
-  clone = image.copy()
   coords = data.get('coords')
-
   thickness = params.get('thickness', 1)
   color = params.get('color', 4)
+  show = params.get('show')
+
+  image = data.get('image')
+  if show:
+    clone = image
+  else:
+    clone = image.copy()
+
   draw_color=COLORS[color]
 
   if thickness is not 0:
     x0,y0,x1,y1 = coords
-    cv2.rectangle(clone, (x0, y0), (x1, y1), draw_color, thickness)
+    cv2.rectangle(clone, (x0, y0), (x1, y1), draw_color, thickness=thickness)
   return data

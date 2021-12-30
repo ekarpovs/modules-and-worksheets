@@ -26,9 +26,10 @@ def cmp_mse(params: Dict, **data: Dict) -> Dict:
     - data:
       mse: float; Mean Squared Errors
   '''  
+
   image = data.get('image')
   scene = data.get('scene')
-
+   
   err = np.sum((image.astype("float") - scene.astype("float")) ** 2)
   err /= float(image.shape[0] * image.shape[1])
   # print('cmp_mse err:', err)
@@ -117,6 +118,44 @@ def cmp_norm(params: Dict, **data: Dict) -> Dict:
   # picture1_norm = picture1/np.sqrt(np.sum(picture1**2))
   # picture2_norm = picture2/np.sqrt(np.sum(picture2**2))
   # print(np.sum(picture1_norm*picture2_norm))
+  return data
+
+
+def roi(params: Dict, **data: Dict) -> Dict:
+  '''
+  Gets ROI from two images.
+
+  Parameters:
+    - params:
+      x0: int=0; top left corner of the ROI
+      y0: int=0; top left corner of the ROI
+      weight: Scale[int](0,50,1,0)=0; weight of the ROI
+      height: Scale[int](0,50,1,0)=0; height of the ROI
+    - data: 
+      image: array[dtype[uint8]]; the first image
+      scene: array[dtype[uint8]]; the second image
+  Returns:
+    - data:
+      image: array[dtype[uint8]]; the first image
+      scene: array[dtype[uint8]]; the second image
+  '''  
+
+  x0 = params.get('x0', 0)
+  y0 = params.get('y0', 0)
+  weight = params.get('weight', 0)
+  height = params.get('height', 0)
+
+  image = data.get('image')
+  scene = data.get('scene')
+
+  if weight > 0 and height > 0:
+    x1 = x0 + weight
+    y1 = y0 + height
+    image = image.copy()[y0:y1, x0:x1]
+    scene = scene.copy()[y0:y1, x0:x1]
+    
+  data['image'] = image
+  data['scene'] = scene
   return data
 
 
