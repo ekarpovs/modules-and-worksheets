@@ -1,0 +1,49 @@
+[
+  {
+    "info": "new worksheet"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data/input",
+      "name": "golden-spirals.jpg",
+      "location": "Location"
+    }
+  },
+  {
+    "exec": "clrs.rgbto",
+    "params": {
+      "type": 7
+    },
+    "links": {
+      "kernel": "2-filters.gabor_kernel-kernel"
+    }
+  },
+  {
+    "exec": "filters.gabor_kernel",
+    "params": {
+      "ksize": 39,
+      "sigma": 4,
+      "theta": 5.0,
+      "lambd": 5,
+      "psi": 0.0,
+      "gamma": 0,
+      "ktype": 5
+    },
+    "links": {
+      "kernel": "2-filters.gabor_kernel-kernel"
+    }
+  },
+  {
+    "exec": "filters.filter_2d",
+    "params": {
+      "ddepth": -1
+    },
+    "links": {
+      "kernel": "2-filters.gabor_kernel-kernel"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]
