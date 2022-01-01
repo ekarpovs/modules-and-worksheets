@@ -46,17 +46,15 @@ def erode(params: Dict , **data: Dict) -> Dict:
       kernel: array[dtype[uint8]]; structured element (kernel)
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
-      kernel: array[dtype[uint8]]; structured element (kernel)
+      erode: array[dtype[uint8]]; the result image
   '''
 
   iterations = params.get('iter', 1)
   kernel = data.get('kernel')
   image = data.get('image')
-  print('image shape', image.shape)
 
   mrpherode = cv2.erode(image, kernel, iterations=iterations)
-  data['image'] = mrpherode
+  data['erode'] = mrpherode
   return data
 
 
@@ -75,14 +73,13 @@ def dilate(params: Dict , **data: Dict) -> Dict:
       kernel: array[dtype[uint8]]; structured element (kernel)
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
-      kernel: array[dtype[uint8]]; structured element (kernel)
+      dilate: array[dtype[uint8]]; the result image
   '''
 
   iterations = params.get('iter', 1)
   kernel = data.get('kernel')
   mrphdilate = cv2.dilate(data.get('image'), kernel, iterations=iterations)
-  data['image'] = mrphdilate
+  data['dilate'] = mrphdilate
   return data
 
 
@@ -103,13 +100,13 @@ def mex(params: Dict , **data: Dict) -> Dict:
       kernel: array[dtype[uint8]]; structured element (kernel)
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      mex: array[dtype[uint8]]; the result image
   ''' 
 
   type = params.get('type', cv2.MORPH_OPEN)
   kernel = data.get('kernel')
   mrphex = cv2.morphologyEx(data['image'], type, kernel) 
-  data['image'] = mrphex
+  data['mex'] = mrphex
   return data
 
 
