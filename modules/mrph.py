@@ -47,6 +47,7 @@ def erode(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: array[dtype[uint8]]; the result image
+      kernel: array[dtype[uint8]]; structured element (kernel)
   '''
 
   iterations = params.get('iter', 1)
@@ -75,7 +76,9 @@ def dilate(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: array[dtype[uint8]]; the result image
+      kernel: array[dtype[uint8]]; structured element (kernel)
   '''
+
   iterations = params.get('iter', 1)
   kernel = data.get('kernel')
   mrphdilate = cv2.dilate(data.get('image'), kernel, iterations=iterations)
