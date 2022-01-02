@@ -105,7 +105,7 @@ def rectangle(params: Dict , **data: Dict) -> Dict:
       x0: int=25; left top coordinate
       x1: int=275; right top coordinate
       thickness: int=1; thickness of the rectangle border (-1 fill the rectangle)
-      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the shape color
+      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:7,YELLOW:6,LIME:8)=BLACK; the shape color
     - data: 
   Returns:
     - data:
@@ -139,7 +139,7 @@ def circle(params: Dict , **data: Dict) -> Dict:
       cy: int=150; right bottom coordinate
       rad: int=25; radius
       thickness: int=1; thickness of the rectangle border (-1 fill the rectangle)
-      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the shape color
+      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:7,YELLOW:6,LIME:8)=BLACK; the shape color
     - data: 
   Returns:
     - data:

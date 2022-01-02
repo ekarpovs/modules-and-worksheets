@@ -17,7 +17,7 @@ def point(params: Dict , **data: Dict) -> Dict:
     - params:
       y0: int=0; point coordinate
       x0: int=0; point coordinate
-      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the point color
+      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:7,YELLOW:6,LIME:8)=BLACK; the point color
     - data: 
       image: array[dtype[uint8]]; an image
   Returns:
@@ -44,7 +44,7 @@ def line(params: Dict , **data: Dict) -> Dict:
       y0: int=0; start point coordinate
       x1: int=0; end point coordinate
       y1: int=0; end point coordinate
-      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the point color
+      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:7,YELLOW:6,LIME:8)=BLACK; the point color
       thickness: int=1; thickness of the line
     - data: 
       image: array[dtype[uint8]]; an image
@@ -73,9 +73,9 @@ def contours(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:
       thickness: int=1; thickness of the rectangle border (-1 fill the rectangle)
-      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the contour color
-      ccolor: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the center of a contour color
-      tcolor: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the text of a contour color
+      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:7,YELLOW:6,LIME:8)=BLACK; the contour color
+      ccolor: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:7,YELLOW:6,LIME:8)=BLACK; the center of a contour color
+      tcolor: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:7,YELLOW:6,LIME:8)=BLACK; the text of a contour color
     - data: 
       image: array[dtype[uint8]]; an image
       cntrs: List[array[dtype[uint32]]]; contours
@@ -185,7 +185,7 @@ def box(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:
       thickness: int=1; thickness of the rectangle border (-1 fill the rectangle)
-      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:6,YELLOW:7,LIME:8)=BLACK; the box color
+      color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:7,YELLOW:6,LIME:8)=BLACK; the box color
       show: bool=False; Draw over the original image
     - data: 
       image: array[dtype[uint8]]; an image
