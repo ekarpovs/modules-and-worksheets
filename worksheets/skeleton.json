@@ -11,10 +11,7 @@
     }
   },
   {
-    "exec": "clrs.bgrto",
-    "links": {
-      "image": "0-glbstm.begin-image"
-    }
+    "exec": "clrs.bgrto"
   },
   {
     "exec": "common.store",
@@ -22,9 +19,6 @@
       "location": "Location",
       "path": "../data/storage/tmp",
       "name": "src.png"
-    },
-    "links": {
-      "image": "1-clrs.bgrto-image"
     }
   },
   {
@@ -67,7 +61,6 @@
   {
     "exec": "mrph.erode",
     "links": {
-      "image": "6-common.restore-image",
       "kernel": "4-mrph.kernel-kernel"
     }
   },
@@ -78,14 +71,14 @@
     },
     "links": {
       "kernel": "4-mrph.kernel-kernel",
-      "image": "7-mrph.erode-image"
+      "image": "7-mrph.erode-erode"
     }
   },
   {
     "exec": "arithmetic.arth_sub",
     "links": {
       "image": "6-common.restore-image",
-      "mask": "8-mrph.dilate-image"
+      "mask": "8-mrph.dilate-dilate"
     }
   },
   {
@@ -101,15 +94,12 @@
       "location": "Location",
       "path": "../data/storage/tmp",
       "name": "src.png"
-    },
-    "links": {
-      "image": "10-bitwise.btw_or-image"
     }
   },
   {
     "exec": "shapes.cnt_zero",
     "links": {
-      "mask": "8-bitwise.btw_or-image"
+      "mask": "10-bitwise.btw_or-image"
     }
   },
   {

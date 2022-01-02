@@ -6,7 +6,7 @@
     "exec": "glbstm.begin",
     "params": {
       "path": "D:/Projects/mine/github/work-shop/data/input",
-      "name": "disk.png",
+      "name": "disk.png"
     }
   },
   {
@@ -14,9 +14,6 @@
     "params": {
       "condition": "image.shape[2]>1",
       "res": true
-    },
-    "links": {
-      "image": "0-glbstm.begin-image"
     }
   },
   {
@@ -34,9 +31,6 @@
     }
   },
   {
-    "exec": "glbstm.if_end"
-  },
-  {
     "exec": "draw.line",
     "params": {
       "x0": 0,
@@ -45,6 +39,23 @@
       "y1": 500,
       "color": 1,
       "thickness": 1
+    }
+  },
+  {
+    "exec": "glbstm.if_end"
+  },
+  {
+    "exec": "draw.line",
+    "params": {
+      "x0": 300,
+      "y0": 400,
+      "x1": 0,
+      "y1": 0,
+      "color": 1,
+      "thickness": 3
+    },
+    "links": {
+      "image": "3-edge.canny-image"
     }
   },
   {

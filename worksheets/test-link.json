@@ -33,26 +33,6 @@
     }
   },
   {
-    "exec": "bsc.rotate",
-    "params": {
-      "angle": 30,
-      "neg": true
-    },
-    "links": {
-      "image": "0-glbstm.begin-image"
-    }
-  },
-  {
-    "exec": "bsc.translate",
-    "params": {
-      "x": -50,
-      "y": 40
-    },
-    "links": {
-      "image": "0-glbstm.begin-image"
-    }
-  },
-  {
     "exec": "glbstm.end"
   }
 ]

@@ -10,10 +10,7 @@
     }
   },
   {
-    "exec": "clrs.bgrto",
-    "links": {
-      "image": "0-glbstm.begin-image"
-    }
+    "exec": "clrs.bgrto"
   },
   {
     "exec": "blur.gaus",
@@ -22,7 +19,7 @@
       "kernel": 5
     },
     "links": {
-      "image": "1-clrs.bgrto-image"
+      "image": "0-glbstm.begin-image"
     }
   },
   {
@@ -30,9 +27,6 @@
     "params": {
       "thrs1": 75,
       "thrs2": 200
-    },
-    "links": {
-      "image": "2-blur.gaus-image"
     }
   },
   {
@@ -40,9 +34,6 @@
     "params": {
       "meth": 2,
       "mode": 0
-    },
-    "links": {
-      "image": "3-edge.canny-image"
     }
   },
   {
