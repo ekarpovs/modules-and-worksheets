@@ -11,7 +11,7 @@ def begin(params: Dict, **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      location: button=Location; path and name of a data file 
+      loadfrom: button=From; path and name of a loaded file 
       path: str=; path to a folder with images
       name: str=; the image file name 
     - data: 
@@ -33,7 +33,7 @@ def end(params: Dict, **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      location: button=Location; path and name of a data file 
+      saveas: button=To; path and name of a stored file 
       path: str=; path to an output folder
       name: str=; the output file name 
     - data: 
