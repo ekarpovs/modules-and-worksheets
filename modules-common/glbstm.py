@@ -13,7 +13,8 @@ def begin(params: Dict, **data: Dict) -> Dict:
     - params:   
       loadfrom: button=From; path and name of a loaded file 
       path: str=; path to a folder with images
-      name: str=; the image file name 
+      name: str=; the image file name
+      flag: Dict[str, int](UNGHANGED:-1,GRAYSCALE:0,COLOR:1)=COLOR; flag one from cv2.IMREAD_(...)
     - data: 
   Returns:
     - data:
@@ -22,9 +23,11 @@ def begin(params: Dict, **data: Dict) -> Dict:
 
   path = params.get('path', '')
   fn = params.get('name', '')
+  flag = params.get('flag', 1)
+
   if path is not '' and fn is not '':
     ffn = '{}/{}'.format(path, fn)
-    data['image'] = cv2.imread(ffn)
+    data['image'] = cv2.imread(ffn, flag)
   return data
 
 def end(params: Dict, **data: Dict) -> Dict:

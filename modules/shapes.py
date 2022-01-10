@@ -135,8 +135,8 @@ def circle(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:
-      cx: int=150; left top coordinate
-      cy: int=150; right bottom coordinate
+      cx: int=150; center horizontal coordinate
+      cy: int=150; center vertical coordinate
       rad: int=25; radius
       thickness: int=1; thickness of the rectangle border (-1 fill the rectangle)
       color: Dict[str, int](BLACK:0,WHITE:1,RED:2,GREEN:3, BLUE:4,MAGENTA:5,CYAN:7,YELLOW:6,LIME:8)=BLACK; the shape color
