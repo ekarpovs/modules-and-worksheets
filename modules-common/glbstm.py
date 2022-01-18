@@ -25,7 +25,7 @@ def begin(params: Dict, **data: Dict) -> Dict:
   fn = params.get('name', '')
   flag = params.get('flag', 1)
 
-  if path is not '' and fn is not '':
+  if path != '' and fn != '':
     ffn = '{}/{}'.format(path, fn)
     data['image'] = cv2.imread(ffn, flag)
   return data

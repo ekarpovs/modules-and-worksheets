@@ -109,7 +109,6 @@ def cmp_norm(params: Dict, **data: Dict) -> Dict:
   norm = image/np.sqrt(np.sum(image**2))  
   norm1 = scene/np.sqrt(np.sum(scene**2))  
   diff =np.sum(norm*norm1)
-  # print('cmp_norm diff:', diff)
   data['diff'] = diff 
 
   # https://stackoverflow.com/questions/11541154/checking-images-for-similarity-with-opencv
@@ -123,39 +122,35 @@ def cmp_norm(params: Dict, **data: Dict) -> Dict:
 
 def roi(params: Dict, **data: Dict) -> Dict:
   '''
-  Gets ROI from two images.
+  Gets ROI from an image.
 
   Parameters:
     - params:
       x0: int=0; top left corner of the ROI
       y0: int=0; top left corner of the ROI
-      weight: Scale[int](0,50,1,0)=0; weight of the ROI
-      height: Scale[int](0,50,1,0)=0; height of the ROI
+      weight: Scale[int](0,50,1,0)=1; weight of the ROI
+      height: Scale[int](0,50,1,0)=1; height of the ROI
     - data: 
-      image: array[dtype[uint8]]; the first image
-      scene: array[dtype[uint8]]; the second image
+      image: array[dtype[uint8]]; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the first image
-      scene: array[dtype[uint8]]; the second image
+      roi: array[dtype[uint8]]; the roi
   '''  
 
   x0 = params.get('x0', 0)
   y0 = params.get('y0', 0)
-  weight = params.get('weight', 0)
-  height = params.get('height', 0)
+  weight = params.get('weight', 1)
+  height = params.get('height', 1)
 
   image = data.get('image')
-  scene = data.get('scene')
-
   if weight > 0 and height > 0:
     x1 = x0 + weight
     y1 = y0 + height
-    image = image.copy()[y0:y1, x0:x1]
-    scene = scene.copy()[y0:y1, x0:x1]
-    
-  data['image'] = image
-  data['scene'] = scene
+    roi = image.copy()[y0:y1, x0:x1]   
+  else:
+    roi = image.copy()
+
+  data['roi'] = roi
   return data
 
 

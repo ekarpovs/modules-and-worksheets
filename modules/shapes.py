@@ -53,19 +53,19 @@ def mask(params: Dict , **data: Dict) -> Dict:
   if type == 0:
     # Create matrix (filled with zeros)
     mask = np.zeros((h,w), dtype="uint8")
-    value = 255
+    color = 255
   else:
     # Create matrix (filled with ones) and the multiplying it by 'ifact' to create an
     # array filled with ifact value's, then add the images together; 
     # the image will "brighter"
     mask = np.ones((h,w), dtype = "uint8") * idfact
-    value = 0
+    color = 0
   if area == 0:
     # Construct a rectangular area on the mask
-    cv2.rectangle(mask, (x0, y0), (x1, y1), value, -1)
+    cv2.rectangle(mask, (x0, y0), (x1, y1), color, -1)
   elif area == 1:
     # Construct a circular area on the mask
-    cv2.circle(mask, (cx, cy), r, value, -1)
+    cv2.circle(mask, (cx, cy), r, color, -1)
   else:
     pass    
 
