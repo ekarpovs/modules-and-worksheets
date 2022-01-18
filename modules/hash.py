@@ -148,6 +148,7 @@ def join(params: Dict , **data: Dict) -> Dict:
       phash: string; dhashm
       whash: string; dhashm
       md5hash: string; md5hash
+      clrhash: string; colorhash
   Returns:
     - data:
       hash: Dict[str,str]; dictioanary of hashes
@@ -159,6 +160,7 @@ def join(params: Dict , **data: Dict) -> Dict:
   phash = data.get('phash','')
   whash = data.get('whash','')
   md5hash = data.get('md5hash','')
-  hash = {'dhashm': dhashm, 'ahash': ahash, 'dhash': dhash, 'phash': phash, 'whash': whash, 'md5hash': md5hash}
+  clrhash = data.get('clrhash','')
+  hash = {'dhashm': dhashm, 'ahash': ahash, 'dhash': dhash, 'phash': phash, 'whash': whash, 'md5hash': md5hash, 'clrhash': clrhash}
   data['hash'] = hash
   return data
