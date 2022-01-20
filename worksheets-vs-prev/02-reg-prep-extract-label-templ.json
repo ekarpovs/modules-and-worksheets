@@ -1,0 +1,54 @@
+[
+  {
+    "info": "new worksheet"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/2-reg-prep-templ/lbls-decollated",
+      "name": "lbl-decol.tiff",
+      "location": "Location",
+      "loadfrom": "From",
+      "flag": 1
+    }
+  },
+  {
+    "exec": "common.restore",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/1-make/lb-templ",
+      "name": "lb-template.tiff",
+      "location": "Location",
+      "loadfrom": "From",
+      "flag": 1
+    }
+  },
+  {
+    "exec": "template.single",
+    "params": {
+      "method": 0
+    },
+    "links": {
+      "template": "1-common.restore-image",
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
+    "exec": "bsc.crop",
+    "links": {
+      "coords": "2-template.single-coords",
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
+    "exec": "common.store",
+    "params": {
+      "location": "Location",
+      "path": "D:/Projects/mine/github/work-shop/data-vs/2-reg-prep-templ/lbls-extracted",
+      "name": "lbl-extr.tiff",
+      "saveas": "saveas"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

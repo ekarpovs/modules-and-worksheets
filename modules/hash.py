@@ -14,7 +14,7 @@ def dhashm(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: array[dtype[uint8]]; an image
+      image: ndarray; an image
   Returns:
     - data:
       dhashm: float; diffeerence hash
@@ -33,7 +33,7 @@ def ahash(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: array[dtype[uint8]]; an image
+      image: ndarray; an image
   Returns:
     - data:
       ahash: string; average hash
@@ -51,7 +51,7 @@ def dhash(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: array[dtype[uint8]]; an image
+      image: ndarray; an image
   Returns:
     - data:
       dhash: string; difference hash
@@ -69,7 +69,7 @@ def phash(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: array[dtype[uint8]]; an image
+      image: ndarray; an image
   Returns:
     - data:
       phash: string; perceptual hash
@@ -87,7 +87,7 @@ def whash(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: array[dtype[uint8]]; an image
+      image: ndarray; an image
   Returns:
     - data:
       whash: string; wavelet hash
@@ -105,7 +105,7 @@ def clrhash(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: array[dtype[uint8]]; an image
+      image: ndarray; an image
   Returns:
     - data:
       clrhash: string; color hash
@@ -123,7 +123,7 @@ def md5hash(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: array[dtype[uint8]]; an image
+      image: ndarray; an image
   Returns:
     - data:
       md5hash: string; md5 hash

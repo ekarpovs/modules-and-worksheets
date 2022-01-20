@@ -16,10 +16,10 @@ def find(params: Dict , **data: Dict) -> Dict:
       num-cntrs: int=5; number of biggets contours
       approx: bool=True; approximate as rectangle
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      cntrs: List[array[dtype[uint32]]]; founded contours
+      cntrs: List[ndarray]; founded contours
       boxes: List[Tuple[uint]]; bounding boxes
   '''  
 
@@ -50,10 +50,10 @@ def sort(params: Dict , **data: Dict) -> Dict:
       rev: bool=True; reverse flag
       max-num: int=5; max number of returned contours
     - data: 
-      cntrs: List[array[dtype[uint32]]]; contours
+      cntrs: List[ndarray]; contours
   Returns:
     - data:
-      cntrs: List[array[dtype[uint32]]]; sorted contours
+      cntrs: List[ndarray]; sorted contours
       boxes: List[Tuple[uint]]; coordinates of bounding boxes
   '''
 
@@ -82,10 +82,10 @@ def sel_rect(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      cntrs: List[array[dtype[uint32]]]; sorted contours
+      cntrs: List[ndarray]; sorted contours
   Returns:
     - data:
-      app-rect: array[dtype[float64]]; the biggest rectangle contour
+      app-rect: ndarray; the biggest rectangle contour
   '''
 
   cntrs = data.get('cntrs')

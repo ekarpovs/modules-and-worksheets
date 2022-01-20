@@ -1,0 +1,35 @@
+[
+  {
+    "info": "new worksheet"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/2-reg-prep-templ/lbs-rot",
+      "name": "lb-rot_0.0.tiff",
+      "define": "Define"
+    }
+  },
+  {
+    "exec": "clrs.bgrto",
+    "links": {
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
+    "exec": "lbp.lbp",
+    "params": {
+      "points": 8,
+      "radius": 1
+    },
+    "links": {
+      "image": "1-clrs.bgrto-image"
+    }
+  },
+  {
+    "exec": "glbstm.end",
+    "links": {
+      "image": "2-lbp.lbp-lbp"
+    }
+  }
+]

@@ -1,0 +1,76 @@
+[
+  {
+    "info": "new worksheet"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/1-make/lb-templ",
+      "name": "lb-template.tiff",
+      "location": "Location",
+      "loadfrom": "From",
+      "flag": 0
+    }
+  },
+  {
+    "exec": "hash.dhashm",
+    "links": {
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
+    "exec": "hash.ahash",
+    "links": {
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
+    "exec": "hash.dhash",
+    "links": {
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
+    "exec": "hash.whash",
+    "links": {
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
+    "exec": "hash.phash",
+    "links": {
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
+    "exec": "hash.md5hash",
+    "links": {
+      "image": "0-glbstm.begin-image"
+    }
+  },
+  {
+    "exec": "hash.join",
+    "links": {
+      "dhashm": "1-hash.dhashm-dhashm",
+      "ahash": "2-hash.ahash-ahash",
+      "dhash": "3-hash.dhash-dhash",
+      "phash": "5-hash.phash-phash",
+      "whash": "4-hash.whash-whash",
+      "md5hash": "6-hash.md5hash-md5hash"
+    }
+  },
+  {
+    "exec": "common.store_json",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/3-reg-templ/lbl-hash/orig",
+      "name": "lb-orig-full-hashs.json",
+      "saveas": "saveas"
+    },
+    "links": {
+      "json": "7-hash.join-hash"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

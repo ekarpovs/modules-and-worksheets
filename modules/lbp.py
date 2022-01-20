@@ -16,10 +16,10 @@ def lbp(params: Dict , **data: Dict) -> Dict:
       points: List[int](8,16,24,32,40,48,56)=8; number of points in the LBP
       radius: Scale[int](1,7,1,0)=1; radius of the LBP
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      lbp: array[dtype[float64]];
+      lbp: ndarray;
   '''
 
   num_points = params.get('points', 8)

@@ -1,0 +1,99 @@
+[
+  {
+    "info": "new worksheet"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/2-reg-prep-templ/lbls-extracted",
+      "name": "lbl-extr.png",
+      "location": "Location",
+      "loadfrom": "From",
+      "flag": 1
+    }
+  },
+  {
+    "exec": "label.grig",
+    "params": {
+      "size": 13
+    }
+  },
+  {
+    "exec": "label.extract",
+    "params": {
+      "row": 0,
+      "col": 0
+    },
+    "links": {
+      "grid": "1-label.grig-grid"
+    }
+  },
+  {
+    "exec": "hash.dhashm",
+    "links": {
+      "image": "2-label.extract-cell"
+    }
+  },
+  {
+    "exec": "hash.ahash",
+    "links": {
+      "image": "2-label.extract-cell"
+    }
+  },
+  {
+    "exec": "hash.dhash",
+    "links": {
+      "image": "2-label.extract-cell"
+    }
+  },
+  {
+    "exec": "hash.whash",
+    "links": {
+      "image": "2-label.extract-cell"
+    }
+  },
+  {
+    "exec": "hash.phash",
+    "links": {
+      "image": "2-label.extract-cell"
+    }
+  },
+  {
+    "exec": "hash.md5hash",
+    "links": {
+      "image": "2-label.extract-cell"
+    }
+  },
+  {
+    "exec": "hash.clrhash",
+    "links": {
+      "image": "2-label.extract-cell"
+    }
+  },
+  {
+    "exec": "hash.join",
+    "links": {
+      "dhashm": "3-hash.dhashm-dhashm",
+      "ahash": "4-hash.ahash-ahash",
+      "dhash": "5-hash.dhash-dhash",
+      "phash": "7-hash.phash-phash",
+      "whash": "6-hash.whash-whash",
+      "md5hash": "8-hash.md5hash-md5hash",
+      "clrhash": "9-hash.clrhash-clrhash"
+    }
+  },
+  {
+    "exec": "common.store_json",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/3-reg-templ/lbl-hash/extr",
+      "name": "lb-extr-hashs.json",
+      "saveas": "saveas"
+    },
+    "links": {
+      "json": "10-hash.join-hash"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

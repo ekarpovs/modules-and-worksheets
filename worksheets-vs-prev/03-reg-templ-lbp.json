@@ -1,0 +1,71 @@
+[
+  {
+    "info": "new worksheet"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/1-make/lb-templ",
+      "name": "lb-template.tiff",
+      "loadfrom": "From"
+    }
+  },
+  {
+    "exec": "clrs.bgrto"
+  },
+  {
+    "exec": "lbp.lbp",
+    "params": {
+      "points": 8,
+      "radius": 2
+    }
+  },
+  {
+    "exec": "common.store_npy_float64",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/3-reg-templ/lbs-lbp",
+      "name": "lb-orig-lbp.npy.tiff",
+      "saveas": "saveas"
+    },
+    "links": {
+      "arr": "2-lbp.lbp-lbp"
+    }
+  },
+  {
+    "exec": "common.restore",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/2-reg-prep-templ/lbls-extracted",
+      "name": "label-extr.tiff",
+      "loadfrom": "From"
+    },
+    "links": {
+      "json": "6-lbp.lbp-lbp"
+    }
+  },
+  {
+    "exec": "clrs.bgrto",
+    "links": {
+      "json": "6-lbp.lbp-lbp"
+    }
+  },
+  {
+    "exec": "lbp.lbp",
+    "links": {
+      "json": "6-lbp.lbp-lbp"
+    }
+  },
+  {
+    "exec": "common.store_npy_float64",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/3-reg-templ/lbs-lbp",
+      "name": "lb-extr-lbp.npy.tiff",
+      "saveas": "saveas"
+    },
+    "links": {
+      "arr": "6-lbp.lbp-lbp"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

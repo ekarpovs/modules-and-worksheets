@@ -1,0 +1,45 @@
+[
+  {
+    "info": "Make label"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "../data-vs/1-make/lb-templ",
+      "name": "lb-template.tiff"
+    }
+  },
+  {
+    "exec": "common.restore",
+    "params": {
+      "path": "../data-vs/1-make/qrs",
+      "name": "qr.jpg"
+    }
+  },
+  {
+    "exec": "arithmetic.arth_add_into",
+    "params": {
+      "offset-x": 35,
+      "offset-y": 25,
+      "offsety": 26,
+      "offsetx": 36
+    },
+    "links": {
+      "mask": "0-glbstm.begin-image",
+      "image": "1-common.restore-image"
+    }
+  },
+  {
+    "exec": "common.store",
+    "params": {
+      "path": "../data-vs/1-make/lbs",
+      "name": "label-geom.tiff"
+    },
+    "links": {
+      "image": "2-arithmetic.arth_add_into-image"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

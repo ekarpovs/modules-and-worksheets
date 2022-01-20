@@ -1,0 +1,73 @@
+[
+  {
+    "info": "new worksheet"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/1-make/lb-templ",
+      "name": "lb-template.png",
+      "location": "Location",
+      "loadfrom": "From",
+      "flag": 1
+    }
+  },
+  {
+    "exec": "bsc.crop",
+    "params": {
+      "y0": 166,
+      "y1": 196,
+      "x0": 13,
+      "x1": 53,
+      "manual": false
+    },
+    "links": {
+      "image": "0-glbstm.begin-image",
+      "template": "1-bsc.crop-image"
+    }
+  },
+  {
+    "exec": "template.single",
+    "links": {
+      "image": "0-glbstm.begin-image",
+      "template": "1-bsc.crop-image"
+    }
+  },
+  {
+    "exec": "draw.box",
+    "params": {
+      "thickness": 1,
+      "color": 0,
+      "show": true
+    },
+    "links": {
+      "image": "0-glbstm.begin-image",
+      "coords": "2-template.single-coords"
+    }
+  },
+  {
+    "exec": "common.store",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/1-make/minutiaes",
+      "name": "lb-templ-cross.png",
+      "saveas": "saveas"
+    },
+    "links": {
+      "image": "1-bsc.crop-image"
+    }
+  },
+  {
+    "exec": "common.store_json",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/1-make/minutiaes",
+      "name": "lb-templ-cross.json",
+      "saveas": "saveas"
+    },
+    "links": {
+      "json": "1-bsc.crop-coords"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

@@ -17,29 +17,54 @@ def crop(params: Dict , **data: Dict) -> Dict:
       y1: int=0; left bottom coordinate
       x0: int=0; left top coordinate
       x1: int=0; right top coordinate
-      manual: bool=False; use manual setting over data coordinates
     - data: 
-      image: array[dtype[uint8]]; the image
-      coords: Tuple[int]; coordinates - x0,y0,x1,y1
+      image: ndarray; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
-      coords: Tuple[int]; coordinates - x0,y0,x1,y1
+      image: ndarray; the result image
   '''  
 
   y0 = params.get('y0', 0)
   y1 = params.get('y1', 0)
   x0 = params.get('x0', 0)
   x1 = params.get('x1', 0)
-  manual = params.get('manual', False)
+
+  image = data.get('image')
+
+  data['image'] = image[y0:y1, x0:x1]
+  return data
+
+def crop_bound(params: Dict , **data: Dict) -> Dict:
+  '''
+  Crops an image regarding roi coordinates and offsets.
+
+  Parameters:
+    - params:   
+      off_top: int=0; y axis offset from top coordinate
+      off_bottom: int=0; y axis offset from bottom coordinate
+      off_left: int=0; x axis offset from left coordinate
+      off_right: int=0; x axis offset from right coordinate
+    - data: 
+      image: ndarray; the image
+      coords: Tuple[int]; coordinates - x0,y0,x1,y1
+  Returns:
+    - data:
+      image: ndarray; the result image
+      coords: Tuple[int]; coordinates - x0,y0,x1,y1
+  '''  
+
+  off_top = params.get('off_top', 0)
+  off_bottom = params.get('off_bottom', 0)
+  off_left = params.get('off_left', 0)
+  off_right = params.get('off_right', 0)
 
   image = data.get('image')
   coords = data.get('coords')
-  if coords is not None and not manual:
-    y0 = coords[1]
-    y1 = coords[3]
-    x0 = coords[0]
-    x1 = coords[2]
+  if coords is not None:
+    y0 = coords[1] - off_top
+    y1 = coords[3] + off_bottom
+    x0 = coords[0] - off_left
+    x1 = coords[2] + off_right
 
   data['image'] = image[y0:y1, x0:x1]
   data['coords'] = (x0,y0,x1,y1)
@@ -53,10 +78,10 @@ def flip(params: Dict , **data: Dict) -> Dict:
     - params:   
       direct: Dict[str, int](both:0,vertical:1,horizontal:2)=vertical; flipping direction
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''  
 
   direction = params.get('direct', 1)
@@ -75,10 +100,10 @@ def resize(params: Dict , **data: Dict) -> Dict:
       side: Dict[str, int](height:0,width:1)=side; rectangle side
       size: int=20; new zise
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''
   
   method = params.get('meth', cv2.INTER_AREA)
@@ -121,10 +146,10 @@ def resize_abs(params: Dict , **data: Dict) -> Dict:
       h: int=20; new height
       w: int=20; new width
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''
 
   method = params.get('meth', cv2.INTER_AREA)
@@ -151,10 +176,10 @@ def rotate(params: Dict , **data: Dict) -> Dict:
       angle: Scale[int](0,180,1,0)=0; rotation angle
       neg: bool=True; negative direction
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''  
 
   # grab the dimensions of the image and calculate the center of the image
@@ -191,12 +216,12 @@ def rotate_inside(params: Dict , **data: Dict) -> Dict:
       angle: Scale[float](0.0,3.0,0.25,0)=0.0; rotation angle
       neg: bool=True; negative direction
     - data: 
-      image: array[dtype[uint8]]; the image
-      rect: array[dtype[uint8]]; the canvas for result
+      image: ndarray; the image
+      rect: ndarray; the canvas for result
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
-      matrix: array[dtype[float64]]; rotation matrix
+      image: ndarray; the result image
+      matrix: ndarray; rotation matrix
   '''  
 
   # grab the dimensions of the image and calculate the center of the image
@@ -233,10 +258,10 @@ def translate(params: Dict , **data: Dict) -> Dict:
       y: int=0; number of pixels to shift
       x: int=0; number of pixels to shift
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''
 
   shiftX = params.get('x', 0)
@@ -258,11 +283,11 @@ def fit(params: Dict , **data: Dict) -> Dict:
     - params:   
       meth: Dict[str, int](NEAREST:0,LINEAR:1,AREA:2,CUBIC:3,LANCZOS:4)=AREA; interpolation method cv2.INTER_(...)
     - data: 
-      image: array[dtype[uint8]]; the first image, that will be resized
-      scene: array[dtype[uint8]]; the second image
+      image: ndarray; the first image, that will be resized
+      scene: ndarray; the second image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''  
 
   method = params.get('meth', cv2.INTER_AREA)
@@ -285,11 +310,11 @@ def transform(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      image: array[dtype[uint8]]; the image
-      app-rect:  array[dtype[float64]]; the biggest rectangle contour 
+      image: ndarray; the image
+      app-rect:  ndarray; the biggest rectangle contour 
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''  
   rect_cnt = data['app-rect']
   data['image'] = _four_point_transform(data.get('image'), rect_cnt.reshape(4, 2)) 

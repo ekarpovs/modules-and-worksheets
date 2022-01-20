@@ -1,0 +1,76 @@
+[
+  {
+    "info": "new worksheet"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-tg/1-scan",
+      "name": "Leviafan_scan600dpi_00.tiff",
+      "loadfrom": "From",
+      "flag": 1
+    }
+  },
+  {
+    "exec": "common.restore",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-tg/0-resources",
+      "name": "qr-templ.tiff",
+      "loadfrom": "From",
+      "flag": 1
+    },
+    "links": {
+      "image": "0-glbstm.begin-image",
+      "template": "1-common.restore-image"
+    }
+  },
+  {
+    "exec": "template.single",
+    "params": {
+      "method": 0
+    },
+    "links": {
+      "image": "0-glbstm.begin-image",
+      "template": "1-common.restore-image"
+    }
+  },
+  {
+    "exec": "draw.box",
+    "params": {
+      "thickness": 3,
+      "color": 7,
+      "show": false
+    },
+    "links": {
+      "image": "0-glbstm.begin-image",
+      "coords": "2-template.single-coords"
+    }
+  },
+  {
+    "exec": "bsc.crop_bound",
+    "params": {
+      "off_top": 515,
+      "off_bottom": 160,
+      "off_left": 2800,
+      "off_right": 200
+    },
+    "links": {
+      "image": "0-glbstm.begin-image",
+      "coords": "2-template.single-coords"
+    }
+  },
+  {
+    "exec": "common.store",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-tg/2-extr",
+      "name": "lv-00-extr.tiff",
+      "saveas": "saveas"
+    },
+    "links": {
+      "image": "4-bsc.crop_bound-image"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

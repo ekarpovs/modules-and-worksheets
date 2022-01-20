@@ -1,0 +1,75 @@
+[
+  {
+    "info": "new worksheet"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/2-reg-prep-templ/lbls-extracted",
+      "name": "label-extr.png",
+      "loadfrom": "From",
+      "flag": 0
+    }
+  },
+  {
+    "exec": "label.grig",
+    "params": {
+      "size": 13
+    }
+  },
+  {
+    "exec": "label.extract",
+    "params": {
+      "row": 21,
+      "col": 10
+    },
+    "links": {
+      "grid": "1-label.grig-grid"
+    }
+  },
+  {
+    "exec": "hash.dhashm",
+    "links": {
+      "image": "2-label.extract-cell"
+    }
+  },
+  {
+    "exec": "hash.ahash",
+    "links": {
+      "image": "2-label.extract-cell"
+    }
+  },
+  {
+    "exec": "hash.dhash",
+    "links": {
+      "image": "2-label.extract-cell"
+    }
+  },
+  {
+    "exec": "hash.whash",
+    "links": {
+      "image": "2-label.extract-cell"
+    }
+  },
+  {
+    "exec": "hash.phash",
+    "links": {
+      "image": "2-label.extract-cell"
+    }
+  },
+  {
+    "exec": "hash.md5hash",
+    "links": {
+      "image": "2-label.extract-cell"
+    }
+  },
+  {
+    "exec": "lbp.lbp",
+    "links": {
+      "image": "2-label.extract-cell"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

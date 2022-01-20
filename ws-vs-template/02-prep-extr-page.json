@@ -1,0 +1,35 @@
+[
+  {
+    "info": "new worksheet"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/2-reg-prep-templ/page-templ-scan",
+      "name": "label_scan100dpi_tiff.tif",
+      "loadfrom": "From",
+      "flag": 1
+    }
+  },
+  {
+    "exec": "bsc.crop",
+    "params": {
+      "y0": 0,
+      "y1": 970,
+      "x0": 10,
+      "x1": 700,
+      "manual": true
+    }
+  },
+  {
+    "exec": "common.store",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/2-reg-prep-templ/page-templ-extracted",
+      "name": "page-templ-extr.tiff",
+      "saveas": "saveas"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

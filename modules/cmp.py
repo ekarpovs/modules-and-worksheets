@@ -1,12 +1,10 @@
 '''
-Compare operations
+Comparition operations
 '''
 
 from typing import Dict
 import cv2
 import numpy as np
-# from skimage.measure import compare_ssim
-# from skimage.measure import structural_similarity as ssim
 from math import log10, sqrt
 
 
@@ -20,8 +18,8 @@ def cmp_mse(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: array[dtype[uint8]]; the first image
-      scene: array[dtype[uint8]]; the second image
+      image: ndarray; the first image
+      scene: ndarray; the second image
   Returns:
     - data:
       mse: float; Mean Squared Errors
@@ -46,8 +44,8 @@ def cmp_mse(params: Dict, **data: Dict) -> Dict:
 #   Parameters:
 #     - params:
 #     - data: 
-#       image: array[dtype[uint8]]; the first image
-#       scene: array[dtype[uint8]]; the second image
+#       image: ndarray; the first image
+#       scene: ndarray; the second image
 #   Returns:
 #     - data:
 #       ssim: float; Structural Similarity Index
@@ -69,8 +67,8 @@ def cmp_psnr(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: array[dtype[uint8]]; the first image
-      scene: array[dtype[uint8]]; the second image
+      image: ndarray; the first image
+      scene: ndarray; the second image
   Returns:
     - data:
       psnr: float; Peak Signal-to-Noise Ratio
@@ -97,8 +95,8 @@ def cmp_norm(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:
     - data: 
-      image: array[dtype[uint8]]; the first image
-      scene: array[dtype[uint8]]; the second image
+      image: ndarray; the first image
+      scene: ndarray; the second image
   Returns:
     - data:
       diff: float; Difference
@@ -120,6 +118,28 @@ def cmp_norm(params: Dict, **data: Dict) -> Dict:
   return data
 
 
+def join(params: Dict, **data: Dict) -> Dict:
+  '''
+  Joins compare results
+
+  Parameters:
+    - params:
+    - data: 
+      mse: string; mse
+      psnr: string; psnr
+      diff: string; diff
+  Returns:
+    - data:
+      cmp: Dict[str,str]; dictioanary of cmp results
+  '''
+
+  mse = data.get('mse','')
+  psnr = data.get('psnr','')
+  diff = data.get('diff','')
+  cmp = {'mse': mse, 'psnr': psnr, 'diff': diff}
+  data['cmp'] = cmp
+  return data
+
 def roi(params: Dict, **data: Dict) -> Dict:
   '''
   Gets ROI from an image.
@@ -131,10 +151,10 @@ def roi(params: Dict, **data: Dict) -> Dict:
       weight: Scale[int](0,50,1,0)=1; weight of the ROI
       height: Scale[int](0,50,1,0)=1; height of the ROI
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      roi: array[dtype[uint8]]; the roi
+      roi: ndarray; the roi
   '''  
 
   x0 = params.get('x0', 0)

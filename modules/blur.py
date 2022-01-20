@@ -14,10 +14,10 @@ def avrg(params: Dict , **data: Dict) -> Dict:
     - params:   
       kernel: Scale[int](3,13,1,1)=3; kernel size
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the blured image
+      image: ndarray; the blured image
   '''
 
   kernel = params.get('kernel', 3)
@@ -33,10 +33,10 @@ def gaus(params: Dict , **data: Dict) -> Dict:
     - params:   
       kernel: Scale[int](3,13,1,1)=3; kernel size
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the blured image
+      image: ndarray; the blured image
   '''
 # ksize.width > 0 && ksize.width % 2 == 1 && ksize.height > 0 && ksize.height % 2 == 1
   kernel = params.get('kernel', 3)
@@ -52,10 +52,10 @@ def median(params: Dict , **data: Dict) -> Dict:
     - params:   
       kernel: Scale[int](3,13,1,1)=3; kernel size
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the blured image
+      image: ndarray; the blured image
   '''
 
   kernel = params.get('kernel', 3)
@@ -73,10 +73,10 @@ def bilateral(params: Dict , **data: Dict) -> Dict:
       sigmaspace: Scale[int](9,80,1,0)=17; filter sigma in the coordinate space.
       border: Dict[str,int](DEFAULT:4,REFLECT:2,REFLECT101:4,REFLECT_101:4,REPLICATE:1,TRANSPARENT:5,WRAP:3)=DEFAULT; pixel extrapolation method cv2.BORDER_(...)
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the blured image
+      image: ndarray; the blured image
   '''
 
   d = params.get('d', 11)

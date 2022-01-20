@@ -1,0 +1,61 @@
+[
+  {
+    "info": "rotate template - prepare for registartion"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "../data-vs/1-make/lb-templ",
+      "name": "lb-template.tiff"
+    }
+  },
+  {
+    "exec": "shapes.rectangle",
+    "params": {
+      "h": 308,
+      "w": 164,
+      "y0": 0,
+      "y1": 308,
+      "x0": 0,
+      "x1": 164,
+      "thickness": 0,
+      "color": 0
+    }
+  },
+  {
+    "exec": "bsc.rotate_inside",
+    "params": {
+      "angle": 3.0,
+      "neg": true
+    },
+    "links": {
+      "image": "0-glbstm.begin-image",
+      "rect": "1-shapes.rectangle-rect"
+    }
+  },
+  {
+    "exec": "common.store",
+    "params": {
+      "name": "lb-rot.tiff",
+      "path": "../data-vs/2-reg-prep-templ/lbs-rot"
+    }
+  },
+  {
+    "exec": "common.store_npy_float64",
+    "params": {
+      "define": "Define",
+      "path": "../data-vs/2-reg-prep-templ/lbs-rot",
+      "name": "lb-rot-matrix.npy"
+    },
+    "links": {
+      "arr": "2-bsc.rotate_inside-matrix"
+    }
+  },
+  {
+    "exec": "glbstm.end",
+    "params": {
+      "name": "",
+      "path": ""
+    }
+  }
+]

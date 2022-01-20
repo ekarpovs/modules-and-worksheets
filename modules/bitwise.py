@@ -12,11 +12,11 @@ def btw_and(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      image: array[dtype[uint8]]; an image
-      mask: array[dtype[uint8]]; an mask
+      image: ndarray; an image
+      mask: ndarray; an mask
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''
 
   image = data.get('image')
@@ -32,11 +32,11 @@ def btw_or(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      image: array[dtype[uint8]]; an image
-      mask: array[dtype[uint8]]; an mask
+      image: ndarray; an image
+      mask: ndarray; an mask
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''
 
   image = data.get('image')
@@ -52,11 +52,11 @@ def btw_xor(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      image: array[dtype[uint8]]; an image
-      mask: array[dtype[uint8]]; an mask
+      image: ndarray; an image
+      mask: ndarray; an mask
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''
 
   image = data.get('image')
@@ -72,11 +72,11 @@ def btw_not(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      image: array[dtype[uint8]]; an image
-      mask: array[dtype[uint8]]; an mask
+      image: ndarray; an image
+      mask: ndarray; an mask
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''
 
   image = data.get('image')

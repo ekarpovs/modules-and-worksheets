@@ -18,10 +18,10 @@ def canny(params: Dict , **data: Dict) -> Dict:
       thrs1: Scale[int](10,150,1,0)=50; threshold1
       thrs2: Scale[int](100,252,1,0)=200; threshold2
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''
 
   threshold1 = params.get('thrs1', 50)
@@ -41,10 +41,10 @@ def laplacian(params: Dict , **data: Dict) -> Dict:
     - params:   
       kernel: Scale[int](1,7,1,1)=3; kernel size
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''
 
   kernel = params.get('kernel', 3)
@@ -64,10 +64,10 @@ def sobel(params: Dict , **data: Dict) -> Dict:
       direction: Dict[str,int](horizontal:0,vertical:1)=horizontal; direction (x, y)
       convert: bool=True; convert result to unsigned 8-bit integer representation
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''
 
   kernel = params.get('kernel', 3)
@@ -99,12 +99,12 @@ def within_bound(params: Dict , **data: Dict) -> Dict:
       lower: Scale[float](150.0,180.0,1.0, 0)=175.0; lower orientation angle
       upper: Scale[float](150.0,180.0,1.0, 0)=180.0; upper orientation angle
     - data:
-      gray: array[dtype[uint8]]; gray image, that was passed to Sobel
-      image-gx: array[dtype[uint8]]; the first image
-      image-gy: array[dtype[uint8]]; the second image
+      gray: ndarray; gray image, that was passed to Sobel
+      image-gx: ndarray; the first image
+      image-gy: ndarray; the second image
   Returns:
     - data:
-      mask: array[dtype[uint8]]; pixels that are within
+      mask: ndarray; pixels that are within
   '''
 
   lower = params.get('lower', 175)

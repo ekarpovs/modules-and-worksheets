@@ -54,7 +54,7 @@ def store(params: Dict , **data: Dict) -> Dict:
       path: str=; path to a folder with images
       name: str=; the image file name 
     - data: 
-      image: array[dtype[uint8]]; the stored image
+      image: ndarray; the stored image
   Returns:
     - data:
   '''
@@ -67,7 +67,6 @@ def store(params: Dict , **data: Dict) -> Dict:
   ffn = '{}/{}'.format(path, fn)
   cv2.imwrite(ffn, image)
   return data
-
 
 def restore(params: Dict , **data: Dict) -> Dict:
   '''
@@ -82,7 +81,7 @@ def restore(params: Dict , **data: Dict) -> Dict:
     - data: 
   Returns:
     - data:
-      image: array[dtype[uint8]]; the loaded image
+      image: ndarray; the loaded image
   '''
 
   path = params.get('path', '')
@@ -94,7 +93,6 @@ def restore(params: Dict , **data: Dict) -> Dict:
   data['image'] = image
   return data
 
-
 def store_npy_float64(params: Dict , **data: Dict) -> Dict:
   '''
   Stores an numpy array into a file.
@@ -105,7 +103,7 @@ def store_npy_float64(params: Dict , **data: Dict) -> Dict:
       path: str=; path to a folder with file
       name: str=; the file name 
     - data: 
-      arr: array[dtype[float64]]; the stored file
+      arr: ndarray; the stored file
   Returns:
     - data:
   '''
@@ -119,7 +117,6 @@ def store_npy_float64(params: Dict , **data: Dict) -> Dict:
   np.save(ffn, arr)
   return data
 
-
 def restore_npy_float_64(params: Dict , **data: Dict) -> Dict:
   '''
   Restores an numpy array from a file.
@@ -132,7 +129,7 @@ def restore_npy_float_64(params: Dict , **data: Dict) -> Dict:
     - data: 
   Returns:
     - data:
-      arr: array[dtype[float64]]; the loaded array
+      arr: ndarray; the loaded array
   '''
 
   path = params.get('path', '')
@@ -140,7 +137,6 @@ def restore_npy_float_64(params: Dict , **data: Dict) -> Dict:
   ffn = '{}/{}'.format(path, fn)
   data['arr'] = cv2.load(ffn)
   return data
-
 
 def store_json(params: Dict , **data: Dict) -> Dict:
   '''
@@ -163,7 +159,7 @@ def store_json(params: Dict , **data: Dict) -> Dict:
   fn = params.get('name', '')
   
   ffn = '{}/{}'.format(path, fn)
-  if fn is not '':
+  if fn != '':
     with open(ffn, 'w') as fp:
       json.dump(json_data, fp, indent=2)
   return data
@@ -189,7 +185,7 @@ def restore_json(params: Dict , **data: Dict) -> Dict:
   fn = params.get('name', '')
   
   ffn = '{}/{}'.format(path, fn)
-  if fn is not '':
+  if fn != '':
     with open(ffn, 'rt') as f:
       json_data = json.load(f)
   data['json'] = json_data

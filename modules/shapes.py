@@ -34,7 +34,7 @@ def mask(params: Dict , **data: Dict) -> Dict:
     - data: 
   Returns:
     - data:
-      mask: array[dtype[uint8]]; the mask
+      mask: ndarray; the mask
   '''  
   
   h = params.get('h', 300)
@@ -79,7 +79,7 @@ def cnt_zero(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
     - data: 
-      mask: array[dtype[uint8]]; a binary image
+      mask: ndarray; a binary image
   Returns:
     - data:
       zeros: int; number of zeros in the binary image;
@@ -109,7 +109,7 @@ def rectangle(params: Dict , **data: Dict) -> Dict:
     - data: 
   Returns:
     - data:
-      rect: array[dtype[uint8]]; a binary image
+      rect: ndarray; a binary image
   '''
 
   h = params.get('h', 300)
@@ -143,7 +143,7 @@ def circle(params: Dict , **data: Dict) -> Dict:
     - data: 
   Returns:
     - data:
-      circle: array[dtype[uint8]]; a binary image
+      circle: ndarray; a binary image
   '''
 
   h = params.get('h', 300)

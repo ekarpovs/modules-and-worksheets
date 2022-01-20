@@ -18,11 +18,11 @@ def kernel(params: Dict , **data: Dict) -> Dict:
       shape: Dict[str,int](RECT:0,CROSS:1,ELLIPSE:2)=RECT; shape of structuring element cv2.MORPH_(...)
       kernel: Scale[int](3,13,1,1)=3; kernel size
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      kernel: array[dtype[uint8]]; structured element (kernel)
-      image: array[dtype[uint8]]; the image
+      kernel: ndarray; structured element (kernel)
+      image: ndarray; the image
   '''
 
   shape = params.get('shape',cv2.MORPH_RECT)
@@ -42,11 +42,11 @@ def erode(params: Dict , **data: Dict) -> Dict:
     - params:   
       iter: Scale[int](1,15,1,0)=1; number of iterations
     - data: 
-      image: array[dtype[uint8]]; the image
-      kernel: array[dtype[uint8]]; structured element (kernel)
+      image: ndarray; the image
+      kernel: ndarray; structured element (kernel)
   Returns:
     - data:
-      erode: array[dtype[uint8]]; the result image
+      erode: ndarray; the result image
   '''
 
   iterations = params.get('iter', 1)
@@ -69,11 +69,11 @@ def dilate(params: Dict , **data: Dict) -> Dict:
     - params:   
       iter: Scale[int](1,15,1,0)=1; number of iterations
     - data: 
-      image: array[dtype[uint8]]; the image
-      kernel: array[dtype[uint8]]; structured element (kernel)
+      image: ndarray; the image
+      kernel: ndarray; structured element (kernel)
   Returns:
     - data:
-      dilate: array[dtype[uint8]]; the result image
+      dilate: ndarray; the result image
   '''
 
   iterations = params.get('iter', 1)
@@ -96,11 +96,11 @@ def mex(params: Dict , **data: Dict) -> Dict:
     - params:   
       type: Dict[str,int](OPEN:2,CLOSE:3,GRADIENT:4,TOPHAT:5,BLACKHAT:6)=OPEN; type of operations cv2.MORPH_(...)
     - data: 
-      image: array[dtype[uint8]]; the image
-      kernel: array[dtype[uint8]]; structured element (kernel)
+      image: ndarray; the image
+      kernel: ndarray; structured element (kernel)
   Returns:
     - data:
-      mex: array[dtype[uint8]]; the result image
+      mex: ndarray; the result image
   ''' 
 
   type = params.get('type', cv2.MORPH_OPEN)

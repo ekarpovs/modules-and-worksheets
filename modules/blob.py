@@ -22,11 +22,11 @@ def simple(params: Dict , **data: Dict) -> Dict:
       fltinertia: bool=True; fltarea: filter by inertia
       mininertia: Scale[float](0.01,0.1,0.01,0)=0.01; min inertia
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
       kpnts: List[KeyPoint]; blobs keypoints
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   '''
 
   minThreshold = params.get('mint', 10)

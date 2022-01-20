@@ -1,0 +1,70 @@
+[
+  {
+    "info": "Compare two labels"
+  },
+  {
+    "exec": "glbstm.begin",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/1-make/lb-templ",
+      "name": "lb-template.tiff",
+      "define": "Define",
+      "location": "Location"
+    }
+  },
+  {
+    "exec": "clrs.bgrto"
+  },
+  {
+    "exec": "common.restore",
+    "params": {
+      "path": "D:/Projects/mine/github/work-shop/data-vs/2-reg-prep-templ/lbls-extracted",
+      "fn": "label-fr.tiff",
+      "name": "template.tiff",
+      "define": "Define",
+      "location": "Location"
+    }
+  },
+  {
+    "exec": "clrs.bgrto",
+    "params": {
+      "type": 6
+    }
+  },
+  {
+    "exec": "cmp.roi",
+    "params": {
+      "x0": 10,
+      "y0": 10,
+      "weight": 50,
+      "height": 15
+    },
+    "links": {
+      "scene": "3-clrs.bgrto-image",
+      "image": "1-clrs.bgrto-image"
+    }
+  },
+  {
+    "exec": "cmp.cmp_mse",
+    "links": {
+      "image": "4-cmp.roi-image",
+      "scene": "4-cmp.roi-scene"
+    }
+  },
+  {
+    "exec": "cmp.cmp_psnr",
+    "links": {
+      "image": "4-cmp.roi-image",
+      "scene": "4-cmp.roi-scene"
+    }
+  },
+  {
+    "exec": "cmp.cmp_norm",
+    "links": {
+      "image": "4-cmp.roi-image",
+      "scene": "4-cmp.roi-scene"
+    }
+  },
+  {
+    "exec": "glbstm.end"
+  }
+]

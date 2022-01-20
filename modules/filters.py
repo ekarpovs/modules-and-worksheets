@@ -23,11 +23,11 @@ def gabor_kernel(params: Dict , **data: Dict) -> Dict:
       gamma: Scale[int](0,100,10,0)=0; spatial aspect ratio
       ktype: Dict[str,int](CV_32F:5,CV_64F:6)=CV_32F; type of filter coefficients. It can be CV_32F or CV_64F .
     - data: 
-      image: array[dtype[uint8]]; the image
+      image: ndarray; the image
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
-      kernel: array[dtype[uint8]]; the kernel
+      image: ndarray; the result image
+      kernel: ndarray; the kernel
   '''
 
   ksize = params.get('ksize', 3)
@@ -62,11 +62,11 @@ def filter_2d(params: Dict , **data: Dict) -> Dict:
     - params:   
       ddepth: Dict[str,int](SAME:-1,CV_8UC1:0,CV_8UC3:16,CV_32S:4,CV_32F:5,CV_64F:6)=SAME; -1 will give the output image depth as same as the input image.
     - data: 
-      image: array[dtype[uint8]]; the image
-      kernel: array[dtype[uint8]]; the kernel
+      image: ndarray; the image
+      kernel: ndarray; the kernel
   Returns:
     - data:
-      image: array[dtype[uint8]]; the result image
+      image: ndarray; the result image
   '''
 
   ddepth = params.get('ddepth', cv2.CV_32F)

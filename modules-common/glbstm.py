@@ -18,7 +18,7 @@ def begin(params: Dict, **data: Dict) -> Dict:
     - data: 
   Returns:
     - data:
-      image: array[dtype[uint8]]; the loaded image
+      image: ndarray; the loaded image
   '''
 
   path = params.get('path', '')
@@ -40,7 +40,7 @@ def end(params: Dict, **data: Dict) -> Dict:
       path: str=; path to an output folder
       name: str=; the output file name 
     - data: 
-      image: array[dtype[uint8]]; the stored image
+      image: ndarray; the stored image
   Returns:
     - data: 
   '''
@@ -66,10 +66,10 @@ def if_begin(params: Dict, **data: Dict) -> Dict:
     - params:   
       condition: str=a==b; the if condition 
     - data:
-      image:array[dtype[uint8]]; the image
+      image:ndarray; the image
   Returns:
     - data:
-      image:array[dtype[uint8]]; the image
+      image:ndarray; the image
       if-result: bool; result
   '''
      
@@ -109,10 +109,10 @@ def while_begin(params: Dict, **data: Dict) -> Dict:
     - params:   
       condition: str=a==b; the if condition 
     - data:
-      image:array[dtype[uint8]]; the image
+      image:ndarray; the image
   Returns:
     - data:
-      image:array[dtype[uint8]]; the image
+      image:ndarray; the image
       while-result: bool; result
   '''
   
@@ -154,10 +154,10 @@ def for_begin(params: Dict, **data: Dict) -> Dict:
       condition: str=a==b; the if condition 
       res: bool=True; temporary result
     - data:
-      image:array[dtype[uint8]]; the image
+      image:ndarray; the image
   Returns:
     - data:
-      image:array[dtype[uint8]]; the image
+      image:ndarray; the image
       for-result: bool; result
   '''
   
