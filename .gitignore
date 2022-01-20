@@ -1,6 +1,5 @@
 modules/__pycache__
 modules/tester.py
-modules-common-old
 modules-common/__pycache__
 modules-vs
 modules-vs/__pycache__
@@ -8,6 +7,4 @@ worksheets/test.json
 worksheets-vs-prev
 ws-vs-template
 ws-lev
-modules-old
-worksheets-image-processing-101
 .vscode
