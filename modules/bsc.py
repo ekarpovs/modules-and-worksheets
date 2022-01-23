@@ -120,7 +120,7 @@ def resize(params: Dict , **data: Dict) -> Dict:
   if unit == 1:
     # size defined in percents - calculate in pixels
     orig_pixels = w
-    if side == 1:
+    if side == 0:
       orig_pixels = h
 
     size = int((orig_pixels / 100) * size)
