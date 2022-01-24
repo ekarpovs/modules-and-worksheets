@@ -17,12 +17,16 @@ def btw_and(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
+      shape: Dict[str, int]; the shape of the image
   '''
 
   image = data.get('image')
   mask = data.get('mask')
 
-  data['image'] = cv2.bitwise_and(image, mask) 
+  image = cv2.bitwise_and(image, mask) 
+  (h, w, c) = image.shape
+  data['image'] = image  
+  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
   return data
 
 def btw_or(params: Dict , **data: Dict) -> Dict:

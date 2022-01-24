@@ -22,6 +22,7 @@ def crop(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
+      shape: Dict[str, int]; the shape of the loaded image
   '''  
 
   y0 = params.get('y0', 0)
@@ -30,8 +31,10 @@ def crop(params: Dict , **data: Dict) -> Dict:
   x1 = params.get('x1', 0)
 
   image = data.get('image')
+  (h, w, c) = image.shape
 
   data['image'] = image[y0:y1, x0:x1]
+  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
   return data
 
 def crop_bound(params: Dict , **data: Dict) -> Dict:
@@ -51,6 +54,7 @@ def crop_bound(params: Dict , **data: Dict) -> Dict:
     - data:
       image: ndarray; the result image
       coords: Tuple[int]; coordinates - x0,y0,x1,y1
+      shape: Dict[str, int]; the shape of the loaded image
   '''  
 
   off_top = params.get('off_top', 0)
@@ -66,8 +70,11 @@ def crop_bound(params: Dict , **data: Dict) -> Dict:
     x0 = coords[0] - off_left
     x1 = coords[2] + off_right
 
-  data['image'] = image[y0:y1, x0:x1]
+  image = image[y0:y1, x0:x1]
+  (h, w, c) = image.shape
+  data['image'] = image
   data['coords'] = (x0,y0,x1,y1)
+  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
   return data
 
 def flip(params: Dict , **data: Dict) -> Dict:

@@ -82,6 +82,8 @@ def restore(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the loaded image
+      shape: Dict[str, int]; the shape of the loaded image
+      im-src: str; full file name from the image was loade
   '''
 
   path = params.get('path', '')
@@ -90,7 +92,11 @@ def restore(params: Dict , **data: Dict) -> Dict:
  
   ffn = '{}/{}'.format(path, fn)
   image = cv2.imread(ffn, flag)
+  (h, w, c) = image.shape
+
   data['image'] = image
+  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
+  data['im-src'] = {'im-src':ffn}
   return data
 
 def store_npy_float64(params: Dict , **data: Dict) -> Dict:
