@@ -43,37 +43,40 @@ def crop_bound(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      off_top: int=0; y axis offset from top coordinate
-      off_bottom: int=0; y axis offset from bottom coordinate
-      off_left: int=0; x axis offset from left coordinate
-      off_right: int=0; x axis offset from right coordinate
+      y0: int=0; y top left corner
+      off_top: int=0; y axis offset from top left corner
+      x0: int=0; x top left corner
+      off_left: int=0; x axis offset from left corner
+      h: int=0; heigth of the cropped image
+      w: int=0; width of the cropped image
     - data: 
       image: ndarray; the image
-      coords: Tuple[int]; coordinates - x0,y0,x1,y1
+      coords: Dict[str, int]; coordinates - x0,y0,x1,y1
   Returns:
     - data:
       image: ndarray; the result image
-      coords: Tuple[int]; coordinates - x0,y0,x1,y1
-      shape: Dict[str, int]; the shape of the loaded image
+      coords: Dict[str, int]; the result image coordinates relatively to the input one - x0,y0,x1,y1
+      shape: Dict[str, int]; the shape of the result image
   '''  
 
+  y0 = params.get('y0', 0)
+  x0 = params.get('x0', 0)
   off_top = params.get('off_top', 0)
-  off_bottom = params.get('off_bottom', 0)
   off_left = params.get('off_left', 0)
-  off_right = params.get('off_right', 0)
+  h = params.get('h', 0)
+  w = params.get('w', 0)
 
   image = data.get('image')
   coords = data.get('coords')
   if coords is not None:
-    y0 = coords[1] - off_top
-    y1 = coords[3] + off_bottom
-    x0 = coords[0] - off_left
-    x1 = coords[2] + off_right
+    coords = coords.get('coords')
+    y0 = coords.get('y0', 0) + off_top
+    x0 = coords.get('x0', 0) + off_left
 
-  image = image[y0:y1, x0:x1]
+  image = image[y0:y0+h, x0:x0+w]
   (h, w, c) = image.shape
   data['image'] = image
-  data['coords'] = (x0,y0,x1,y1)
+  data['coords'] = {'coords': {'x0': x0, 'y0': y0, 'x1': x0+w, 'y1': y0+h}}
   data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
   return data
 
@@ -111,6 +114,7 @@ def resize(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
+      shape: Dict[str, int]; the shape of the result image
   '''
   
   method = params.get('meth', cv2.INTER_AREA)
@@ -139,7 +143,10 @@ def resize(params: Dict , **data: Dict) -> Dict:
     ratio = size / h
     dim = (int(w * ratio), size)
 
-  data['image'] = cv2.resize(image, dim, interpolation=method) 
+  image = cv2.resize(image, dim, interpolation=method)
+  (h, w, c) = image.shape
+  data['image'] = image
+  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
   return data
 
 def resize_abs(params: Dict , **data: Dict) -> Dict:
@@ -157,6 +164,7 @@ def resize_abs(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
+      shape: Dict[str, int]; the shape of the result image
   '''
 
   method = params.get('meth', cv2.INTER_AREA)
@@ -171,7 +179,10 @@ def resize_abs(params: Dict , **data: Dict) -> Dict:
     (h, w) = image.shape[:2]
     dim = (int(w*w_new/100), int(h*h_new/100))
     
-  data['image'] = cv2.resize(image, dim, interpolation=method) 
+  image = cv2.resize(image, dim, interpolation=method)
+  (h, w, c) = image.shape
+  data['image'] = image
+  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
   return data
 
 def rotate(params: Dict , **data: Dict) -> Dict:  

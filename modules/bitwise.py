@@ -41,12 +41,15 @@ def btw_or(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
+      shape: Dict[str, int]; the shape of the image
   '''
 
   image = data.get('image')
   mask = data.get('mask')
 
-  data['image'] = cv2.bitwise_or(image, mask) 
+  image = cv2.bitwise_or(image, mask) 
+  (h, w, c) = image.shape
+  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
   return data
 
 def btw_xor(params: Dict , **data: Dict) -> Dict:
@@ -61,12 +64,16 @@ def btw_xor(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
+      shape: Dict[str, int]; the shape of the image
   '''
 
   image = data.get('image')
   mask = data.get('mask')
 
-  data['image'] = cv2.bitwise_xor(image, mask) 
+  image = cv2.bitwise_xor(image, mask) 
+  (h, w, c) = image.shape
+  data['image'] = image
+  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
   return data
 
 def btw_not(params: Dict , **data: Dict) -> Dict:
@@ -81,11 +88,15 @@ def btw_not(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
+      shape: Dict[str, int]; the shape of the image
   '''
 
   image = data.get('image')
   mask = data.get('mask')
 
-  data['image'] = cv2.bitwise_not(image, mask) 
+  image = cv2.bitwise_not(image, mask) 
+  (h, w, c) = image.shape
+  data['image'] = image
+  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
   return data
 

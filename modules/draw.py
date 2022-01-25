@@ -189,7 +189,7 @@ def box(params: Dict , **data: Dict) -> Dict:
       show: bool=False; Draw over the original image
     - data: 
       image: ndarray; an image
-      coords: Tuple[int]; coordinates - x0,y0,x1,y1
+      coords: Dict[str, int]; coordinates - x0,y0,x1,y1
   Returns:
     - data:
       image: ndarray; an image
@@ -208,7 +208,11 @@ def box(params: Dict , **data: Dict) -> Dict:
 
   draw_color=COLORS[color]
 
-  if thickness is not 0:
-    x0,y0,x1,y1 = coords
+  if coords is not None and thickness is not 0:
+    coords = coords.get('coords')
+    y0 = coords.get('y0', 0)
+    x0 = coords.get('x0', 0)
+    y1 = coords.get('y1', 0)
+    x1 = coords.get('x1', 0)
     cv2.rectangle(clone, (x0, y0), (x1, y1), draw_color, thickness=thickness)
   return data

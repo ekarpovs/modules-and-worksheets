@@ -24,8 +24,7 @@ def single(params: Dict , **data: Dict) -> Dict:
       template: ndarray; the template
   Returns:
     - data:
-      image: ndarray; the image
-      coords: Tuple[int]; coordinates of the bounding box - x0, y0, x1, y1
+      coords: Dict[str, int]; coordinates of the bounding box - x0, y0, x1, y1
   '''
 
   image = data.get('image')
@@ -41,7 +40,5 @@ def single(params: Dict , **data: Dict) -> Dict:
   else:
     top_left = max_loc
   bottom_right = (top_left[0] + wt, top_left[1] + ht)
-  coords = (top_left[0], top_left[1], bottom_right[0], bottom_right[1])
-
-  data['coords'] = coords
+  data['coords'] = {'coords': {'x0': top_left[0], 'y0': top_left[1], 'x1': bottom_right[0], 'y1': bottom_right[1]}}
   return data

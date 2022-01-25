@@ -26,7 +26,6 @@ def simple(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       kpnts: List[KeyPoint]; blobs keypoints
-      image: ndarray; the image
   '''
 
   minThreshold = params.get('mint', 10)

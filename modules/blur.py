@@ -18,11 +18,17 @@ def avrg(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the blured image
+      shape: Dict[str, int]; the shape of the image
   '''
 
   kernel = params.get('kernel', 3)
   kX = kY = kernel 
-  data['image'] = cv2.blur(data.get('image'), (kX, kY)) 
+  image = data.get('image')
+
+  blured = cv2.blur(image, (kX, kY)) 
+  (h, w, c) = blured.shape
+  data['image'] = blured
+  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
   return data
 
 def gaus(params: Dict , **data: Dict) -> Dict:
@@ -37,11 +43,18 @@ def gaus(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the blured image
+      shape: Dict[str, int]; the shape of the image
   '''
+
 # ksize.width > 0 && ksize.width % 2 == 1 && ksize.height > 0 && ksize.height % 2 == 1
   kernel = params.get('kernel', 3)
   kX = kY = int(kernel) 
-  data['image'] = cv2.GaussianBlur(data.get('image'), (kX, kY), 0) 
+
+  image = data.get('image')
+  blured = cv2.GaussianBlur(image, (kX, kY), 0)
+  (h, w, c) = blured.shape
+  data['image'] = blured
+  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
   return data
 
 def median(params: Dict , **data: Dict) -> Dict:
@@ -56,10 +69,17 @@ def median(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the blured image
+      shape: Dict[str, int]; the shape of the image
   '''
 
   kernel = params.get('kernel', 3)
-  data['image'] = cv2.medianBlur(data.get('image'), kernel) 
+
+  image = data.get('image')
+
+  blured = cv2.medianBlur(image, kernel)
+  (h, w, c) = blured.shape
+  data['image'] = blured
+  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
   return data
 
 def bilateral(params: Dict , **data: Dict) -> Dict:
@@ -77,6 +97,7 @@ def bilateral(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the blured image
+      shape: Dict[str, int]; the shape of the image
   '''
 
   d = params.get('d', 11)
@@ -84,5 +105,10 @@ def bilateral(params: Dict , **data: Dict) -> Dict:
   sigma_space = params.get('sigmaspace', 17)
   border_type = params.get('border',cv2.BORDER_DEFAULT) # Pixel extrapolation method
 
-  data['image'] = cv2.bilateralFilter(data.get('image'), d, sigma_color, sigma_space, border_type) 
+  image = data.get('image')
+
+  blured = cv2.bilateralFilter(data.get('image'), d, sigma_color, sigma_space, border_type) 
+  (h, w, c) = blured.shape
+  data['image'] = blured
+  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
   return data
