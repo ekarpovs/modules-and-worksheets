@@ -25,11 +25,11 @@
     name: Range[int](10,150,1)=50; range of integers from 10 to 150, default 50
 '''
 
-from typing import Dict
 import cv2
 import numpy as np
 import json
-import PIL
+import os
+from typing import Dict
 
 
 def empty(params: Dict , **data: Dict) -> Dict:
@@ -50,7 +50,6 @@ def store(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
-      saveas: button=saveas; path and name of a stored file 
       path: str=; path to a folder with images
       name: str=; the image file name 
     - data: 
@@ -74,10 +73,9 @@ def restore(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
-      loadfrom: button=From; path and name of a loaded file 
       path: str=; path to a folder with images
       name: str=; the image file name 
-      flag: Dict[str, int](UNGHANGED:-1,GRAYSCALE:0,COLOR:1)=COLOR; flag one from cv2.IMREAD_(...)
+      flag: Dict[str,int](UNGHANGED:-1,GRAYSCALE:0,COLOR:1)=COLOR; flag one from cv2.IMREAD_(...)
     - data: 
   Returns:
     - data:
@@ -92,10 +90,10 @@ def restore(params: Dict , **data: Dict) -> Dict:
  
   ffn = '{}/{}'.format(path, fn)
   image = cv2.imread(ffn, flag)
-  (h, w, c) = image.shape
+  (h, w) = image.shape[:2]
 
   data['image'] = image
-  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   data['im-src'] = {'im-src':ffn}
   return data
 
@@ -105,7 +103,6 @@ def store_npy_float64(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
-      saveas: button=saveas; path and name of a stored file 
       path: str=; path to a folder with file
       name: str=; the file name 
     - data: 
@@ -129,7 +126,6 @@ def restore_npy_float_64(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
-      loadfrom: button=From; path and name of a loaded data file 
       path: str=; path to a folder with array
       name: str=; the file name 
     - data: 
@@ -150,7 +146,6 @@ def store_json(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
-      saveas: button=saveas; path and name of a stored file 
       path: str=; path to a folder with images
       name: str=; the data file name 
     - data:
@@ -176,13 +171,12 @@ def restore_json(params: Dict , **data: Dict) -> Dict:
   
   Parameters:
     - params:   
-      loadfrom: button=From; path and name of a loaded data file 
       path: str=; path to a folder with images
       name: str=; the data file name 
     - data:
   Returns:
     - data:
-      json: str=; restored data
+      json: str; restored data
   '''
 
   json_data = data.get('json')
@@ -195,4 +189,29 @@ def restore_json(params: Dict , **data: Dict) -> Dict:
     with open(ffn, 'rt') as f:
       json_data = json.load(f)
   data['json'] = json_data
+  return data
+
+def join_json(params: Dict , **data: Dict) -> Dict:
+  '''
+  Join json files.
+
+  Parameters:
+    - params:   
+      path: str=; path to files for join
+    - data: 
+  Returns:
+    - data:
+      joined: str; joined data
+  '''
+
+  path = params.get('path')
+  joined_data = {}
+  names = [f for f in os.listdir(path) if f.endswith('.json')]
+  for fn in names:
+    ffn = f'{path}/{fn}'
+    with open(ffn, 'rt') as f:
+      json_data = json.load(f)
+      _, fn = os.path.split(ffn)
+      joined_data[fn[:-5]] = json_data
+  data['joined'] = joined_data
   return data
