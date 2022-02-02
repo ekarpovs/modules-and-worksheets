@@ -148,29 +148,36 @@ def roi(params: Dict, **data: Dict) -> Dict:
     - params:
       x0: int=0; top left corner of the ROI
       y0: int=0; top left corner of the ROI
-      weight: Scale[int](0,50,1,0)=1; weight of the ROI
-      height: Scale[int](0,50,1,0)=1; height of the ROI
+      width: Scale[int](0,100,1,0)=1; width of the ROI
+      wweight: Scale[int](0,10,1,0)=1; weight of width scale unit  
+      height: Scale[int](0,100,1,0)=1; height of the ROI
+      hweight: Scale[int](0,14,1,0)=1; weight of height scale unit  
     - data: 
       image: ndarray; the image
   Returns:
     - data:
       roi: ndarray; the roi
+      shape: Dict[str, int]; the shape of the loaded image
   '''  
 
   x0 = params.get('x0', 0)
   y0 = params.get('y0', 0)
-  weight = params.get('weight', 1)
+  width = params.get('width', 1)
+  wweight = params.get('wweight', 1)
   height = params.get('height', 1)
+  hweight = params.get('hweight', 1)
 
   image = data.get('image')
-  if weight > 0 and height > 0:
-    x1 = x0 + weight
-    y1 = y0 + height
+  if width > 0 and height > 0:
+    x1 = x0 + width*wweight
+    y1 = y0 + height*hweight
     roi = image.copy()[y0:y1, x0:x1]   
   else:
     roi = image.copy()
-
+  
+  (h, w) = roi.shape[:2]
   data['roi'] = roi
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 

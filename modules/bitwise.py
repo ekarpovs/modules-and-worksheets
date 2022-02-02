@@ -24,9 +24,9 @@ def btw_and(params: Dict , **data: Dict) -> Dict:
   mask = data.get('mask')
 
   image = cv2.bitwise_and(image, mask) 
-  (h, w, c) = image.shape
+  (h, w) = image.shape[:2]
   data['image'] = image  
-  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 def btw_or(params: Dict , **data: Dict) -> Dict:
@@ -48,8 +48,8 @@ def btw_or(params: Dict , **data: Dict) -> Dict:
   mask = data.get('mask')
 
   image = cv2.bitwise_or(image, mask) 
-  (h, w, c) = image.shape
-  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
+  (h, w) = image.shape[:2]
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 def btw_xor(params: Dict , **data: Dict) -> Dict:
@@ -71,9 +71,9 @@ def btw_xor(params: Dict , **data: Dict) -> Dict:
   mask = data.get('mask')
 
   image = cv2.bitwise_xor(image, mask) 
-  (h, w, c) = image.shape
+  (h, w) = image.shape[:2]
   data['image'] = image
-  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 def btw_not(params: Dict , **data: Dict) -> Dict:
@@ -95,8 +95,8 @@ def btw_not(params: Dict , **data: Dict) -> Dict:
   mask = data.get('mask')
 
   image = cv2.bitwise_not(image, mask) 
-  (h, w, c) = image.shape
+  (h, w) = image.shape[:2]
   data['image'] = image
-  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 

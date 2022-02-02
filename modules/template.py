@@ -42,3 +42,25 @@ def single(params: Dict , **data: Dict) -> Dict:
   bottom_right = (top_left[0] + wt, top_left[1] + ht)
   data['coords'] = {'coords': {'x0': top_left[0], 'y0': top_left[1], 'x1': bottom_right[0], 'y1': bottom_right[1]}}
   return data
+
+def join(params: Dict, **data: Dict) -> Dict:
+  '''
+  Joins find tempalte results
+
+  Parameters:
+    - params:
+    - data: 
+      crd1: Dict[str,str]={}; 1-st coordinates set
+      crd2: Dict[str,str]={}; 2-nd coordinates set
+      crd3: Dict[str,str]={}; 3-d coordinates set
+  Returns:
+    - data:
+      coords: Dict[str,str]; dictioanary of cmp results
+  '''
+
+  crd1 = data.get('crd1',{})
+  crd2 = data.get('crd2',{})
+  crd3 = data.get('crd3',{})
+  coords = {'coords': {'crd1': crd1, 'crd2': crd2, 'crd3': crd3}}
+  data['coords'] = coords
+  return data

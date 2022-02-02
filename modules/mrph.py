@@ -111,3 +111,9 @@ def mex(params: Dict , **data: Dict) -> Dict:
 
 
 
+# # Get the circle region when given the center, you could try the following function:
+# def circle_average(center, r = 4):
+#     for i in range(center[0]-r, center[0]+r):
+#         for j in range(center[1]-r, center[1] + r):
+#             if (center[0] - i) ** 2 + (center[1] - j) ** 2 <= r**2:
+#                # do your computation here.

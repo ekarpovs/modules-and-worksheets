@@ -31,10 +31,10 @@ def crop(params: Dict , **data: Dict) -> Dict:
   x1 = params.get('x1', 0)
 
   image = data.get('image')
-  (h, w, c) = image.shape
+  (h, w) = image.shape[:2]
 
   data['image'] = image[y0:y1, x0:x1]
-  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 def crop_bound(params: Dict , **data: Dict) -> Dict:
@@ -74,10 +74,10 @@ def crop_bound(params: Dict , **data: Dict) -> Dict:
     x0 = coords.get('x0', 0) + off_left
 
   image = image[y0:y0+h, x0:x0+w]
-  (h, w, c) = image.shape
+  (h, w) = image.shape[:2]
   data['image'] = image
   data['coords'] = {'coords': {'x0': x0, 'y0': y0, 'x1': x0+w, 'y1': y0+h}}
-  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 def flip(params: Dict , **data: Dict) -> Dict:
@@ -144,9 +144,9 @@ def resize(params: Dict , **data: Dict) -> Dict:
     dim = (int(w * ratio), size)
 
   image = cv2.resize(image, dim, interpolation=method)
-  (h, w, c) = image.shape
+  (h, w) = image.shape[:2]
   data['image'] = image
-  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 def resize_abs(params: Dict , **data: Dict) -> Dict:
@@ -180,9 +180,9 @@ def resize_abs(params: Dict , **data: Dict) -> Dict:
     dim = (int(w*w_new/100), int(h*h_new/100))
     
   image = cv2.resize(image, dim, interpolation=method)
-  (h, w, c) = image.shape
+  (h, w) = image.shape[:2]
   data['image'] = image
-  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 def rotate(params: Dict , **data: Dict) -> Dict:  

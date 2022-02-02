@@ -23,10 +23,10 @@ def arth_add(params: Dict , **data: Dict) -> Dict:
   '''
   
   image = data.get('image')
-  (h, w, c) = image.shape
+  (h, w) = image.shape[:2]
   mask = data.get('mask')
   data['image'] = cv2.add(image, mask) 
-  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 
@@ -46,10 +46,10 @@ def arth_sub(params: Dict , **data: Dict) -> Dict:
   '''
 
   image = data.get('image')
-  (h, w, c) = image.shape
+  (h, w) = image.shape[:2]
   mask = data.get('mask')
   data['image'] = cv2.subtract(image, mask) 
-  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 
@@ -77,7 +77,7 @@ def arth_add_into(params: Dict , **data: Dict) -> Dict:
   mask[offset_y:offset_y + image.shape[0], offset_x:offset_x + image.shape[1]] = image
   (h, w, c) = mask.shape
   data['image'] = mask
-  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 
@@ -110,5 +110,5 @@ def arth_add_weighted(params: Dict , **data: Dict) -> Dict:
   (h, w, c) = combined.shape
 
   data['image'] = combined
-  data['shape'] = {'shape': {'h': h, 'w': w, 'c': c}}
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data

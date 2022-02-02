@@ -195,24 +195,21 @@ def box(params: Dict , **data: Dict) -> Dict:
       image: ndarray; an image
   '''
 
-  coords = data.get('coords')
   thickness = params.get('thickness', 1)
   color = params.get('color', 4)
   show = params.get('show')
+  coords = data.get('coords')
+
+  if coords is None or show != True or thickness == 0:
+    return
 
   image = data.get('image')
-  if show:
-    clone = image
-  else:
-    clone = image.copy()
 
   draw_color=COLORS[color]
-
-  if coords is not None and thickness is not 0:
-    coords = coords.get('coords')
-    y0 = coords.get('y0', 0)
-    x0 = coords.get('x0', 0)
-    y1 = coords.get('y1', 0)
-    x1 = coords.get('x1', 0)
-    cv2.rectangle(clone, (x0, y0), (x1, y1), draw_color, thickness=thickness)
+  coords = coords.get('coords')
+  y0 = coords.get('y0', 0)
+  x0 = coords.get('x0', 0)
+  y1 = coords.get('y1', 0)
+  x1 = coords.get('x1', 0)
+  cv2.rectangle(image, (x0, y0), (x1, y1), draw_color, thickness=thickness)
   return data
