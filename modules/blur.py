@@ -26,7 +26,7 @@ def avrg(params: Dict , **data: Dict) -> Dict:
   image = data.get('image')
 
   blured = cv2.blur(image, (kX, kY)) 
-  (h, w, c) = blured.shape
+  (h, w) = blured.shape[:2]
   data['image'] = blured
   data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
@@ -52,7 +52,7 @@ def gaus(params: Dict , **data: Dict) -> Dict:
 
   image = data.get('image')
   blured = cv2.GaussianBlur(image, (kX, kY), 0)
-  (h, w, c) = blured.shape
+  (h, w) = blured.shape[:2]
   data['image'] = blured
   data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
@@ -77,7 +77,7 @@ def median(params: Dict , **data: Dict) -> Dict:
   image = data.get('image')
 
   blured = cv2.medianBlur(image, kernel)
-  (h, w, c) = blured.shape
+  (h, w) = blured.shape[:2]
   data['image'] = blured
   data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
@@ -108,7 +108,7 @@ def bilateral(params: Dict , **data: Dict) -> Dict:
   image = data.get('image')
 
   blured = cv2.bilateralFilter(data.get('image'), d, sigma_color, sigma_space, border_type) 
-  (h, w, c) = blured.shape
+  (h, w) = blured.shape[:2]
   data['image'] = blured
   data['shape'] = {'shape': {'h': h, 'w': w}}
   return data

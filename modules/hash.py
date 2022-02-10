@@ -1,11 +1,13 @@
 '''
 Hashing operations
 '''
+
 from typing import Dict
 from PIL import Image
 import imagehash
 import base64
 import hashlib
+import cv2 
 
 def dhashm(params: Dict , **data: Dict) -> Dict:
   '''
@@ -128,7 +130,7 @@ def md5hash(params: Dict , **data: Dict) -> Dict:
     - data:
       md5hash: string; md5 hash
   '''
-
+ 
   image = data.get('image')
   strim = base64.b64encode(image)
   hash = hashlib.md5("{}".format(strim).encode('utf-8')).hexdigest()
@@ -151,7 +153,7 @@ def join(params: Dict , **data: Dict) -> Dict:
       clrhash: string; colorhash
   Returns:
     - data:
-      hash: Dict[str,str]; dictioanary of hashes
+      hashjoin: Dict[str,str]; dictioanary of hashes
   '''
 
   dhashm = data.get('dhashm','')
@@ -161,6 +163,72 @@ def join(params: Dict , **data: Dict) -> Dict:
   whash = data.get('whash','')
   md5hash = data.get('md5hash','')
   clrhash = data.get('clrhash','')
-  hash = {'dhashm': dhashm, 'ahash': ahash, 'dhash': dhash, 'phash': phash, 'whash': whash, 'md5hash': md5hash, 'clrhash': clrhash}
-  data['hash'] = hash
+  hashjoin = {'hashjoin':{'dhashm': dhashm, 'ahash': ahash, 'dhash': dhash, 'phash': phash, 'whash': whash, 'md5hash': md5hash, 'clrhash': clrhash}}
+  data['hashjoin'] = hashjoin
+  return data
+  
+def hammingdist(params: Dict , **data: Dict) -> Dict:
+  '''
+  Calculates hamming distamce for haches
+
+  Parameters:
+    - params:
+    - data: 
+      hashjoin01: Dict[str,str]; dictioanary of hashes #1
+      hashjoin02: Dict[str,str]; dictioanary of hashes #2
+  Returns:
+    - data:
+      hummingdistance: Dict[str,str]; dictionary of hamming distances
+  '''
+
+  hashjoin01 = data.get('hashjoin01').get('hashjoin')
+  hashjoin02 = data.get('hashjoin02').get('hashjoin')
+
+  dhashm01 = hashjoin01.get('dhashm')
+  ahash01 = hashjoin01.get('ahash')
+  dhash01 = hashjoin01.get('dhash')
+  phash01 = hashjoin01.get('phash')
+  whash01 = hashjoin01.get('whash')
+  md5hash01 = hashjoin01.get('md5hash')
+  clrhash01 = hashjoin01.get('clrhash')
+
+  dhashm02 = hashjoin02.get('dhashm')
+  ahash02 = hashjoin02.get('ahash')
+  dhash02 = hashjoin02.get('dhash')
+  phash02 = hashjoin02.get('phash')
+  whash02 = hashjoin02.get('whash')
+  md5hash02 = hashjoin02.get('md5hash')
+  clrhash02 = hashjoin02.get('clrhash')
+
+  hdist = {}
+  if dhashm01 != '' and dhashm02 != '':
+    # dhashmdist = int(dhashm01, 16) - int(dhashm02, 16)
+    dhashmdist = bin(int(dhashm01, 16) ^ int(dhashm02, 16)).count('1')
+    hdist['dhashmdist'] = dhashmdist
+  if ahash01 != '' and ahash02 != '':
+    # ahashdist = int(ahash01, 16) - int(ahash02, 16)
+    ahashdist = bin(int(ahash01, 16) ^ int(ahash02, 16)).count('1')
+    hdist['ahashdist'] = ahashdist
+  if dhash01 != '' and dhash02 != '':
+    # dhashdist = int(dhash01, 16) - int(dhash02, 16)
+    dhashdist = bin(int(dhash01, 16) ^ int(dhash02, 16)).count('1')
+    hdist['dhashdist'] = dhashdist
+  if phash01 != '' and phash02 != '':
+    # phashdist = int(phash01, 16) - int(phash02, 16)
+    phashdist = bin(int(phash01, 16) ^ int(phash02, 16)).count('1')
+    hdist['phashdist'] = phashdist
+  if whash01 != '' and whash02 != '':
+    # whashdist = int(whash01, 16) - int(whash02, 16)
+    whashdist = bin(int(whash01, 16) ^ int(whash02, 16)).count('1')
+    hdist['whashdist'] = whashdist
+  if md5hash01 != '' and md5hash02 != '':
+    # md5hashdist = int(md5hash01, 16) - int(md5hash02, 16)
+    md5hashdist = bin(int(md5hash01, 16) ^ int(md5hash02, 16)).count('1')
+    hdist['md5hashdist'] = md5hashdist
+  if clrhash01 != '' and clrhash02 != '':
+    # clrhashdist = int(clrhash01, 16) - int(clrhash02, 16)
+    clrhashdist = bin(int(clrhash01, 16) ^ int(clrhash02, 16)).count('1')
+    hdist['clrhashdist'] = clrhashdist
+
+  data['hummingdistance'] = {'hummingdistance': hdist}
   return data

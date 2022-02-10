@@ -51,7 +51,8 @@ def crop_bound(params: Dict , **data: Dict) -> Dict:
       w: int=0; width of the cropped image
     - data: 
       image: ndarray; the image
-      coords: Dict[str, int]; coordinates - x0,y0,x1,y1
+      coords: Dict[str,int]; coordinates - x0,y0,x1,y1
+      shape: Dict[str,innt]; shape 
   Returns:
     - data:
       image: ndarray; the result image
@@ -68,11 +69,18 @@ def crop_bound(params: Dict , **data: Dict) -> Dict:
 
   image = data.get('image')
   coords = data.get('coords')
+  shape = data.get('shape')
+  #     data['shape'] = {'shape': {'h': h, 'w': w}}
+
   if coords is not None:
     coords = coords.get('coords')
     y0 = coords.get('y0', 0) + off_top
     x0 = coords.get('x0', 0) + off_left
-
+  elif shape is not None:
+    shape = shape.get('shape')
+    h = shape.get('h')
+    w = shape.get('w')
+    
   image = image[y0:y0+h, x0:x0+w]
   (h, w) = image.shape[:2]
   data['image'] = image

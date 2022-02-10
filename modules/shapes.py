@@ -53,13 +53,13 @@ def mask(params: Dict , **data: Dict) -> Dict:
   if type == 0:
     # Create matrix (filled with zeros)
     mask = np.zeros((h,w), dtype="uint8")
-    color = 255
+    color = 0
   else:
     # Create matrix (filled with ones) and the multiplying it by 'ifact' to create an
     # array filled with ifact value's, then add the images together; 
     # the image will "brighter"
     mask = np.ones((h,w), dtype = "uint8") * idfact
-    color = 0
+    color = 255
   if area == 0:
     # Construct a rectangular area on the mask
     cv2.rectangle(mask, (x0, y0), (x1, y1), color, -1)
@@ -123,7 +123,7 @@ def rectangle(params: Dict , **data: Dict) -> Dict:
   
   shape_color=COLORS[color]
   canvas = np.ones((h, w, 3), dtype = "uint8")*255
-  if thickness is not 0:
+  if thickness != 0:
     canvas = cv2.rectangle(canvas, (x0, y0), (x1, y1), shape_color, thickness)
   data['rect'] = canvas  
   return data

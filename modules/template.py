@@ -24,7 +24,7 @@ def single(params: Dict , **data: Dict) -> Dict:
       template: ndarray; the template
   Returns:
     - data:
-      coords: Dict[str, int]; coordinates of the bounding box - x0, y0, x1, y1
+      location: Dict[str, int]; coordinates of the bounding box - x0, y0, x1, y1
   '''
 
   image = data.get('image')
@@ -40,7 +40,14 @@ def single(params: Dict , **data: Dict) -> Dict:
   else:
     top_left = max_loc
   bottom_right = (top_left[0] + wt, top_left[1] + ht)
-  data['coords'] = {'coords': {'x0': top_left[0], 'y0': top_left[1], 'x1': bottom_right[0], 'y1': bottom_right[1]}}
+  x0 = top_left[0]
+  y0 = top_left[1]
+  x1 = bottom_right[0]
+  y1 = bottom_right[1]
+  cx = x0+x1//2 
+  cy = y0+y1//2 
+
+  data['location'] = {'cx': cx, 'cy': cy, 'coords': {'x0': x0, 'y0': y0, 'x1':x1, 'y1': y1}}
   return data
 
 def join(params: Dict, **data: Dict) -> Dict:

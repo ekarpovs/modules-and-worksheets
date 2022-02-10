@@ -28,8 +28,12 @@ def cmp_mse(params: Dict, **data: Dict) -> Dict:
   image = data.get('image')
   scene = data.get('scene')
    
-  err = np.sum((image.astype("float") - scene.astype("float")) ** 2)
-  err /= float(image.shape[0] * image.shape[1])
+  # err = np.sum((image.astype("float") - scene.astype("float")) ** 2)
+  # err /= float(image.shape[0] * image.shape[1])
+
+  # err = np.square(np.subtract(image.astype("float"),scene.astype("float"))).mean()
+  err = np.square(np.subtract(image, scene)).mean()
+
   # print('cmp_mse err:', err)
   data['mse'] = err
   return data
@@ -148,16 +152,16 @@ def roi(params: Dict, **data: Dict) -> Dict:
     - params:
       x0: int=0; top left corner of the ROI
       y0: int=0; top left corner of the ROI
-      width: Scale[int](0,100,1,0)=1; width of the ROI
+      width: Scale[int](0,500,1,0)=1; width of the ROI
       wweight: Scale[int](0,10,1,0)=1; weight of width scale unit  
-      height: Scale[int](0,100,1,0)=1; height of the ROI
+      height: Scale[int](0,700,1,0)=1; height of the ROI
       hweight: Scale[int](0,14,1,0)=1; weight of height scale unit  
     - data: 
       image: ndarray; the image
   Returns:
     - data:
       roi: ndarray; the roi
-      shape: Dict[str, int]; the shape of the loaded image
+      roidef: Dict[str, str]; the roi defenition
   '''  
 
   x0 = params.get('x0', 0)
@@ -168,6 +172,10 @@ def roi(params: Dict, **data: Dict) -> Dict:
   hweight = params.get('hweight', 1)
 
   image = data.get('image')
+  (imh, imw) = image.shape[:2]
+
+  # roi=cv2.selectROI(image)
+
   if width > 0 and height > 0:
     x1 = x0 + width*wweight
     y1 = y0 + height*hweight
@@ -177,7 +185,17 @@ def roi(params: Dict, **data: Dict) -> Dict:
   
   (h, w) = roi.shape[:2]
   data['roi'] = roi
-  data['shape'] = {'shape': {'h': h, 'w': w}}
+  data['roidef'] = {'roidef': {
+      'imwidth': imw,
+      'imheight': imh,
+      'x0': x0,
+      'y0': y0,
+      'width': width,
+      'wweight': wweight,
+      'height': height,
+      'hweight': hweight
+    }}
+
   return data
 
 
