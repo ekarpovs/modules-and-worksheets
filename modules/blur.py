@@ -107,7 +107,7 @@ def bilateral(params: Dict , **data: Dict) -> Dict:
 
   image = data.get('image')
 
-  blured = cv2.bilateralFilter(data.get('image'), d, sigma_color, sigma_space, border_type) 
+  blured = cv2.bilateralFilter(image, d, sigma_color, sigma_space, border_type) 
   (h, w) = blured.shape[:2]
   data['image'] = blured
   data['shape'] = {'shape': {'h': h, 'w': w}}
