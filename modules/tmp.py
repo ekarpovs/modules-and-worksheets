@@ -21,6 +21,7 @@ def skeleton(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       skeleton: ndarray; the result binary image
+      shape: Dict[str, int]; the shape of the result image
   '''
   type = params.get('type', cv2.THRESH_BINARY)
   threshold = params.get('thrsh', 75)
@@ -55,6 +56,8 @@ def skeleton(params: Dict , **data: Dict) -> Dict:
       if zeros==size:
           done = True
 
+  (h, w) = skel.shape[:2]
   data['skeleton'] = skel
+  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
