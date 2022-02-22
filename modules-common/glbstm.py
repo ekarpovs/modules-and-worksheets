@@ -12,18 +12,18 @@ def begin(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:   
       path: str=; path to a folder with images
-      name: str=; the image file name
+      src: str=; the source file name
       flag: Dict[str,int](UNGHANGED:-1,GRAYSCALE:0,COLOR:1)=COLOR; flag one from cv2.IMREAD_(...)
     - data: 
   Returns:
     - data:
       image: ndarray; the loaded image
       shape: Dict[str,int]; the shape of the loaded image
-      im-src: str; full file name from the image was loade
+      im-src: str; full file name from the image was loaded
   '''
 
   path = params.get('path', '')
-  fn = params.get('name', '')
+  fn = params.get('src', '')
   flag = params.get('flag', 1)
 
   if path != '' and fn != '':
@@ -42,7 +42,7 @@ def end(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:   
       path: str=; path to an output folder
-      name: str=; the output file name 
+      dest: str=; the destination file name 
     - data: 
       image: ndarray; the stored image
   Returns:
@@ -50,7 +50,7 @@ def end(params: Dict, **data: Dict) -> Dict:
   '''
 
   path = params.get('path', '')
-  fn = params.get('name', '')
+  fn = params.get('dest', '')
   image = data.get('image')
   
   if fn != '':
@@ -112,11 +112,12 @@ def while_begin(params: Dict, **data: Dict) -> Dict:
   Parameters:
     - params:   
       condition: str=a==b; the if condition 
+      res: bool=True; for debug purpose only
     - data:
-      image:ndarray; the image
+      image: ndarray; the image
   Returns:
     - data:
-      image:ndarray; the image
+      image: ndarray; the image
       while-result: bool; result
   '''
   

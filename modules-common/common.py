@@ -51,7 +51,7 @@ def store(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
       path: str=; path to a folder with images
-      name: str=; the image file name 
+      dest: str=; the destination file name 
     - data: 
       image: ndarray; the stored image
   Returns:
@@ -61,7 +61,7 @@ def store(params: Dict , **data: Dict) -> Dict:
   image = data.get('image')
 
   path = params.get('path', '')
-  fn = params.get('name', '')
+  fn = params.get('dest', '')
   
   ffn = '{}/{}'.format(path, fn)
   cv2.imwrite(ffn, image)
@@ -74,7 +74,7 @@ def restore(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
       path: str=; path to a folder with images
-      name: str=; the image file name 
+      src: str=; the source file name 
       flag: Dict[str,int](UNGHANGED:-1,GRAYSCALE:0,COLOR:1)=COLOR; flag one from cv2.IMREAD_(...)
     - data: 
   Returns:
@@ -85,7 +85,7 @@ def restore(params: Dict , **data: Dict) -> Dict:
   '''
 
   path = params.get('path', '')
-  fn = params.get('name', '')
+  fn = params.get('src', '')
   flag = params.get('flag', 1)
  
   ffn = '{}/{}'.format(path, fn)
@@ -104,7 +104,7 @@ def store_npy_float64(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
       path: str=; path to a folder with file
-      name: str=; the file name 
+      dest: str=; the destination file name 
     - data: 
       arr: ndarray; the stored file
   Returns:
@@ -114,7 +114,7 @@ def store_npy_float64(params: Dict , **data: Dict) -> Dict:
   arr = data.get('arr')
 
   path = params.get('path', '')
-  fn = params.get('name', '')
+  fn = params.get('dest', '')
   
   ffn = '{}/{}'.format(path, fn)
   np.save(ffn, arr)
@@ -127,7 +127,7 @@ def restore_npy_float_64(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
       path: str=; path to a folder with array
-      name: str=; the file name 
+      src: str=; the source file name 
     - data: 
   Returns:
     - data:
@@ -135,7 +135,7 @@ def restore_npy_float_64(params: Dict , **data: Dict) -> Dict:
   '''
 
   path = params.get('path', '')
-  fn = params.get('name', '')
+  fn = params.get('src', '')
   ffn = '{}/{}'.format(path, fn)
   data['arr'] = cv2.load(ffn)
   return data
@@ -147,7 +147,7 @@ def store_json(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
       path: str=; path to a folder with images
-      name: str=; the data file name 
+      dest: str=; the destination file name 
     - data:
       json: str=; data for store
   Returns:
@@ -157,7 +157,7 @@ def store_json(params: Dict , **data: Dict) -> Dict:
   json_data = data.get('json')
 
   path = params.get('path', '')
-  fn = params.get('name', '')
+  fn = params.get('dest', '')
   
   ffn = '{}/{}'.format(path, fn)
   if fn != '':
@@ -172,7 +172,7 @@ def restore_json(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
       path: str=; path to a folder with images
-      name: str=; the data file name 
+      src: str=; the source file name 
     - data:
   Returns:
     - data:
@@ -182,7 +182,7 @@ def restore_json(params: Dict , **data: Dict) -> Dict:
   json_data = data.get('json')
 
   path = params.get('path', '')
-  fn = params.get('name', '')
+  fn = params.get('src', '')
   
   ffn = '{}/{}'.format(path, fn)
   if fn != '':
@@ -193,7 +193,7 @@ def restore_json(params: Dict , **data: Dict) -> Dict:
 
 def join_json(params: Dict , **data: Dict) -> Dict:
   '''
-  Join json files.
+  Join json files from a folder.
 
   Parameters:
     - params:   
