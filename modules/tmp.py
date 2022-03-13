@@ -43,18 +43,17 @@ def skeleton(params: Dict , **data: Dict) -> Dict:
 
   elem = cv2.getStructuringElement(shape, ksize=(kernel_size, kernel_size))
 
+  zeros = size
   done = False
-  i = 0
   while( not done):
-      i += 1
-      eroded = cv2.erode(image, elem)
-      temp = cv2.dilate(eroded, elem)
-      temp = cv2.subtract(image, temp)
-      skel = cv2.bitwise_or(skel, temp)
-      image = eroded.copy()   
-      zeros = size - cv2.countNonZero(image)   
-      if zeros==size:
-          done = True
+    eroded = cv2.erode(image, elem)
+    temp = cv2.dilate(eroded, elem)
+    temp = cv2.subtract(image, temp)
+    skel = cv2.bitwise_or(skel, temp)
+    image = eroded.copy()   
+    zeros = size - cv2.countNonZero(image)   
+    if zeros==size or zeros<=0:
+        done = True
 
   (h, w) = skel.shape[:2]
   data['skeleton'] = skel
