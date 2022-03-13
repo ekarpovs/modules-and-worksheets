@@ -23,6 +23,7 @@ def crop(params: Dict , **data: Dict) -> Dict:
     - data:
       image: ndarray; the result image
       shape: Dict[str, int]; the shape of the loaded image
+      coords: Dict[str, int]; the result image coordinates relatively to the input one - x0,y0,x1,y1
   '''  
 
   y0 = params.get('y0', 0)
@@ -31,10 +32,11 @@ def crop(params: Dict , **data: Dict) -> Dict:
   x1 = params.get('x1', 0)
 
   image = data.get('image')
+  image = image[y0:y1, x0:x1]
   (h, w) = image.shape[:2]
-
-  data['image'] = image[y0:y1, x0:x1]
+  data['image'] = image
   data['shape'] = {'shape': {'h': h, 'w': w}}
+  data['coords'] = {'coords': {'x0': x0, 'y0': y0, 'x1': x1, 'y1': y1}}
   return data
 
 def crop_bound(params: Dict , **data: Dict) -> Dict:
@@ -52,12 +54,11 @@ def crop_bound(params: Dict , **data: Dict) -> Dict:
     - data: 
       image: ndarray; the image
       coords: Dict[str,int]; coordinates - x0,y0,x1,y1
-      shape: Dict[str,innt]; shape 
   Returns:
     - data:
       image: ndarray; the result image
-      coords: Dict[str, int]; the result image coordinates relatively to the input one - x0,y0,x1,y1
       shape: Dict[str, int]; the shape of the result image
+      coords: Dict[str, int]; the result image coordinates relatively to the input one - x0,y0,x1,y1
   '''  
 
   y0 = params.get('y0', 0)
@@ -84,8 +85,8 @@ def crop_bound(params: Dict , **data: Dict) -> Dict:
   image = image[y0:y0+h, x0:x0+w]
   (h, w) = image.shape[:2]
   data['image'] = image
-  data['coords'] = {'coords': {'x0': x0, 'y0': y0, 'x1': x0+w, 'y1': y0+h}}
   data['shape'] = {'shape': {'h': h, 'w': w}}
+  data['coords'] = {'coords': {'x0': x0, 'y0': y0, 'x1': x0+w, 'y1': y0+h}}
   return data
 
 def flip(params: Dict , **data: Dict) -> Dict:
