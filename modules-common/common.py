@@ -215,3 +215,27 @@ def join_json(params: Dict , **data: Dict) -> Dict:
       joined_data[fn[:-5]] = json_data
   data['joined'] = joined_data
   return data
+
+def selector(params: Dict , **data: Dict) -> Dict:
+  '''
+  Pass to the output one from input images
+
+  Parameters:
+    - params:
+      selector: List[str](image1,image2,image3,image4,image5)=image1; the selected image
+    - data: 
+      image1: ndarray; the 1st image
+      image2: ndarray; the 2nd image
+      image3: ndarray; the 3d image
+      image4: ndarray; the 4th image
+      image5: ndarray; the 5th image
+  Returns:
+    - data:
+      image: ndarray; the selected image
+  '''
+  
+  selector = params.get('selector', 'image1')
+  image = data.get(selector)
+  data['image'] = image
+  return data
+  
