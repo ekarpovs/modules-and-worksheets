@@ -13,19 +13,20 @@ def find(params: Dict , **data: Dict) -> Dict:
     - params:   
       meth: Dict[str,int](NONE:1,SIMPLE:2,TC89_L1:3,TC89_KCOS:4)=SIMPLE; interpolation method cv2.CHAIN_APPROX_(...)
       mode: Dict[str,int](EXTERNAL:0,LIST:1,CCOMP:2,TREE:3,FLOODFILL:4)=EXTERNAL; result mode cv2.RETR_(...)
-      num-cntrs: int=5; number of biggets contours
-      approx: bool=True; approximate as rectangle
+      numcntrs: int=5; number of biggets contours
+      draw: bool=False; draw the contours (debug purpose)
     - data: 
       image: ndarray; the image
   Returns:
     - data:
-      cntrs: List[ndarray]; founded contours
+      image: ndarray; the image
       boxes: List[Tuple[uint]]; bounding boxes
   '''  
 
   mode = params.get('mode', cv2.RETR_EXTERNAL)
   method = params.get('meth', cv2.CHAIN_APPROX_SIMPLE)
-  num_cntrs = params.get('num-cntrs', 5)
+  num_cntrs = params.get('numcntrs', 5)
+  draw = params.get('draw', False)
   
   image = data.get('image')
 
@@ -35,9 +36,25 @@ def find(params: Dict , **data: Dict) -> Dict:
   cntrs = sorted(cntrs, key = cv2.contourArea, reverse = True)[:num_cntrs]
   bounding_boxes = [cv2.boundingRect(c) for c in cntrs]
 
-  data['cntrs'] = cntrs
-  data['boxes'] = bounding_boxes
+ 	# loop over the contours 
+  if draw:
+    for (i, c) in enumerate(cntrs):
+      # compute the center of the contour area and draw a circle
+      # representing the center
+      M = cv2.moments(c)
+      if M['m00'] == 0:
+        break
+      cX = int(M["m10"] / M["m00"])
+      cY = int(M["m01"] / M["m00"])
+      # draw the center of the contour on the image
+      cv2.circle(image, (cX, cY), 5, (0,0,0), -1) 
+      #  draw contour
+      image = cv2.drawContours(image, [c], -1, (0,0,0), 2) 
+      cv2.putText(image, "#{}".format(i + 1), (cX - 20, cY), cv2.FONT_HERSHEY_SIMPLEX,
+        1.0, (0,0,0), 2) 
 
+  data['image'] = image
+  data['boxes'] = bounding_boxes
   return data
 
 
