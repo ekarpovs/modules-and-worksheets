@@ -23,10 +23,8 @@ def gabor_kernel(params: Dict , **data: Dict) -> Dict:
       gamma: Scale[int](0,100,10,0)=0; spatial aspect ratio
       ktype: Dict[str,int](CV_32F:5,CV_64F:6)=CV_32F; type of filter coefficients. It can be CV_32F or CV_64F .
     - data: 
-      image: ndarray; the image
   Returns:
     - data:
-      image: ndarray; the result image
       kernel: ndarray; the kernel
   '''
 
