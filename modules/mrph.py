@@ -18,11 +18,9 @@ def kernel(params: Dict , **data: Dict) -> Dict:
       shape: Dict[str,int](RECT:0,CROSS:1,ELLIPSE:2)=RECT; shape of structuring element cv2.MORPH_(...)
       kernel: Scale[int](3,13,1,1)=3; kernel size
     - data: 
-      image: ndarray; the image
   Returns:
     - data:
       kernel: ndarray; structured element (kernel)
-      image: ndarray; the image
   '''
 
   shape = params.get('shape',cv2.MORPH_RECT)
