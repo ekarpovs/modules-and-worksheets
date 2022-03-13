@@ -19,6 +19,7 @@ def simple(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
+      count: Dict[str,int]; number of 0 and threshold
   '''
   type = params.get('type', cv2.THRESH_BINARY)
   threshold = params.get('thrsh', 127)
@@ -27,8 +28,16 @@ def simple(params: Dict , **data: Dict) -> Dict:
   if otsu:
     type |= cv2.THRESH_OTSU
     threshold = 0
-  (T, thrsh) = cv2.threshold(data.get('image'), threshold, max_val, type)
+
+  image = data.get('image')
+  (h, w) = image.shape[:2]
+
+  (T, thrsh) = cv2.threshold(image, threshold, max_val, type)
+
+  non_zeros = cv2.countNonZero(thrsh)
+  zeros = h*w - non_zeros
   data['image'] = thrsh
+  data['count'] = {'sum': h*w, 'zeros': zeros, 'non_zeros': non_zeros}
   return data
 
 
@@ -48,6 +57,7 @@ def adaptive(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
+      count: Dict[str,int]; number of 0 and threshold
 '''
 
   type = params.get('type', cv2.THRESH_BINARY) 
@@ -55,6 +65,14 @@ def adaptive(params: Dict , **data: Dict) -> Dict:
   method = params.get('meth', cv2.ADAPTIVE_THRESH_MEAN_C) 
   na = params.get('na',15) # neighborhood area
   c = params.get('c', 5) #  
-  thrsh = cv2.adaptiveThreshold(data.get('image'), max, method, type, na, c)
+
+  image = data.get('image')
+  (h, w) = image.shape[:2]
+
+  thrsh = cv2.adaptiveThreshold(image, max, method, type, na, c)
+  non_zeros = cv2.countNonZero(thrsh)
+  zeros = h*w - non_zeros
+
   data['image'] = thrsh
+  data['count'] = {'sum': h*w, 'zeros': zeros, 'non_zeros': non_zeros}
   return data
