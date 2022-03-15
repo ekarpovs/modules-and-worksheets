@@ -14,7 +14,7 @@ def canny(params: Dict , **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      ap-size: Scale[int](1,7,1,1)=3; aperture size
+      apsize: Scale[int](3,7,1,1)=3; aperture size
       thrs1: Scale[int](10,150,1,0)=50; threshold1
       thrs2: Scale[int](100,252,1,0)=200; threshold2
     - data: 
@@ -26,7 +26,7 @@ def canny(params: Dict , **data: Dict) -> Dict:
 
   threshold1 = params.get('thrs1', 50)
   threshold2 = params.get('thrs2', 200)
-  ap_size = params.get('ap-size', 3)
+  ap_size = params.get('apsize', 3)
 
   image = data.get('image')
 
