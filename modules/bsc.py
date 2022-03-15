@@ -207,6 +207,7 @@ def rotate(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
+      angle: int; rotation angle
   '''  
 
   # grab the dimensions of the image and calculate the center of the image
@@ -232,6 +233,7 @@ def rotate(params: Dict , **data: Dict) -> Dict:
   M[1, 2] += bound_h/2 - cy
   # rotate without a cropping
   data['image'] = cv2.warpAffine(image, M, (bound_w, bound_h))
+  data['angle'] = {'angle': angle}
   return data
 
 def rotate_inside(params: Dict , **data: Dict) -> Dict:  
@@ -248,7 +250,7 @@ def rotate_inside(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
-      matrix: ndarray; rotation matrix
+      angle: int; rotation angle
   '''  
 
   # grab the dimensions of the image and calculate the center of the image
@@ -272,7 +274,7 @@ def rotate_inside(params: Dict , **data: Dict) -> Dict:
   rotated = cv2.warpAffine(rect, M, (wr, hr), borderMode=cv2.BORDER_CONSTANT, borderValue=(255,255,255))
 
   data['image'] = rotated
-  data['matrix'] = M
+  data['angle'] = {'angle': angle}
   return data
 
 def translate(params: Dict , **data: Dict) -> Dict:
