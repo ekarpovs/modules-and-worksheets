@@ -13,7 +13,7 @@ def cmp_mse(params: Dict, **data: Dict) -> Dict:
   Calculates 'Mean Squared Error' between pixels of two images.
   The 'Mean Squared Error' between the two images is the
   sum of the squared difference between the two images.
-  This two images must have the same dimension.
+  This two images must to have the same dimension.
 
   Parameters:
     - params:
@@ -43,7 +43,7 @@ def cmp_mse(params: Dict, **data: Dict) -> Dict:
 #   '''
 #   Calculates 'Structural Similarity Index' between pixels of two images.
 #   Uses to compare two windows instead an entire images.
-#   This two images must have the same dimension.
+#   This two images must to have the same dimension.
 
 #   Parameters:
 #     - params:
@@ -66,7 +66,7 @@ def cmp_mse(params: Dict, **data: Dict) -> Dict:
 def cmp_psnr(params: Dict, **data: Dict) -> Dict:
   '''
   Calculates 'Peak Signal-to-Noise Ratio' between two images.
-  This two images must have the same dimension.
+  This two images must to  have the same dimension.
 
   Parameters:
     - params:
@@ -94,7 +94,7 @@ def cmp_psnr(params: Dict, **data: Dict) -> Dict:
 def cmp_norm(params: Dict, **data: Dict) -> Dict:
   '''
   Calculates 'Pixels difference' between two GRAY images.
-  This two images must have the same dimension.
+  This two images must to have the same dimension.
 
   Parameters:
     - params:
@@ -177,9 +177,13 @@ def roi(params: Dict, **data: Dict) -> Dict:
   # roi=cv2.selectROI(image)
 
   if width > 0 and height > 0:
-    x1 = x0 + width*wweight
-    y1 = y0 + height*hweight
-    roi = image.copy()[y0:y1, x0:x1]   
+    w = width*wweight
+    h = height*hweight
+    x1 = x0 + w
+    y1 = y0 + h
+    # roi = image.copy()[y0:y1, x0:x1]
+    x, y = x0+0.5*(w-1), y0+0.5*(h-1)
+    roi = cv2.getRectSubPix(image, (w, h), (x, y))
   else:
     roi = image.copy()
   
@@ -199,3 +203,38 @@ def roi(params: Dict, **data: Dict) -> Dict:
   return data
 
 
+'''
+Reshaping the images to two vectors (assuming they are exactly the same size), 
+and then calculating the correlation coefficient:
+np.corrcoef(img.reshape(-1), img1.reshape(-1))
+'''
+
+def correlation(params: Dict, **data: Dict) -> Dict:
+  '''
+  Reshaping the images to two vectors, and then calculating the correlation coefficient
+  This two images must to have the same dimension.
+
+  Parameters:
+    - params:
+    - data: 
+      image: ndarray; the first image
+      scene: ndarray; the second image
+  Returns:
+    - data:
+      correlation: Dict[str,float]; Correlation coefficient
+  '''  
+
+  image = data.get('image')
+  scene = data.get('scene')
+  corrcoef = np.corrcoef(image.reshape(-1), scene.reshape(-1))
+  # Numpy implements a corrcoef() function that returns a matrix of correlations of:
+  #  x with x, x with y, y with x and y with y. 
+  # We're interested in the values of correlation of x with y 
+  # (so position (1, 0) or (0, 1)).
+  xx = corrcoef[0][0]
+  xy = corrcoef[0][1]
+  yx = corrcoef[1][0]
+  yy = corrcoef[1][1]
+  correlation = {'correlation': {'xx': xx, 'xy': xy, 'yx': yx, 'yy': yy}}
+  data['correlation'] = correlation 
+  return data
