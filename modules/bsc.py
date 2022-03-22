@@ -202,12 +202,14 @@ def rotate(params: Dict , **data: Dict) -> Dict:
     - params:   
       angle: Scale[int](0,180,1,0)=0; rotation angle
       neg: bool=True; negative direction
+      smallangle: Scale[float](0.0,3.0,0.25,0)=0.0; small rotation angle
+      usesmall: bool=False; use small angle scale
     - data: 
       image: ndarray; the image
   Returns:
     - data:
       image: ndarray; the result image
-      angle: int; rotation angle
+      angle: float; rotation angle
   '''  
 
   # grab the dimensions of the image and calculate the center of the image
@@ -216,7 +218,11 @@ def rotate(params: Dict , **data: Dict) -> Dict:
   (cx, cy) = (w / 2, h / 2)
 
   # calculate rotation matrix
+  smallangle = params.get('smallangle', 0)
+  usesmall = params.get('usesmall', False)
   angle = params.get('angle', 0)
+  if usesmall:
+    angle = smallangle
   negative = params.get('neg', True)
   if negative:
     angle *= -1 
