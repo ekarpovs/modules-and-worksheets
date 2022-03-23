@@ -28,8 +28,6 @@ def gabor_kernel(params: Dict , **data: Dict) -> Dict:
 
   ksize = params.get('ksize', 3)
   sigma = params.get('sigma', 3)
-  small = params.get('small', False)
-  stheta = params.get('stheta', 0.0)
   theta = params.get('theta', 0)
   lambd = params.get('lambd', 5)
   psi = params.get('psi', 0.0)
@@ -38,11 +36,6 @@ def gabor_kernel(params: Dict , **data: Dict) -> Dict:
 
   kernel = cv2.getGaborKernel((ksize, ksize), sigma, np.deg2rad(theta), lambd, psi, gamma, ktype)
 
-  # f = np.fft.fft2(kernel)
-  # fshift = np.fft.fftshift(f).astype(np.float32)
-  # fshift = np.sqrt(np.power(fshift.imag,2)+np.power(fshift.real,2))
-  # fshift = (fshift - np.min(fshift))/(np.max(fshift)-np.min(fshift))
-  # kernel = fshift
 
   data['kernel'] = kernel
   return data
