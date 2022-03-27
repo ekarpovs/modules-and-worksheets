@@ -63,11 +63,13 @@ def skeleton(params: Dict , **data: Dict) -> Dict:
 
 def gabor_filter(params: Dict , **data: Dict) -> Dict:
   '''
-  Create gabor filter.
+  Create and apply gabor filter.
+  https://minhng.info/tutorials/gabor-filters-opencv.html
 
   Parameters:
     - params:   
-      numkernels: int=8; number of kernels
+      pidiv: Scale[int](1,18,1,0)=1; PI devider
+      numkernels: Scale[int](1,20,1,0)=8; number of kernels
       ksize: Scale[int](3,128,1,0)=3; size of the filter returned.
       sigma: Scale[int](0,10,1,0)=3; standard deviation of the gaussian envelope.
       lambd: Scale[int](5,25,1,0)=5; Wavelength of the sinusoidal factor.
@@ -82,6 +84,7 @@ def gabor_filter(params: Dict , **data: Dict) -> Dict:
       imstack: ndarray; the new images stack
   '''
 
+  pi_div = params.get('pidiv', 1)
   num_kernels = params.get('numkernels', 8)
   ksize = params.get('ksize', 3)
   sigma = params.get('sigma', 3)
@@ -99,11 +102,11 @@ def gabor_filter(params: Dict , **data: Dict) -> Dict:
   # geenrate gabor bank
   bank = []
   theta = 0 # orientation of the normal to the parallel stripes of a Gabor function
-  step = np.pi / num_kernels
+  step = np.pi / (num_kernels*pi_div)
   for idx in range(num_kernels):
     theta = idx * step
-    # kernel = cv2.getGaborKernel(ksize=ksize, sigma=sigma, theta=theta, lambd=lambd, gamma=gamma, psi=psi)
-    kernel = cv2.getGaborKernel(ksize=(15,15), sigma=3, theta=theta, lambd=6, gamma=0.25, psi=0)
+    # print('theta', np.rad2deg(theta))
+    kernel = cv2.getGaborKernel(ksize=(ksize,ksize), sigma=sigma, theta=theta, lambd=lambd, gamma=gamma, psi=psi)
     bank.append(kernel)
  
   # create iamge stack and place to it the original image
@@ -118,7 +121,7 @@ def gabor_filter(params: Dict , **data: Dict) -> Dict:
 
 
   for idx, kernel in enumerate(bank):
-    # apply sliding window on 3(1) channel(s)
+    # apply sliding window on 1(3) channel(s)
     if shape_len >= 3:
       layer_blue = cv2.filter2D(src=image[:,:,0], ddepth=ddepth, kernel=kernel)
       layer_green = cv2.filter2D(src=image[:,:,1], ddepth=ddepth, kernel=kernel)
