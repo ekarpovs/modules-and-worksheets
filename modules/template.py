@@ -19,12 +19,13 @@ def single(params: Dict , **data: Dict) -> Dict:
     Parameters:
     - params:   
       method: Dict[str, int](cv2.TM_SQDIFF:0,cv2.TM_SQDIFF_NORMED:1,cv2.TM_CCORR:2,cv2.TM_CCORR_NORMED:3,cv2.TM_CCOEFF:4,cv2.TM_CCOEFF_NORMED:5)=TM_CCORR_NORMED; metod 
+      draw: bool=False; draw ROI (debug purpose)
     - data:
       image: ndarray; the image
       template: ndarray; the template
   Returns:
     - data:
-      imfound: ndarray; the image from the location on the input image
+      image: ndarray; the input image
       location: Dict[str, int]; coordinates of the bounding box - x0, y0, x1, y1
   '''
 
@@ -33,6 +34,7 @@ def single(params: Dict , **data: Dict) -> Dict:
   ht, wt = template.shape[:2]
 
   method = params.get('method', cv2.TM_CCORR_NORMED)
+  draw = params.get('draw', False)
 
   res = cv2.matchTemplate(image, template, method)
   min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
@@ -47,8 +49,9 @@ def single(params: Dict , **data: Dict) -> Dict:
   y1 = bottom_right[1]
   cx = x0+x1//2 
   cy = y0+y1//2 
-  imfound = image[y0:y1,x0:x1]
-  data['imfound'] = imfound
+  if draw:
+    cv2.rectangle(image, (x0, y0), (x1, y1), (0,0,0), thickness=-1)
+
   data['location'] = {'cx': cx, 'cy': cy, 'coords': {'x0': x0, 'y0': y0, 'x1':x1, 'y1': y1}}
   return data
 

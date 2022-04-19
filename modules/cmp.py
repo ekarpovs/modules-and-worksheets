@@ -226,7 +226,9 @@ def correlation(params: Dict, **data: Dict) -> Dict:
 
   image = data.get('image')
   scene = data.get('scene')
-  corrcoef = np.corrcoef(image.reshape(-1), scene.reshape(-1))
+  image_1d = image.reshape(-1)
+  scene_1d = scene.reshape(-1)
+  corrcoef = np.corrcoef(image_1d, scene_1d)
   # Numpy implements a corrcoef() function that returns a matrix of correlations of:
   #  x with x, x with y, y with x and y with y. 
   # We're interested in the values of correlation of x with y 
@@ -237,4 +239,36 @@ def correlation(params: Dict, **data: Dict) -> Dict:
   yy = corrcoef[1][1]
   correlation = {'correlation': {'xx': xx, 'xy': xy, 'yx': yx, 'yy': yy}}
   data['correlation'] = correlation 
+  return data
+
+def fit(params: Dict, **data: Dict) -> Dict:
+  '''
+  Fit two input images to a same (min) size
+
+  Parameters:
+    - params:
+    - data: 
+      image: ndarray; the first image
+      scene: ndarray; the second image
+  Returns:
+    - data:
+      image: ndarray; the first resized image
+      scene: ndarray; the second resized image
+      shape: Dict[str, int]; the shape of the result image
+  '''
+
+  image = data.get('image')
+  scene = data.get('scene')
+
+  (h_i,w_i) = image.shape[:2]
+  (h_s,w_s) = scene.shape[:2]
+  h = min(h_i, h_s)
+  w = min(w_i, w_s)
+
+  image = cv2.resize(image, (h,w), cv2.INTER_AREA)
+  scene = cv2.resize(scene, (h,w), cv2.INTER_AREA)
+
+  data['image'] = image
+  data['scene'] = scene
+  data['shape'] = {'shape': {'h':h, 'w':w}}
   return data

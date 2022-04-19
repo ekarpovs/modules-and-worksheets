@@ -20,7 +20,7 @@ def find(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the image
-      boxes: List[Tuple[uint]]; bounding boxes
+      boxes: List[ndarray]; bounding boxes
   '''  
 
   mode = params.get('mode', cv2.RETR_EXTERNAL)
@@ -54,7 +54,7 @@ def find(params: Dict , **data: Dict) -> Dict:
         1.0, (0,0,0), 2) 
 
   data['image'] = image
-  data['boxes'] = bounding_boxes
+  data['boxes'] = cntrs
   return data
 
 

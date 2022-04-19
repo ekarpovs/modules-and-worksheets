@@ -41,21 +41,11 @@ def end(params: Dict, **data: Dict) -> Dict:
 
   Parameters:
     - params:   
-      path: str=; path to an output folder
-      dest: str=; the destination file name 
     - data: 
-      image: ndarray; the stored image
   Returns:
     - data: 
   '''
 
-  path = params.get('path', '')
-  fn = params.get('dest', '')
-  image = data.get('image')
-  
-  if fn != '':
-    ffn = '{}/{}'.format(path, fn)
-    cv2.imwrite(ffn, image)
   return data
 
 def if_begin(params: Dict, **data: Dict) -> Dict:
