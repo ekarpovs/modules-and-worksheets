@@ -265,8 +265,8 @@ def fit(params: Dict, **data: Dict) -> Dict:
   h = min(h_i, h_s)
   w = min(w_i, w_s)
 
-  image = cv2.resize(image, (h,w), cv2.INTER_AREA)
-  scene = cv2.resize(scene, (h,w), cv2.INTER_AREA)
+  image = cv2.resize(image, (w,h), cv2.INTER_AREA)
+  scene = cv2.resize(scene, (w,h), cv2.INTER_AREA)
 
   data['image'] = image
   data['scene'] = scene
