@@ -23,6 +23,9 @@
     name: Dict[str,int](KEY1:0,KEY2:1,KEY3:3)=KEY2; dictionary of [str, int] pairs
   4. Range:
     name: Range[int](10,150,1)=50; range of integers from 10 to 150, default 50
+  5. Scale
+    name: Scale[int](0,115,1,0)=50; scale of integers from 0 to 115, resolution 1, imcrement 0, default 50
+
 '''
 
 import cv2
