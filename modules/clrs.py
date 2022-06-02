@@ -3,6 +3,7 @@ Color spaces operations
 '''
 
 import cv2
+import numpy as np
 from typing import Dict
 
 
@@ -78,7 +79,7 @@ def bgrto_split(params: Dict , **data: Dict) -> Dict:
   return data
 
 
-def bgrto_merge(params: Dict , **data: Dict) -> Dict:  
+def bgrto_merge(params: Dict , **data: Dict) -> Dict:
   '''
   Mergess separate channels to colored (BGR) image.
 
@@ -97,5 +98,50 @@ def bgrto_merge(params: Dict , **data: Dict) -> Dict:
   g = data['g']
   r = data['r']
   image = cv2.merge(b, g, r)
+  data['image'] = image
+  return data
+
+
+def invert(params: Dict , **data: Dict) -> Dict:
+  '''
+  Inverts image.
+
+  Parameters:
+    - params:   
+    - data: 
+      image: ndarray; the image
+  Returns:
+    - data:
+      image: ndarray; the inverted image
+  '''
+
+  image = data.get('image') 
+
+  image = np.invert(image)
+  data['image'] = image
+  return data
+
+
+def contrast(params: Dict , **data: Dict) -> Dict:
+  '''
+  Inverts image.
+
+  Parameters:
+    - params:   
+      alpha: Scale[float](0.5,3.0,0.1,0)=1.5; contrast control
+      beta: Scale[int](0,100,1,0)=0; brightness control
+    - data: 
+      image: ndarray; the image
+  Returns:
+    - data:
+      image: ndarray; the inverted image
+  '''
+
+  alpha = params.get('alpha', 1.5)
+  beta = params.get('beta', 0)
+
+  image = data.get('image') 
+
+  image = cv2.convertScaleAbs(image, alpha=alpha, beta=beta)
   data['image'] = image
   return data

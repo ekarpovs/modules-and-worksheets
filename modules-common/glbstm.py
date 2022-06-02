@@ -18,8 +18,6 @@ def begin(params: Dict, **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the loaded image
-      shape: Dict[str,int]; the shape of the loaded image
-      im-src: str; full file name from the image was loaded
   '''
 
   path = params.get('path', '')
@@ -29,10 +27,8 @@ def begin(params: Dict, **data: Dict) -> Dict:
   if path != '' and fn != '':
     ffn = '{}/{}'.format(path, fn)
     image = cv2.imread(ffn, flag)
-    (h, w) = image.shape[:2]
+
     data['image'] = image
-    data['shape'] = {'shape': {'h': h, 'w': w}}
-    data['im-src'] = {'im-src':ffn}
   return data
 
 def end(params: Dict, **data: Dict) -> Dict:

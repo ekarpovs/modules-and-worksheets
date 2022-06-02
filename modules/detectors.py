@@ -191,7 +191,10 @@ def hough_lines(params: Dict , **data: Dict) -> Dict:
     lines.append([(x1,y1),(x2,y2)])
 
     if draw:
-      cv2.line(image,(x1,y1),(x2,y2),(0,0,255),2)
+      h, w = image.shape[:2]
+      canvas = np.ones((h, w, 3), dtype = "uint8")*255
+      cv2.line(canvas,(x1,y1),(x2,y2),(0,0,255),2)
+      image = canvas
 
   data['image'] = image
   data['lines'] = lines

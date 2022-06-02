@@ -19,14 +19,12 @@ def arth_add(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
-      shape: Dict[str, int]; the shape of the image
   '''
   
   image = data.get('image')
-  (h, w) = image.shape[:2]
   mask = data.get('mask')
+  
   data['image'] = cv2.add(image, mask) 
-  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 
@@ -42,14 +40,12 @@ def arth_sub(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
-      shape: Dict[str, int]; the shape of the image
   '''
 
   image = data.get('image')
-  (h, w) = image.shape[:2]
   mask = data.get('mask')
+
   data['image'] = cv2.subtract(image, mask) 
-  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 
@@ -67,17 +63,16 @@ def arth_add_into(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
-      shape: Dict[str, int]; the shape of the image
   '''
 
   offset_y = params.get('offsety', 0)
   offset_x = params.get('offsetx', 0)
+  
   image = data.get('image')
   mask = data.get('mask')
+
   mask[offset_y:offset_y + image.shape[0], offset_x:offset_x + image.shape[1]] = image
-  (h, w, c) = mask.shape
   data['image'] = mask
-  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 
@@ -96,7 +91,6 @@ def arth_add_weighted(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
-      shape: Dict[str, int]; the shape of the image
   '''
 
   alpha = params.get('alpha', 0.5)
@@ -107,8 +101,5 @@ def arth_add_weighted(params: Dict , **data: Dict) -> Dict:
   mask = data.get('mask')
 
   combined = cv2.addWeighted(image, alpha, mask, beta, gamma) 
-  (h, w, c) = combined.shape
-
   data['image'] = combined
-  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data

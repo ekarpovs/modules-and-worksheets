@@ -254,7 +254,6 @@ def fit(params: Dict, **data: Dict) -> Dict:
     - data:
       image: ndarray; the first resized image
       scene: ndarray; the second resized image
-      shape: Dict[str, int]; the shape of the result image
   '''
 
   image = data.get('image')
@@ -270,5 +269,4 @@ def fit(params: Dict, **data: Dict) -> Dict:
 
   data['image'] = image
   data['scene'] = scene
-  data['shape'] = {'shape': {'h':h, 'w':w}}
   return data

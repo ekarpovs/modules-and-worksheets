@@ -83,8 +83,6 @@ def restore(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the loaded image
-      shape: Dict[str, int]; the shape of the loaded image
-      im-src: str; full file name from the image was loade
   '''
 
   path = params.get('path', '')
@@ -93,11 +91,8 @@ def restore(params: Dict , **data: Dict) -> Dict:
  
   ffn = '{}/{}'.format(path, fn)
   image = cv2.imread(ffn, flag)
-  (h, w) = image.shape[:2]
 
   data['image'] = image
-  data['shape'] = {'shape': {'h': h, 'w': w}}
-  data['im-src'] = {'im-src':ffn}
   return data
 
 def store_npy_float64(params: Dict , **data: Dict) -> Dict:
@@ -252,7 +247,6 @@ def store_roi(params: Dict , **data: Dict) -> Dict:
       dest: str=; the destination file name 
     - data: 
       image: ndarray; the stored ROI image
-      shape: Dict[str,int]; the shape of image
       coords: Dict[str,int]; the descriptor of the image
   Returns:
     - data:
@@ -296,7 +290,6 @@ def restore_roi(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the loaded image
-      shape: Dict[str, int]; the shape of the loaded image
       coords: Dict[str,int]; the descriptor of the image
       im-src: str; full file name from the image was loade
   '''
@@ -320,7 +313,6 @@ def restore_roi(params: Dict , **data: Dict) -> Dict:
   x1 = descr_parts[4]
 
   data['image'] = image
-  data['shape'] = {'shape': {'h': h, 'w': w}}
   data['coords'] = {'coords': {'x0': x0, 'y0': y0, 'x1': x1, 'y1': y1}}
   data['im-src'] = {'im-src':ffn}
   return data

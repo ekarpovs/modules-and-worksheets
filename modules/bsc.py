@@ -22,7 +22,6 @@ def crop(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
-      shape: Dict[str, int]; the shape of the loaded image
       coords: Dict[str, int]; the result image coordinates relatively to the input one - x0,y0,x1,y1
   '''  
 
@@ -33,9 +32,8 @@ def crop(params: Dict , **data: Dict) -> Dict:
 
   image = data.get('image')
   image = image[y0:y1, x0:x1]
-  (h, w) = image.shape[:2]
+
   data['image'] = image
-  data['shape'] = {'shape': {'h': h, 'w': w}}
   data['coords'] = {'coords': {'x0': x0, 'y0': y0, 'x1': x1, 'y1': y1}}
   return data
 
@@ -57,7 +55,6 @@ def crop_bound(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
-      shape: Dict[str, int]; the shape of the result image
       coords: Dict[str, int]; the result image coordinates relatively to the input one - x0,y0,x1,y1
   '''  
 
@@ -70,22 +67,15 @@ def crop_bound(params: Dict , **data: Dict) -> Dict:
 
   image = data.get('image')
   coords = data.get('coords')
-  shape = data.get('shape')
-  #     data['shape'] = {'shape': {'h': h, 'w': w}}
 
   if coords is not None:
     coords = coords.get('coords')
     y0 = coords.get('y0', 0) + off_top
     x0 = coords.get('x0', 0) + off_left
-  elif shape is not None:
-    shape = shape.get('shape')
-    h = shape.get('h')
-    w = shape.get('w')
     
   image = image[y0:y0+h, x0:x0+w]
-  (h, w) = image.shape[:2]
+
   data['image'] = image
-  data['shape'] = {'shape': {'h': h, 'w': w}}
   data['coords'] = {'coords': {'x0': x0, 'y0': y0, 'x1': x0+w, 'y1': y0+h}}
   return data
 
@@ -123,7 +113,6 @@ def resize(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
-      shape: Dict[str, int]; the shape of the result image
   '''
   
   method = params.get('meth', cv2.INTER_AREA)
@@ -153,9 +142,8 @@ def resize(params: Dict , **data: Dict) -> Dict:
     dim = (int(w * ratio), size)
 
   image = cv2.resize(image, dim, interpolation=method)
-  (h, w) = image.shape[:2]
+
   data['image'] = image
-  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 def resize_abs(params: Dict , **data: Dict) -> Dict:
@@ -173,7 +161,6 @@ def resize_abs(params: Dict , **data: Dict) -> Dict:
   Returns:
     - data:
       image: ndarray; the result image
-      shape: Dict[str, int]; the shape of the result image
   '''
 
   method = params.get('meth', cv2.INTER_AREA)
@@ -189,9 +176,8 @@ def resize_abs(params: Dict , **data: Dict) -> Dict:
     dim = (int(w*w_new/100), int(h*h_new/100))
     
   image = cv2.resize(image, dim, interpolation=method)
-  (h, w) = image.shape[:2]
+
   data['image'] = image
-  data['shape'] = {'shape': {'h': h, 'w': w}}
   return data
 
 def rotate(params: Dict , **data: Dict) -> Dict:  
