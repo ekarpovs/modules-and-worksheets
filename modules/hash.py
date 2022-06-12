@@ -1,5 +1,14 @@
 '''
 Hashing operations
+  dhashm: Computes the (relative) horizontal gradient between adjacent column pixels
+  ahash: Computes the average hash
+  dhash: Computes the difference hash
+  phash: Computes the perceptual hash
+  whash: Computes the wavelet hash
+  clrhash: Computes the color hash
+  md5hash: Computes the md5 hash
+  join: Joins hashes
+  hammingdist: Calculates hamming distamce for haches
 '''
 
 from typing import Dict

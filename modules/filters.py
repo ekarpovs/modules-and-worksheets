@@ -1,5 +1,8 @@
 '''
-Filters
+Filters:
+  gabor_kernel: Creates gabor kernel
+  filter_2d: Changes the pixel intensity value of an image,
+    based on the surrounding pixel intensity values
 '''
 
 from typing import Dict
@@ -9,7 +12,7 @@ import numpy as np
 
 def gabor_kernel(params: Dict , **data: Dict) -> Dict:
   '''
-  Create gabor filter.
+  Creates gabor kernel.
 
   Parameters:
     - params:   
@@ -42,7 +45,7 @@ def gabor_kernel(params: Dict , **data: Dict) -> Dict:
 
 def filter_2d(params: Dict , **data: Dict) -> Dict:
   '''
-  Changes the pixel intensity value of an image 
+  Changes the pixel intensity value of an image,
   based on the surrounding pixel intensity values.
 
   Parameters:

@@ -1,5 +1,11 @@
 '''
-Color spaces operations
+Color spaces operations:
+  bgrto: Converts a colored (BGR) image to another color space
+  rgbto: Converts a colored (RGB) image to another color space
+  bgrto_split: Splits a colored (BGR) image to separate channels
+  bgrto_merge: Merges separate channels to colored (BGR) image
+  invert: Inverts an image
+  contrast: Changes contract/brightness of an image
 '''
 
 import cv2
@@ -81,7 +87,7 @@ def bgrto_split(params: Dict , **data: Dict) -> Dict:
 
 def bgrto_merge(params: Dict , **data: Dict) -> Dict:
   '''
-  Mergess separate channels to colored (BGR) image.
+  Merges separate channels to colored (BGR) image.
 
   Parameters:
     - params:   
@@ -104,7 +110,7 @@ def bgrto_merge(params: Dict , **data: Dict) -> Dict:
 
 def invert(params: Dict , **data: Dict) -> Dict:
   '''
-  Inverts image.
+  Inverts an image.
 
   Parameters:
     - params:   
@@ -124,7 +130,7 @@ def invert(params: Dict , **data: Dict) -> Dict:
 
 def contrast(params: Dict , **data: Dict) -> Dict:
   '''
-  Inverts image.
+  Changes contract/brightness of an image.
 
   Parameters:
     - params:   

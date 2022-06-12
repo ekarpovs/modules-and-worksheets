@@ -1,6 +1,11 @@
 '''
-Bitwise operations
+Bitwise operations:
+btw_and: AND operation with the first image and the second one
+btw_or: OR operation with the first image and the second one
+btw_xor: XOR operation with the first image and the second one
+btw_not: NOT operation with the first image and the second one
 '''
+
 from typing import Dict
 import cv2
 

@@ -1,5 +1,12 @@
 '''
-Hashing operations, based on cv2.img_hash methods
+Hashing operations, based on cv2.img_hash methods:
+  blockmean: Computes the hash, based on blockmean
+  average: Computes the average hash
+  colormoment: Computes the hash, based on color moments
+  marrhidreth: Computes the Marr-Hidreth Operator based hash
+  phash1: Computes the perceptual hash
+  radialvariance: Computes hash, based on Radon transform
+  compare: Compares two hashes
 '''
 
 from typing import Dict
@@ -87,7 +94,7 @@ def marrhidreth(params: Dict , **data: Dict) -> Dict:
 
 def phash1(params: Dict , **data: Dict) -> Dict:
   '''
-  Computes the phash
+  Computes the perceptual hash
 
   Parameters:
     - params:
@@ -124,7 +131,6 @@ def radialvariance(params: Dict , **data: Dict) -> Dict:
   # inthash=int.from_bytes(hash.tobytes(), byteorder='big', signed=False)
   data['radialvariance'] = hash
   return data
-
 
 def compare(params: Dict , **data: Dict) -> Dict:
   '''

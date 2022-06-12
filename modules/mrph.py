@@ -3,6 +3,16 @@ Morphological operations.
 It is a set of non-linear operations that process 
 images based on shapes morphology of features in an image. 
 It applies structuring element to an input image and generate an output image.
+  kernel: Creates a structured element (kernel)
+  erode: Erodes away the boundaries of the foreground object and removes small-scale details 
+    from an image but simultaneously reduces the size of regions of interest
+  dilate: Probings and expands the shapes contained in the input image
+  mex: operations:
+    opening: erosion followed by dilation,
+    closing: dilation followed by erosion
+    gradient: the difference between dilation and erosion of an image
+    top hat: the difference between input image and opening of the image
+    black hat: the difference between the closing of the input image and input image
 '''
 
 from typing import Dict
@@ -11,7 +21,7 @@ import cv2
 
 def kernel(params: Dict , **data: Dict) -> Dict:
   '''
-  Creates structured element (kernel)
+  Creates a structured element (kernel)
 
     Parameters:
     - params:   

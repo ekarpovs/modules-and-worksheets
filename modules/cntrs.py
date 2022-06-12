@@ -1,6 +1,11 @@
 '''
-Contours operations
+Contours operations:
+  find: Finds contours of an image
+  sort: Sorts contours
+  sel_rect: Selects rectangle contours
+
 '''
+
 from typing import Dict
 import cv2
 
@@ -57,7 +62,6 @@ def find(params: Dict , **data: Dict) -> Dict:
   data['boxes'] = cntrs
   return data
 
-
 def sort(params: Dict , **data: Dict) -> Dict:
   '''
   Sorts contours.
@@ -90,7 +94,6 @@ def sort(params: Dict , **data: Dict) -> Dict:
   data['cntrs'] = cntrs
   data['boxes'] = bounding_boxes
   return data
-
 
 def sel_rect(params: Dict , **data: Dict) -> Dict:
   '''

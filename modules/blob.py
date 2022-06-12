@@ -1,13 +1,17 @@
 '''
 Blob operations
+  simple: Detects blobs (a group of connected pixels in an image that 
+    share some common property(E.g grayscale value)).
 '''
+
 from typing import Dict
 import cv2
 
 
 def simple(params: Dict , **data: Dict) -> Dict:
   '''
-  Detects blobs.
+  Detects blobs (a group of connected pixels in an image that 
+    share some common property(E.g grayscale value)).
 
   Parameters:
     - params:   

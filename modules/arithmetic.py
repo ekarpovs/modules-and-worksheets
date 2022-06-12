@@ -1,5 +1,9 @@
 '''
-Arithmetic operations
+Arithmetic operations:
+  arth_add: Adds a mask image to an image
+  arth_sub: Substracts a mask from an image
+  rth_add_into: Adds an image into a mask from defined X, Y offsets
+  arth_add_weighted: Calculates a weighted sum of two arrays (images): image*alpha + mask*beta + gamma
 '''
 
 from typing import Dict
@@ -9,7 +13,7 @@ import numpy as np
 
 def arth_add(params: Dict , **data: Dict) -> Dict:
   '''
-  Adds the mask image to the image
+  Adds a mask image to an image
 
   Parameters:
     - params:   
@@ -23,14 +27,14 @@ def arth_add(params: Dict , **data: Dict) -> Dict:
   
   image = data.get('image')
   mask = data.get('mask')
-  
+
   data['image'] = cv2.add(image, mask) 
   return data
 
 
 def arth_sub(params: Dict , **data: Dict) -> Dict:
   '''
-  Substracts mask from the image
+  Substracts a mask from an image
 
   Parameters:
     - params:   
@@ -78,7 +82,7 @@ def arth_add_into(params: Dict , **data: Dict) -> Dict:
 
 def arth_add_weighted(params: Dict , **data: Dict) -> Dict:
   '''
-  Calculates the weighted sum of two arrays (images): image*alpha + mask*beta + gamma 
+  Calculates a weighted sum of two arrays (images): image*alpha + mask*beta + gamma 
 
   Parameters:
     - params:   

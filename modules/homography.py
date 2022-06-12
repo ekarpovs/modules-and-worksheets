@@ -1,9 +1,8 @@
 '''
 Homography operations.
 cv2::decomposeHomographyMat which allows to decompose the homography matrix to a set of
- rotations, 
- translations 
- and plane normals. 
+ rotations, translations and plane normals:
+ find: Construts homograpy matrix
 '''
 
 

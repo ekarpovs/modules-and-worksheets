@@ -1,5 +1,10 @@
 '''
-Corners and lines detectors
+Corners and lines detectors:
+  harris_rect: Harris Corner Detector
+  shitomasi: Shi-Tomasi Corner Detector
+  hough_lines: Probabilistic Hough Lines Detector.
+    Takes only a random subset of points that is 
+    sufficient for line detection
 '''
 
 import cv2
@@ -80,7 +85,6 @@ def harris_rect(params: Dict , **data: Dict) -> Dict:
   data['rectangle'] = rect_coord #{'rectangle': rect_coord}
   return data
 
-
 def shitomasi(params: Dict , **data: Dict) -> Dict:
   '''
   Shi-Tomasi Corner Detector.
@@ -137,7 +141,6 @@ def shitomasi(params: Dict , **data: Dict) -> Dict:
   data['image'] = image
   data['rectangle'] = {'rectangle': rect_coord}
   return data
-
 
 def hough_lines(params: Dict , **data: Dict) -> Dict:
   '''

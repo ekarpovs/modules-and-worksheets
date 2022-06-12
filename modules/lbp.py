@@ -1,5 +1,6 @@
 '''
-Local binary patterns descriptors
+Local binary patterns descriptors:
+  lbp: Computes LBP representation of an image
 '''
 
 import cv2

@@ -1,9 +1,11 @@
 '''
 Temporary solutions - will decollated an implemented as worksheets
 '''
+
 from typing import Dict
 import cv2
 import numpy as np
+
 
 def skeleton(params: Dict , **data: Dict) -> Dict:
   '''
@@ -149,6 +151,6 @@ def gabor_filter(params: Dict , **data: Dict) -> Dict:
 
   # convert dtype from float64 to uint8
   im_stack = cv2.normalize(src=im_stack, dst=None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)
-  data['imstack'] = im_stack
 
+  data['imstack'] = im_stack
   return data

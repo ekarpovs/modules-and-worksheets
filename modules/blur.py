@@ -1,5 +1,9 @@
 '''
-Bluring operation
+Bluring operation:
+  avrg: Average bluring
+  gaus: Gaussian bluring
+  median: Median bluring
+  bilateral: Bilateral bluring
 '''
 
 import cv2

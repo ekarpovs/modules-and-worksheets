@@ -1,5 +1,16 @@
 '''
-Basic operations
+Basic operations:
+  crop: Crops an image
+  crop_bound: Crops an image regarding roi coordinates and offsets
+  flip: Flips an image
+  resize: Resizes an image
+  resize_abs: Resizes an image without aspect ratio (absolute resizing)
+  rotate: Rotates an image without cropping
+  rotate_inside: Rotates an input image with predefined bounding
+  translate: Translates (Shifts) an image by a NumPy matrix in the form:
+    [[1, 0, shiftX], [0, 1, shiftY]]
+  fit: Resizes an input image regarding a scene image
+  transform: Transforms a skewed image to obtain a top-down view of the original image
 '''
 
 import cv2
@@ -298,7 +309,7 @@ def translate(params: Dict , **data: Dict) -> Dict:
 
 def fit(params: Dict , **data: Dict) -> Dict:
   '''
-  Resizes the input image regarding the scene image
+  Resizes an input image regarding a scene image
 
   Parameters:
     - params:   
@@ -322,7 +333,6 @@ def fit(params: Dict , **data: Dict) -> Dict:
   dim = (w1, h1)
   data['image'] = cv2.resize(image, dim, interpolation=method) 
   return data
-
 
 def transform(params: Dict , **data: Dict) -> Dict:
   '''

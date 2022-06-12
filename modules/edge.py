@@ -1,6 +1,9 @@
 '''
-Gradient and edge dectection operations
-Gradient magnitude and orientation.
+Gradient and edge dectection operations:
+  canny: Computes a "wide", "mid-range", and "tight" threshold for the edges
+  laplacian: Computes the Laplacian of the image
+  sobel: Computes gradients along the X or Y axis uses Sobel algorithm
+  within_bound: Computes the gradient magnitude and orientation
 '''
 
 from typing import Dict

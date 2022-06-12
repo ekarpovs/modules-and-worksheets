@@ -1,5 +1,13 @@
 '''
-Comparition operations
+Comparition operations (two images must to have the same dimension):
+  cmp_mse: Calculates 'Mean Squared Error' between pixels of two images.
+    The 'Mean Squared Error' between the two images is the
+    sum of the squared difference between the two images.
+  cmp_psnr: Calculates 'Peak Signal-to-Noise Ratio' between two images.
+  cmp_norm: Calculates 'Pixels difference' between two GRAY images.
+  join: Joins compare results
+  correlation: Reshaps the images to two vectors, and then calculats the correlation coefficient
+  fit: Fits two input images to the same (min) size
 '''
 
 from typing import Dict
@@ -211,7 +219,7 @@ np.corrcoef(img.reshape(-1), img1.reshape(-1))
 
 def correlation(params: Dict, **data: Dict) -> Dict:
   '''
-  Reshaping the images to two vectors, and then calculating the correlation coefficient
+  Reshaps the images to two vectors, and then calculats the correlation coefficient
   This two images must to have the same dimension.
 
   Parameters:
@@ -243,7 +251,7 @@ def correlation(params: Dict, **data: Dict) -> Dict:
 
 def fit(params: Dict, **data: Dict) -> Dict:
   '''
-  Fit two input images to a same (min) size
+  Fits two input images to the same (min) size
 
   Parameters:
     - params:
