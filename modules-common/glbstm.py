@@ -3,7 +3,7 @@ Local module, contains global staments descriptions
 '''
 import cv2
 from typing import Dict
-
+import json
 
 def begin(params: Dict, **data: Dict) -> Dict:
   '''
@@ -136,30 +136,40 @@ def for_begin(params: Dict, **data: Dict) -> Dict:
   '''
   The for statement begin operation. 
   Syntax:
-    val-a oper val-b[--and(or)--val-c oper val-d...]
-    where operation one from:
-      ==,!=,<,<=,>,>=
-
+    for x in range(start, end, increment)
   Parameters:
     - params:   
-      condition: str=a==b; the if condition 
-      res: bool=True; temporary result
+      start: int=0; the x start value 
+      end: int=1; the x end value
+      increment: int=1; increment
+      weight: int=1; unit's weight
     - data:
-      image:ndarray; the image
+      executioncontext: Dict; the statement execution context
   Returns:
     - data:
-      image:ndarray; the image
-      for-result: bool; result
+      value: int; x*weight
+      executioncontext: Dict; current value
   '''
-  
-  res = params.get('res', True)
-  condition = params.get('condition', 'a==b')
-  image = data.get('image')
+   
+  start = params.get('start', 0)
+  end = params.get('end', 1)
+  increment = params.get('incr', 1)
+  weight = params.get('weight', 1)
 
-  # Calculate the condition
+  execution_context = data.get('executioncontext', None)
+  if execution_context is None or len(execution_context) == 0:
+    execution_context = {}
+    current = start
+  else:
+    execution_context = json.loads(execution_context)
+    current = execution_context.get('current', 0)
+    current += increment
 
-  # data['for-result'] = eval(condition)
-  data['for-result'] = res
+  result = current < (end - increment)
+  execution_context['result'] = result
+  execution_context['current'] = current
+  data['executioncontext'] = execution_context
+  data['value'] = weight*current
   return data
 
 def for_end(params: Dict, **data: Dict) -> Dict:
@@ -173,5 +183,4 @@ def for_end(params: Dict, **data: Dict) -> Dict:
     - data:
   '''
 
-  data['for-result'] = False
   return data
