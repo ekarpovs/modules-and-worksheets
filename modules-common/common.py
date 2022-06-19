@@ -77,7 +77,7 @@ def restore(params: Dict , **data: Dict) -> Dict:
   Parameters:
     - params:   
       path: str=; path to a folder with images
-      src: str=; the source file name 
+      src: str=; the source file name
       flag: Dict[str,int](UNGHANGED:-1,GRAYSCALE:0,COLOR:1)=COLOR; flag one from cv2.IMREAD_(...)
     - data: 
   Returns:
@@ -88,11 +88,12 @@ def restore(params: Dict , **data: Dict) -> Dict:
   path = params.get('path', '')
   fn = params.get('src', '')
   flag = params.get('flag', 1)
- 
-  ffn = '{}/{}'.format(path, fn)
-  image = cv2.imread(ffn, flag)
 
-  data['image'] = image
+  if path != '' and fn != '':
+    ffn = '{}/{}'.format(path, fn)
+    image = cv2.imread(ffn, flag)
+
+    data['image'] = image
   return data
 
 def store_npy_float64(params: Dict , **data: Dict) -> Dict:
