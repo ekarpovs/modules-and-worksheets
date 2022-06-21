@@ -220,7 +220,9 @@ def rotate(params: Dict , **data: Dict) -> Dict:
   usesmall = params.get('usesmall', False)
   angle = params.get('angle', 0)
   if 'angle' in data:
-    angle = int(data.get('angle'))
+    dangle = data.get('angle')
+    if dangle is not None:
+      angle = int(dangle)
   if usesmall:
     angle = smallangle
   negative = params.get('neg', True)
