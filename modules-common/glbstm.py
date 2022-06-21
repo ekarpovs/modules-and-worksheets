@@ -100,16 +100,18 @@ def while_begin(params: Dict, **data: Dict) -> Dict:
       condition: str=a==b; the if condition 
       res: bool=True; for debug purpose only
     - data:
-      image: ndarray; the image
   Returns:
     - data:
-      image: ndarray; the image
       while-result: bool; result
   '''
   
   res = params.get('res', True)
   condition = params.get('condition', 'a==b')
-  image = data.get('image')
+  execution_context = data.get('executioncontext', None)
+  if execution_context is None or len(execution_context) == 0:
+    execution_context = {}
+  else:
+    execution_context = json.loads(execution_context)
 
   # Calculate the condition
 
@@ -156,12 +158,11 @@ def for_begin(params: Dict, **data: Dict) -> Dict:
   increment = params.get('incr', 1)
   weight = params.get('weight', 1)
 
-  execution_context = data.get('executioncontext', None)
-  if execution_context is None or len(execution_context) == 0:
-    execution_context = {}
+  execution_context = data.get('executioncontext')
+  if execution_context.get('init'):
     current = start
+    execution_context['init'] = False
   else:
-    execution_context = json.loads(execution_context)
     current = execution_context.get('current', 0)
     current += increment
 
@@ -170,6 +171,8 @@ def for_begin(params: Dict, **data: Dict) -> Dict:
   execution_context['current'] = current
   data['executioncontext'] = execution_context
   data['value'] = weight*current
+  if not result:
+    current = start
   return data
 
 def for_end(params: Dict, **data: Dict) -> Dict:
