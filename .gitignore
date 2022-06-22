@@ -5,7 +5,5 @@ modules-vs
 modules-vs/__pycache__
 worksheets/test.json
 worksheets-vs-prev
-ws-vs-template
-ws-lev
-ws-coupon*
+ws-*
 .vscode
