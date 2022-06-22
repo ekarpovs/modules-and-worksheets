@@ -100,23 +100,31 @@ def while_begin(params: Dict, **data: Dict) -> Dict:
       condition: str=a==b; the if condition 
       res: bool=True; for debug purpose only
     - data:
+      executioncontext: Dict; the statement execution context
   Returns:
     - data:
-      while-result: bool; result
+      executioncontext: Dict; current value
   '''
   
-  res = params.get('res', True)
+  result = params.get('res', True) # Debug purpose only!!!
   condition = params.get('condition', 'a==b')
-  execution_context = data.get('executioncontext', None)
-  if execution_context is None or len(execution_context) == 0:
+
+  execution_context = data.get('executioncontext')
+  if execution_context is None:
     execution_context = {}
+    execution_context['init'] = True
+
+  if execution_context.get('init'):
+    execution_context['init'] = False
+    # Initialize somevalue
   else:
-    execution_context = json.loads(execution_context)
+    # Change somevalue
+    pass
 
   # Calculate the condition
-
-  # data['while-result'] = eval(condition)
-  data['while-result'] = res
+  # result = eval(condition)
+  execution_context['result'] = result
+  data['executioncontext'] = execution_context
   return data
 
 def while_end(params: Dict, **data: Dict) -> Dict:
@@ -130,7 +138,6 @@ def while_end(params: Dict, **data: Dict) -> Dict:
     - data:
   '''
 
-  data['while-result'] = False
   return data
 
 
@@ -159,9 +166,13 @@ def for_begin(params: Dict, **data: Dict) -> Dict:
   weight = params.get('weight', 1)
 
   execution_context = data.get('executioncontext')
+  if execution_context is None:
+    execution_context = {}
+    execution_context['init'] = True
+    
   if execution_context.get('init'):
-    current = start
     execution_context['init'] = False
+    current = start
   else:
     current = execution_context.get('current', 0)
     current += increment
