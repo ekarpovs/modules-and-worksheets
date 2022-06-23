@@ -1,6 +1,8 @@
 '''
-Local module, contains global staments descriptions
+Local module, contains global staments descriptions and implementations
 '''
+
+
 import cv2
 from typing import Dict
 import json
@@ -86,7 +88,6 @@ def if_end(params: Dict, **data: Dict) -> Dict:
   data['if-result'] = False
   return data
 
-
 def while_begin(params: Dict, **data: Dict) -> Dict:
   '''
   The while statement begin operation. 
@@ -139,7 +140,6 @@ def while_end(params: Dict, **data: Dict) -> Dict:
   '''
 
   return data
-
 
 def for_begin(params: Dict, **data: Dict) -> Dict:
   '''
