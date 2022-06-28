@@ -16,6 +16,7 @@ def pearson(params: Dict, **data: Dict) -> Dict:
 
   Parameters:
     - params:
+      rowvar: bool=True; row represents a variable, with observations in the columns
     - data: 
       image: ndarray; the first image
       scene: ndarray; the second image
@@ -24,11 +25,13 @@ def pearson(params: Dict, **data: Dict) -> Dict:
       correlation: Dict[str,float]; Correlation coefficient
   '''  
 
+  rowvar = params.get('rowvar', True)
+
   image = data.get('image')
   scene = data.get('scene')
   image_1d = image.reshape(-1)
   scene_1d = scene.reshape(-1)
-  corrcoef = np.corrcoef(image_1d, scene_1d)
+  corrcoef = np.corrcoef(image_1d, scene_1d, rowvar)
   # Numpy implements a corrcoef() function that returns a matrix of correlations of:
   #  x with x, x with y, y with x and y with y. 
   # We're interested in the values of correlation of x with y 
