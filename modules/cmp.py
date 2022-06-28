@@ -13,7 +13,7 @@ Comparition operations (two images must to have the same dimension):
 from typing import Dict
 import cv2
 import numpy as np
-from math import log10, sqrt
+import math as Math
 
 
 def cmp_mse(params: Dict, **data: Dict) -> Dict:
@@ -93,7 +93,7 @@ def cmp_psnr(params: Dict, **data: Dict) -> Dict:
   psnr = 100
   if(mse != 0):
     max_pixel = 255.0
-    psnr = 20 * log10(max_pixel / sqrt(mse))
+    psnr = 20 * Math.log10(max_pixel / Math.sqrt(mse))
   # print('cmp_psnr mse,psnr:', mse,  psnr)
   data['psnr'] = psnr 
   return data
@@ -208,45 +208,6 @@ def roi(params: Dict, **data: Dict) -> Dict:
       'hweight': hweight
     }}
 
-  return data
-
-
-'''
-Reshaping the images to two vectors (assuming they are exactly the same size), 
-and then calculating the correlation coefficient:
-np.corrcoef(img.reshape(-1), img1.reshape(-1))
-'''
-
-def correlation(params: Dict, **data: Dict) -> Dict:
-  '''
-  Reshaps the images to two vectors, and then calculats the correlation coefficient
-  This two images must to have the same dimension.
-
-  Parameters:
-    - params:
-    - data: 
-      image: ndarray; the first image
-      scene: ndarray; the second image
-  Returns:
-    - data:
-      correlation: Dict[str,float]; Correlation coefficient
-  '''  
-
-  image = data.get('image')
-  scene = data.get('scene')
-  image_1d = image.reshape(-1)
-  scene_1d = scene.reshape(-1)
-  corrcoef = np.corrcoef(image_1d, scene_1d)
-  # Numpy implements a corrcoef() function that returns a matrix of correlations of:
-  #  x with x, x with y, y with x and y with y. 
-  # We're interested in the values of correlation of x with y 
-  # (so position (1, 0) or (0, 1)).
-  xx = corrcoef[0][0]
-  xy = corrcoef[0][1]
-  yx = corrcoef[1][0]
-  yy = corrcoef[1][1]
-  correlation = {'correlation': {'xx': xx, 'xy': xy, 'yx': yx, 'yy': yy}}
-  data['correlation'] = correlation 
   return data
 
 def fit(params: Dict, **data: Dict) -> Dict:
