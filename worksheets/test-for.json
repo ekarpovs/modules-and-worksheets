@@ -22,16 +22,14 @@
     }
   },
   {
-    "exec": "glbstm.while_begin",
+    "exec": "glbstm.for_begin",
     "title": "02",
     "params": {
       "start": 0,
       "end": 3,
       "increment": 1,
       "weigth": 5,
-      "weight": 5,
-      "condition": "a==b",
-      "res": false
+      "weight": 5
     }
   },
   {
@@ -49,7 +47,7 @@
     }
   },
   {
-    "exec": "glbstm.while_end",
+    "exec": "glbstm.for_end",
     "title": "04"
   },
   {

@@ -1,0 +1,55 @@
+[
+  {
+    "info": "links behavier test worksheet"
+  },
+  {
+    "exec": "glbstm.begin",
+    "title": "00 load 1st image",
+    "params": {
+      "path": "../data-coupon-back-side/01-scan/right",
+      "src": "cp-bs-00-1-100-r.png",
+      "flag": 1
+    }
+  },
+  {
+    "exec": "common.restore",
+    "title": "01 load 2nd image",
+    "params": {
+      "path": "../data-coupon-back-side/01-scan/right",
+      "src": "cp-bs-00-1-100-r.png",
+      "flag": 1
+    }
+  },
+  {
+    "exec": "clrs.bgrto",
+    "title": "02 convert 2nd to gray",
+    "params": {
+      "type": 6
+    },
+    "links": {
+      "image": "1-common.restore-image"
+    }
+  },
+  {
+    "exec": "clrs.invert",
+    "title": "03 invert colors of the 2nd image",
+    "links": {
+      "image": "1-common.restore-image"
+    }
+  },
+  {
+    "exec": "combine.concat",
+    "title": "04 concatinate two images",
+    "params": {
+      "dsize": 5
+    },
+    "links": {
+      "image1": "0-glbstm.begin-image",
+      "image": "1-common.restore-image"
+    }
+  },
+  {
+    "exec": "glbstm.end",
+    "title": ""
+  }
+]
